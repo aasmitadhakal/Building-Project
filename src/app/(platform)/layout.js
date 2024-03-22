@@ -1,9 +1,10 @@
 
 import 'flowbite';
-import "./globals.css";
+// import "./globals.css";
 import Head from "next/head";
+import Navbar from './component/Navbar';
+import Footer from './component/Fotter';
 
-import Navbar from './(platform)/component/Navbar';
 
 export const metadata = {
   title: "Create Next App",
@@ -20,9 +21,9 @@ export default function RootLayout({ children }) {
       </Head>
      
       <body>
-      {/* <Navbar /> */}
+      <Navbar />
         <main>{children}</main>
-     
+     <Footer/>
       </body>
     </html>
   );
