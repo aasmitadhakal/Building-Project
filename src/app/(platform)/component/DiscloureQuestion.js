@@ -36,7 +36,7 @@ function DiscloureQuestion() {
       <div key={index} className="mb-4 p-2 rounded-xl shadow-xl gap-4 bg-white">
         <button
           onClick={() => toggleAnswer(index)}
-          className="flex justify-between w-full bg-blue-500 text-black px-4 py-2 rounded-md hover:bg-blue-600 font-[400] leading-[24px] text-[18px]"
+          className="flex justify-between w-full  text-black px-4 py-2 rounded-md  font-[400] leading-[24px] text-[18px]"
         >
           <span className='font-[400] leading-[24px] text-[18px]'>{item.question}</span>
           <span>{openIndex === index ? '-' : '+'}</span>

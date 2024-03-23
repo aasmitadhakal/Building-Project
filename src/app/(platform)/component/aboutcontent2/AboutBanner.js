@@ -22,7 +22,7 @@ function AboutBanner() {
            
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white', width: '100%', zIndex: '2' }} >
             
-              <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">{card.title}</h1>
+              <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">{card.title}</h1>
             
            
           </div>

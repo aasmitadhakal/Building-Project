@@ -33,11 +33,11 @@ const items = [
 
 const Footer = () => {
   return (
-    <footer className="w-full  bg-blue text-white  px-4 font-[Montserrat]">
+    <footer className="w-full  bg-blues text-white  px-4 font-[Montserrat]">
          <div className="container mx-auto md:block hidden w-full h-[150px] relative -translate-y-1/2 bg-yellow text-white    items-center">
             <div className="text-white flex  justify-around items-center py-6">
             <div className="font-[700] text-[36px] leading-[50px]">Get your dream project started today!</div>
-        <div><button className="my-4 bg-white text-blue px-4 w-44 py-2 rounded ring-blue ring-1 font-[600] text-[22px] leading-[29px] ">Contact Us</button></div> 
+        <div><button className="my-4 bg-white text-blues px-4 w-44 py-2 rounded ring-blues ring-1 font-[600] text-[22px] leading-[29px] ">Contact Us</button></div> 
             </div>
        
     </div>

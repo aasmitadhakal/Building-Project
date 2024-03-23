@@ -1,8 +1,10 @@
-import React from 'react'
+import DoubleOcuupance from "../../component/designcontent/DoubleOcuupance"
 
 function page() {
   return (
-    <div className='mt-44'>Double Ocuupance</div>
+    <div className='mt-20'>
+      <DoubleOcuupance/>
+    </div>
   )
 }
 

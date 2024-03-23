@@ -6,7 +6,7 @@ import WhychooseUs from '../component/aboutcontent2/WhychooseUs';
 
 function page() {
   return (
-    <div className='mt-24'>
+    <div className='mt-20'>
      <AboutBanner/>
      <Aboutus/>
      <MissionPart/>

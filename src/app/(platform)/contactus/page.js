@@ -1,9 +1,9 @@
 import React from 'react'
-import DoubleStore from '../../component/designcontent/DoubleStore'
+import Contact from '../component/contactContent/Contact'
 function page() {
   return (
     <div className='mt-20'>
-      <DoubleStore/>
+        <Contact/>
     </div>
   )
 }

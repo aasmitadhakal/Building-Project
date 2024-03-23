@@ -13,7 +13,7 @@ function Aboutus() {
      {data.map((datas, index) => (
         <>
      <div key={index.id} className='container mx-auto'>
-  <div className='grid md:grid-cols-2 my-4 md:my-12 my-8 md:px-0 px-4 '>
+    <div className='grid md:grid-cols-2 my-0 md:my-12  md:px-0 px-4 '>
     {/* for text part */}
     <div className=' grid place-content-center'>
         <p className='my-4 text-blue font-[700] text-[36px] leading-[49px]'>{datas.title}</p>
