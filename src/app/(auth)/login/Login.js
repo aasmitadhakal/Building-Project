@@ -13,7 +13,7 @@ const router = useRouter();
     e.preventDefault();
     // Implement your login logic here
     try {
-      const response = await fetch("https://check-giec.onrender.com/api/login", {
+      const response = await fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

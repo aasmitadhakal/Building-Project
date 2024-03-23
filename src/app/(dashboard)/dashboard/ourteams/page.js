@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import CountryTable from "../component/Tables/Countrytable/Countrytable";
+import CountryTable from "../component/Tables/AboutUsTable/AboutusTable";
 import CreateForm from "../component/Create/CreateCountry";
 import Link from "next/link";
 import CourseTable from "../component/Tables/coursestable/coursetable";

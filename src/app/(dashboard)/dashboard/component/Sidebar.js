@@ -66,38 +66,49 @@ const Sidenav = () => {
               <Sidebar.Item icon={HiChartPie}>Dashboard</Sidebar.Item>
             </Link>
 
-            <Link href="/dashboard/country">
-              <Sidebar.Item icon={FaGlobe}>Country</Sidebar.Item>
+            <Link href="/dashboard/aboutus">
+              <Sidebar.Item icon={FaGlobe}>AboutUs</Sidebar.Item>
             </Link>
-
-            <Link href="/dashboard/courses">
-              <Sidebar.Item icon={HiOutlineBookOpen}>Courses</Sidebar.Item>
-            </Link>
+            
+            <Sidebar.Collapse icon={BsGear} label="Design">
+              <Link href="/dashboard/design">
+                <Sidebar.Item>Single Design</Sidebar.Item>
+              </Link>
+              <Link href="/dashboard/double">
+                <Sidebar.Item>Double Design</Sidebar.Item>
+              </Link>
+              <Link href="/dashboard/dual">
+                <Sidebar.Item>Duol media</Sidebar.Item>
+              </Link>
+            
+            </Sidebar.Collapse>
 
             <Link href="/dashboard/services">
               <Sidebar.Item icon={FaHeadphones}>Services</Sidebar.Item>
             </Link>
 
-            <Link href="/dashboard/blogs">
-              <Sidebar.Item icon={FaBookOpen}>Blogs</Sidebar.Item>
+            <Link href="/dashboard/gallery">
+              <Sidebar.Item icon={FaBookOpen}>Gallery</Sidebar.Item>
+            </Link>
+
+            <Link href="/dashboard/contact">
+              <Sidebar.Item icon={HiChatAlt2}>ContactUs</Sidebar.Item>
+            </Link>
+
+            <Link href="/dashboard/privacy">
+              <Sidebar.Item icon={HiTable}>Privacy</Sidebar.Item>
             </Link>
 
             <Link href="/dashboard/testimonials">
-              <Sidebar.Item icon={HiChatAlt2}>Testimonials</Sidebar.Item>
+              <Sidebar.Item icon={HiTable}>Testimonials</Sidebar.Item>
             </Link>
 
-            <Link href="/dashboard/partneruniversity">
-              <Sidebar.Item icon={HiTable}>Partner Universities</Sidebar.Item>
-            </Link>
-
-            <Link href="/dashboard/ourteams">
-              <Sidebar.Item icon={BsFillPeopleFill}>Our Teams</Sidebar.Item>
-            </Link>
+           
             <Link href="/dashboard/faq">
               <Sidebar.Item icon={FaQuestion}>FAQ</Sidebar.Item>
             </Link>
 
-            <Sidebar.Collapse icon={BsGear} label="Settings">
+            <Sidebar.Collapse icon={BsGear} label="Global Settings">
               <Link href="/dashboard/slider">
                 <Sidebar.Item>Sliders</Sidebar.Item>
               </Link>
@@ -109,6 +120,21 @@ const Sidenav = () => {
               </Link>
               <Link href="/dashboard/globalsettings">
                 <Sidebar.Item>Global Settings</Sidebar.Item>
+              </Link>
+
+            </Sidebar.Collapse>
+            <Sidebar.Collapse icon={BsGear} label="General Settings">
+              <Link href="/dashboard/slider">
+                <Sidebar.Item>Global</Sidebar.Item>
+              </Link>
+              <Link href="/dashboard/sitepages">
+                <Sidebar.Item>Homepage</Sidebar.Item>
+              </Link>
+              <Link href="/dashboard/socialmedia">
+                <Sidebar.Item>Contact</Sidebar.Item>
+              </Link>
+              <Link href="/dashboard/globalsettings">
+                <Sidebar.Item>SEO </Sidebar.Item>
               </Link>
             </Sidebar.Collapse>
           </Sidebar.ItemGroup>
