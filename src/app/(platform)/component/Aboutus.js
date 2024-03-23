@@ -16,7 +16,7 @@ function Aboutus() {
     <div className='grid md:grid-cols-2 my-0 md:my-12  md:px-0 px-4 '>
     {/* for text part */}
     <div className=' grid place-content-center'>
-        <p className='my-4 text-blue font-[700] text-[36px] leading-[49px]'>{datas.title}</p>
+        <p className='my-4 text-blues font-[700] text-[36px] leading-[49px]'>{datas.title}</p>
       <p className='font-[Montserrat] font-[400] leading-[24px] text-[16px]'>{datas.description}</p>
     </div>
     {/* for img part */}

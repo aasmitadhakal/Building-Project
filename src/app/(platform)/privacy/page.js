@@ -18,7 +18,7 @@ function Page() {
         <>
          {/* forbanner */}
       {banneerdata.map((card, index) => (
-        <div key={index} className="relative w-full h-96 font-[Karla]">
+        <div key={index} className="relative mt-20 w-full h-96 font-[Karla]">
           <div
             className="w-full h-96"
             style={{
