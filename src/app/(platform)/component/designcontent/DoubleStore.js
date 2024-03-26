@@ -74,10 +74,10 @@ function DoubleStore() {
         </div>
       ))}
       {/* for cards */}
-      <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24">
+      <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24 font-[Montserrat]">
         {data.map((property, index) => (
           <div key={index} className=" shadow-xl p-4  ">
-            <h3 className="text-blues  font-[Monstserrat] font-[600] text-[24px] leading-[35px] mx-2">
+            <h3 className="text-blues   font-[600] text-[24px] leading-[35px] mx-2">
               {property.title}
             </h3>
             <div className="grid md:grid-cols-3 gap-4">
@@ -98,18 +98,18 @@ function DoubleStore() {
                <p className="text-brown md:text-[18px] pl-4 text-[10px]  leading-[24px] font-[400]">{property.title2}</p>
             </div>
 
-            <div className="my-4">
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 mx-2 flex">
+            <div className="my-6 font-[Montserrat]">
+              <p className="text-black  font-[400] text-[16px] leading-[22px] my-2 mx-2 flex">
                 Frontage Size: {property.frontage_size}
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black  font-[400] text-[16px] leading-[22px] my-2 flex">
                 <FaBed className="text-blues  mx-2" /> {property.bedroom}Bedrooms
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black  font-[400] text-[16px] leading-[22px] my-2 flex">
                 {" "}
                 <FaCar className="text-blues  mx-2" /> {property.cars}Cars
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black  font-[400] text-[16px] leading-[22px] my-2 flex">
                 <FaToilet className="text-blues  mx-2" /> {property.bathroom}
                 Bathrooms
               </p>

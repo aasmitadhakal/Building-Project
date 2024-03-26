@@ -58,7 +58,7 @@ const data = [
 function ServicePage () {
   return (
     <>
-      <div className='grid md:grid-cols-3 container mx-auto gap-6 my-12 mb-44  md:px-0 px-4'>
+      <section className='grid md:grid-cols-3 container mx-auto gap-6 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
             {data.map((datas, index) => (
                 <>
                 <div key={index.id} className='shadow-xl rounded p-4'>
@@ -68,7 +68,7 @@ function ServicePage () {
                 </div>
                 </>
             ))}
-            </div>
+            </section>
     </>
   )
 }

@@ -93,20 +93,20 @@ function Contact() {
         <div>
           <form>
           
-           <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4">
+           <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
             <div className="">
                 <label className="text-slate-600 font-[400]">Enter your name</label>
                 <input type='text'
                 
-                className="border-b outline-none w-full rounded ">
+                className=" outline-none w-full rounded ">
                     
                 </input>
 
             </div>
             <div className="">
-            <label className="text-slate-600 font-[400]">Enter your name</label>
-                <input type='text'
+            <label className="text-slate-600 font-[400]">Enter your Email</label>
+                <input type='email'
                
                 className="border-b outline-none w-full rounded">
                     
@@ -136,7 +136,7 @@ function Contact() {
 
 
            </div>
-           <div className=" my-6 px-4 ">
+           <div className=" my-6 px-4 font-[Montserrat]">
            <label className="text-slate-600 font-[400]">How can we help you? Feel free to get in touch!</label>
   <input
     type="text"
@@ -146,7 +146,7 @@ function Contact() {
 </div>
 <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">
     <button className="border-blues px-8 py-2 rounded border-2 text-blues">Submit </button>
-    <div className="">
+    <div className="font-[Montserrat]">
   <label className="inline-flex items-center">
     <input type="radio" className="form-radio text-blues" />
     <span className="ml-2 my-1">I agree to your privacy policy</span>

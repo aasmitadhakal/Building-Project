@@ -10,7 +10,7 @@ function ServicePageBanner() {
   return (
    <>
     {data.map((card, index) => (
-        <div key={index} className="relative w-full mt-20 h-96 font-[Karla]">
+        <section key={index} className="relative w-full mt-20 h-96 font-[Karla]">
               <div className='w-full h-96' style={{ position: 'absolute', backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
           <img
             className="absolute inset-0 w-full h-96 object-cover"
@@ -24,7 +24,7 @@ function ServicePageBanner() {
             
            
           </div>
-        </div>
+        </section>
       ))}
    </>
   )

@@ -70,11 +70,10 @@ const CreateBlogs = () => {
         };
 
         const response = await axios.post("/api/create", formDataWithEditor);
-        // console.log(formDataWithEditor);
-        // Handle success or show a message to the user
+        
       } catch (error) {
         console.error("Error creating item:", error);
-        // Handle error or show an error message to the user
+        
       }
     }
   };

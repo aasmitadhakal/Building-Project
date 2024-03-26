@@ -17,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white w-full fixed top-0 z-50 shadow-xl">
+    <header className="bg-white w-full fixed top-0 z-50 shadow-xl">
       <div className="container mx-auto md:px-0 px-4 flex justify-between items-center py-1">
         <Link href="/">
           <img src={img} className="h-[78px]" alt="Logo" />
@@ -142,7 +142,7 @@ function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }
 

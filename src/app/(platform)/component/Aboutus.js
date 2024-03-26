@@ -12,7 +12,7 @@ function Aboutus() {
     <>
      {data.map((datas, index) => (
         <>
-     <div key={index.id} className='container mx-auto'>
+     <section key={index.id} className='container mx-auto font-[Montserrat]'>
     <div className='grid md:grid-cols-2 my-0 md:my-12  md:px-0 px-4 '>
     {/* for text part */}
     <div className=' grid place-content-center'>
@@ -25,7 +25,7 @@ function Aboutus() {
       <img src={datas.image2} className='md:w-[484px] md:h-[430px] w-[250px] h-[250px] rounded ring-4 ring-white'></img>
     </div>
   </div>
-</div>
+</section>
         </>
      ))}
 

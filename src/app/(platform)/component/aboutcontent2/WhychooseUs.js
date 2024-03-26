@@ -20,17 +20,17 @@ function WhychooseUs() {
   return (
     <>
       {data.map((item, index) => (
-        <div className='bg-white mb-36 ' key={index}>
+        <section className='bg-white mb-36 ' key={index}>
           <div className='bg-white grid md:grid-cols-2 grid-cols-1 my-12 container mx-auto px-4 text-justify font-[karla]'>
            
             {/* for text part */}
             <div className='flex items-center justify-center text-[16px] font-[400] text-[#37454D]'>
               <div className='h-[205px]w-[781px] bg-white p-6 gap-x-4'>
-                <p className='font-[700] text-[32px] font-[Roboto] leading-10 font-montserrat text-blues my-4'>{item.heading}</p>
+                <p className='font-[700] text-[32px]  leading-10 font-montserrat text-blues my-4'>{item.heading}</p>
                 <div className='flex items-center text-justify justify-center mt-4 leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'>
                   <ul>
                     {item.items.map((listItem, i) => (
-                      <li key={i} className='flex gap-x-2'><FaCircleCheck className='text-yellow ' />{listItem}</li>
+                      <li key={i} className='flex gap-x-2 my-2'><FaCircleCheck className='text-yellow ' />{listItem}</li>
                     ))}
                   </ul>
                 </div>
@@ -41,7 +41,7 @@ function WhychooseUs() {
               <img src={item.image} alt='' className=' rounded object-cover h-[279px] w-3/4' />
             </div>
           </div>
-        </div>
+        </section>
       ))}
     </>
   );

@@ -10,7 +10,6 @@ import DiscloureQuestion from "./component/DiscloureQuestion";
 export default function Home() {
   return (
     <>
-    <div>
       <HomeBanner/>
       <Aboutus/>
       <HomeDesignPart/>
@@ -18,8 +17,6 @@ export default function Home() {
       <Buliding/>
       <Testomonial/>
       <DiscloureQuestion/>
-     
-    </div>
     </>
   );
 }

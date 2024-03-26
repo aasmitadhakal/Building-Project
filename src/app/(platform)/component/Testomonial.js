@@ -42,10 +42,10 @@ function Testonomial() {
 
   return (
     <>
-    <div className='grid place-content-center mt-8'>
+    <section className='grid place-content-center mt-8 font-[Montserrat]'>
             <p className='text-brown text-[18px] leading-[24px] font-[400] grid place-content-center'>Our clients review</p>
           <p className='text-blue text-[36px] leading-[49px] font-[700] my-1 grid place-content-center'>Testimonials</p>
-            </div>
+            </section>
       <Swiper
       slidesPerView={1}
       spaceBetween={10}
@@ -72,11 +72,11 @@ function Testonomial() {
         
        {jsonData.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className=' text-black font-[Roboto] my-20 shadow-2xl rounded p-8 '>
+            <div className=' text-black font-[Montserrat] my-20 shadow-2xl rounded p-8 '>
              <p className='grid place-content-center my-2'><FaQuoteLeft  className='text-[#EECB5D]'/></p>
               <div className='my-2 font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify '>{item.description}</div>
-              <div className='h-24 w-24 rounded-full overflow-hidden mx-auto '><img src={item.img} className='h-full w-full object-cover rounded-full ring-4 ring-[#EECB5D]' alt={item.title} /></div>
-              <div className=' text-black flex justify-center item-center my-1'>{item.title}</div>
+              <div className='h-24 w-24 rounded-full overflow-hidden mx-auto '><img src={item.img} className='h-full w-full object-cover rounded-full ring-4 font-[Montserrat] ring-[#EECB5D]' alt={item.title} /></div>
+              <div className=' text-black flex justify-center item-center font-[Montserrat] my-1'>{item.title}</div>
               <div className='flex text-yellow-300 justify-center items-center my-1'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="w-5 text-warning">
                     <path fill="currentColor"

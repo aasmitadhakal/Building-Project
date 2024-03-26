@@ -98,18 +98,18 @@ function DoubleOcuupance() {
                <p className="text-brown md:text-[18px] pl-4 text-[10px]  leading-[24px] font-[400]">{property.title2}</p>
             </div>
 
-            <div className="my-4">
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 mx-2 flex">
+            <div className="my-4 font-[Montserrat]">
+              <p className="text-black font-[400] text-[16px] leading-[22px] my-2 mx-2 flex">
                 Frontage Size: {property.frontage_size}
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black font-[400] text-[16px] leading-[22px] my-2 flex">
                 <FaBed className="text-blues  mx-2" /> {property.bedroom}Bedrooms
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black font-[400] text-[16px] leading-[22px] my-2 flex">
                 {" "}
                 <FaCar className="text-blues  mx-2" /> {property.cars}Cars
               </p>
-              <p className="text-black font-[Monstserrat] font-[400] text-[16px] leading-[22px] my-1 flex">
+              <p className="text-black font-[400] text-[16px] leading-[22px] my-2 flex">
                 <FaToilet className="text-blues  mx-2" /> {property.bathroom}
                 Bathrooms
               </p>
