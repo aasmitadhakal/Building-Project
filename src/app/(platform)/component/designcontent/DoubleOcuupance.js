@@ -67,7 +67,7 @@ function DoubleOcuupance() {
               zIndex: "2",
             }}
           >
-            <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
+            <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">
               {card.title}
             </h1>
           </div>

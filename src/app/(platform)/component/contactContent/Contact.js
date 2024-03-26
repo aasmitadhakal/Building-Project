@@ -56,7 +56,7 @@ function Contact() {
               zIndex: "2",
             }}
           >
-            <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
+            <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">
               {card.title}
             </h1>
           </div>
@@ -136,12 +136,12 @@ function Contact() {
 
 
            </div>
-           <div className=" my-6 md:pl-4 ">
-           <label className="text-slate-600 md:px-0 px-4 font-[400]">How can we help you? Feel free to get in touch!</label>
+           <div className=" my-6 px-4 ">
+           <label className="text-slate-600 font-[400]">How can we help you? Feel free to get in touch!</label>
   <input
     type="text"
     
-    className="outline-none md:w-full w-full md:pl-0 pl-4 h-44 rounded align-top md:px-0 px-4 "
+    className="outline-none  w-full  h-44 rounded align-top "
   />
 </div>
 <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">

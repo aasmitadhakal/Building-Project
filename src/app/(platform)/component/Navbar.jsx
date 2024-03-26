@@ -18,7 +18,7 @@ function Navbar() {
 
   return (
     <div className="bg-white w-full fixed top-0 z-50 shadow-xl">
-      <div className="container mx-auto flex justify-between items-center py-4">
+      <div className="container mx-auto md:px-0 px-4 flex justify-between items-center py-4">
         <Link href="/">
           <img src={img} className="h-12" alt="Logo" />
         </Link>

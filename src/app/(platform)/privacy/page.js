@@ -46,7 +46,7 @@ function Page() {
               zIndex: "2",
             }}
           >
-            <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
+            <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">
               {card.title}
             </h1>
           </div>
@@ -54,7 +54,7 @@ function Page() {
       ))}
       {/* for detail */}
             {data.map((item, index) => (
-                <div key={index} className='mt-4 text-slate-700 font-[400] font-[karla] container mx-auto mb-44'>
+                <div key={index} className='mt-4 text-slate-700 font-[400] font-[karla] container mx-auto md:px-0 px-4 text-justify mb-44'>
                     {item.description}
                 </div>
             ))}

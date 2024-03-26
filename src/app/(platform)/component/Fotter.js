@@ -11,7 +11,7 @@ const img = "/assets/image/img.jpg";
 const sections = [
   {
     title: " Quick Links",
-    items: [<Link href="/">Home</Link>,<Link href="/package">Package</Link>, <Link href="/about">About Us</Link>, <Link href="/blog">Blog</Link>, <Link href="/contact">Contact</Link>],
+    items: [<Link href="/">Home</Link>,<Link href="/about">About Us</Link>, <Link href="/service">Service</Link>, <Link href="/gallery">Gallery</Link>, <Link href="/contactus">Contact</Link>],
   },
   {
     title: "Company",
