@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-const img = "/assets/image/img.jpg";
+const img = "/assets/image/logo.jpg";
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -18,9 +18,9 @@ function Navbar() {
 
   return (
     <div className="bg-white w-full fixed top-0 z-50 shadow-xl">
-      <div className="container mx-auto md:px-0 px-4 flex justify-between items-center py-4">
+      <div className="container mx-auto md:px-0 px-4 flex justify-between items-center py-1">
         <Link href="/">
-          <img src={img} className="h-12" alt="Logo" />
+          <img src={img} className="h-[78px]" alt="Logo" />
         </Link>
         <div className="hidden  md:flex gap-x-8 items-center justify-center font-[400] text-[18px] leading-[24px] font-[karla]">
           <Link href="/">

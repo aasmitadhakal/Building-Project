@@ -7,7 +7,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-const img = "/assets/image/img.jpg";
+const img = "/assets/image/logo.jpg";
 const sections = [
   {
     title: " Quick Links",
@@ -46,7 +46,7 @@ const Footer = () => {
 
         <div className="md:col-span-2 pt-8 my-12  md:pt-2">
             <div className=" font-[600] text-[28px]">
-            <img src={img} className='h-20 w-36' alt="Logo" />
+            <img src={img} className='h-20 w-30' alt="Logo" />
             </div>
           <p>"We're partners in creating exceptional spaces."</p>
           <div className="flex mx-4 sm:w-[300px] gap-x-2 pt-4 text-2xl">
