@@ -1,74 +1,142 @@
 "use client";
-import React, { useState } from 'react';
-import axiosInstance from '@/app/utils/axiosInstance';
+import React, { useState } from "react";
+import axiosInstance from "@/app/utils/axiosInstance";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function Create() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [order, setOrder] = useState("");
+  const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
+  const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Create FormData object
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('imageOne', imageOne);
-    formData.append('imageTwo', imageTwo);
+    formData.append("title", title);
+    formData.append("description", editorValue);
+    formData.append("order", order);
+    formData.append("image_one", imageOne);
+    formData.append("image_two", imageTwo);
 
     try {
-      const response = await axiosInstance.post('/api/posts', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log(response.data); // handle response accordingly
+
+      
+
+      // Send data to the server using axiosInstance with authorization header
+      const response = await axiosInstance.post("/api/aboutus", formData);
+
+      if (response.status === 200) {
+        toast("Post created successfully");
+        router.push("/dashboard/aboutus");
+      } else {
+        toast("Error creating post");
+      }
     } catch (error) {
-      console.error('Error creating post:', error);
+      console.error("Error creating post:", error);
+      toast("Error creating post");
     }
   };
 
   return (
-    <div>
-      <h2>Create Post</h2>
+    <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
+      <ToastContainer />
+      <h2 className="text-2xl font-bold">Create Post</h2>
       <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+              Order:
+            </label>
+            <input
+              id="order"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="order"
+              value={order}
+              onChange={(e) => setOrder(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              Title:
+            </label>
+            <input
+              id="title"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="name"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+            Description:
+          </label>
+          <ReactQuill
+            className="bg-white text-black z-0"
+            modules={{
+              toolbar: [
+                [{ font: [] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["clean"],
+              ],
+            }}
+            value={editorValue}
+            theme="snow"
+            onChange={(value) => setEditorValue(value)}
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image_one">
+              Image One:
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="image_one"
+              accept="image/*"
+              onChange={(e) => setImageOne(e.target.files[0])}
+            />
+          </div>
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image_two">
+              Image Two:
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="image_two"
+              accept="image/*"
+              onChange={(e) => setImageTwo(e.target.files[0])}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="imageOne">Image One:</label>
-          <input
-            type="file"
-            id="imageOne"
-            accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])}
-          />
+
+        <div className="flex gap-2">
+          <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
+            Create
+          </button>
+          <Link href={"/dashboard/aboutus"}>
+            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
+          </Link>
         </div>
-        <div>
-          <label htmlFor="imageTwo">Image Two:</label>
-          <input
-            type="file"
-            id="imageTwo"
-            accept="image/*"
-            onChange={(e) => setImageTwo(e.target.files[0])}
-          />
-        </div>
-        <button type="submit">Create</button>
       </form>
     </div>
   );

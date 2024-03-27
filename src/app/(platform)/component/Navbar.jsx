@@ -24,23 +24,23 @@ function Navbar() {
         </Link>
         <div className="hidden  md:flex gap-x-8 items-center justify-center font-[400] text-[18px] leading-[24px] font-[karla]">
           <Link href="/">
-            <div className="hover:text-blue-500">Home</div>
+            <div className="hover:text-customblue">Home</div>
           </Link>
           <Link href="/about">
-            <div className="hover:text-blue-500">About</div>
+            <div className="hover:text-customblue">About</div>
           </Link>
           <Link href="/services">
-            <div className="hover:text-blue-500">Service</div>
+            <div className="hover:text-customblue">Service</div>
           </Link>
           <Link href="/gallery">
-            <div className="hover:text-blue-500">Gallery</div>
+            <div className="hover:text-customblue">Gallery</div>
           </Link>
           <div
             className="relative"
             onMouseEnter={handleDropdown}
             onMouseLeave={handleDropdown}
           >
-            <div className="hover:text-blue-500 cursor-pointer flex items-center justify-items-center">Design <IoIosArrowDown  className="ml-1"/></div>
+            <div className="hover:text-customblue cursor-pointer flex items-center justify-items-center">Design <IoIosArrowDown  className="ml-1"/></div>
             {dropdownOpen && (
               <div className="absolute top-full w-52 left-0 bg-white p-4 shadow-2xl rounded ">
                 <div className="hover:text-blues">
@@ -56,10 +56,10 @@ function Navbar() {
             )}
           </div>
           <Link href="/contactus">
-            <div className="hover:text-blue-500">Contact Us</div>
+            <div className="hover:text-customblue">Contact Us</div>
           </Link>
           <Link href="/privacy">
-            <div className="hover:text-blue-500">  Privacy & Policy</div>
+            <div className="hover:text-customblue">  Privacy & Policy</div>
           </Link>
         </div>
      
@@ -92,19 +92,19 @@ function Navbar() {
             style={{ zIndex: 1000 }}
           >
             <div className="flex flex-col items-center gap-4">
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
                 {" "}
                 <Link href="/">Home</Link>
               </div>
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
                 {" "}
                 <Link href="/about">About</Link>
               </div>
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
                 {" "}
                 <Link href="/services">Service</Link>
               </div>
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
                 {" "}
                 <Link href="/gallery">Gallery</Link>
               </div>
@@ -113,11 +113,11 @@ function Navbar() {
                 onMouseEnter={handleDropdown}
                 onMouseLeave={handleDropdown}
               >
-                <div className="hover:text-blue-500 cursor-pointer flex items-center justify-center">Design <IoIosArrowDown  className="ml-1"/></div>
+                <div className="hover:text-customblue cursor-pointer flex items-center justify-center">Design <IoIosArrowDown  className="ml-1"/></div>
                 {dropdownOpen && (
                   <div className="absolute top-full w-52 left-0 bg-white p-4 shadow-2xl rounded ">
-                    <div>
-                      <Link href="/design/singlehome">Single Home</Link>
+                    <div className="hover:text-customblue">
+                      <Link href="/design/singlehome" >Single Home</Link>
                     </div>
                     <div>
                       <Link href="/design/doublehome">Double</Link>
@@ -130,10 +130,10 @@ function Navbar() {
                   </div>
                 )}
               </div>
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
                 <Link href="/contactus">Contact Us</Link>
               </div>
-              <div className="hover:text-blue-500">
+              <div className="hover:text-customblue">
               <Link href="/privacy">
          Privacy & Policy
           </Link>

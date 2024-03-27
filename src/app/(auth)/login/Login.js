@@ -1,5 +1,6 @@
 // pages/login.js
 "use client";
+import axiosInstance from "@/app/utils/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -8,24 +9,29 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
-const router = useRouter();
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Implement your login logic here
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axiosInstance.post(
+        "/api/login",
+        {
+          email,
+          password,
+          rememberMe,
         },
-        body: JSON.stringify({ email, password, rememberMe }),
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        router.push('/dashboard');
-
+      if (response.status === 200) {
+        const data = response.data;
+        localStorage.setItem("authorizations", data.token);
+        router.push("/dashboard");
       } else {
         throw new Error("Invalid username or password");
       }

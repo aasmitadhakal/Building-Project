@@ -26,11 +26,11 @@ function HomeDesignPart() {
 
   return (
     <>
-      <div className='bg-gray py-16 font-[karla]'>
+      <div className='bg-customgray py-16 font-[karla]'>
         {/* Header */}
         <div className='font-karla'>
           <p className='text-brown md:text-[18px] text-[15px] leading-[24px] font-[400] grid place-content-center'>Design & construction.</p>
-          <p className='text-blue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center'>Visit Our Designs</p>
+          <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center'>Visit Our Designs</p>
         </div>
 
         {/* Images */}

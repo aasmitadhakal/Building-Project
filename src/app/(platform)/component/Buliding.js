@@ -29,16 +29,16 @@ function Buliding() {
    
     return (
         <>
-        <section className="bg-gray py-8 font-[Montserrat]">
+        <section className="bg-customgray py-8 font-[Montserrat]">
             <div className=' mb-4'>
-            <p className='text-brown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>Building Excellence Together.</p>
-          <p className='text-blues md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>Our Building Process</p>
+            <p className='text-cutombrown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>Building Excellence Together.</p>
+          <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>Our Building Process</p>
             </div>
             <div className="container mx-auto px-4 font-[Montserrat]">
                 {data.map((item, index) => (
                     <div key={index} className={`flex flex-wrap items-center mb-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
                         <div className="w-full md:w-1/2 mb-4 md:mb-0">
-                            <h2 className="my-1 text-blues font-[600] text-[24px] leading-[32px] mx-4">{item.title}</h2>
+                            <h2 className="my-1 text-customblues font-[600] text-[24px] leading-[32px] mx-4">{item.title}</h2>
                             <p className="font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify mx-4">{item.description}</p>
                         </div>
                         <div className="w-full md:w-1/2 ">

@@ -32,8 +32,8 @@ function ClientJourney() {
             <div className='grid md:grid-cols-3 font-[karla] my-24 container mx-auto md:px-0 px-4 '>
             {/* for title headding */}
             <div className='grid place-content-center'>
-                <p className='text-blues font-[700] text-[36px] leading-[49px]'> We add Value to Our Client’s Journey </p>
-                <button className='my-4 text-blues hover:text-white hover:bg-blues px-4 w-44 py-2 rounded ring-blues ring-1 font-[600] text-[22px] leading-[29px] '>Learn More</button>
+                <p className='text-customblue font-[700] text-[36px] leading-[49px]'> We add Value to Our Client’s Journey </p>
+                <button className='my-4 text-customblue hover:text-white hover:bg-customblue px-4 w-44 py-2 rounded ring-customblue ring-1 font-[600] text-[22px] leading-[29px] '>Learn More</button>
             </div>
             {/* for dyanmic part */}
             <div className='md:col-span-2 '>
@@ -41,7 +41,7 @@ function ClientJourney() {
             {data.map((datas, index) => (
                 <>
                 <div key={index.id} className='shadow rounded p-4'>
-                    <img src={datas.img} alt='img' className='h-[35px] w-[35px] bg-yellow rounded px-1 py-1'></img>
+                    <img src={datas.img} alt='img' className='h-[35px] w-[35px] bg-customyellow rounded px-1 py-1'></img>
                     <p className='my-1 text-black font-[600] text-[24px] leading-[32px]'>{datas.title}</p>
                     <p className='text-blue font-[400] text-[16px] leading-[25px]'>{datas.description}</p>
                 </div>

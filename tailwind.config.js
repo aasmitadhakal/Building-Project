@@ -23,10 +23,10 @@ module.exports = {
         '128': '44rem',
       },
       colors: {
-        'blues': '#4581AC',
-        'brown': '#7B493E',
-        'gray': '#ECECEC',
-        'yellow': '#EECB5D',
+        'customblue': '#4581AC',
+        'cutombrown': '#7B493E',
+        'customgray': '#ECECEC',
+        'customyellow': '#EECB5D',
        
       },
     },

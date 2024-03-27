@@ -10,8 +10,8 @@ function MissionPart() {
   return (
    <>
      {data.map((item, index) => (
-        <section className='bg-gray py-10 font-[Montserrat]'>
-      <div key={index} className=' bg-gray grid md:grid-cols-2 grid-cols-1  my-12 container mx-auto px-4 text-justify  font-[karla]'>
+        <section className='bg-customgray py-10 font-[Montserrat]'>
+      <div key={index} className=' bg-customgray grid md:grid-cols-2 grid-cols-1  my-12 container mx-auto px-4 text-justify  font-[karla]'>
          {/* for img part */}
          <div  className=' my-12 flex items-center justify-center'>
           <img src={item.image} alt='' className='2xl:w-screen  rounded object-cover' />
@@ -19,7 +19,7 @@ function MissionPart() {
         {/* for text part */}
         <div  className='  flex items-center justify-center    text-[16px] font-[400] text-[#37454D] ' >
           <div className='h-[205px]w-[781px] bg-white p-6 shaadow-2xl'>
-          <p className=' font-[700] text-[32px]  leading-10 text-blues font-montserrat text-gray-700 my-4'>{item.title}</p>
+          <p className=' font-[700] text-[32px]  leading-10 text-blues font-montserrat text-customblue my-4'>{item.title}</p>
           <div className='flex items-center text-justify justify-center mt-4 leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'>{item.description}</div>
           </div>
          

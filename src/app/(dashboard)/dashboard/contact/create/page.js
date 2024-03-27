@@ -12,49 +12,68 @@ function Create() {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
-  const [imageOne, setImageOne] = useState(null);
-  // const [imageTwo, setImageTwo] = useState(null);
-  // Additional fields
-  const [frontage, setFrontage] = useState("");
-  const [size, setSize] = useState("");
-  const [bedroom, setBedroom] = useState("");
-  const [cars, setCars] = useState("");
-  const [bathrooms, setBathrooms] = useState("");
-  // const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [floorPlan, setFloorPlan] = useState(null);
-   const [storeyType, setStoreyType] = useState("double");
+  const [banner_image, setbanner_image] = useState(null);
+  const [short_description, setshort_description] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setcontact] = useState("");
+  const [location, setlocation] = useState("");
+  const [seo_title, setseo_title] = useState("");
+  const [seo_keyword, setseo_keyword] = useState("");
+  const[description,setDescription]=useState("");
+
 
   const router = useRouter();
 
+  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Validate inputs
+    // const contactValue = parseInt(contact);
+    // const bedOderValue = parseInt(order);
+    // const locationValue = parseInt(location);
+    // const seo_keywordValue = parseInt(seo_keyword);
+    // if (isNaN(bedOderValue)) {
+    //   toast("Please enter valid integer values for Ordervalue");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(contactValue)) {
+    //   toast("Please enter valid integer values for contact");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(locationValue)) {
+    //   toast("Please enter valid integer values for Car");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(seo_keywordValue)) {
+    //   toast("Please enter valid integer values for seo_keyword");
+    //   return; // Stop form submission if validation fails
+    // }
+  
     // Create FormData object
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", editorValue);
     formData.append("order", order);
-    formData.append("image", imageOne); // Append image file correctly
-
+    formData.append("image", banner_image); // Append image file correctly
+  
     // Append additional fields
-    formData.append("frontage", frontage);
-    formData.append("size", size);
-    formData.append("bedroom", bedroom);
-    formData.append("cars", cars);
-    formData.append("bathrooms", bathrooms);
-    // formData.append("description", description);
-    formData.append("price", price);
+    formData.append("short_description", short_description);
+    formData.append("email", email);
+    formData.append("contact", contactValue); // Use validated integer value
+    formData.append("location", locationValue); // Use validated integer value
+    formData.append("seo_title", seo_title);
+    formData.append("seo_keyword", seo_keywordValue); // Use validated integer value
     formData.append("floor_plan", floorPlan);
     formData.append("storey_type", storeyType);
-
+  
     try {
       // Send data to the server using axiosInstance with authorization header
-      const response = await axiosInstance.post("/api/design", formData);
-
+      const response = await axiosInstance.post("/api/contact", formData);
+  
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/double");
+        router.push("/dashboard/contact");
       } else {
         toast("Error creating post");
       }
@@ -67,7 +86,7 @@ function Create() {
   return (
     <div className="min-w-screen bg-white rounded-md p-8">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Design</h2>
+      <h2 className="text-2xl font-bold">Create Contact</h2>
       <form onSubmit={handleFormSubmit}>
         {/* Existing form fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -98,7 +117,7 @@ function Create() {
             />
           </div>
         </div>
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -117,79 +136,79 @@ function Create() {
                 ["clean"],
               ],
             }}
-            value={editorValue}
+            value={description}
             theme="snow"
-            onChange={(value) => setEditorValue(value)}
+            onChange={(e) =>setDescription(e.target.value)}
           />
-        </div> */}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="frontage">
-              Frontage:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+              short_description:
             </label>
             <input
-              id="frontage"
+              id="short_description"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="frontage"
-              value={frontage}
-              onChange={(e) => setFrontage(e.target.value)}
+              name="short_description"
+              value={short_description}
+              onChange={(e) => setshort_description(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="size">
-              Size:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+              Email:
             </label>
             <input
-              id="size"
+              id="email"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="size"
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="bedroom">
-              Bedroom:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="contact">
+              contact:
             </label>
             <input
-              id="bedroom"
+              id="contact"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="bedroom"
-              value={bedroom}
-              onChange={(e) => setBedroom(e.target.value)}
+              name="contact"
+              value={contact}
+              onChange={(e) => setcontact(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="cars">
-              Cars:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="location">
+              location:
             </label>
             <input
-              id="cars"
+              id="location"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="cars"
-              value={cars}
-              onChange={(e) => setCars(e.target.value)}
+              name="location"
+              value={location}
+              onChange={(e) => setlocation(e.target.value)}
             />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="bathrooms">
-              Bathrooms:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_title">
+              seo_title:
             </label>
             <input
-              id="bathrooms"
+              id="seo_title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="bathrooms"
-              value={bathrooms}
-              onChange={(e) => setBathrooms(e.target.value)}
+              name="seo_title"
+              value={seo_title}
+              onChange={(e) => setseo_title(e.target.value)}
             />
           </div>
           {/* <div>
@@ -208,16 +227,16 @@ function Create() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="price">
-              Price:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_keyword">
+              seo_keyword:
             </label>
             <input
-              id="price"
+              id="seo_keyword"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              name="seo_keyword"
+              value={seo_keyword}
+              onChange={(e) => setseo_keyword(e.target.value)}
             />
           </div>
           <div>
@@ -229,24 +248,11 @@ function Create() {
               type="file"
               id="image"
               accept="image/*"
-              onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
+              onChange={(e) => setbanner_image(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="storeyType">
-              Storey Type:
-            </label>
-            <input
-              id="storeyType"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="storeyType"
-              value={storeyType}
-            />
-          </div>
-        </div>
+        
         <div className="flex gap-2 mt-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create

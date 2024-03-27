@@ -108,7 +108,7 @@ export default function Gallery() {
     <div className='grid md:grid-cols-5 grid-cols-2 md:gap-5 gap-2 md:px-0 px-4 container mb-28 mx-auto pt-12'>
 {data.map((item, index) => (
           <a key={index} data-fancybox="gallery" href={item.largeImageUrl}>
-            <img src={item.thumbnailUrl} width="500" height="450" alt={`Image ${index + 1}`} />
+            <img src={item.largeImageUrl} width="500" height="450" alt={`Image ${index + 1}`} />
           </a>
         ))}
         </div>

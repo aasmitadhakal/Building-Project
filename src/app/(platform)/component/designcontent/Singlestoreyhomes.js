@@ -60,13 +60,13 @@ function Singlestoreyhomes() {
      <section className="grid md:grid-cols-3 grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24 font-[Montserrat]">
       {data.map((property, index) => (
         <div key={index} className=" shadow-xl p-4 ">
-             <h3 className='text-blues  font-[600] text-[24px] leading-[35px] mx-2'>{property.title}</h3>
+             <h3 className='text-customblue  font-[600] text-[24px] leading-[35px] mx-2'>{property.title}</h3>
           <img src={property.img} alt={property.title} className='h-[241px] w-full mb-4' />
          
           <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 mx-2 flex'>Frontage Size: {property.frontage_size}</p>
-          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'><FaBed  className='text-blues mx-2'/> {property.bedroom}Bedrooms</p>
-          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'> <FaCar className='text-blues mx-2'/> {property.cars}Cars</p>
-          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'><FaToilet className='text-blues mx-2' /> {property.bathroom}Bathrooms</p>
+          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'><FaBed  className='text-customblue mx-2'/> {property.bedroom}Bedrooms</p>
+          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'> <FaCar className='text-customblue mx-2'/> {property.cars}Cars</p>
+          <p className='text-black  font-[400] text-[16px] leading-[22px] my-1 flex'><FaToilet className='text-customblue mx-2' /> {property.bathroom}Bathrooms</p>
         </div>
       ))}
     </section>

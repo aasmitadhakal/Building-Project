@@ -33,11 +33,11 @@ const items = [
 
 const Footer = () => {
   return (
-    <footer className="w-full  bg-blues text-white   font-[Montserrat]">
-         <div className="container mx-auto md:block hidden w-full h-[150px] relative -translate-y-1/2 bg-yellow  text-white    items-center">
+    <footer className="w-full  bg-customblue text-white   font-[Montserrat]">
+         <div className="container mx-auto md:block hidden w-full h-[150px] relative -translate-y-1/2 bg-customyellow  text-white    items-center">
             <div className="text-white flex  justify-around items-center py-6">
             <div className="font-[700] text-[36px] leading-[50px]">Get your dream project started today!</div>
-        <div><button className="my-4 bg-white text-blues px-4 w-44 py-2 rounded hover:bg-blues hover:text-white ring-blues ring-1 font-[600] text-[22px] leading-[29px] ">Contact Us</button></div> 
+        <div><button className="my-4 bg-white text-customblue px-4 w-44 py-2 rounded hover:bg-customblue hover:text-white ring-customblue ring-1 font-[600] text-[22px] leading-[29px] ">Contact Us</button></div> 
             </div>
        
     </div>
@@ -61,7 +61,7 @@ const Footer = () => {
 
         {sections.map((section, index) => (
           <div key={index}>
-            <h6 className="font-[Montserrat] text-gray-700 font-[600] leading-[32px] text-[24px] pt-2">{section.title}</h6>
+            <h6 className="font-[Montserrat] text-white font-[600] leading-[32px] text-[24px] pt-2">{section.title}</h6>
             <ul>
               {section.items.map((item, i) => (
                 <li key={i} className="py-1   font-[Montserrat]  font-[400] text-[16px] leading-[25px]">

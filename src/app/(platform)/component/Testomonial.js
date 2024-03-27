@@ -43,8 +43,8 @@ function Testonomial() {
   return (
     <>
     <section className='grid place-content-center mt-8 font-[Montserrat]'>
-            <p className='text-brown text-[18px] leading-[24px] font-[400] grid place-content-center'>Our clients review</p>
-          <p className='text-blue text-[36px] leading-[49px] font-[700] my-1 grid place-content-center'>Testimonials</p>
+            <p className='text-cutombrown text-[18px] leading-[24px] font-[400] grid place-content-center'>Our clients review</p>
+          <p className='text-customblue text-[36px] leading-[49px] font-[700] my-1 grid place-content-center'>Testimonials</p>
             </section>
       <Swiper
       slidesPerView={1}

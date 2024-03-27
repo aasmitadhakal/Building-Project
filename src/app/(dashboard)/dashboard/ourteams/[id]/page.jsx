@@ -6,16 +6,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Update = ({ params }) => {
-  const [formData, setFormData] = useState({
-    order: "",
-    title: "",
-    description: "",
-    image_one: "",
-    image_two: "",
-  });
+  const [formData, setFormData] = useState({});
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
   const [imageTwoPreview, setImageTwoPreview] = useState(null);
@@ -23,16 +16,16 @@ const Update = ({ params }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/aboutus/${params.id}`);
-      if (response && response.data && response.data.success) {
-        const responseData = response.data.data;
+      const response = await axiosInstance.get(`/api/country/${params.id}`);
+      if (response && response.data && response.data.data && response.data.data.length > 0) {
+        const responseData = response.data.data[0];
         setFormData(responseData);
-        setEditorValue(responseData.description || "");
-        setImageOnePreview(responseData.image_one || null);
-        setImageTwoPreview(responseData.image_two || null);
+        setEditorValue(responseData.description); // Description value
+        setImageOnePreview(responseData.image); // Preview of image one
+        setImageTwoPreview(responseData.image); // Preview of image two
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching country:", error);
     }
   };
 
@@ -41,26 +34,19 @@ const Update = ({ params }) => {
   }, [params.id]);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: files[0],
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
   };
 
-  const handleImagePreview = (file, setImagePreview) => {
+  const handleImagePreview = (e, setImagePreview) => {
+    const file = e.target.files[0];
     if (file) {
       const previewURL = URL.createObjectURL(file);
       setImagePreview(previewURL);
@@ -68,29 +54,30 @@ const Update = ({ params }) => {
       setImagePreview(null);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // add logic to confirm before updateing the data
+
     try {
-      const updatedData = new FormData();
-      updatedData.append("order", formData.order);
-      updatedData.append("title", formData.title);
+      // Prepare the updated data to be sent to the server
+      const updatedData = {
+        order: formData.order,
+        name: formData.name,
+        description: editorValue,
+        image: formData.image,
 
-      updatedData.append("description", editorValue);
-      if (formData.image_one) {
-        updatedData.append("image_one", formData.image_one);
-      }
-      if (formData.image_two) {
-        updatedData.append("image_two", formData.image_two);
-      }
+        // Include other fields as needed
+      };
 
-      await axiosInstance.put(`/api/aboutus/${params.id}`, updatedData);
+      // Send a PUT request to update the data
+      await axiosInstance.put(`/api/country/${params.id}`, updatedData);
 
+      // Optionally, you may redirect the user after successful update
       toast("Data edited successfully");
       router.push("/dashboard/aboutus");
+      // you can add other logics like showing toast
     } catch (error) {
       console.error("Error updating data:", error);
-      toast("Error updating data");
     }
   };
 
@@ -115,15 +102,15 @@ const Update = ({ params }) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
               Title:
             </label>
             <input
               id="title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="title"
-              value={formData.title || ""}
+              name="name" // Assuming 'name' is the actual title field
+              value={formData.name || ""}
               onChange={handleChange}
             />
           </div>
@@ -158,13 +145,13 @@ const Update = ({ params }) => {
               Image One:
             </label>
             <input
-              id="image_one"
+              id="imageOne"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="file"
-              name="image_one"
+              name="image"
               onChange={(e) => {
                 handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
+                handleImagePreview(e, setImageOnePreview);
               }}
             />
             {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
@@ -174,16 +161,16 @@ const Update = ({ params }) => {
               Image Two:
             </label>
             <input
-              id="image_two"
+              id="imageTwo"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               name="image_two"
               onChange={(e) => {
                 handleChange(e);
-                handleImagePreview(e.target.files[0], setImageTwoPreview);
+                handleImagePreview(e, setImageTwoPreview);
               }}
             />
-            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 w-full" />}
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 w-full" key={file?.name} />}
           </div>
         </div>
         <div className="flex gap-2 pt-1">
@@ -191,12 +178,7 @@ const Update = ({ params }) => {
             Update
           </button>
           <Link href={"/dashboard/aboutus"}>
-            <p
-              className="w-full md:w-auto px-4 py-2 bg-red-500
- text-white rounded-md"
-            >
-              Cancel
-            </p>
+            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>
       </form>

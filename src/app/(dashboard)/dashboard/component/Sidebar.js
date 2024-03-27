@@ -53,13 +53,13 @@ const Sidenav = () => {
   // }, []);
 
   return (
-    <nav className="relative bg-white z-50">
+    <nav className="relative  z-50">
       <div className="fixed top-5 right-5 z-50 sm:hidden">
         <button onClick={toggleSidebar} className=" px-2 py-1 rounded-md">
           {!isSidebarOpen ? <i className="ri-menu-line text-xl"></i> : <i className="ri-close-large-line text-xl"></i>}
         </button>
       </div>
-      <Sidebar className={`fixed top-0 left-0 bottom-0 sm:block ${isSidebarOpen ? "" : "hidden"}`}>
+      <Sidebar style={{ backgroundColor: "white" }} className={`fixed top-0 left-0 bottom-0 sm:block ${isSidebarOpen ? "" : "hidden"}`}>
         <Sidebar.Items>
           <Sidebar.ItemGroup>
             <Link href="/dashboard">
@@ -69,7 +69,7 @@ const Sidenav = () => {
             <Link href="/dashboard/aboutus">
               <Sidebar.Item icon={FaGlobe}>AboutUs</Sidebar.Item>
             </Link>
-            
+
             <Sidebar.Collapse icon={BsGear} label="Design">
               <Link href="/dashboard/design">
                 <Sidebar.Item>Single Design</Sidebar.Item>
@@ -78,9 +78,8 @@ const Sidenav = () => {
                 <Sidebar.Item>Double Design</Sidebar.Item>
               </Link>
               <Link href="/dashboard/dual">
-                <Sidebar.Item>Duol media</Sidebar.Item>
+                <Sidebar.Item>Dual media</Sidebar.Item>
               </Link>
-            
             </Sidebar.Collapse>
 
             <Link href="/dashboard/services">
@@ -103,7 +102,6 @@ const Sidenav = () => {
               <Sidebar.Item icon={HiTable}>Testimonials</Sidebar.Item>
             </Link>
 
-           
             <Link href="/dashboard/faq">
               <Sidebar.Item icon={FaQuestion}>FAQ</Sidebar.Item>
             </Link>
@@ -121,7 +119,6 @@ const Sidenav = () => {
               <Link href="/dashboard/globalsettings">
                 <Sidebar.Item>Global Settings</Sidebar.Item>
               </Link>
-
             </Sidebar.Collapse>
             <Sidebar.Collapse icon={BsGear} label="General Settings">
               <Link href="/dashboard/slider">

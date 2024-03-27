@@ -62,7 +62,7 @@ function ServicePage () {
             {data.map((datas, index) => (
                 <>
                 <div key={index.id} className='shadow-xl rounded p-4'>
-                    <img src={datas.img} alt='img' className='h-[35px] w-[35px] bg-yellow rounded px-1 py-1'></img>
+                    <img src={datas.img} alt='img' className='h-[35px] w-[35px] bg-customyellow rounded px-1 py-1'></img>
                     <p className='my-1 text-black font-[600] text-[24px] leading-[32px]'>{datas.title}</p>
                     <p className='text-blue font-[400] text-[16px] leading-[25px]'>{datas.description}</p>
                 </div>

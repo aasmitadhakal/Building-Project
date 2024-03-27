@@ -71,20 +71,20 @@ function Contact() {
             <div className="my-1 font-[karla] font-[400] text-[18px] leading-[24px] ">
               {card.title}
             </div>
-            <div className="font-[karla] font-[700] text-[38px] leading-[44px] text-blues my-1">
+            <div className="font-[karla] font-[700] text-[38px] leading-[44px] text-customblue my-1">
               {card.introduction}
             </div>
             <div className="font-[karla] font-[400] my-4 text-[18px] leading-[24px]">
               {card.short_description}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
-            <IoLocationOutline className="text-blues font-[500] mx-2"  /> {card.location}
+            <IoLocationOutline className="text-customblue font-[500] mx-2"  /> {card.location}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
-            <MdContactPhone className="text-blues font-[500] mx-2" /> {card.phone}
+            <MdContactPhone className="text-customblue font-[500] mx-2" /> {card.phone}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
-            <MdEmail  className="mx-2 text-blues font-[500]"/> {card.email}
+            <MdEmail  className="mx-2 text-customblue font-[500]"/> {card.email}
             </div>
           </div>
         ))}
@@ -145,10 +145,10 @@ function Contact() {
   />
 </div>
 <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">
-    <button className="border-blues px-8 py-2 rounded border-2 text-blues">Submit </button>
+    <button className="border-customblue px-8 py-2 rounded border-2 text-customblue hover:bg-customblue hover:text-white">Submit </button>
     <div className="font-[Montserrat]">
   <label className="inline-flex items-center">
-    <input type="radio" className="form-radio text-blues" />
+    <input type="radio" className="form-radio text-customblue" />
     <span className="ml-2 my-1">I agree to your privacy policy</span>
   </label>
 </div>

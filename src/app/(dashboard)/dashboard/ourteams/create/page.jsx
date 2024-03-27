@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function Create() {
   const [title, setTitle] = useState("");
+  const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
+  const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -18,48 +22,58 @@ function Create() {
     const formData = new FormData();
     formData.append("name", title);
     formData.append("description", editorValue);
-    formData.append("order", 3);
+    formData.append("order", order);
     formData.append("image", imageOne);
     formData.append("imageTwo", imageTwo);
 
     try {
-      // Debugging: Log Form Data values
-      console.log("Title:", title);
-      console.log("Editor Value:", editorValue);
-      console.log("Image One:", imageOne);
-      console.log("Image Two:", imageTwo);
-
       //  send data to the server you can use axiosinstance if you feel comfortable with it
       const response = await fetch("http://localhost:3000/api/country", {
         method: "POST",
         body: formData,
       });
       if (response.ok) {
-        console.log("Post created successfully");
+        toast("Post created successfully");
+        router.push("/dashboard/aboutus");
         // Redirect or do something else on successful creation
       } else {
-        console.error("Error creating post:", response.statusText);
+        toast("Error creating post");
       }
     } catch (error) {
-      console.error("Error creating post:", error);
+      toast("Error creating post");
     }
   };
 
   return (
     <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
+      <ToastContainer />
       <h2 className="text-2xl font-bold">Create Post</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="title">
-            Title:
-          </label>
-          <input
-            className="block w-full  px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            type="text"
-            id="name"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+              Order:
+            </label>
+            <input
+              id="order"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="order"
+              onChange={(e) => setOrder(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              Title:
+            </label>
+            <input
+              id="title"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="name" // Assuming 'name' is the actual title field
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">

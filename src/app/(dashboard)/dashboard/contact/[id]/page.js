@@ -12,40 +12,34 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
     title: "",
-    // description: "",
-    image: "",
-    other_image:"",
-    frontage: "",
-    size : "",
-    bedroom: "",
-    cars: "",
-    bathrooms: "",
-    price: "",
-    floor_plan: "",
-    storey_type: "",
-    
-    
+    description: "",
+    short_description: "",
+    email : "",
+    contact: "",
+    location: "",
+    seo_title: "",
+    seo_keyword: "",
+    banner_image: "",
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
-  const [imageTwoPreview, setImageTwoPreview] = useState(null);
+ 
   const router = useRouter();
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/design/${params.id}`);
+      const response = await axiosInstance.get(`/api/contact/${params.id}`);
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        setEditorValue(responseData.description || "");
-        setEditorValue(responseData.title || "");
-        setEditorValue(responseData.frontage || "");
-        setEditorValue(responseData.size || "");
-        setEditorValue(responseData.bedroom || "");
-        setEditorValue(responseData.price || "");
-        setEditorValue(responseData.storey_type || "");
-        setImageOnePreview(responseData.image || null);
-        setImageTwoPreview(responseData.other_image || null);
+        // setEditorValue(responseData.description || "");
+        // setEditorValue(responseData.title || "");
+        // setEditorValue(responseData.short_description || "");
+        // setEditorValue(responseData.email || "");
+        // setEditorValue(responseData.contact || "");
+        // setEditorValue(responseData.seo_keyword || "");
+        // setEditorValue(responseData.storey_type || "");
+        // setImageOnePreview(responseData.image || null);
       
       }
     } catch (error) {
@@ -77,28 +71,12 @@ const Update = ({ params }) => {
     setEditorValue(value);
   };
 
-  // const handleImagePreview = (file, setImagePreview) => {
-  //   if (file) {
-  //     const previewURL = URL.createObjectURL(file);
-  //     setImagePreview(previewURL);
-  //   } else {
-  //     setImagePreview(null);
-  //   }
-  // };
-  const handleImagePreview = (file, setImagePreview, isOtherImage = false) => {
+  const handleImagePreview = (file, setImagePreview) => {
     if (file) {
       const previewURL = URL.createObjectURL(file);
-      if (isOtherImage) {
-        setImagePreview(previewURL);
-      } else {
-        setImagePreview(previewURL);
-      }
+      setImagePreview(previewURL);
     } else {
-      if (isOtherImage) {
-        setImagePreview(null);
-      } else {
-        setImagePreview(null);
-      }
+      setImagePreview(null);
     }
   };
 
@@ -108,29 +86,25 @@ const Update = ({ params }) => {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
-      updatedData.append("frontage", formData.frontage);
-      updatedData.append("size", formData.size);
-      updatedData.append("bedroom", formData.bedroom);
-      updatedData.append("cars", formData.cars);
-      updatedData.append("bathrooms", formData.bathrooms);
-      // updatedData.append("description", formData.description);
-      updatedData.append("price", formData.price);
+      updatedData.append("short_description", formData.short_description);
+      updatedData.append("email", formData.email);
+      updatedData.append("contact", formData.contact);
+      updatedData.append("location", formData.location);
+      updatedData.append("seo_title", formData.seo_title);
+      updatedData.append("description", formData.description);
+      updatedData.append("seo_keyword", formData.seo_keyword);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
 
-      updatedData.append("description", editorValue);
-      if (formData.image) {
-        updatedData.append("image", formData.image);
-      }
+      // updatedData.append("description", editorValue);
+      // if (formData.image) {
+      //   updatedData.append("image", formData.image);
+      // }
      
-      if (formData.other_image) {
-        updatedData.append("image", formData.other_image);
-      }
-     
-      await axiosInstance.put(`/api/design/${params.id}`, updatedData);
+      await axiosInstance.put(`/api/contact/${params.id}`, updatedData);
 
       toast("Data edited successfully");
-      router.push("/dashboard/double");
+      router.push("/dashboard/contact");
     } catch (error) {
       console.error("Error updating data:", error);
       toast("Error updating data");
@@ -141,7 +115,7 @@ const Update = ({ params }) => {
     <div className="min-w-screen bg-white rounded-md p-8">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Double Design</h1>
+      <h1 className="text-2xl font-bold">Update Contact</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
           <div>
@@ -171,7 +145,7 @@ const Update = ({ params }) => {
             />
           </div>
         </div>
-        {/* <div>
+        <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -190,11 +164,13 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-            value={editorValue}
+             value=
+             {formData.description || ""}
             theme="snow"
-            onChange={handleEditorChange}
+            // onChange={handleChange}
+           
           />
-        </div> */}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
@@ -210,138 +186,94 @@ const Update = ({ params }) => {
                 handleImagePreview(e.target.files[0], setImageOnePreview);
               }}
             />
-            {imageOnePreview &&   <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
-            {/* <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" /> */}
+            {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
           </div>
-          <div>
-  <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-    Image 2 :
-  </label>
-  <input
-    id="other_image"
-    className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-    type="file"
-    name="other_image"
-    onChange={(e) => {
-      handleChange(e);
-      handleImagePreview(e.target.files[0], setImageTwoPreview, true);
-    }}
-  />
-  {imageTwoPreview &&  <img src={`${axiosInstance.defaults.baseURL}${formData.other_image}`} alt={formData.title} className="h-12 w-12 rounded-full" /> }
-</div>
-          {/* for frontage */}
+          {/* for short_description */}
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              frontage:
+              short_description:
             </label>
             <input
-              id="frontage"
+              id="short_description"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="frontage"
-              value={formData.frontage || ""}
+              name="short_description"
+              value={formData.short_description || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for size */}
+           {/* for email */}
            <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              size:
+              email:
             </label>
             <input
-              id="size"
+              id="email"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="size"
-              value={formData.size || ""}
+              name="email"
+              value={formData.email || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for bedroom */}
+           {/* for contact */}
            <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              bedroom:
+              contact:
             </label>
             <input
-              id="bedroom"
+              id="contact"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="bedroom"
-              value={formData.bedroom || ""}
+              name="contact"
+              value={formData.contact || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for cars */}
+           {/* for location */}
            <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              cars:
+              location:
             </label>
             <input
-              id="cars"
+              id="location"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="cars"
-              value={formData.cars || ""}
+              name="location"
+              value={formData.location || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for bathrooms */}
+           {/* for seo_title */}
            <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              bathrooms:
+              seo_title:
             </label>
             <input
-              id="bathrooms"
+              id="seo_title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="bathrooms"
-              value={formData.bathrooms || ""}
+              name="seo_title"
+              value={formData.seo_title || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for price */}
+           {/* for seo_keyword */}
            <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              price:
+              seo_keyword:
             </label>
             <input
-              id="price"
+              id="seo_keyword"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="price"
-              value={formData.price || ""}
+              name="seo_keyword"
+              value={formData.seo_keyword || ""}
               onChange={handleChange}
             />
           </div>
-           {/* for floor_plan */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              floor_plan:
-            </label>
-            <input
-              id="floor_plan"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="floor_plan"
-              value={formData.floor_plan || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for storey_type */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              storey_type:
-            </label>
-            <input
-              id="storey_type"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="storey_type"
-              value={formData.storey_type || ""}
-              onChange={handleChange}
-              readOnly
-            />
-          </div>
+          
+          
           
            
         </div>
