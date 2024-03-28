@@ -70,8 +70,11 @@ const Update = ({ params }) => {
       };
 
       // Send a PUT request to update the data
-      await axiosInstance.put(`/api/country/${params.id}`, updatedData);
-
+      await axiosInstance.put(`/api/country/${params.id}`, jsonString, {
+        headers: {
+          'Content-Type': 'application/json', // Set the content type to JSON
+        },
+      });
       // Optionally, you may redirect the user after successful update
       toast("Data edited successfully");
       router.push("/dashboard/aboutus");

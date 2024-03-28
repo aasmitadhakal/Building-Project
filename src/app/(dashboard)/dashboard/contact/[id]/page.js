@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
-    order: "",
+    // order: "",
     title: "",
     description: "",
     short_description: "",
@@ -32,7 +32,7 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        // setEditorValue(responseData.description || "");
+        setEditorValue(responseData.description || "");
         // setEditorValue(responseData.title || "");
         // setEditorValue(responseData.short_description || "");
         // setEditorValue(responseData.email || "");
@@ -45,8 +45,7 @@ const Update = ({ params }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
-
+  }
   useEffect(() => {
     fetchData();
   }, [params.id]);
@@ -84,23 +83,22 @@ const Update = ({ params }) => {
     e.preventDefault();
     try {
       const updatedData = new FormData();
-      updatedData.append("order", formData.order);
+      // updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
       updatedData.append("short_description", formData.short_description);
       updatedData.append("email", formData.email);
       updatedData.append("contact", formData.contact);
       updatedData.append("location", formData.location);
       updatedData.append("seo_title", formData.seo_title);
-      updatedData.append("description", formData.description);
+      // updatedData.append("description", editorValue);
+      updatedData.append("description", editorValue);
       updatedData.append("seo_keyword", formData.seo_keyword);
-      updatedData.append("floor_plan", formData.floor_plan);
-      updatedData.append("storey_type", formData.storey_type);
 
       // updatedData.append("description", editorValue);
       // if (formData.image) {
       //   updatedData.append("image", formData.image);
       // }
-     
+     console.log(updatedData)
       await axiosInstance.put(`/api/contact/${params.id}`, updatedData);
 
       toast("Data edited successfully");
@@ -118,7 +116,7 @@ const Update = ({ params }) => {
       <h1 className="text-2xl font-bold">Update Contact</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
@@ -130,10 +128,10 @@ const Update = ({ params }) => {
               value={formData.order || ""}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              Title:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              title:
             </label>
             <input
               id="title"
@@ -164,11 +162,9 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-             value=
-             {formData.description || ""}
+            value={editorValue}
             theme="snow"
-            // onChange={handleChange}
-           
+            onChange={handleEditorChange}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -177,10 +173,10 @@ const Update = ({ params }) => {
               Image :
             </label>
             <input
-              id="image"
+              id="banner_image"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="file"
-              name="image"
+              name="banner_image"
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageOnePreview);

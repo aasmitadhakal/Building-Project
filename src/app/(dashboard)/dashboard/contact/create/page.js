@@ -10,16 +10,16 @@ import { useRouter } from "next/navigation";
 
 function Create() {
   const [title, setTitle] = useState("");
-  const [order, setOrder] = useState("");
+  // const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
-  const [banner_image, setbanner_image] = useState(null);
+  // const [banner_image, setbanner_image] = useState(null);
   const [short_description, setshort_description] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setcontact] = useState("");
   const [location, setlocation] = useState("");
   const [seo_title, setseo_title] = useState("");
   const [seo_keyword, setseo_keyword] = useState("");
-  const[description,setDescription]=useState("");
+  // const[description,setDescription]=useState("");
 
 
   const router = useRouter();
@@ -54,18 +54,15 @@ function Create() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", editorValue);
-    formData.append("order", order);
-    formData.append("image", banner_image); // Append image file correctly
-  
-    // Append additional fields
+    // formData.append("order", order);
+    // formData.append("banner_image", banner_image); 
     formData.append("short_description", short_description);
     formData.append("email", email);
-    formData.append("contact", contactValue); // Use validated integer value
-    formData.append("location", locationValue); // Use validated integer value
+    formData.append("contact", contact); 
+    formData.append("location", location); 
     formData.append("seo_title", seo_title);
-    formData.append("seo_keyword", seo_keywordValue); // Use validated integer value
-    formData.append("floor_plan", floorPlan);
-    formData.append("storey_type", storeyType);
+    formData.append("seo_keyword", seo_keyword); 
+    
   
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -90,7 +87,7 @@ function Create() {
       <form onSubmit={handleFormSubmit}>
         {/* Existing form fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
@@ -102,7 +99,7 @@ function Create() {
               value={order}
               onChange={(e) => setOrder(e.target.value)}
             />
-          </div>
+          </div> */}
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="title">
               Title:
@@ -136,9 +133,9 @@ function Create() {
                 ["clean"],
               ],
             }}
-            value={description}
+            value={editorValue}
             theme="snow"
-            onChange={(e) =>setDescription(e.target.value)}
+            onChange={(value) => setEditorValue(value)}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -239,7 +236,7 @@ function Create() {
               onChange={(e) => setseo_keyword(e.target.value)}
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
               Image:
             </label>
@@ -250,7 +247,7 @@ function Create() {
               accept="image/*"
               onChange={(e) => setbanner_image(e.target.files[0])} // Ensure that this sets the state correctly
             />
-          </div>
+          </div> */}
         </div>
         
         <div className="flex gap-2 mt-2">

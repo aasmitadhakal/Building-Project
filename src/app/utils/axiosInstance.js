@@ -1,4 +1,4 @@
-// utils/axiosInstance.js
+
 import axios from "axios";
 const token = localStorage.getItem("authorizations");
 console.log(token);

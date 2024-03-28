@@ -13,14 +13,11 @@ function Create() {
   const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
-  // const [imageTwo, setImageTwo] = useState(null);
-  // Additional fields
   const [frontage, setFrontage] = useState("");
   const [size, setSize] = useState("");
   const [bedroom, setBedroom] = useState("");
   const [cars, setCars] = useState("");
   const [bathrooms, setBathrooms] = useState("");
-  // const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState(null);
    const [storeyType, setStoreyType] = useState("single");
@@ -59,8 +56,6 @@ function Create() {
     formData.append("description", editorValue);
     formData.append("order", order);
     formData.append("image", imageOne); // Append image file correctly
-  
-    // Append additional fields
     formData.append("frontage", frontage);
     formData.append("size", size);
     formData.append("bedroom", bedroomValue); // Use validated integer value
