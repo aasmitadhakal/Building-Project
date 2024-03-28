@@ -12,6 +12,7 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     // order: "",
     title: "",
+    map:"",
     description: "",
     short_description: "",
     email : "",
@@ -33,13 +34,6 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        // setEditorValue(responseData.title || "");
-        // setEditorValue(responseData.short_description || "");
-        // setEditorValue(responseData.email || "");
-        // setEditorValue(responseData.contact || "");
-        // setEditorValue(responseData.seo_keyword || "");
-        // setEditorValue(responseData.storey_type || "");
-        // setImageOnePreview(responseData.image || null);
       
       }
     } catch (error) {
@@ -83,21 +77,15 @@ const Update = ({ params }) => {
     e.preventDefault();
     try {
       const updatedData = new FormData();
-      // updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
       updatedData.append("short_description", formData.short_description);
       updatedData.append("email", formData.email);
+      updatedData.append("map", formData.map);
       updatedData.append("contact", formData.contact);
       updatedData.append("location", formData.location);
       updatedData.append("seo_title", formData.seo_title);
-      // updatedData.append("description", editorValue);
       updatedData.append("description", editorValue);
       updatedData.append("seo_keyword", formData.seo_keyword);
-
-      // updatedData.append("description", editorValue);
-      // if (formData.image) {
-      //   updatedData.append("image", formData.image);
-      // }
      console.log(updatedData)
       await axiosInstance.put(`/api/contact/${params.id}`, updatedData);
 
@@ -268,9 +256,21 @@ const Update = ({ params }) => {
               onChange={handleChange}
             />
           </div>
+          {/* for map */}
           
-          
-          
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="map">
+              map:
+            </label>
+            <input
+              id="map"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="map"
+              value={formData.map || ""}
+              onChange={handleChange}
+            />
+          </div>
            
         </div>
         <div className="flex gap-2 pt-1 mt-4">

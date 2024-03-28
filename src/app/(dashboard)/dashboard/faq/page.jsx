@@ -63,7 +63,7 @@ const Page = () => {
                       <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/aboutus/${item.id}`}>
+                      <Link href={`/dashboard/faq/${item.id}`}>
                         <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
                       </Link>
                       <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">

@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import axiosInstance from "@/app/utils/axiosInstance";
 function Create() {
   const [question, setQuestion] = useState("");
   const [order, setOrder] = useState("");
@@ -26,22 +26,17 @@ function Create() {
     formData.append("status", status);
 
     try {
-      //  send data to the server you can use axiosinstance if you feel comfortable with it
-      const response = await fetch("http://localhost:3000/api/faq", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      if (response.ok) {
+      // Send data to the server using axiosInstance with authorization header
+      const response = await axiosInstance.post("/api/faq", formData);
+  
+      if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/aboutus");
-        // Redirect or do something else on successful creation
+        router.push("/dashboard/faq");
       } else {
         toast("Error creating post");
       }
     } catch (error) {
+      console.error("Error creating post:", error);
       toast("Error creating post");
     }
   };

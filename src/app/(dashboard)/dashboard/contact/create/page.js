@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 function Create() {
   const [title, setTitle] = useState("");
+  const [map, setMap] = useState("");
   // const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   // const [banner_image, setbanner_image] = useState(null);
@@ -53,6 +54,7 @@ function Create() {
     // Create FormData object
     const formData = new FormData();
     formData.append("title", title);
+    formData.append("map", map);
     formData.append("description", editorValue);
     // formData.append("order", order);
     // formData.append("banner_image", banner_image); 
@@ -191,6 +193,19 @@ function Create() {
               name="location"
               value={location}
               onChange={(e) => setlocation(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="map">
+              Map:
+            </label>
+            <input
+              id="map"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="map"
+              value={map}
+              onChange={(e) => setMap(e.target.value)}
             />
           </div>
         </div>

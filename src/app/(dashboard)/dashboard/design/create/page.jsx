@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 function Create() {
   const [title, setTitle] = useState("");
+  
   const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
@@ -58,6 +59,7 @@ function Create() {
     formData.append("image", imageOne); // Append image file correctly
     formData.append("frontage", frontage);
     formData.append("size", size);
+ 
     formData.append("bedroom", bedroomValue); // Use validated integer value
     formData.append("cars", carsValue); // Use validated integer value
     formData.append("bathrooms", bathrooms);
@@ -153,6 +155,7 @@ function Create() {
               onChange={(e) => setFrontage(e.target.value)}
             />
           </div>
+       
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="size">
               Size:
