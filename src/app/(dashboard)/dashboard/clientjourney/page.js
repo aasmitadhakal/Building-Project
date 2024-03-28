@@ -1,14 +1,15 @@
-// components/AboutUs.js
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const AboutUs = () => {
+
+const Page = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
+
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
     setDeleteItemId(id);
@@ -18,22 +19,26 @@ const AboutUs = () => {
     setDeletePopUp(false);
     setDeleteItemId(null);
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get('/api/privacy');
-        setData(response.data.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get("/api/journey");
+      console.log(response.data.data);
+      setData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // Handle the error, e.g., display a toast message or retry the request
+      toast("Error fetching data");
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/privacy/${deleteItemId}`);
+      await axiosInstance.delete(`/api/journey/${deleteItemId}`);
       toast("Item deleted successfully");
       closeDeletePopup();
       fetchData(); // Update the list after successful deletion
@@ -42,7 +47,7 @@ const AboutUs = () => {
     }
   };
 
-  const columns = ["SN", "order", "Description",  "Actions"];
+  const columns = ["SN", "order", "title", "image","short_description" , "Actions"];
 
   return (
     <>
@@ -50,8 +55,8 @@ const AboutUs = () => {
         <ToastContainer />
         <div className="max-w-screen-lg w-full">
           <div className="flex justify-between mb-4">
-            <h3 className="text-2xl font-bold">Privacy Detail</h3>
-            <Link href="/dashboard/privacy/create">
+            <h3 className="text-2xl font-bold">Client Journey</h3>
+            <Link href="/dashboard/clientjourney/create">
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
           </div>
@@ -71,10 +76,16 @@ const AboutUs = () => {
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-                      <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
-                    ))}
+        <td key={columnIndex}>
+          {column === "image" ? (
+             <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-36 w-36 rounded-full" />
+          ) : (
+            item[column.toLowerCase().replace(/\s/g, "_")]
+          )}
+        </td>
+      ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/privacy/${item.id}`}>
+                      <Link href={`/dashboard/clientjourney/${item.id}`}>
                         <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
                       </Link>
                       <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => handleDeletePopup(item.id)}>
@@ -117,4 +128,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Page;

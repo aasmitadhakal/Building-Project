@@ -110,7 +110,9 @@ const Sidenav = () => {
             <Link href="/dashboard/faq">
               <Sidebar.Item icon={FaQuestion}>FAQ</Sidebar.Item>
             </Link>
-
+            <Link href="/dashboard/clientjourney">
+              <Sidebar.Item icon={FaBookOpen}>Client Journey </Sidebar.Item>
+            </Link>
             <Sidebar.Collapse icon={BsGear} label="Global Settings">
               <Link href="/dashboard/slider">
                 <Sidebar.Item>Sliders</Sidebar.Item>

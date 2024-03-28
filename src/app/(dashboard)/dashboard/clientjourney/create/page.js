@@ -8,8 +8,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function Create() {
- 
+  const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
+  const [image, setImage] = useState(null);
   const [editorValue, setEditorValue] = useState("");
   const router = useRouter();
 
@@ -18,22 +19,22 @@ function Create() {
 
     // Create FormData object
     const formData = new FormData();
-    formData.append("description", editorValue);
+    formData.append("title", title);
+    // formData.append("date", date);
     formData.append("order", order);
-    
+    formData.append("image", image);
+    formData.append("short_description", editorValue);
 
     try {
-
-      
-
       // Send data to the server using axiosInstance with authorization header
-      const response = await axiosInstance.post("/api/privacy", formData);
+      const response = await axiosInstance.post("/api/journey", formData);
 
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/privacy");
+        console.log(formData);
+        router.push("/dashboard/clientjourney");
       } else {
-        toast("Error creating privacy");
+        toast("Error creating post");
       }
     } catch (error) {
       console.error("Error creating post:", error);
@@ -44,7 +45,7 @@ function Create() {
   return (
     <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Privacy</h2>
+      <h2 className="text-2xl font-bold">Create Client Journey</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
@@ -60,9 +61,21 @@ function Create() {
               onChange={(e) => setOrder(e.target.value)}
             />
           </div>
-          
-        </div>
-        <div className="mb-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              Title:
+            </label>
+            <input
+              id="title"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="name"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+     
+<div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -86,16 +99,29 @@ function Create() {
             onChange={(value) => setEditorValue(value)}
           />
         </div>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-         
-          
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image :
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+        
         </div>
 
         <div className="flex gap-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/privacy"}>
+          <Link href={"/dashboard/gallery"}>
             <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>

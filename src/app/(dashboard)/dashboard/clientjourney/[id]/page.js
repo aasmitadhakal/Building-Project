@@ -11,26 +11,30 @@ import "react-toastify/dist/ReactToastify.css";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
-    description: "",
-  
+    title: "",
+    short_description: "",
+    image: "",
+   
   });
   const [editorValue, setEditorValue] = useState("");
-
+  const [imageOnePreview, setImagePreview] = useState(null);
+ 
   const router = useRouter();
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/privacy/${params.id}`);
+      const response = await axiosInstance.get(`/api/journey/${params.id}`);
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-      
+       
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -70,14 +74,17 @@ const Update = ({ params }) => {
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
-     
-
+      updatedData.append("title", formData.title);
       updatedData.append("description", editorValue);
+    //   updatedData.append("date", date);
+      if (formData.image) {
+        updatedData.append("image", formData.image);
+      }
      
-      await axiosInstance.put(`/api/privacy/${params.id}`, updatedData);
+      await axiosInstance.put(`/api/gallery/${params.id}`, updatedData);
 
       toast("Data edited successfully");
-      router.push("/dashboard/privacy");
+      router.push("/dashboard/gallery");
     } catch (error) {
       console.error("Error updating data:", error);
       toast("Error updating data");
@@ -88,7 +95,7 @@ const Update = ({ params }) => {
     <div className="min-w-screen bg-white rounded-md p-5">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Privacy</h1>
+      <h1 className="text-2xl font-bold">Update</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
@@ -104,9 +111,20 @@ const Update = ({ params }) => {
               onChange={handleChange}
             />
           </div>
-          
-        </div>
-        <div>
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="date">
+              Date:
+            </label>
+            <input
+              id="date"
+              className="block w-full px-4 py-2 bdate rounded-md focus:outline-none focus:bdate-blue-500"
+              type="date"
+              name="date"
+              value={formData.date || ""}
+              onChange={handleChange}
+            />
+          </div> */}
+          <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -130,18 +148,48 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          
-        
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              Title:
+            </label>
+            <input
+              id="title"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="title"
+              value={formData.title || ""}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div className="flex gap-2 pt-1 mt-4">
+       
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image One:
+            </label>
+            <input
+              id="image"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImagePreview);
+              }}
+            />
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
+          </div>
+         
+        </div>
+        <div className="flex gap-2 pt-1">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/privacy"}>
+          <Link href={"/dashboard/aboutus"}>
             <p
               className="w-full md:w-auto px-4 py-2 bg-red-500
-              text-white rounded-md"
+ text-white rounded-md"
             >
               Cancel
             </p>

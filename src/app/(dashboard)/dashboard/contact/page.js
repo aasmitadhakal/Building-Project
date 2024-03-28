@@ -38,7 +38,7 @@ const Page = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/contact/${deleteItemId}`);
+      await axiosInstance.delete(`/api/privacy/${deleteItemId}`);
       toast("Item deleted successfully");
       closeDeletePopup();
       fetchData(); // Update the list after successful deletion
