@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Page = () => {
   const [data, setData] = useState([]);
 
-
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/design/s/single");
@@ -20,7 +19,6 @@ const Page = () => {
       toast("Error fetching data");
     }
   };
-
 
   useEffect(() => {
     fetchData();
@@ -36,7 +34,7 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN",  "title",  "image","price","storey_type","action"];
+  const columns = ["SN", "title", "image", "price", "storey_type", "action"];
 
   return (
     <>
@@ -60,34 +58,34 @@ const Page = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 ">
-            {data.length > 0 ? (
-  data.map((item, index) => (
-    <tr key={index}>
-      <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
-      {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-        <td key={columnIndex}>
-          {column === "image" ? (
-             <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
-          ) : (
-            item[column.toLowerCase().replace(/\s/g, "_")]
-          )}
-        </td>
-      ))}
-      <td className="px-6 py-4 whitespace-nowrap">
-        <Link href={`/dashboard/design/${item.id}`}>
-          <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
-        </Link>
-        <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
-          Delete
-        </button>
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan={columns.length}>Loading...</td>
-  </tr>
-)}
+              {data.length > 0 ? (
+                data.map((item, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
+                      <td key={columnIndex}>
+                        {column === "image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
+                    ))}
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <Link href={`/dashboard/design/${item.id}`}>
+                        <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
+                      </Link>
+                      <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={columns.length}>Loading...</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

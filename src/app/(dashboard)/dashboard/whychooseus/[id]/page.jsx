@@ -1,28 +1,27 @@
-'use client';
-import { useState, useEffect } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-import Link from "next/link";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
-    name: "",
-    position: "",
-    rating: "",
-    image: null, // Changed to a single 'image' field
+    title: "",
+    image: null,
+    shortDescription: "",
+    description: "",
   });
   const [editorValue, setEditorValue] = useState("");
-  const [imagePreview, setImagePreview] = useState(null); // Changed to a single 'imagePreview' state
+  const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/testimonials/${params.id}`);
+      const response = await axiosInstance.get(`/api/whyus/${params.id}`);
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
@@ -72,18 +71,15 @@ const Update = ({ params }) => {
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
-      updatedData.append("name", formData.name);
-      updatedData.append("position", formData.position);
-      updatedData.append("rating", formData.rating);
+      updatedData.append("title", formData.title);
+      updatedData.append("image", formData.image);
+      updatedData.append("short_description", formData.short_description);
       updatedData.append("description", editorValue);
-      if (formData.image) {
-        updatedData.append("image", formData.image);
-      }
 
-      await axiosInstance.put(`/api/testimonials/${params.id}`, updatedData);
+      await axiosInstance.put(`/api/whyus/${params.id}`, updatedData);
 
-      toast("Data edited successfully");
-      router.push("/dashboard/testimonials");
+      toast("Data updated successfully");
+      router.push("/dashboard/whychooseus");
     } catch (error) {
       console.error("Error updating data:", error);
       toast("Error updating data");
@@ -94,8 +90,8 @@ const Update = ({ params }) => {
     <div className="min-w-screen bg-white rounded-md p-5">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Testimonials</h1>
-      <form onSubmit={handleSubmit} className="">
+      <h1 className="text-2xl font-bold">Update Why choose us?</h1>
+      <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
@@ -111,46 +107,45 @@ const Update = ({ params }) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              Name:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              Title:
             </label>
             <input
-              id="name"
+              id="title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="name"
-              value={formData.name}
+              name="title"
+              value={formData.title}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="position">
-              Position:
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image:
             </label>
             <input
-              id="position"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="position"
-              value={formData.position}
+              type="file"
+              id="image"
+              accept="image/*"
               onChange={handleChange}
             />
+            {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[200px]" />}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="rating">
-              Rating:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
+              Short Description:
             </label>
-            <input
-              id="rating"
+            <textarea
+              id="short_description"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="rating"
-              value={formData.rating}
+              name="short_description"
+              value={formData.short_description}
               onChange={handleChange}
             />
           </div>
         </div>
-        <div>
+        <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -174,24 +169,12 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-            Image:
-          </label>
-          <input
-            id="image"
-            className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            type="file"
-            name="image"
-            onChange={handleChange}
-          />
-          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[300px]" />}
-        </div>
-        <div className="flex gap-2 pt-1">
+
+        <div className="flex gap-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/testimonials"}>
+          <Link href={"/dashboard/whychooseus"}>
             <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>

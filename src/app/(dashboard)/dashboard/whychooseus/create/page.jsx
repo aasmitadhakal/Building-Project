@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -8,34 +8,30 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function Create() {
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
-  const [rating, setRating] = useState("");
   const [order, setOrder] = useState("");
-  const [editorValue, setEditorValue] = useState("");
+  const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
-
+  const [shortDescription, setShortDescription] = useState("");
+  const [editorValue, setEditorValue] = useState("");
+  const [icon, setIcon] = useState(""); 
   const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    // Create FormData object
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", editorValue);
     formData.append("order", order);
+    formData.append("title", title);
     formData.append("image", image);
-    formData.append("position", position);
-    formData.append("rating", rating);
+    formData.append("icon", icon); // Append icon to formData
+    formData.append("short_description", shortDescription);
+    formData.append("description", editorValue);
 
     try {
-      // Send data to the server using axiosInstance with authorization header
-      const response = await axiosInstance.post("/api/testimonials", formData);
+      const response = await axiosInstance.post("/api/whyus", formData);
 
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/testimonials");
+        router.push("/dashboard/whychooseus");
       } else {
         toast("Error creating post");
       }
@@ -48,7 +44,7 @@ function Create() {
   return (
     <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">New Testimonial</h2>
+      <h2 className="text-2xl font-bold">Why choose us?</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
@@ -65,42 +61,52 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              Name:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+              Title:
             </label>
             <input
-              id="name"
+              id="title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="position">
-              Position:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="icon">
+              Icon:
             </label>
             <input
-              id="position"
+              id="icon"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="position"
-              value={position}
-              onChange={(e) => setPosition(e.target.value)}
+              name="icon"
+              onChange={(e) => setIcon(e.target.value)} 
+            />
+          </div>
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image:
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="rating">
-              Rating:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
+              Short Description:
             </label>
-            <input
-              id="rating"
+            <textarea
+              id="shortDescription"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
+              name="shortDescription"
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
             />
           </div>
         </div>
@@ -129,26 +135,11 @@ function Create() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-              Image:
-            </label>
-            <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </div>
-        </div>
-
         <div className="flex gap-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/testimonials"}>
+          <Link href="/dashboard/whychooseus">
             <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>

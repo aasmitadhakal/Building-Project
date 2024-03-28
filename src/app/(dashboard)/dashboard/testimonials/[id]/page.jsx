@@ -14,10 +14,10 @@ const Update = ({ params }) => {
     name: "",
     position: "",
     rating: "",
-    image: null, // Changed to a single 'image' field
+    image: null, 
   });
   const [editorValue, setEditorValue] = useState("");
-  const [imagePreview, setImagePreview] = useState(null); // Changed to a single 'imagePreview' state
+  const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
 
   const fetchData = async () => {

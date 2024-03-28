@@ -76,14 +76,22 @@ const AboutUs = () => {
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-                      <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
+                      <td key={columnIndex}>
+                        {column === "image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="size-16 aspect-video" />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link href={`/dashboard/testimonials/${item.id}`}>
-                        <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
+                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
+                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                        </button>
                       </Link>
-                      <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => handleDeletePopup(item.id)}>
-                        Delete
+                      <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
+                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>
                     </td>
                   </tr>

@@ -5,7 +5,7 @@ import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AboutUs = () => {
+const Whyus = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
@@ -22,7 +22,7 @@ const AboutUs = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("/api/testimonials");
+      const response = await axiosInstance.get("/api/whyus");
 
       setData(response.data.data);
     } catch (error) {
@@ -38,7 +38,8 @@ const AboutUs = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/testimonials/${deleteItemId}`);
+      await axiosInstance.delete(`/api/whyus/${deleteItemId}`);
+
       toast("Item deleted successfully");
       closeDeletePopup();
       fetchData(); // Update the list after successful deletion
@@ -47,7 +48,7 @@ const AboutUs = () => {
     }
   };
 
-  const columns = ["SN", "order", "name", "image", "position", "Actions"];
+  const columns = ["SN", "order", "title", "image", "short_description", "icon", "Actions"];
 
   return (
     <>
@@ -55,8 +56,8 @@ const AboutUs = () => {
         <ToastContainer />
         <div className="max-w-screen-lg w-full">
           <div className="flex justify-between mb-4">
-            <h3 className="text-2xl font-bold">Testimonials</h3>
-            <Link href="/dashboard/testimonials/create">
+            <h3 className="text-2xl font-bold">Why Chose Us</h3>
+            <Link href="/dashboard/whychooseus/create">
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
           </div>
@@ -76,13 +77,23 @@ const AboutUs = () => {
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-                      <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
+                      <td key={columnIndex}>
+                        {column === "image" ? (
+                          <img
+                            src={`${axiosInstance.defaults.baseURL}${item.image}`}
+                            alt={item.title}
+                            className="w-20  object-cover aspect-video rounded-sm"
+                          />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/testimonials/${item.id}`}>
+                      <Link href={`/dashboard/whychooseus/${item.id}`}>
                         <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
                       </Link>
-                      <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => handleDeletePopup(item.id)}>
+                      <button onClick={() => handleDeletePopup(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
                         Delete
                       </button>
                     </td>
@@ -122,4 +133,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Whyus;

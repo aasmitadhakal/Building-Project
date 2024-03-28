@@ -23,7 +23,7 @@ const AboutUs = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/aboutus");
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
