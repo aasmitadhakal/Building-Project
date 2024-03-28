@@ -9,48 +9,48 @@ import { BsFillPeopleFill, BsGear } from "react-icons/bs";
 
 const Sidenav = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [error, setError] = useState("");
+  
   const router = useRouter();
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const logout =  () => {
-    localStorage.removeItem("token");
-    router.push("/login");
+  const logout = async () => {
+   localStorage.removeItem("token");
+   router.push("/login");
 
-    // try {
-    //   const response = await fetch("http://192.168.1.143:3000/api/logout", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
+   try {
+      const response = await fetch("http://192.168.1.143:3000/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+     });
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //    localStorage.removeItem("token");
-    //       router.push("/login");
-    //   } else {
-    //     throw new Error("Invalid username or password");
-    //   }
-    // } catch (error) {
-    //   setError(error.message);
-    // }
+      if (response.ok) {
+       const data = await response.json();
+       localStorage.removeItem("token");
+          router.push("/login");
+      } else {
+        throw new Error("Invalid username or password");
+      }
+   } catch (error) {
+     setError(error.message);
+   }
   };
 
-  // call logout function when logout is closed
-  // useEffect(() => {
-  //   const handleWindowClose = () => {
-  //     logout();
-  //   };
+// call logout function when logout is closed
+ useEffect(() => {
+   const handleWindowClose = () => {
+     logout();
+   };
 
-  //   window.addEventListener("beforeunload", handleWindowClose);
+   window.addEventListener("beforeunload", handleWindowClose);
 
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleWindowClose);
-  //   };
-  // }, []);
+   return () => {
+     window.removeEventListener("beforeunload", handleWindowClose);
+   };
+ }, []);
 
   return (
     <nav className="relative  z-50">
