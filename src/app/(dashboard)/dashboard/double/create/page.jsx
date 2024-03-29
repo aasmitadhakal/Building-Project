@@ -13,14 +13,12 @@ function Create() {
   const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
-  // const [imageTwo, setImageTwo] = useState(null);
-  // Additional fields
+  const [imageTwo, setImageTwo] = useState(null);
   const [frontage, setFrontage] = useState("");
   const [size, setSize] = useState("");
   const [bedroom, setBedroom] = useState("");
   const [cars, setCars] = useState("");
   const [bathrooms, setBathrooms] = useState("");
-  // const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState(null);
    const [storeyType, setStoreyType] = useState("double");
@@ -36,8 +34,8 @@ function Create() {
     formData.append("description", editorValue);
     formData.append("order", order);
     formData.append("image", imageOne); // Append image file correctly
-
-    // Append additional fields
+    formData.append("other_image", imageTwo);
+  
     formData.append("frontage", frontage);
     formData.append("size", size);
     formData.append("bedroom", bedroom);
@@ -230,6 +228,18 @@ function Create() {
               id="image"
               accept="image/*"
               onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="other_image">
+              other_image Two:
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="other_image"
+              accept="other_image/*"
+              onChange={(e) => setImageTwo(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div>
         </div>

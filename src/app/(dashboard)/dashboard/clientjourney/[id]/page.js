@@ -13,6 +13,7 @@ const Update = ({ params }) => {
     order: "",
     title: "",
     short_description: "",
+    // description:"",
     image: "",
    
   });
@@ -21,19 +22,52 @@ const Update = ({ params }) => {
  
   const router = useRouter();
 
+  
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(`/api/journey/${params.id}`);
+  //     if (response && response.data && response.data.success) {
+  //       const responseData = response.data.data;
+  //       console.log("API Response Data:", responseData);
+  //       setFormData({
+  //         ...responseData,
+  //         short_description: responseData.short_description || "",
+  //       });
+  //       setEditorValue(responseData.description || "");
+  //       console.log("FormData after setting data:", formData);
+  //       console.log("Editor Value:", editorValue);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/journey/${params.id}`);
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
-        setFormData(responseData);
+        console.log("API Response Data:", responseData);
+   
+        // Update state with fetched data
+        setFormData({
+          order: responseData.order || "",
+          title: responseData.title || "",
+          short_description: responseData.short_description || "",
+          description: responseData.description || "",
+          image: responseData.image || "",
+        });
         setEditorValue(responseData.description || "");
-       
+        console.log("FormData after setting data:", formData);
+        console.log("Editor Value:", editorValue);
+      } else {
+        toast("Error fetching data");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast("Error fetching data");
     }
   };
+  
 
 
   useEffect(() => {
@@ -75,16 +109,17 @@ const Update = ({ params }) => {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
-      updatedData.append("description", editorValue);
-    //   updatedData.append("date", date);
+      // updatedData.append("description", editorValue);
+      updatedData.append("short_description", formData.short_description);
+   
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
      
-      await axiosInstance.put(`/api/gallery/${params.id}`, updatedData);
+      await axiosInstance.put(`/api/journey/${params.id}`, updatedData);
 
       toast("Data edited successfully");
-      router.push("/dashboard/gallery");
+      router.push("/dashboard/clientjourney");
     } catch (error) {
       console.error("Error updating data:", error);
       toast("Error updating data");
@@ -111,43 +146,31 @@ const Update = ({ params }) => {
               onChange={handleChange}
             />
           </div>
+        
           {/* <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="date">
-              Date:
-            </label>
-            <input
-              id="date"
-              className="block w-full px-4 py-2 bdate rounded-md focus:outline-none focus:bdate-blue-500"
-              type="date"
-              name="date"
-              value={formData.date || ""}
-              onChange={handleChange}
-            />
-          </div> */}
-          <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
-            modules={{
-              toolbar: [
-                [{ font: [] }],
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                ["bold", "italic", "underline", "strike"],
-                ["blockquote", "code-block"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                [{ script: "sub" }, { script: "super" }],
-                [{ indent: "-1" }, { indent: "+1" }],
-                [{ align: [] }],
-                ["clean"],
-              ],
-            }}
-            value={editorValue}
-            theme="snow"
-            onChange={handleEditorChange}
-          />
-        </div>
+  className="bg-white text-black z-0"
+  modules={{
+    toolbar: [
+      [{ font: [] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike"],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ align: [] }],
+      ["clean"],
+    ],
+  }}
+  value={editorValue}
+  theme="snow"
+  onChange={(value) => setEditorValue(value)}
+/>
+        </div> */}
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
               Title:
@@ -158,6 +181,19 @@ const Update = ({ params }) => {
               type="text"
               name="title"
               value={formData.title || ""}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+              short_description:
+            </label>
+            <input
+              id="short_description"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="short_description"
+              value={formData.short_description || ""}
               onChange={handleChange}
             />
           </div>
@@ -186,10 +222,10 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/aboutus"}>
+          <Link href={"/dashboard/clientjourney"}>
             <p
               className="w-full md:w-auto px-4 py-2 bg-red-500
- text-white rounded-md"
+              text-white rounded-md"
             >
               Cancel
             </p>

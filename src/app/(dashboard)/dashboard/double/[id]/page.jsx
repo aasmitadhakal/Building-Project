@@ -60,7 +60,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      // handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+       handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -124,7 +124,7 @@ const Update = ({ params }) => {
       }
      
       if (formData.other_image) {
-        updatedData.append("image", formData.other_image);
+        updatedData.append("other_image", formData.other_image);
       }
      
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);

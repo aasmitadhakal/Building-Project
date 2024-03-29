@@ -7,7 +7,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Page = () => {
   const [data, setData] = useState([]);
+  const [deletePopUp, setDeletePopUp] = useState(false);
+  const [deleteItemId, setDeleteItemId] = useState(null);
 
+  const handleDeletePopup = (id) => {
+    setDeletePopUp(true);
+    setDeleteItemId(id);
+  };
+
+  const closeDeletePopup = () => {
+    setDeletePopUp(false);
+    setDeleteItemId(null);
+  };
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/design/s/double");
@@ -22,12 +33,12 @@ const Page = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/design/${id}`);
-      // After successful deletion, you can fetch the data again to update the table
+      await axiosInstance.delete(`/api/design/${deleteItemId}`);
       toast("Item deleted successfully");
-      fetchData();
+      closeDeletePopup();
+      fetchData(); // Update the list after successful deletion
     } catch (error) {
       console.error("Error deleting data:", error);
     }
@@ -76,7 +87,7 @@ const Page = () => {
         <Link href={`/dashboard/double/${item.id}`}>
           <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
         </Link>
-        <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
+        <button onClick={() => handleDeletePopup(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
           Delete
         </button>
       </td>
@@ -91,6 +102,25 @@ const Page = () => {
           </table>
         </div>
       </section>
+      {deletePopUp && (
+        <section className="z-[100] h-screen w-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-slate-400/80 px-6 lg:px-20 py-14">
+          <div className="bg-[#E5E5E5] md:w-1/2 xl:w-1/3 rounded-lg p-8 relative text-black space-y-6">
+            <i
+              className="ri-close-fill text-xl font-bold absolute top-4 right-4 bg-red-700 hover:bg-red-700/80 text-white px-1 rounded cursor-pointer"
+              onClick={closeDeletePopup}
+            ></i>
+            <h2 className="text-2xl text-center font-medium">Do you want to delete ?</h2>
+            <div className="flex flex-wrap justify-evenly">
+              <button className="hover:bg-[#646cf7] bg-[#4a4e9c] text-white px-8 py-2  rounded " onClick={handleDelete}>
+                Yes
+              </button>
+              <button className="bg-red-700 hover:bg-red-700/80 px-8 py-2 text-white  rounded " onClick={closeDeletePopup}>
+                No
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 };

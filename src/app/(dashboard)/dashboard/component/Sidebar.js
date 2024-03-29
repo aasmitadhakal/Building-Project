@@ -78,7 +78,7 @@ const Sidenav = () => {
               <Link href="/dashboard/double">
                 <Sidebar.Item>Double Design</Sidebar.Item>
               </Link>
-              <Link href="/dashboard/dual">
+              <Link href="/dashboard/duol">
                 <Sidebar.Item>Dual media</Sidebar.Item>
               </Link>
             </Sidebar.Collapse>

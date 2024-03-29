@@ -12,26 +12,29 @@ function Create() {
   const [order, setOrder] = useState("");
   const [image, setImage] = useState(null);
   const [editorValue, setEditorValue] = useState("");
+  const[short_description,setshort_description]=useState("")
+  
   const router = useRouter();
 
+  
+  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+   
     // Create FormData object
     const formData = new FormData();
     formData.append("title", title);
-    // formData.append("date", date);
     formData.append("order", order);
     formData.append("image", image);
-    formData.append("short_description", editorValue);
-
+    formData.append("description", editorValue); // Use editorValue for description
+    formData.append("short_description", short_description);
+  
     try {
       // Send data to the server using axiosInstance with authorization header
       const response = await axiosInstance.post("/api/journey", formData);
-
+   
       if (response.status === 200) {
         toast("Post created successfully");
-        console.log(formData);
         router.push("/dashboard/clientjourney");
       } else {
         toast("Error creating post");
@@ -41,7 +44,6 @@ function Create() {
       toast("Error creating post");
     }
   };
-
   return (
     <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
       <ToastContainer />
@@ -75,7 +77,7 @@ function Create() {
             />
           </div>
      
-<div className="mb-4">
+{/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -98,9 +100,22 @@ function Create() {
             theme="snow"
             onChange={(value) => setEditorValue(value)}
           />
+        </div> */}
         </div>
-        </div>
-        
+        <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+              short_description:
+            </label>
+            <input
+              id="short_description"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="name"
+              value={short_description}
+              onChange={(e) => setshort_description(e.target.value)}
+            />
+          </div>
+     
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="mb-4 relative">
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
