@@ -48,63 +48,89 @@ const CreateSeo = () => {
   // Define an array of sections with their input fields
   const formSections = [
     {
-      title: "Countries SEO",
+      title: "About Us SEO",
       fields: [
-        { name: "countriesSeoTitle", label: "Countries SEO Title", type: "text", placeholder: "Enter SEO title for countries", required: true },
+        { name: "aboutUsSeoTitle", label: "About Us SEO Title", type: "text", placeholder: "Enter SEO title for about us", required: true },
         {
-          name: "countriesSeoKeywords",
-          label: "Countries SEO Keywords",
+          name: "aboutUsSeoKeywords",
+          label: "About Us SEO Keywords",
           type: "text",
-          placeholder: "Enter SEO keywords for countries",
+          placeholder: "Enter SEO keywords for about us",
           required: true,
         },
         {
-          name: "countriesSeoDescription",
-          label: "Countries SEO Description",
+          name: "aboutUsSeoDescription",
+          label: "About Us SEO Description",
           type: "textarea",
-          placeholder: "Enter SEO description for countries",
-          required: true,
-        },
-      ],
-    },
-    {
-      title: "Courses SEO",
-      fields: [
-        { name: "coursesSeoTitle", label: "Courses SEO Title", type: "text", placeholder: "Enter SEO title for courses", required: true },
-        { name: "coursesSeoKeywords", label: "Courses SEO Keywords", type: "text", placeholder: "Enter SEO keywords for courses", required: true },
-        {
-          name: "coursesSeoDescription",
-          label: "Courses SEO Description",
-          type: "textarea",
-          placeholder: "Enter SEO description for courses",
+          placeholder: "Enter SEO description for about us",
           required: true,
         },
       ],
     },
     {
-      title: "Services SEO",
+      title: "Gallery SEO",
       fields: [
-        { name: "servicesSeoTitle", label: "Services SEO Title", type: "text", placeholder: "Enter SEO title for services", required: true },
-        { name: "servicesSeoKeywords", label: "Services SEO Keywords", type: "text", placeholder: "Enter SEO keywords for services", required: true },
+        { name: "gallerySeoTitle", label: "Gallery SEO Title", type: "text", placeholder: "Enter SEO title for gallery", required: true },
+        { name: "gallerySeoKeywords", label: "Gallery SEO Keywords", type: "text", placeholder: "Enter SEO keywords for gallery", required: true },
         {
-          name: "servicesSeoDescription",
-          label: "Services SEO Description",
+          name: "gallerySeoDescription",
+          label: "Gallery SEO Description",
           type: "textarea",
-          placeholder: "Enter SEO description for services",
+          placeholder: "Enter SEO description for gallery",
           required: true,
         },
       ],
     },
     {
-      title: "Blogs SEO",
+      title: "Design SEO",
       fields: [
-        { name: "blogsSeoTitle", label: "Blogs SEO Title", type: "text", placeholder: "Enter SEO title for blogs", required: true },
-        { name: "blogsSeoKeywords", label: "Blogs SEO Keywords", type: "text", placeholder: "Enter SEO keywords for blogs", required: true },
+        { name: "designSeoTitle", label: "Design SEO Title", type: "text", placeholder: "Enter SEO title for design", required: true },
+        { name: "designSeoKeywords", label: "Design SEO Keywords", type: "text", placeholder: "Enter SEO keywords for design", required: true },
         {
-          name: "blogsSeoDescription",
-          label: "Blogs SEO Description",
+          name: "designSeoDescription",
+          label: "Design SEO Description",
           type: "textarea",
-          placeholder: "Enter SEO description for blogs",
+          placeholder: "Enter SEO description for design",
+          required: true,
+        },
+      ],
+    },
+    {
+      title: "Contact Us SEO",
+      fields: [
+        { name: "contactUsSeoTitle", label: "Contact Us SEO Title", type: "text", placeholder: "Enter SEO title for contact us", required: true },
+        {
+          name: "contactUsSeoKeywords",
+          label: "Contact SEO Keywords",
+          type: "text",
+          placeholder: "Enter SEO keywords for contact Us",
+          required: true,
+        },
+        {
+          name: "contactUsSeoDescription",
+          label: "Contact Us SEO Description",
+          type: "textarea",
+          placeholder: "Enter SEO description for contact Us",
+          required: true,
+        },
+      ],
+    },
+    {
+      title: "Privacy & Policy SEO",
+      fields: [
+        { name: "privacy_policySeoTitle", label: "Privacy & Policy SEO Title", type: "text", placeholder: "Enter SEO title for Privacy & Policy", required: true },
+        {
+          name: "privacy_policySeoKeywords",
+          label: "Privacy & Policy SEO Keywords",
+          type: "text",
+          placeholder: "Enter SEO keywords for Privacy & Policy",
+          required: true,
+        },
+        {
+          name: "privacy_policySeoDescription",
+          label: "Privacy & Policy SEO Description",
+          type: "textarea",
+          placeholder: "Enter SEO description for Privacy & Policy",
           required: true,
         },
       ],

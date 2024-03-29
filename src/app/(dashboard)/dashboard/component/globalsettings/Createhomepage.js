@@ -1,13 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "@/utils/axiosInstance";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateHomePage = () => {
   const [formData, setFormData] = useState({
     courseTitle: "",
     countrySectionTitle: "",
-    blog: "",
-
     testimonialsSectionTitle: "",
     teamSectionTitle: "",
     faqSectionTitle: "",
@@ -19,56 +18,67 @@ const CreateHomePage = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Fetch data from server and populate the form fields
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get(`/api/home/2`);
+        const data = response.data.data; // Assuming response.data contains the form data
+        console.log(data);
+        setFormData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.courseTitle) {
-      errors.courseTitle = "Course Title is required";
-    }
-    // Add validation for other fields if needed
-
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await axios.post("/api/create", formData);
-        // Handle success or show a message to the user
-      } catch (error) {
-        console.error("Error creating item:", error);
-        // Handle error or show an error message to the user
+    try {
+      const response = await axiosInstance.put(`/api/home/2`, formData);
+      if (response.status === 200) {
+        // Update form data with the response data
+        setFormData(response.data.data);
+        toast("Data saved successfully");
+      } else {
+        toast("Error updating data");
       }
+    } catch (error) {
+      console.error("Error updating item:", error);
+      toast("Error updating data");
     }
   };
 
   // Array of input fields
   const inputFields = [
-    { name: "courseTitle", type: "text", placeholder: "Course Section Title", required: true, label: "Course Section Title" },
-    { name: "countrySectionTitle", type: "text", placeholder: "Country Section Title", required: true, label: "Country Section Title" },
-    { name: "blog", type: "text", placeholder: "Blog Section Title", required: true, label: "Blog Section Title" },
-
+    { name: "clientJourneyTitle", type: "text", placeholder: "Client Journey Title", required: true, label: "Client Journey Title" },
+    { name: "clientJourneySubtitle", type: "text", placeholder: "Client Journey Subtitle", required: true, label: "Client Journey Subtitle" },
+    { name: "buildingProcessTitle", type: "text", placeholder: "Building Process Title", required: true, label: "Building Process Title" },
+    { name: "buildingProcessSubtitle", type: "text", placeholder: "Building Process Subtitle", required: true, label: "Building Process Subtitle" },
+    { name: "testimonialsTitle", type: "text", placeholder: "Testimonials Section Title", required: true, label: "Testimonials Section Title" },
     {
-      name: "testimonialsSectionTitle",
+      name: "testimonialsSectionSubtitle",
       type: "text",
-      placeholder: "Testimonials Section Title",
+      placeholder: "Testimonials Section Subtitle",
       required: true,
-      label: "Testimonials Section Title",
+      label: "Testimonials Section Subtitle",
     },
-    { name: "teamSectionTitle", type: "text", placeholder: "Team Section Title", required: true, label: "Team Section Title" },
+    { name: "homepageBannerTitle", type: "text", placeholder: "Homepage banner Title", required: true, label: "Homepage banner Title" },
     { name: "faqSectionTitle", type: "text", placeholder: "FAQ Section Title", required: true, label: "FAQ Section Title" },
+    { name: "faqSectionSubtitle", type: "text", placeholder: "FAQ Section Subtitle", required: true, label: "FAQ Section Subtitle" },
     { name: "homepageSeoTitle", type: "text", placeholder: "Homepage SEO Title", required: true, label: "Homepage SEO Title" },
     { name: "homepageSeoKeywords", type: "text", placeholder: "Homepage SEO Keywords", required: true, label: "Homepage SEO Keywords" },
   ];
 
   return (
     <div className=" px-5 rounded-md w-full ">
+      <ToastContainer />
       <div>
         <p className="text-2xl font-bold mb-4">Home</p>
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
