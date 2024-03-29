@@ -22,7 +22,7 @@ const Socilmedia = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("/api/social");
+      const response = await axiosInstance.get("/api/sliders");
 
       setData(response.data.data);
     } catch (error) {
@@ -38,7 +38,7 @@ const Socilmedia = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/social/${deleteItemId}`);
+      await axiosInstance.delete(`/api/sliders/${deleteItemId}`);
 
       toast("Item deleted successfully");
       closeDeletePopup();
@@ -48,7 +48,7 @@ const Socilmedia = () => {
     }
   };
 
-  const columns = ["SN", "order", "name","link",   "icon", "Actions"];
+  const columns = ["SN", "order", "name", "image", "link", "Actions"];
 
   return (
     <>
@@ -56,8 +56,8 @@ const Socilmedia = () => {
         <ToastContainer />
         <div className="max-w-screen-lg w-full">
           <div className="flex justify-between mb-4">
-            <h3 className="text-2xl font-bold">Social Media</h3>
-            <Link href="/dashboard/socialmedia/create">
+            <h3 className="text-2xl font-bold">Slider</h3>
+            <Link href="/dashboard/slider/create">
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
           </div>
@@ -90,7 +90,7 @@ const Socilmedia = () => {
                       </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/socialmedia/${item.id}`}>
+                      <Link href={`/dashboard/slider/${item.id}`}>
                         <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
                           <i class="ri-file-edit-line text-xl font-bold"></i>
                         </button>
