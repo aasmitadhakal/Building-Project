@@ -1,10 +1,6 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 import DashBody from "./component/homepage/dasbody";
-
-
 
 const Dashboard = () => {
   // const router = useRouter();
@@ -15,13 +11,7 @@ const Dashboard = () => {
   //   }
   // }, []);
 
-  return (
-    <div className="">
-     
-     
-     <DashBody/>
-    </div>
-  );
+  return <DashBody />;
 };
 
 export default Dashboard;

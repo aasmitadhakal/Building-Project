@@ -130,20 +130,7 @@ const Sidenav = () => {
                 <Sidebar.Item>Global Settings</Sidebar.Item>
               </Link>
             </Sidebar.Collapse>
-            <Sidebar.Collapse icon={BsGear} label="General Settings">
-              <Link href="/dashboard/slider">
-                <Sidebar.Item>Global</Sidebar.Item>
-              </Link>
-              <Link href="/dashboard/sitepages">
-                <Sidebar.Item>Homepage</Sidebar.Item>
-              </Link>
-              <Link href="/dashboard/socialmedia">
-                <Sidebar.Item>Contact</Sidebar.Item>
-              </Link>
-              <Link href="/dashboard/globalsettings">
-                <Sidebar.Item>SEO </Sidebar.Item>
-              </Link>
-            </Sidebar.Collapse>
+            
           </Sidebar.ItemGroup>
         </Sidebar.Items>
         <div className="mt-20 ">
