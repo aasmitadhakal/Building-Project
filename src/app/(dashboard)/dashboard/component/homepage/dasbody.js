@@ -15,7 +15,7 @@ export default function DashBody() {
   return (
     <>
       <div className="bg-gray-500 text-white py-4 px-6 shadow-sm rounded-sm mt-2">
-        <p className="text-2xl font-semibold">Welcome To GIEC Admin Dashboard</p>
+        <p className="text-2xl font-semibold">Welcome To Admin Dashboard</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mt-10">
         {fakeData.map((data, index) => (
