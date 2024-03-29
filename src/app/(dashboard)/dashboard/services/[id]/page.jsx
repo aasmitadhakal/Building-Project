@@ -37,7 +37,7 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        // setEditorValue(responseData.description || "");
+         setEditorValue(responseData.description || "");
         // setEditorValue(responseData.title || "");
         // setEditorValue(responseData.frontage || "");
         // setEditorValue(responseData.size || "");
@@ -99,7 +99,7 @@ const Update = ({ params }) => {
       updatedData.append("seo_schema", formData.seo_schema);
       updatedData.append("seo_keywords", formData.seo_keywords);
       updatedData.append("status", formData.status);
-      
+      updatedData.append("description", editorValue);
       // updatedData.append("description", editorValue);
       // if (formData.image) {
       //   updatedData.append("image", formData.image);
@@ -168,11 +168,9 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-             value=
-             {formData.description || ""}
+            value={editorValue}
             theme="snow"
-            // onChange={handleChange}
-           
+            onChange={handleEditorChange}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -324,7 +322,7 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/design"}>
+          <Link href={"/dashboard/services"}>
             <p
               className="w-full md:w-auto px-4 py-2 bg-red-500
  text-white rounded-md"

@@ -38,7 +38,7 @@ const Page = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/privacy/${deleteItemId}`);
+      await axiosInstance.delete(`/api/contact/${deleteItemId}`);
       toast("Item deleted successfully");
       closeDeletePopup();
       fetchData(); // Update the list after successful deletion
@@ -46,7 +46,6 @@ const Page = () => {
       console.error("Error deleting data:", error);
     }
   };
-
   const columns = ["SN", "title", "email", "contact","location", "Actions"];
 
   return (

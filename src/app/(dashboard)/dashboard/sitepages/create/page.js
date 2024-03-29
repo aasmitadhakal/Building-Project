@@ -9,70 +9,44 @@ import { useRouter } from "next/navigation";
 
 
 function Create() {
+ 
+  const [order, setOrder] = useState("");
+   const [imageOne, setImageOne] = useState(null);
+  //  const[link,setLink]=useState();
+  const [name, setName] = useState("");
   const [title, setTitle] = useState("");
-  const [map, setMap] = useState("");
-  // const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
-  // const [banner_image, setbanner_image] = useState(null);
-  const [short_description, setshort_description] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setcontact] = useState("");
-  const [location, setlocation] = useState("");
-  const [seo_title, setseo_title] = useState("");
-  const [seo_keyword, setseo_keyword] = useState("");
-  // const[description,setDescription]=useState("");
-
-
+  // const [meta_keywords, setmeta_keywords] = useState("");
+ // const [shortdescription, setShort_description] = useState("");
+  // const [seotitle, setSeo_title] = useState("");
+ // const [meta_description, setmeta_description] = useState("");
   const router = useRouter();
 
   
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
-    // Validate inputs
-    // const contactValue = parseInt(contact);
-    // const bedOderValue = parseInt(order);
-    // const locationValue = parseInt(location);
-    // const seo_keywordValue = parseInt(seo_keyword);
-    // if (isNaN(bedOderValue)) {
-    //   toast("Please enter valid integer values for Ordervalue");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(contactValue)) {
-    //   toast("Please enter valid integer values for contact");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(locationValue)) {
-    //   toast("Please enter valid integer values for Car");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(seo_keywordValue)) {
-    //   toast("Please enter valid integer values for seo_keyword");
-    //   return; // Stop form submission if validation fails
-    // }
-  
-    // Create FormData object
+
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("map", map);
+    formData.append("image", imageOne);
+    // formData.append("link", link);
+    // formData.append("description", setDescription);
+    formData.append("order", order);
     formData.append("description", editorValue);
-    // formData.append("order", order);
-    // formData.append("banner_image", banner_image); 
-    formData.append("short_description", short_description);
-    formData.append("email", email);
-    formData.append("contact", contact); 
-    formData.append("location", location); 
-    formData.append("seo_title", seo_title);
-    formData.append("seo_keyword", seo_keyword); 
-    
+    formData.append("name", name);
+    formData.append("title", title);
+    // formData.append("short_description",shortdescription); // Use validated integer value
+    // formData.append("seo_title", seotitle);
+    // formData.append("meta_description", meta_description); // Use validated integer value
+   
+    // formData.append("meta_keywords", setmeta_keywords);
   
     try {
       // Send data to the server using axiosInstance with authorization header
-      const response = await axiosInstance.post("/api/contact", formData);
+      const response = await axiosInstance.post("/api/pages", formData);
   
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/contact");
+        router.push("/dashboard/sitepages");
       } else {
         toast("Error creating post");
       }
@@ -85,11 +59,11 @@ function Create() {
   return (
     <div className="min-w-screen bg-white rounded-md p-8">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Contact</h2>
+      <h2 className="text-2xl font-bold">Create Page</h2>
       <form onSubmit={handleFormSubmit}>
         {/* Existing form fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* <div>
+          <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
@@ -101,14 +75,27 @@ function Create() {
               value={order}
               onChange={(e) => setOrder(e.target.value)}
             />
-          </div> */}
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              name:
+            </label>
+            <input
+              id="name"
+              className="block w-full px-4 py-2   rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="title">
-              Title:
+              title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2   rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={title}
@@ -116,16 +103,15 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
-              Email:
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image:
             </label>
             <input
-              id="email"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div>
         </div>
@@ -154,99 +140,112 @@ function Create() {
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
+          
+          
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
-              short_description:
+              Short_description:
             </label>
             <input
               id="short_description"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="short_description"
-              value={short_description}
-              onChange={(e) => setshort_description(e.target.value)}
+              value={shortdescription}
+              onChange={(e) => setShort_description(e.target.value)}
             />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_keyword">
-              seo_keyword:
-            </label>
-            <input
-              id="seo_keyword"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_keyword"
-              value={seo_keyword}
-              onChange={(e) => setseo_keyword(e.target.value)}
-            />
-          </div>
-       
-          
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="contact">
-              contact:
-            </label>
-            <input
-              id="contact"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="contact"
-              value={contact}
-              onChange={(e) => setcontact(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="location">
-              location:
-            </label>
-            <input
-              id="location"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="location"
-              value={location}
-              onChange={(e) => setlocation(e.target.value)}
-            />
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="seo_title">
-              seo_title:
+              Seo_title:
             </label>
             <input
               id="seo_title"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_title"
-              value={seo_title}
-              onChange={(e) => setseo_title(e.target.value)}
+              value={seotitle}
+              onChange={(e) => setSeo_title(e.target.value)}
             />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="map">
-              Map:
+          </div> */}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="meta_description">
+            meta_description
             </label>
             <input
-              id="map"
+              id="meta_description"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="map"
-              value={map}
-              onChange={(e) => setMap(e.target.value)}
+              name="meta_description"
+              value={meta_description}
+              onChange={(e) => setmeta_description(e.target.value)}
             />
-          </div>
-          
-          
-        </div>
-   
-   
+          </div> */}
+           {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="link">
+              link:
+            </label>
+            <input
+              id="link"
+              classlink="block w-full px-4 py-2   rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              link="link"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+            />
+          </div> */}
         
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="meta_keywords">
+              meta_keywords:
+            </label>
+            <input
+              id="meta_keywords"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="meta_keywords"
+              value={meta_keywords}
+              onChange={(e) => setmeta_keywords(e.target.value)}
+            />
+          </div> */}
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+              Image:
+            </label>
+            <input
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
+            />
+          </div> */}
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_schema">
+              seo_keywords:
+            </label>
+            <input
+              id="seo_keywords"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="seo_keywords"
+              value={}
+              onChange={(e) => set(e.target.value)}
+            />
+          </div> */}
+        </div>
+       
         <div className="flex gap-2 mt-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/contact"}>
+          <Link href={"/dashboard/design"}>
             <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>

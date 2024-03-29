@@ -7,7 +7,6 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-
 function Create() {
   const [name, setName] = useState("");
   const [order, setOrder] = useState("");
@@ -18,59 +17,35 @@ function Create() {
   const [seotitle, setSeo_title] = useState("");
   const [seodescription, setSeodescription] = useState("");
   const [seoschema, setSeoschema] = useState("");
-   const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [seokeywords, setSeokeywords] = useState("");
- 
-
+  const [editorValue, setEditorValue] = useState("");
   const router = useRouter();
 
-  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
-    // Validate inputs
-    // const bedroomValue = parseInt(bedroom);
-    // const bedOderValue = parseInt(order);
-    // const carsValue = parseInt(cars);
-    // const priceValue = parseInt(price);
-    // if (isNaN(bedOderValue)) {
-    //   toast("Please enter valid integer values for Ordervalue");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(bedroomValue)) {
-    //   toast("Please enter valid integer values for Bedroom");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(carsValue)) {
-    //   toast("Please enter valid integer values for Car");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(priceValue)) {
-    //   toast("Please enter valid integer values for Price");
-    //   return; // Stop form submission if validation fails
-    // }
-  
+
+    
+
     // Create FormData object
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("description", setDescription);
     formData.append("order", order);
     formData.append("image", imageOne); // Append image file correctly
-  
     // Append additional fields
     formData.append("slug", slug);
     formData.append("banner", banner);
-    formData.append("short_description",shortdescription); // Use validated integer value
-  
+    formData.append("description", editorValue);
+    formData.append("short_description", shortdescription); // Use validated integer value
     formData.append("seo_title", seotitle);
     formData.append("seo_description", seodescription); // Use validated integer value
-    formData.append("seo_schema", setSeoschema);
-    formData.append("seo_keywords", setSeokeywords);
-  
+    formData.append("seo_schema", seoschema);
+    formData.append("seo_keywords", seokeywords);
+
     try {
       // Send data to the server using axiosInstance with authorization header
       const response = await axiosInstance.post("/api/service", formData);
-  
+
       if (response.status === 200) {
         toast("Post created successfully");
         router.push("/dashboard/services");
@@ -91,7 +66,10 @@ function Create() {
         {/* Existing form fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="order"
+            >
               Order:
             </label>
             <input
@@ -104,7 +82,10 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="name"
+            >
               Name:
             </label>
             <input
@@ -118,7 +99,10 @@ function Create() {
           </div>
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="description"
+          >
             Description:
           </label>
           <ReactQuill
@@ -136,14 +120,17 @@ function Create() {
                 ["clean"],
               ],
             }}
-            // value={editorValue}
+            value={editorValue}
             theme="snow"
-            // onChange={(value) => setEditorValue(value)}
+            onChange={(value) => setEditorValue(value)}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="slug">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="slug"
+            >
               Slug:
             </label>
             <input
@@ -156,7 +143,10 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="banner">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="banner"
+            >
               Banner:
             </label>
             <input
@@ -171,7 +161,10 @@ function Create() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="short_description"
+            >
               Short_description:
             </label>
             <input
@@ -184,7 +177,10 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_title">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="seo_title"
+            >
               Seo_title:
             </label>
             <input
@@ -199,7 +195,10 @@ function Create() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_description">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="seo_description"
+            >
               seo_description:
             </label>
             <input
@@ -209,6 +208,22 @@ function Create() {
               name="seo_description"
               value={seodescription}
               onChange={(e) => setSeodescription(e.target.value)}
+            />
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="seo_schema"
+            >
+              seo_keywords:
+            </label>
+            <input
+              id="seo_keywords"
+              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              type="text"
+              name="seo_keywords"
+              value={seokeywords}
+              onChange={(e) => setSeokeywords(e.target.value)}
             />
           </div>
           {/* <div>
@@ -227,7 +242,10 @@ function Create() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_schema">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="seo_schema"
+            >
               seo_schema:
             </label>
             <input
@@ -240,7 +258,10 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="image"
+            >
               Image:
             </label>
             <input
@@ -251,27 +272,20 @@ function Create() {
               onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_schema">
-              seo_keywords:
-            </label>
-            <input
-              id="seo_keywords"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_keywords"
-              value={seokeywords}
-              onChange={(e) => setSeokeywords(e.target.value)}
-            />
-          </div>
+         
         </div>
-       
+
         <div className="flex gap-2 mt-2">
-          <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
+          <button
+            type="submit"
+            className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md"
+          >
             Create
           </button>
-          <Link href={"/dashboard/design"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
+          <Link href={"/dashboard/contact"}>
+            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">
+              Cancel
+            </p>
           </Link>
         </div>
       </form>

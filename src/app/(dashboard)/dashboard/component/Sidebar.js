@@ -102,6 +102,9 @@ const Sidenav = () => {
             <Link href="/dashboard/testimonials">
               <Sidebar.Item icon={HiTable}>Testimonials</Sidebar.Item>
             </Link>
+            <Link href="/dashboard/building">
+              <Sidebar.Item icon={HiTable}>Building</Sidebar.Item>
+            </Link>
 
             <Link href="/dashboard/whychooseus">
               <Sidebar.Item icon={HiTable}>Why us? </Sidebar.Item>

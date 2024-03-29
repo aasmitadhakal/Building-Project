@@ -190,19 +190,18 @@ function Create() {
               onChange={(e) => setBathrooms(e.target.value)}
             />
           </div>
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="description">
-              Description:
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="storeyType">
+              Storey Type:
             </label>
-            <textarea
-              id="description"
+            <input
+              id="storeyType"
               className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              rows="3"
-              name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div> */}
+              type="text"
+              name="storeyType"
+              value={storeyType}
+            />
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
@@ -218,6 +217,7 @@ function Create() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
+          
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
               Image:
@@ -243,25 +243,12 @@ function Create() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="storeyType">
-              Storey Type:
-            </label>
-            <input
-              id="storeyType"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="storeyType"
-              value={storeyType}
-            />
-          </div>
-        </div>
+       
         <div className="flex gap-2 mt-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/design"}>
+          <Link href={"/dashboard/double"}>
             <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
           </Link>
         </div>
