@@ -78,7 +78,7 @@ const Sidenav = () => {
               <Link href="/dashboard/double">
                 <Sidebar.Item>Double Design</Sidebar.Item>
               </Link>
-              <Link href="/dashboard/dual">
+              <Link href="/dashboard/duol">
                 <Sidebar.Item>Dual media</Sidebar.Item>
               </Link>
             </Sidebar.Collapse>
@@ -113,7 +113,9 @@ const Sidenav = () => {
             <Link href="/dashboard/faq">
               <Sidebar.Item icon={FaQuestion}>FAQ</Sidebar.Item>
             </Link>
-
+            <Link href="/dashboard/clientjourney">
+              <Sidebar.Item icon={FaBookOpen}>Client Journey </Sidebar.Item>
+            </Link>
             <Sidebar.Collapse icon={BsGear} label="Global Settings">
               <Link href="/dashboard/slider">
                 <Sidebar.Item>Sliders</Sidebar.Item>

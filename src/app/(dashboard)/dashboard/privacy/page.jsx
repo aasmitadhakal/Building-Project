@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AboutUs = () => {
   const [data, setData] = useState([]);
+  const [deletePopUp, setDeletePopUp] = useState(false);
+  const [deleteItemId, setDeleteItemId] = useState(null);
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
     setDeleteItemId(id);
@@ -29,17 +31,18 @@ const AboutUs = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/privacy/${id}`);
-      // After successful deletion, you can fetch the data again to update the table
-      fetchData();
+      await axiosInstance.delete(`/api/privacy/${deleteItemId}`);
+      toast("Item deleted successfully");
+      closeDeletePopup();
+      fetchData(); // Update the list after successful deletion
     } catch (error) {
-      console.error('Error deleting data:', error);
+      console.error("Error deleting data:", error);
     }
   };
 
-  const columns = ["SN", "order", "title", "Description",  "Actions"];
+  const columns = ["SN", "order", "Description",  "Actions"];
 
   return (
     <>
@@ -47,7 +50,7 @@ const AboutUs = () => {
         <ToastContainer />
         <div className="max-w-screen-lg w-full">
           <div className="flex justify-between mb-4">
-            <h3 className="text-2xl font-bold">Contact Detail</h3>
+            <h3 className="text-2xl font-bold">Privacy Detail</h3>
             <Link href="/dashboard/privacy/create">
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
@@ -71,7 +74,7 @@ const AboutUs = () => {
                       <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/contact/${item.id}`}>
+                      <Link href={`/dashboard/privacy/${item.id}`}>
                         <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
                       </Link>
                       <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => handleDeletePopup(item.id)}>
