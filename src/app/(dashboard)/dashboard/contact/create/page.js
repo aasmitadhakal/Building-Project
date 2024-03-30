@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function Create() {
   const [title, setTitle] = useState("");
@@ -29,27 +29,6 @@ function Create() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
   
-    // Validate inputs
-    // const contactValue = parseInt(contact);
-    // const bedOderValue = parseInt(order);
-    // const locationValue = parseInt(location);
-    // const seo_keywordValue = parseInt(seo_keyword);
-    // if (isNaN(bedOderValue)) {
-    //   toast("Please enter valid integer values for Ordervalue");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(contactValue)) {
-    //   toast("Please enter valid integer values for contact");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(locationValue)) {
-    //   toast("Please enter valid integer values for Car");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(seo_keywordValue)) {
-    //   toast("Please enter valid integer values for seo_keyword");
-    //   return; // Stop form submission if validation fails
-    // }
   
     // Create FormData object
     const formData = new FormData();
@@ -83,58 +62,51 @@ function Create() {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-8">
+    <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Contact</h2>
-      <form onSubmit={handleFormSubmit}>
-        {/* Existing form fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={order}
-              onChange={(e) => setOrder(e.target.value)}
-            />
-          </div> */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+    
+      <form onSubmit={handleFormSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update Gallery</h1>
+        
+             <Link href="/dashboard/contact">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+       
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="title">
               Title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="email">
               Email:
             </label>
             <input
               id="email"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block border-gray-200  w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
-            Description:
+      
+        <div className="mb-4 my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
+            Description: 
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0  border-gray-200 h-64"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -153,27 +125,27 @@ function Create() {
             onChange={(value) => setEditorValue(value)}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+      
+          <div className=" my-4 uppercase mt-20">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="short_description">
               short_description:
             </label>
             <input
               id="short_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full  border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="short_description"
               value={short_description}
               onChange={(e) => setshort_description(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_keyword">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_keyword">
               seo_keyword:
             </label>
             <input
               id="seo_keyword"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full  border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_keyword"
               value={seo_keyword}
@@ -182,54 +154,54 @@ function Create() {
           </div>
        
           
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="contact">
+       
+       
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="contact">
               contact:
             </label>
             <input
               id="contact"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="contact"
               value={contact}
               onChange={(e) => setcontact(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="location">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="location">
               location:
             </label>
             <input
               id="location"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="location"
               value={location}
               onChange={(e) => setlocation(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_title">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_title">
               seo_title:
             </label>
             <input
               id="seo_title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_title"
               value={seo_title}
               onChange={(e) => setseo_title(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="map">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
               Map:
             </label>
             <input
               id="map"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="map"
               value={map}
@@ -238,7 +210,7 @@ function Create() {
           </div>
           
           
-        </div>
+       
    
    
         
@@ -246,9 +218,7 @@ function Create() {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/contact"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+         
         </div>
       </form>
     </div>

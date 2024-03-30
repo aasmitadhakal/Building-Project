@@ -95,45 +95,51 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-5">
+    <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update About Us</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+     
+      <form onSubmit={handleSubmit} className="p-6 ">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update About Us</h1>
+        {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+        <Link href="/dashboard/aboutus">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Back</p>
+            </Link>
+      </div>
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700  my-2" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={formData.order || ""}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700  my-2" htmlFor="name">
               Title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={formData.title || ""}
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+        
+        <div className="  my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700  my-2" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0 h-64 border-gray-200"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -152,9 +158,9 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-20">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image_one">
+            <label className="block text-sm font-medium text-gray-700 border-gray-200  my-2" htmlFor="image_one">
               Image One:
             </label>
             <input
@@ -170,7 +176,7 @@ const Update = ({ params }) => {
             {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image_two">
+            <label className="block text-sm font-medium text-gray-700 border-gray-200  my-2" htmlFor="image_two">
               Image Two:
             </label>
             <input
@@ -186,7 +192,7 @@ const Update = ({ params }) => {
             {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 w-full" />}
           </div>
         </div>
-        <div className="flex gap-2 pt-1">
+        <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>

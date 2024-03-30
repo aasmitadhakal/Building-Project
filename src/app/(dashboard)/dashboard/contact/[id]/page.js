@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     // order: "",
@@ -98,45 +98,40 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-8">
+    <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Contact</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order || ""}
-              onChange={handleChange}
-            />
-          </div> */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+      
+      <form onSubmit={handleSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update Contact</h1>
+        
+             <Link href="/dashboard/contact">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+        
+          
+          <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="title">
               title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={formData.title || ""}
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+        
+        <div  className=" my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0 h-64 border-gray-200"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -155,9 +150,9 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+      
+          <div className="mt-24 uppercase my-4">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
               Image :
             </label>
             <input
@@ -173,13 +168,13 @@ const Update = ({ params }) => {
             {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
           </div>
           {/* for short_description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               short_description:
             </label>
             <input
               id="short_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="short_description"
               value={formData.short_description || ""}
@@ -187,13 +182,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for email */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               email:
             </label>
             <input
               id="email"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="email"
               value={formData.email || ""}
@@ -201,13 +196,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for contact */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               contact:
             </label>
             <input
               id="contact"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="contact"
               value={formData.contact || ""}
@@ -215,13 +210,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for location */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               location:
             </label>
             <input
               id="location"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="location"
               value={formData.location || ""}
@@ -229,13 +224,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for seo_title */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               seo_title:
             </label>
             <input
               id="seo_title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_title"
               value={formData.seo_title || ""}
@@ -243,13 +238,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for seo_keyword */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
               seo_keyword:
             </label>
             <input
               id="seo_keyword"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_keyword"
               value={formData.seo_keyword || ""}
@@ -258,13 +253,13 @@ const Update = ({ params }) => {
           </div>
           {/* for map */}
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="map">
+          <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
               map:
             </label>
             <input
               id="map"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="map"
               value={formData.map || ""}
@@ -272,7 +267,7 @@ const Update = ({ params }) => {
             />
           </div>
            
-        </div>
+    
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update

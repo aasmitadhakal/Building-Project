@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
@@ -138,228 +138,211 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-8">
-      <ToastContainer />
+    <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
+    <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Dual Design</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              Title:
-            </label>
-            <input
-              id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="title"
-              value={formData.title || ""}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        {/* <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
-            Description:
-          </label>
-          <ReactQuill
-            className="bg-white text-black z-0"
-            modules={{
-              toolbar: [
-                [{ font: [] }],
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                ["bold", "italic", "underline", "strike"],
-                ["blockquote", "code-block"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                [{ script: "sub" }, { script: "super" }],
-                [{ indent: "-1" }, { indent: "+1" }],
-                [{ align: [] }],
-                ["clean"],
-              ],
-            }}
-            value={editorValue}
-            theme="snow"
-            onChange={handleEditorChange}
-          />
-        </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-              Image :
-            </label>
-            <input
-              id="image"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
-              }}
-            />
-            {imageOnePreview &&   <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
-            {/* <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" /> */}
-          </div>
-          <div>
-  <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-    Image 2 :
-  </label>
-  <input
-    id="other_image"
-    className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-    type="file"
-    name="other_image"
-    onChange={(e) => {
-      handleChange(e);
-      handleImagePreview(e.target.files[0], setImageTwoPreview, true);
-    }}
-  />
-  {imageTwoPreview &&  <img src={`${axiosInstance.defaults.baseURL}${formData.other_image}`} alt={formData.title} className="h-12 w-12 rounded-full" /> }
-</div>
-          {/* for frontage */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              frontage:
-            </label>
-            <input
-              id="frontage"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="frontage"
-              value={formData.frontage || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for size */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              size:
-            </label>
-            <input
-              id="size"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="size"
-              value={formData.size || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for bedroom */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              bedroom:
-            </label>
-            <input
-              id="bedroom"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="bedroom"
-              value={formData.bedroom || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for cars */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              cars:
-            </label>
-            <input
-              id="cars"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="cars"
-              value={formData.cars || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for bathrooms */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              bathrooms:
-            </label>
-            <input
-              id="bathrooms"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="bathrooms"
-              value={formData.bathrooms || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for price */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              price:
-            </label>
-            <input
-              id="price"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="price"
-              value={formData.price || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for floor_plan */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              floor_plan:
-            </label>
-            <input
-              id="floor_plan"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="floor_plan"
-              value={formData.floor_plan || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for storey_type */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              storey_type:
-            </label>
-            <input
-              id="storey_type"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="storey_type"
-              value={formData.storey_type || ""}
-              onChange={handleChange}
-              readOnly
-            />
-          </div>
-          
-           
-        </div>
-        <div className="flex gap-2 pt-1 mt-4">
-          <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
-            Update
-          </button>
-          <Link href={"/dashboard/duol"}>
-            <p
-              className="w-full md:w-auto px-4 py-2 bg-red-500
- text-white rounded-md"
-            >
-              Cancel
-            </p>
+  
+    <form onSubmit={handleSubmit} className="p-6">
+    <div className=" flex justify-between my-2">
+      <h1 className="font-[600] text-[24px]  text-gray-700">Update Dual Design</h1>
+      {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+      <Link href="/dashboard/duol">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
           </Link>
-        </div>
-      </form>
     </div>
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className=" border-gray-200 block  my-2 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={formData.order || ""}
+            onChange={handleChange}
+          />
+        </div>
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            Title:
+          </label>
+          <input
+            id="title"
+            className=" border-gray-200 block w-full  my-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="title"
+            value={formData.title || ""}
+            onChange={handleChange}
+          />
+        </div>
+     
+      <div className=" my-4 uppercase">
+        <label className="block text-sm font-medium  my-2 text-gray-700" htmlFor="description">
+          Description:
+        </label>
+        <ReactQuill
+          className="bg-white text-black z-0 border-gray-200 h-64"
+          modules={{
+            toolbar: [
+              [{ font: [] }],
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
+              ["bold", "italic", "underline", "strike"],
+              ["blockquote", "code-block"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              [{ script: "sub" }, { script: "super" }],
+              [{ indent: "-1" }, { indent: "+1" }],
+              [{ align: [] }],
+              ["clean"],
+            ],
+          }}
+           value=
+           {formData.description || ""}
+          theme="snow"
+          // onChange={handleChange}
+         
+        />
+      </div>
+    
+        <div className="mt-20 my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+            Image :
+          </label>
+          <input
+            id="image"
+            className="border-gray-200 block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImageOnePreview);
+            }}
+          />
+          {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
+        </div>
+        {/* for frontage */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            frontage:
+          </label>
+          <input
+            id="frontage"
+            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="frontage"
+            value={formData.frontage || ""}
+            onChange={handleChange}
+          />
+        </div>
+         {/* for size */}
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            size:
+          </label>
+          <input
+            id="size"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="size"
+            value={formData.size || ""}
+            onChange={handleChange}
+          />
+        </div>
+         {/* for bedroom */}
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            bedroom:
+          </label>
+          <input
+            id="bedroom"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="bedroom"
+            value={formData.bedroom || ""}
+            onChange={handleChange}
+          />
+        </div>
+         {/* for cars */}
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            cars:
+          </label>
+          <input
+            id="cars"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="cars"
+            value={formData.cars || ""}
+            onChange={handleChange}
+          />
+        </div>
+         
+         <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            bathrooms:
+          </label>
+          <input
+            id="bathrooms"
+            className="block w-full px-4  my-2 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="bathrooms"
+            value={formData.bathrooms || ""}
+            onChange={handleChange}
+          />
+        </div>
+       
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            price:
+          </label>
+          <input
+            id="price"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="price"
+            value={formData.price || ""}
+            onChange={handleChange}
+          />
+        </div>
+         {/* for floor_plan */}
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            floor_plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={formData.floor_plan || ""}
+            onChange={handleChange}
+          />
+        </div>
+         {/* for storey_type */}
+         <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            storey_type:
+          </label>
+          <input
+            id="storey_type"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="storey_type"
+            value={formData.storey_type || ""}
+            onChange={handleChange}
+          />
+        </div>
+        
+         
+     
+      <div className="flex gap-2 pt-1 mt-4">
+        <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
+          Update
+        </button>
+       
+      </div>
+    </form>
+  </div>
   );
 };
 

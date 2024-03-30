@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
@@ -91,71 +91,76 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-5">
+    <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
-
-      <h1 className="text-2xl font-bold">Update Testimonials</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+      <form onSubmit={handleSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update Testimonials</h1>
+        
+             <Link href="/dashboard/testimonials">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+      
+          <div className="uppercase my-4">
+            <label className="block  my-2 text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={formData.order}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <div className="uppercase my-4">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
               Name:
             </label>
             <input
               id="name"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="position">
+          <div className="uppercase my-4">
+            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="position">
               Position:
             </label>
             <input
               id="position"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="position"
               value={formData.position}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="rating">
+          <div className="uppercase my-4">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="rating">
               Rating:
             </label>
             <input
               id="rating"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="rating"
               value={formData.rating}
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+       
+        <div className="uppercase my-4">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0 h-64"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -174,13 +179,13 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+        <div className="uppercase my-4 mt-20">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
             Image:
           </label>
           <input
             id="image"
-            className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             type="file"
             name="image"
             onChange={handleChange}
@@ -191,9 +196,7 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/testimonials"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+         
         </div>
       </form>
     </div>

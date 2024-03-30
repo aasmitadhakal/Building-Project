@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { Container } from "postcss";
 
 function Create() {
   const [title, setTitle] = useState("");
@@ -46,77 +47,87 @@ function Create() {
   };
 
   return (
-    <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
+   
+    <div className=" my-12  bg-white rounded-md font-[karla] shadow-xl ">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Post</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+     
+      <form onSubmit={handleFormSubmit} className="p-6 ">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Create Post</h1>
+        {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+        <Link href="/dashboard/aboutus">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Back</p>
+            </Link>
+      </div>
+       
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={order}
               onChange={(e) => setOrder(e.target.value)}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="title">
               Title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="name"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+       
+       
+         
+          <div className="h-64  my-4 uppercase">
+          <label className="block text-sm font-medium my-2 text-gray-700 " htmlFor="description">
             Description:
-          </label>
-          <ReactQuill
-            className="bg-white text-black z-0"
-            modules={{
-              toolbar: [
-                [{ font: [] }],
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                ["bold", "italic", "underline", "strike"],
-                ["blockquote", "code-block"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                [{ script: "sub" }, { script: "super" }],
-                [{ indent: "-1" }, { indent: "+1" }],
-                [{ align: [] }],
-                ["clean"],
-              ],
-            }}
-            value={editorValue}
-            theme="snow"
-            onChange={(value) => setEditorValue(value)}
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image_one">
+          </label> {/* Set the height as per your requirement */}
+            <ReactQuill
+              className="bg-white text-black z-0 h-full"
+              modules={{
+                toolbar: [
+                  [{ font: [] }],
+                  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                  ["bold", "italic", "underline", "strike"],
+                  ["blockquote", "code-block"],
+                  [{ list: "ordered" }, { list: "bullet" }],
+                  [{ script: "sub" }, { script: "super" }],
+                  [{ indent: "-1" }, { indent: "+1" }],
+                  [{ align: [] }],
+                  ["clean"],
+                ],
+              }}
+              value={editorValue}
+              theme="snow"
+              onChange={(value) => setEditorValue(value)}
+            />
+          </div>
+        
+          <div className=" my-4 uppercase mt-20  ">
+            <label className="block text-sm font-medium my-2 " htmlFor="image_one">
               Image One:
             </label>
             <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border  rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               id="image_one"
               accept="image/*"
               onChange={(e) => setImageOne(e.target.files[0])}
             />
           </div>
-          <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image_two">
+          <div className=" my-4 uppercase "> 
+            <label className="block text-sm font-medium my-2 " htmlFor="image_two">
               Image Two:
             </label>
             <input
@@ -127,18 +138,19 @@ function Create() {
               onChange={(e) => setImageTwo(e.target.files[0])}
             />
           </div>
-        </div>
+       
 
-        <div className="flex gap-2">
-          <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
+        <div className="flex  my-4 uppercase gap-2">
+          <button type="submit" className="w-full md:w-auto px-4 py-2 my-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/aboutus"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+          {/* <Link href={"/dashboard/aboutus"}>
+            <p className="w-full md:w-auto px-4 py-2 my-2 bg-red-500 text-white rounded-md">Cancel</p>
+          </Link> */}
         </div>
       </form>
     </div>
+  
   );
 }
 
