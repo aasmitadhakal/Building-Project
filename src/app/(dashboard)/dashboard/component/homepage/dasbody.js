@@ -19,8 +19,13 @@ export default function DashBody() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-4 mt-10">
         {fakeData.map((data, index) => (
+<<<<<<< HEAD
           <div key={index} className="bg-white border border-gray-200 rounded-md shadow-md p-4" style={{ minHeight: "163px", minWidth: "282px" }}>
             {/* <div className="icon"> iCONS</div> */}
+=======
+          <div key={index} className="bg-white border border-gray-200 rounded-md shadow-md p-4" >
+            <div className="icon"> iCONS</div>
+>>>>>>> fa7fe564b661fd4281e7281088a5a6a4920f8b12
             <p className="text-lg font-semibold text-gray-800" style={{ fontSize: "1rem" }}>
               {data.name}
             </p>
