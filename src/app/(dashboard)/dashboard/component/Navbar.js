@@ -1,11 +1,18 @@
 import React from "react";
-import { Navbar, Typography, IconButton, Menu, MenuItem, Button } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify"; // Import toast function
+import "react-toastify/dist/ReactToastify.css"; // Import toastify CSS
 
 const NavbarComponent = ({ className, setOpenSidenav, openSidenav }) => {
+ const router = useRouter();
   const logout = ()=>{
    try{
-    
+    localStorage.removeItem('authorizations');
+    toast("Logged out");
+    router.push('/login');
+
    }catch(e){
 
    }
@@ -13,7 +20,8 @@ const NavbarComponent = ({ className, setOpenSidenav, openSidenav }) => {
   }
   const pathname = usePathname();
   return (
-    <div className={className}>
+    <nav className={className}>
+<ToastContainer/>
       <Navbar className={`rounded-xl text-black transition-all sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5`} fullWidth>
         <div className="flex justify-between gap-6  items-center">
           <div className="capitalize">
@@ -30,7 +38,7 @@ const NavbarComponent = ({ className, setOpenSidenav, openSidenav }) => {
           </div>
         </div>
       </Navbar>
-    </div>
+    </nav>
   );
 };
 

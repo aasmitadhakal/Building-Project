@@ -50,7 +50,7 @@ const Page = () => {
     <>
        <section className="p-5 overflow-x-auto min-w-screen bg-white rounded-md z-10">
         <ToastContainer />
-        <div className="max-w-screen-lg w-full">
+        <div className=" w-full">
           <div className="flex justify-between mb-4">
             <h3 className="text-2xl font-bold">Double Design</h3>
             <Link href="/dashboard/double/create">

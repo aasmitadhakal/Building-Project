@@ -19,7 +19,6 @@ import Link from "next/link";
 import NavbarComponent from "./Navbar";
 import { ChevronDownIcon, ChevronRightIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
-// import { path } from "animejs";
 const img = "/assets/image/logo.jpg";
 const Sidenav = () => {
   const [openSidenav, setOpenSidenav] = useState(false);
@@ -34,7 +33,7 @@ const Sidenav = () => {
         className={`${
           openSidenav ? "translate-x-0" : "-translate-x-80"
 
-        } fixed inset-0 z-50 my-4 ml-4 w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100 bg-white shadow-lg overflow-hidden font-[karla]`}
+        } fixed inset-0 z-50   w-72  transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100 bg-white shadow-lg overflow-hidden `}
 
 
         
@@ -42,7 +41,7 @@ const Sidenav = () => {
       >
         <div className={`relative h-full overflow-auto`}>
           <div className="sticky top-0  bg-white z-50 mb-4">
-            <Link href="/" className="flex items-center justify-center my-1">
+            <Link href="/" className="flex items-center shadow-none justify-center my-1">
             <img src={img} className="size-24" alt="Logo" />
             </Link>
             <IconButton
@@ -55,7 +54,7 @@ const Sidenav = () => {
               <i className="ri-close-large-line text-xl font-bold "></i>
             </IconButton>
           </div>
-          <div className="m-4 mt-4 px-3">
+          <div className=" mt-4 ">
             <ul className="mb-4 flex flex-col gap-2 ">
               <li>
                 <Link href="/dashboard">
@@ -63,7 +62,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize   mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-dashboard-line"></i>
@@ -79,7 +78,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/aboutus" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-group-fill"></i>
@@ -96,7 +95,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/contact" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-phone-line"></i>
@@ -113,7 +112,7 @@ const Sidenav = () => {
                 <ListItem className="p-0" selected={open === 2}>
                   <AccordionHeader
                     onClick={() => handleOpen(2)}
-                    className="flex items-center text-black gap-4 px-4 capitalize rounded-lg shadow  mb-1 "
+                    className="flex items-center border-none shadow-none text-black gap-4 px-4 capitalize    mb-1 "
                   >
                     <i className="ri-compasses-2-line text-base"></i>
 
@@ -127,21 +126,21 @@ const Sidenav = () => {
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/design" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  mb-1 `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize rounded-none   mb-1 `}
                     >
                       <Link href="/dashboard/design">Single Design</Link>
                     </ListItem>
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/double" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize  rounded-none  `}
                     >
                       <Link href="/dashboard/double">Double Design</Link>
                     </ListItem>
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/duol" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize  rounded-none  `}
                     >
                       <Link href="/dashboard/duol">Dual Media</Link>
                     </ListItem>
@@ -154,7 +153,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/inquiry" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-customer-service-2-line"></i>
@@ -170,7 +169,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/gallery" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-gallery-line"></i>
@@ -186,7 +185,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/testimonials" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-message-2-line"></i>
@@ -202,7 +201,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/privacy" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-git-repository-private-line"></i>
@@ -218,7 +217,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/building" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-building-line"></i>
@@ -234,7 +233,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/whychooseus" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-information-line"></i>
@@ -250,7 +249,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/faq" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-question-mark"></i>
@@ -266,7 +265,7 @@ const Sidenav = () => {
                     variant="gradient"
                     className={`flex ${
                       pathname === "/dashboard/clientjourney" ? "bg-blue-500 text-white" : "text-black"
-                    } items-center  gap-4 px-4 capitalize rounded-lg shadow  mb-1 text-xl`}
+                    } items-center shadow-none  gap-4 px-4 capitalize    mb-1 text-xl`}
                     fullWidth
                   >
                     <i className="ri-train-line"></i>
@@ -283,7 +282,7 @@ const Sidenav = () => {
                 <ListItem className="p-0" selected={open === 2}>
                   <AccordionHeader
                     onClick={() => handleOpen(1)}
-                    className="flex items-center text-black gap-4 px-4 capitalize rounded-lg shadow  mb-1 "
+                    className="flex items-center border-none shadow-none text-black gap-4 px-4 capitalize    mb-1 "
                   >
                     <i className="ri-settings-5-line text-base"></i>
 
@@ -297,28 +296,28 @@ const Sidenav = () => {
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/slider" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize  rounded-none  `}
                     >
                       <Link href="/dashboard/slider">Slider</Link>
                     </ListItem>
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/sitepages" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize   rounded-none `}
                     >
                       <Link href="/dashboard/sitepages">Pages</Link>
                     </ListItem>
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/socialmedia" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize    rounded-none`}
                     >
                       <Link href="/dashboard/socialmedia">Social Media</Link>
                     </ListItem>
                     <ListItem
                       className={`flex ${
                         pathname === "/dashboard/globalsettings" ? "bg-blue-500 text-white" : "text-black"
-                      } items-center  gap-4 px-4 py-2 capitalize rounded-lg shadow  `}
+                      } items-center shadow-none  gap-4 px-4 py-2 capitalize   rounded-none `}
                     >
                       <Link href="/dashboard/globalsettings">Global Settings</Link>
                     </ListItem>

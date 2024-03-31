@@ -23,11 +23,9 @@ const AboutUs = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/aboutus");
-      // console.log(response.data.data);
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      // Handle the error, e.g., display a toast message or retry the request
       toast("Error fetching data");
     }
   };
@@ -41,7 +39,7 @@ const AboutUs = () => {
       await axiosInstance.delete(`/api/aboutus/${deleteItemId}`);
       toast("Item deleted successfully");
       closeDeletePopup();
-      fetchData(); // Update the list after successful deletion
+      fetchData();
     } catch (error) {
       console.error("Error deleting data:", error);
     }
@@ -53,7 +51,7 @@ const AboutUs = () => {
     <>
       <section className="p-5 overflow-x-auto min-w-screen bg-white rounded-md z-10">
         <ToastContainer />
-        <div className="max-w-screen-lg w-full">
+        <div className=" w-full">
           <div className="flex justify-between mb-4">
             <h3 className="text-2xl font-bold">About Us</h3>
             <Link href="/dashboard/aboutus/create">
@@ -76,7 +74,13 @@ const AboutUs = () => {
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-                      <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
+                      <td key={columnIndex}>
+                        {column.startsWith("image") ? (
+                          <img src={item[column]} alt={`Image ${columnIndex}`} className="w-20 h-20 object-cover rounded-md" />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link href={`/dashboard/aboutus/${item.id}`}>

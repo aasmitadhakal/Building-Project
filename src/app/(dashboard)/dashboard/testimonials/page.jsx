@@ -5,7 +5,7 @@ import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AboutUs = () => {
+const Testimonials = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
@@ -53,7 +53,7 @@ const AboutUs = () => {
     <>
       <section className="p-5 overflow-x-auto min-w-screen bg-white rounded-md z-10">
         <ToastContainer />
-        <div className="max-w-screen-lg w-full">
+        <div className=" w-full">
           <div className="flex justify-between mb-4">
             <h3 className="text-2xl font-bold">Testimonials</h3>
             <Link href="/dashboard/testimonials/create">
@@ -130,4 +130,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Testimonials;
