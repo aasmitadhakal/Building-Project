@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       <section className="bg-gray-100  font-['poppins']" style={{ height: "100%" }}>
         <Sidenav />
 
-        <div className="px-4  xl:ml-80">{children}</div>
+        <div className="px-4 xl:ml-80">{children}</div>
       </section>
     </AuthLayout>
   );
