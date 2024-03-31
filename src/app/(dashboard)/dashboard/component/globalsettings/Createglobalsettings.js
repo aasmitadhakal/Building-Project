@@ -59,11 +59,11 @@ const CreateGlobalSettings = () => {
 
   // Array of input fields
   const inputFields = [
-    { name: "image", type: "file", placeholder: "Site Footer Logo", required: true },
-    { name: "image", type: "file", placeholder: "Site main Logo", required: true },
-    { name: "image", type: "file", placeholder: "Fav Icon", required: true },
-    { name: "siteinformation", type: "textarea", placeholder: "Site information", required: true },
-    { name: "sitecopyright", type: "textarea", placeholder: "Site Copyright", required: true },
+    { name: "image", type: "file", placeholder: "Choose Site Footer Logo", label: "Site Footer Logo", required: true },
+    { name: "image", type: "file", placeholder: "Choose Site main Logo", label: "Site Main Logo", required: true },
+    { name: "image", type: "file", placeholder: "Choose Fav Icon", label: "Fav Icon", required: true },
+    { name: "siteinformation", type: "textarea", placeholder: "Site information", label: "Site information", required: true },
+    { name: "sitecopyright", type: "textarea", placeholder: "Site Copyright", label: "Site Copyright", required: true },
   ];
 
   return (
@@ -76,7 +76,7 @@ const CreateGlobalSettings = () => {
               {field.type === "file" ? (
                 <div className="">
                   <label htmlFor={field.name} className="block text-medium mb-2">
-                    {field.placeholder}
+                    {field.label}
                   </label>
                   <div className="relative">
                     <input

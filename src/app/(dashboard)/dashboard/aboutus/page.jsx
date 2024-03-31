@@ -75,18 +75,18 @@ const AboutUs = () => {
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
-                        {column.startsWith("image") ? (
-                          <img src={item[column]} alt={`Image ${columnIndex}`} className="w-20 h-20 object-cover rounded-md" />
+                        {column === "image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}
                       </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/aboutus/${item.id}`}>
+                      <Link href={`/dashboard/design/${item.id}`}>
                         <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
                       </Link>
-                      <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => handleDeletePopup(item.id)}>
+                      <button onClick={() => handleDeletePopup(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
                         Delete
                       </button>
                     </td>
