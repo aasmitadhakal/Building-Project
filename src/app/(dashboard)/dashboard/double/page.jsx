@@ -28,8 +28,6 @@ const Page = () => {
     }
   };
   useEffect(() => {
-    
-
     fetchData();
   }, []);
 
@@ -44,11 +42,11 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN", "title", "image","other_image", "price", "storey_type", "action"];
+  const columns = ["SN", "title", "image", "other_image", "price", "storey_type", "action"];
 
   return (
     <>
-       <section className="p-5 overflow-x-auto min-w-screen bg-white rounded-md z-10">
+      <section className="p-5 overflow-x-auto min-w-screen bg-white rounded-md z-10">
         <ToastContainer />
         <div className=" w-full">
           <div className="flex justify-between mb-4">
@@ -68,36 +66,38 @@ const Page = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 ">
-            {data.length > 0 ? (
-  data.map((item, index) => (
-    <tr key={index}>
-      <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
-      {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-  <td key={columnIndex}>
-    {column === "image" ? (
-      <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
-    ) : column === "other_image" ? (
-      <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="h-12 w-12 rounded-full" />
-    ) : (
-      item[column.toLowerCase().replace(/\s/g, "_")]
-    )}
-  </td>
-))}
-      <td className="px-6 py-4 whitespace-nowrap">
-        <Link href={`/dashboard/double/${item.id}`}>
-          <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
-        </Link>
-        <button onClick={() => handleDeletePopup(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
-          Delete
-        </button>
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan={columns.length}>Loading...</td>
-  </tr>
-)}
+              {data.length > 0 ? (
+                data.map((item, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
+                      <td key={columnIndex}>
+                        {column === "image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                        ) : column === "other_image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
+                    ))}
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <Link href={`/dashboard/double/${item.id}`}>
+                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
+                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                        </button>
+                      </Link>
+                      <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
+                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={columns.length}>Loading...</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

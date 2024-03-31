@@ -71,20 +71,22 @@ const Page = () => {
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-        <td key={columnIndex}>
-          {column === "image" ? (
-             <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
-          ) : (
-            item[column.toLowerCase().replace(/\s/g, "_")]
-          )}
-        </td>
-      ))}
+                      <td key={columnIndex}>
+                        {column === "image" ? (
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                        ) : (
+                          item[column.toLowerCase().replace(/\s/g, "_")]
+                        )}
+                      </td>
+                    ))}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link href={`/dashboard/building/${item.id}`}>
-                        <button className="mr-2 bg-blue-500 text-white px-4 py-1 rounded-md">Edit</button>
+                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
+                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                        </button>
                       </Link>
-                      <button onClick={() => handleDeletePopup(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
-                        Delete
+                      <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
+                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>
                     </td>
                   </tr>
@@ -98,8 +100,8 @@ const Page = () => {
           </table>
         </div>
       </section>
-       {/* Delete modal */}
-       {deletePopUp && (
+      {/* Delete modal */}
+      {deletePopUp && (
         <section className="z-[100] h-screen w-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-slate-400/80 px-6 lg:px-20 py-14">
           <div className="bg-[#E5E5E5] md:w-1/2 xl:w-1/3 rounded-lg p-8 relative text-black space-y-6">
             <i

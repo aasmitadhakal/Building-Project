@@ -40,7 +40,6 @@ const Page = () => {
         <div className=" w-full">
           <div className="flex justify-between mb-4">
             <h3 className="text-2xl font-bold">Inquiry</h3>
-            
           </div>
           <table className="w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 space-x-40">
@@ -67,8 +66,8 @@ const Page = () => {
                       </td>
                     ))}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-4 py-1 rounded-md">
-                        Delete
+                      <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
+                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>
                     </td>
                   </tr>
