@@ -15,19 +15,17 @@ const Update = ({ params }) => {
     description: "",
     image: "",
     frontage: "",
-    size : "",
+    size: "",
     bedroom: "",
     cars: "",
     bathrooms: "",
     price: "",
     floor_plan: "",
     storey_type: "",
-    
-    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
- 
+
   const router = useRouter();
 
   const fetchData = async () => {
@@ -44,7 +42,6 @@ const Update = ({ params }) => {
         // setEditorValue(responseData.price || "");
         // setEditorValue(responseData.storey_type || "");
         // setImageOnePreview(responseData.image || null);
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -100,8 +97,6 @@ const Update = ({ params }) => {
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
 
-     
-     
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
 
       toast("Data edited successfully");
@@ -116,43 +111,44 @@ const Update = ({ params }) => {
     <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
-    
       <form onSubmit={handleSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Update Single Design</h1>
-        {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
-        <Link href="/dashboard/design">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-            </Link>
-      </div>
-          <div className=" my-4 uppercase">
-            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className=" border-gray-200 block   w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="name">
-              Title:
-            </label>
-            <input
-              id="title"
-              className=" border-gray-200 block w-full   px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="title"
-              value={formData.title || ""}
-              onChange={handleChange}
-            />
-          </div>
-       
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Single Design</h1>
+          {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+          <Link href="/dashboard/design">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
         <div className=" my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className=" border-gray-200 block   w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={formData.order || ""}
+            onChange={handleChange}
+          />
+        </div>
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="name">
+            Title:
+          </label>
+          <input
+            id="title"
+            className=" border-gray-200 block w-full   px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="title"
+            value={formData.title || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 ">
           <label className="block text-sm font-medium  my-2 text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -171,150 +167,147 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-             value=
-             {formData.description || ""}
+            value={formData.description || ""}
             theme="snow"
             // onChange={handleChange}
-           
           />
         </div>
-      
-          <div className="mt-20 my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
-              Image :
-            </label>
-            <input
-              id="image"
-              className="border-gray-200 block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
-              }}
-            />
-            {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
-          </div>
-          {/* for frontage */}
-          <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              frontage:
-            </label>
-            <input
-              id="frontage"
-              className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="frontage"
-              value={formData.frontage || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for size */}
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              size:
-            </label>
-            <input
-              id="size"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="size"
-              value={formData.size || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for bedroom */}
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              bedroom:
-            </label>
-            <input
-              id="bedroom"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="bedroom"
-              value={formData.bedroom || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for cars */}
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              cars:
-            </label>
-            <input
-              id="cars"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="cars"
-              value={formData.cars || ""}
-              onChange={handleChange}
-            />
-          </div>
-           
-           <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-              bathrooms:
-            </label>
-            <input
-              id="bathrooms"
-              className="block w-full px-4  my-2 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="bathrooms"
-              value={formData.bathrooms || ""}
-              onChange={handleChange}
-            />
-          </div>
-         
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              price:
-            </label>
-            <input
-              id="price"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="price"
-              value={formData.price || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for floor_plan */}
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              floor_plan:
-            </label>
-            <input
-              id="floor_plan"
-              className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="floor_plan"
-              value={formData.floor_plan || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for storey_type */}
-           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-              storey_type:
-            </label>
-            <input
-              id="storey_type"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="storey_type"
-              value={formData.storey_type || ""}
-              onChange={handleChange}
-            />
-          </div>
-          
-           
-       
+
+        <div className="mt-20 my-4 ">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+            Image :
+          </label>
+          <input
+            id="image"
+            
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImageOnePreview);
+            }}
+          />
+          {imageOnePreview && (
+            <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+          )}
+        </div>
+        {/* for frontage */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            frontage:
+          </label>
+          <input
+            id="frontage"
+            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="frontage"
+            value={formData.frontage || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for size */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            size:
+          </label>
+          <input
+            id="size"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="size"
+            value={formData.size || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for bedroom */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            bedroom:
+          </label>
+          <input
+            id="bedroom"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="bedroom"
+            value={formData.bedroom || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for cars */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            cars:
+          </label>
+          <input
+            id="cars"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="cars"
+            value={formData.cars || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            bathrooms:
+          </label>
+          <input
+            id="bathrooms"
+            className="block w-full px-4  my-2 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="bathrooms"
+            value={formData.bathrooms || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            price:
+          </label>
+          <input
+            id="price"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="price"
+            value={formData.price || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            floor_plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={formData.floor_plan || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for storey_type */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            storey_type:
+          </label>
+          <input
+            id="storey_type"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="storey_type"
+            value={formData.storey_type || ""}
+            onChange={handleChange}
+          />
+        </div>
+
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-         
         </div>
       </form>
     </div>

@@ -28,9 +28,6 @@ function Create() {
     formData.append("image_two", imageTwo);
 
     try {
-
-      
-
       // Send data to the server using axiosInstance with authorization header
       const response = await axiosInstance.post("/api/aboutus", formData);
 
@@ -47,98 +44,95 @@ function Create() {
   };
 
   return (
-   
     <div className=" my-12  bg-white rounded-md font-[karla] shadow-xl ">
       <ToastContainer />
-     
+
       <form onSubmit={handleFormSubmit} className="p-6 ">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Create Post</h1>
-        {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
-        <Link href="/dashboard/aboutus">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Back</p>
-            </Link>
-      </div>
-       
-          <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={order}
-              onChange={(e) => setOrder(e.target.value)}
-            />
-          </div>
-          <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="title">
-              Title:
-            </label>
-            <input
-              id="title"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="name"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-       
-       
-         
-          <div className="h-64  my-4 uppercase">
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Create Post</h1>
+          {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+          <Link href="/dashboard/aboutus">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Back</p>
+          </Link>
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className="block w-full  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={order}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+        </div>
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="title">
+            Title:
+          </label>
+          <input
+            id="title"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="name"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+
+        <div className="h-64  my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700 " htmlFor="description">
             Description:
-          </label> {/* Set the height as per your requirement */}
-            <ReactQuill
-              className="bg-white text-black z-0 h-full"
-              modules={{
-                toolbar: [
-                  [{ font: [] }],
-                  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                  ["bold", "italic", "underline", "strike"],
-                  ["blockquote", "code-block"],
-                  [{ list: "ordered" }, { list: "bullet" }],
-                  [{ script: "sub" }, { script: "super" }],
-                  [{ indent: "-1" }, { indent: "+1" }],
-                  [{ align: [] }],
-                  ["clean"],
-                ],
-              }}
-              value={editorValue}
-              theme="snow"
-              onChange={(value) => setEditorValue(value)}
-            />
-          </div>
-        
-          <div className=" my-4 uppercase mt-20  ">
-            <label className="block text-sm font-medium my-2 " htmlFor="image_one">
-              Image One:
-            </label>
-            <input
-              className="block w-full px-4 py-2 border  rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image_one"
-              accept="image/*"
-              onChange={(e) => setImageOne(e.target.files[0])}
-            />
-          </div>
-          <div className=" my-4 uppercase "> 
-            <label className="block text-sm font-medium my-2 " htmlFor="image_two">
-              Image Two:
-            </label>
-            <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image_two"
-              accept="image/*"
-              onChange={(e) => setImageTwo(e.target.files[0])}
-            />
-          </div>
-       
+          </label>{" "}
+          {/* Set the height as per your requirement */}
+          <ReactQuill
+            className="bg-white text-black z-0 h-full"
+            modules={{
+              toolbar: [
+                [{ font: [] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["clean"],
+              ],
+            }}
+            value={editorValue}
+            theme="snow"
+            onChange={(value) => setEditorValue(value)}
+          />
+        </div>
+
+        <div className=" my-4 uppercase mt-20  ">
+          <label className="block text-sm font-medium my-2 " htmlFor="image_one">
+            Image One:
+          </label>
+          <input
+            className="block w-full px-4 py-2 border  rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image_one"
+            accept="image/*"
+            onChange={(e) => setImageOne(e.target.files[0])}
+          />
+        </div>
+        <div className=" my-4 uppercase ">
+          <label className="block text-sm font-medium my-2 " htmlFor="image_two">
+            Image Two:
+          </label>
+          <input
+            className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image_two"
+            accept="image/*"
+            onChange={(e) => setImageTwo(e.target.files[0])}
+          />
+        </div>
 
         <div className="flex  my-4 uppercase gap-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 my-2 bg-blue-500 text-white rounded-md">
@@ -150,7 +144,6 @@ function Create() {
         </div>
       </form>
     </div>
-  
   );
 }
 

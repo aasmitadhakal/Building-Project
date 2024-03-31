@@ -126,7 +126,7 @@ const Update = ({ params }) => {
             />
           </div>
         
-        <div  className=" my-4 uppercase">
+        <div  className=" my-4 ">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -157,7 +157,7 @@ const Update = ({ params }) => {
             </label>
             <input
               id="banner_image"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              
               type="file"
               name="banner_image"
               onChange={(e) => {
@@ -272,14 +272,7 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/contact"}>
-            <p
-              className="w-full md:w-auto px-4 py-2 bg-red-500
- text-white rounded-md"
-            >
-              Cancel
-            </p>
-          </Link>
+         
         </div>
       </form>
     </div>
