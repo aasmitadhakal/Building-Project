@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 function Create() {
   const [order, setOrder] = useState("");
   const [title, setTitle] = useState("");
@@ -42,10 +42,18 @@ function Create() {
   };
 
   return (
-    <div className="p-5 overflow-x-auto min-w-screen bg-white rounded-md mt-14">
+    <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Why choose us?</h2>
+      
       <form onSubmit={handleFormSubmit}>
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Create Why choose us </h1>
+        
+             <Link href="/dashboard/whychooseus">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">

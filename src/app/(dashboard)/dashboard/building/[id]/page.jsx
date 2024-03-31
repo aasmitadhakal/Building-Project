@@ -115,7 +115,7 @@ const Update = ({ params }) => {
       <ToastContainer />
 
       {/* <h1 className="text-2xl font-bold">Update Building </h1> */}
-      <form onSubmit={handleSubmit} className="">
+      <form onSubmit={handleSubmit} className="p-6">
       <div className=" flex justify-between my-2">
         <h1 className="font-[600] text-[24px]  text-gray-700">Update Building</h1>
         
@@ -124,14 +124,14 @@ const Update = ({ params }) => {
              </Link>
       </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-          <div>
+       
+          <div  className=" my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="order_number">
               order_number:
             </label>
             <input
               id="order_number"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order_number"
               value={formData.order_number || ""}
@@ -139,29 +139,29 @@ const Update = ({ params }) => {
             />
           </div>
          
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <div  className=" my-4 uppercase">
+            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
               name:
             </label>
             <input
               id="name"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="name"
               value={formData.name || ""}
               onChange={handleChange}
             />
           </div>
-        </div>
        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+       
+       
+          <div  className=" my-4 uppercase" >
+            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
               Image :
             </label>
             <input
               id="image"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               name="image"
               onChange={(e) => {
@@ -174,13 +174,13 @@ const Update = ({ params }) => {
          
           
            {/* for bedroom */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
               Short_description:
             </label>
             <input
               id="short_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full h-36 px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="short_description"
               value={formData.short_description || ""}
@@ -188,13 +188,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for cars */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
               Seo_title:
             </label>
             <input
               id="seo_title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_title"
               value={formData.seo_title || ""}
@@ -202,13 +202,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for bathrooms */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+           <div  className=" my-4 uppercase">
+            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
               Seo_description:
             </label>
             <input
               id="seo_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_description"
               value={formData.seo_description || ""}
@@ -216,13 +216,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for seo_schema */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_schema">
+           <div  className=" my-4 uppercase">
+            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">
               Seo_schema:
             </label>
             <input
               id="seo_schema"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_schema"
               value={formData.seo_schema || ""}
@@ -230,13 +230,13 @@ const Update = ({ params }) => {
             />
           </div>
            {/* for seo_keywords */}
-           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="seo_keywords">
+           <div  className=" my-4 uppercase">
+            <label className="block text-sm font-medium  my-2  text-gray-700" htmlFor="seo_keywords">
               Seo_keywords:
             </label>
             <input
               id="seo_keywords"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="seo_keywords"
               value={formData.seo_keywords || ""}
@@ -244,19 +244,12 @@ const Update = ({ params }) => {
             />
           </div>
            
-        </div>
+        
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/building"}>
-            <p
-              className="w-full md:w-auto px-4 py-2 bg-red-500
- text-white rounded-md"
-            >
-              Cancel
-            </p>
-          </Link>
+          
         </div>
       </form>
     </div>

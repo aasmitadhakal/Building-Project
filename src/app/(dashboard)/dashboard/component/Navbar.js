@@ -11,7 +11,7 @@ const NavbarComponent = ({ className, setOpenSidenav, openSidenav }) => {
       <Navbar className={`rounded-xl text-black transition-all sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5`} fullWidth>
         <div className="flex justify-between gap-6  items-center">
           <div className="capitalize">
-            <Typography variant="h6" color="blue-gray">
+            <Typography variant="h6" color="blue-gray" className="md:block hidden">
               {pathname}
             </Typography>
           </div>
