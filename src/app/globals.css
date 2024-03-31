@@ -6,24 +6,26 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* For webkit browsers */
 ::-webkit-scrollbar {
-    width: 5px; /* Set your desired width */
-  }
-   
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* You can change the background color of the track */
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #577bdd; /* You can change the color of the scrollbar handle */
-    border-radius: 5px; /* You can adjust the border radius to make it rounder */
-  }
-   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Change the color on hover if needed */
-  }
-   
+  width: 3px; /* Set your desired width */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* You can change the background color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #577bdd; /* You can change the color of the scrollbar handle */
+  border-radius: 5px; /* You can adjust the border radius to make it rounder */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Change the color on hover if needed */
+}
+
