@@ -33,7 +33,12 @@ const Sidenav = () => {
       <aside
         className={`${
           openSidenav ? "translate-x-0" : "-translate-x-80"
+
         } fixed inset-0 z-50 my-4 ml-4 w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100 bg-white shadow-lg overflow-hidden font-[karla]`}
+
+
+        
+
       >
         <div className={`relative h-full overflow-auto`}>
           <div className="sticky top-0  bg-white z-50 mb-4">
