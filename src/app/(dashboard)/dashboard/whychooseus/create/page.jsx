@@ -54,8 +54,8 @@ function Create() {
              </Link>
       </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
+       
+          <div className=" my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
@@ -68,7 +68,7 @@ function Create() {
               onChange={(e) => setOrder(e.target.value)}
             />
           </div>
-          <div>
+          <div className=" my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="title">
               Title:
             </label>
@@ -81,7 +81,7 @@ function Create() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div>
+          <div className=" my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="icon">
               Icon:
             </label>
@@ -93,7 +93,7 @@ function Create() {
               onChange={(e) => setIcon(e.target.value)} 
             />
           </div>
-          <div className="mb-4 relative">
+          <div className="mb-4 relative my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
               Image:
             </label>
@@ -117,7 +117,7 @@ function Create() {
               onChange={(e) => setShortDescription(e.target.value)}
             />
           </div>
-        </div>
+        
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
