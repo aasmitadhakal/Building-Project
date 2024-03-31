@@ -19,8 +19,8 @@ import Link from "next/link";
 import NavbarComponent from "./Navbar";
 import { ChevronDownIcon, ChevronRightIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
-import { path } from "animejs";
-
+// import { path } from "animejs";
+const img = "/assets/image/logo.jpg";
 const Sidenav = () => {
   const [openSidenav, setOpenSidenav] = useState(false);
   const [open, setOpen] = useState(0);
@@ -33,12 +33,12 @@ const Sidenav = () => {
       <aside
         className={`${
           openSidenav ? "translate-x-0" : "-translate-x-80"
-        } fixed inset-0 z-50 my-4 ml-4 w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100 bg-white shadow-lg overflow-hidden`}
+        } fixed inset-0 z-50 my-4 ml-4 w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100 bg-white shadow-lg overflow-hidden font-[karla]`}
       >
         <div className={`relative h-full overflow-auto`}>
-          <div className="sticky top-0  bg-white z-50">
-            <Link href="/" className="py-6 px-8 text-center">
-              <Typography variant="h6">brandName22</Typography>
+          <div className="sticky top-0  bg-white z-50 mb-4">
+            <Link href="/" className="flex items-center justify-center my-1">
+            <img src={img} className="size-24" alt="Logo" />
             </Link>
             <IconButton
               variant="text"
@@ -50,7 +50,7 @@ const Sidenav = () => {
               <i className="ri-close-large-line text-xl font-bold "></i>
             </IconButton>
           </div>
-          <div className="m-4 px-3">
+          <div className="m-4 mt-4 px-3">
             <ul className="mb-4 flex flex-col gap-2 ">
               <li>
                 <Link href="/dashboard">
