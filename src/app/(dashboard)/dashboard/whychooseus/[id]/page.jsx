@@ -6,13 +6,13 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
     title: "",
     image: null,
-    shortDescription: "",
+    short_description: "",
     description: "",
   });
   const [editorValue, setEditorValue] = useState("");
@@ -90,16 +90,23 @@ const Update = ({ params }) => {
     <div className="min-w-screen bg-white rounded-md p-5">
       <ToastContainer />
 
-      <h1 className="text-2xl font-bold">Update Why choose us?</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {/* <h1 className="text-2xl font-bold">Update Why choose us?</h1> */}
+      <form onSubmit={handleSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update Why Choose Us</h1>
+        
+             <Link href="/dashboard/whychooseus">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={formData.order}
@@ -112,7 +119,7 @@ const Update = ({ params }) => {
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={formData.title}
@@ -124,7 +131,7 @@ const Update = ({ params }) => {
               Image:
             </label>
             <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               id="image"
               accept="image/*"
@@ -138,19 +145,19 @@ const Update = ({ params }) => {
             </label>
             <textarea
               id="short_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               name="short_description"
               value={formData.short_description}
               onChange={handleChange}
             />
           </div>
-        </div>
+       
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0 h-64"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -170,7 +177,7 @@ const Update = ({ params }) => {
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-20">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>

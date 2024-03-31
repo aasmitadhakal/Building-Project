@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
@@ -127,19 +127,24 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-5">
+    <div className="my-12   bg-white rounded-md font-[Roboto] shadow-xl">
       <ToastContainer />
-
-      <h1 className="text-2xl font-bold">Update</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+      <form onSubmit={handleSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Update Client Journey</h1>
+        
+             <Link href="/dashboard/clientjourney">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+       
+          <div className=" my-4 ">
+            <label className="block my-2 text-sm uppercase font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={formData.order || ""}
@@ -148,7 +153,7 @@ const Update = ({ params }) => {
           </div>
         
           {/* <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block text-sm uppercasefont-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
@@ -171,42 +176,41 @@ const Update = ({ params }) => {
   onChange={(value) => setEditorValue(value)}
 />
         </div> */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <div className=" my-4 ">
+            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="name">
               Title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={formData.title || ""}
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
+          <div className=" my-4 ">
+            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="short_description">
               short_description:
             </label>
             <input
               id="short_description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="short_description"
               value={formData.short_description || ""}
               onChange={handleChange}
             />
           </div>
-        </div>
        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+       
+          <div className=" my-4 ">
+            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="image">
               Image One:
             </label>
             <input
               id="image"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               name="image"
               onChange={(e) => {
@@ -217,19 +221,12 @@ const Update = ({ params }) => {
             {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
           </div>
          
-        </div>
+        
         <div className="flex gap-2 pt-1">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/clientjourney"}>
-            <p
-              className="w-full md:w-auto px-4 py-2 bg-red-500
-              text-white rounded-md"
-            >
-              Cancel
-            </p>
-          </Link>
+        
         </div>
       </form>
     </div>

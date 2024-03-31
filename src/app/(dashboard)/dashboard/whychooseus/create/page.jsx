@@ -45,7 +45,7 @@ function Create() {
     <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
       
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="p-6">
       <div className=" flex justify-between my-2">
         <h1 className="font-[600] text-[24px]  text-gray-700">Create Why choose us </h1>
         
@@ -56,12 +56,12 @@ function Create() {
 
        
           <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={order}
@@ -69,12 +69,12 @@ function Create() {
             />
           </div>
           <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="title">
               Title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={title}
@@ -82,23 +82,23 @@ function Create() {
             />
           </div>
           <div className=" my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="icon">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="icon">
               Icon:
             </label>
             <input
               id="icon"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="icon"
               onChange={(e) => setIcon(e.target.value)} 
             />
           </div>
           <div className="mb-4 relative my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
               Image:
             </label>
             <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               id="image"
               accept="image/*"
@@ -106,12 +106,12 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
+            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="shortDescription">
               Short Description:
             </label>
             <textarea
               id="shortDescription"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               name="shortDescription"
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
@@ -119,11 +119,11 @@ function Create() {
           </div>
         
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white h-64 text-black z-0 border-gray-200 "
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -143,7 +143,7 @@ function Create() {
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 md:mt-20 mt-40">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>

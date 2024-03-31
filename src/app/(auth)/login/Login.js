@@ -29,8 +29,10 @@ const Login = () => {
       );
 
       if (response.status === 200) {
-        const data = response.data;
-        localStorage.setItem("authorizations", data.token);
+        const data = response.data.data;
+        
+        localStorage.setItem("authorizations", data.accessToken);
+        
         router.push("/dashboard");
       } else {
         throw new Error("Invalid username or password");
