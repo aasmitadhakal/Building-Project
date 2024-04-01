@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function Create() {
  
@@ -57,19 +57,27 @@ function Create() {
   };
 
   return (
-    <div className="min-w-screen bg-white rounded-md p-8">
+    <div className="my-12 bg-white rounded-md  shadow-xl">
       <ToastContainer />
-      <h2 className="text-2xl font-bold">Create Page</h2>
-      <form onSubmit={handleFormSubmit}>
+      
+      <form onSubmit={handleFormSubmit} className="p-6">
+      <div className=" flex justify-between my-2">
+        <h1 className="font-[600] text-[24px]  text-gray-700">Create Pages</h1>
+        
+             <Link href="/dashboard/sitepages">
+              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+             </Link>
+      </div>
+
         {/* Existing form fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+       
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="order">
               Order:
             </label>
             <input
               id="order"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="order"
               value={order}
@@ -77,12 +85,12 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="name">
               name:
             </label>
             <input
               id="name"
-              className="block w-full px-4 py-2   rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="name"
               value={name}
@@ -90,12 +98,12 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="title">
               title:
             </label>
             <input
               id="title"
-              className="block w-full px-4 py-2   rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
               type="text"
               name="title"
               value={title}
@@ -103,24 +111,24 @@ function Create() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="image">
               Image:
             </label>
             <input
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="file"
               id="image"
               accept="image/*"
               onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div>
-        </div>
+        
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0"
+            className="bg-white text-black z-0 h-64"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -139,11 +147,8 @@ function Create() {
             onChange={(value) => setEditorValue(value)}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          
-          
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        
           {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
               Short_description:
@@ -170,8 +175,7 @@ function Create() {
               onChange={(e) => setSeo_title(e.target.value)}
             />
           </div> */}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
           {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="meta_description">
             meta_description
@@ -199,8 +203,8 @@ function Create() {
             />
           </div> */}
         
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      
+       
           {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="meta_keywords">
               meta_keywords:
@@ -239,15 +243,12 @@ function Create() {
               onChange={(e) => set(e.target.value)}
             />
           </div> */}
-        </div>
-       
-        <div className="flex gap-2 mt-2">
+      
+        <div className="flex gap-2 md:mt-20 mt-40">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/design"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+         
         </div>
       </form>
     </div>
