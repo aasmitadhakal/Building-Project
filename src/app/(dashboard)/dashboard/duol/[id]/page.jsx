@@ -210,7 +210,7 @@ const Update = ({ params }) => {
           </label>
           <input
             id="image"
-            className="border-gray-200 block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            
             type="file"
             name="image"
             onChange={(e) => {

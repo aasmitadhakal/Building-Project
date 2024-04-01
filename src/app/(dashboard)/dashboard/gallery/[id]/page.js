@@ -14,11 +14,10 @@ const Update = ({ params }) => {
     title: "",
     // date: "",
     image: "",
-   
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImagePreview] = useState(null);
- 
+
   const router = useRouter();
 
   const fetchData = async () => {
@@ -29,7 +28,6 @@ const Update = ({ params }) => {
         setFormData(responseData);
         // setEditorValue(responseData.date || "");
         setImagePreview(responseData.image || null);
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -75,12 +73,12 @@ const Update = ({ params }) => {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
-    
-    //   updatedData.append("date", date);
+
+      //   updatedData.append("date", date);
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
-     
+
       await axiosInstance.put(`/api/gallery/${params.id}`, updatedData);
 
       toast("Data edited successfully");
@@ -95,65 +93,64 @@ const Update = ({ params }) => {
     <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
-     
       <form onSubmit={handleSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Update Gallery</h1>
-        
-             <Link href="/dashboard/gallery">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
-          <div className=" my-4 uppercase">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order || ""}
-              onChange={handleChange}
-            />
-          </div>
-         
-          <div className=" my-4 uppercase">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              Title:
-            </label>
-            <input
-              id="title"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="title"
-              value={formData.title || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className=" my-4 uppercase">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
-              Image One:
-            </label>
-            <input
-              id="image"
-              className="block w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImagePreview);
-              }}
-            />
-            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
-          </div>
-         
-       
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Gallery</h1>
+
+          <Link href="/dashboard/gallery">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+        <div className=" my-4 uppercase">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={formData.order || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
+            Title:
+          </label>
+          <input
+            id="title"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="title"
+            value={formData.title || ""}
+            onChange={handleChange}
+          />
+        </div>
+        <div className=" my-4 uppercase">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
+            Image One:
+          </label>
+          <input
+            id="image"
+            className="block w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImagePreview);
+            }}
+          />
+          {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
+        </div>
+
         <div className="flex gap-2 pt-1">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          
         </div>
       </form>
     </div>

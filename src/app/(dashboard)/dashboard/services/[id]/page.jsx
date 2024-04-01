@@ -11,11 +11,12 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
-    title: "",
+    name: "",
     description: "",
     image: "",
     slug:"",
     name: "",
+    frontage: "",
     banner : "",
     short_description: "",
     seo_title: "",
@@ -93,6 +94,7 @@ const Update = ({ params }) => {
       updatedData.append("name", formData.name);
       updatedData.append("slug", formData.slug);
       updatedData.append("banner", formData.banner);
+      
       updatedData.append("short_description", formData.short_description);
       updatedData.append("seo_title", formData.seo_title);
       updatedData.append("seo_description", formData.seo_description);
@@ -144,19 +146,19 @@ const Update = ({ params }) => {
           </div>
           <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              Title:
+              Name:
             </label>
             <input
-              id="title"
+              id="name"
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="title"
-              value={formData.title || ""}
+              name="name"
+              value={formData.name || ""}
               onChange={handleChange}
             />
           </div>
         
-        <div className=" my-4 uppercase">
+        <div className=" my-4 ">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -197,20 +199,7 @@ const Update = ({ params }) => {
             />
             {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
           </div>
-          {/* for frontage */}
-          <div className=" my-4 uppercase">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              frontage:
-            </label>
-            <input
-              id="frontage"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="frontage"
-              value={formData.frontage || ""}
-              onChange={handleChange}
-            />
-          </div>
+          
            <div className=" my-4 uppercase">
             <label className="block  my-2 text-sm font-medium text-gray-700" htmlFor="slug">
               Slug:
@@ -227,7 +216,7 @@ const Update = ({ params }) => {
            {/* for size */}
            <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="banner">
-              banner:
+              Banner:
             </label>
             <input
               id="banner"
@@ -241,7 +230,7 @@ const Update = ({ params }) => {
            {/* for bedroom */}
            <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="short_description">
-              Short_description:
+              Short Description:
             </label>
             <input
               id="short_description"
@@ -255,7 +244,7 @@ const Update = ({ params }) => {
            {/* for cars */}
            <div className=" my-4 uppercase">
             <label className="block  my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              Seo_title:
+              Seo Title:
             </label>
             <input
               id="seo_title"
@@ -269,7 +258,7 @@ const Update = ({ params }) => {
            {/* for bathrooms */}
            <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              Seo_description:
+              Seo Description:
             </label>
             <input
               id="seo_description"
@@ -283,7 +272,7 @@ const Update = ({ params }) => {
            {/* for seo_schema */}
            <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="seo_schema">
-              Seo_schema:
+              Seo Schema:
             </label>
             <input
               id="seo_schema"
@@ -297,7 +286,7 @@ const Update = ({ params }) => {
            {/* for seo_keywords */}
            <div className=" my-4 uppercase">
             <label className="block  my-2 text-sm font-medium text-gray-700" htmlFor="seo_keywords">
-              Seo_keywords:
+              Seo Keywords:
             </label>
             <input
               id="seo_keywords"

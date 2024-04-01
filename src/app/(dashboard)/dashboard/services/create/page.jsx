@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 function Create() {
   const [name, setName] = useState("");
+  
   const [order, setOrder] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [slug, setSlug] = useState("");
@@ -35,6 +36,7 @@ function Create() {
     // Append additional fields
     formData.append("slug", slug);
     formData.append("banner", banner);
+    
     formData.append("description", editorValue);
     formData.append("short_description", shortdescription); // Use validated integer value
     formData.append("seo_title", seotitle);
@@ -103,7 +105,7 @@ function Create() {
             />
           </div>
         
-        <div className="mb-4 my-4 uppercase">
+        <div className="mb-4 my-4 ">
           <label
             className="block my-2 text-sm font-medium text-gray-700 "
             htmlFor="description"
@@ -170,7 +172,7 @@ function Create() {
               className="block my-2 text-sm font-medium text-gray-700"
               htmlFor="short_description"
             >
-              Short_description:
+              Short Description:
             </label>
             <input
               id="short_description"
@@ -186,7 +188,7 @@ function Create() {
               className="block my-2 text-sm font-medium text-gray-700"
               htmlFor="seo_title"
             >
-              Seo_title:
+              Seo Title:
             </label>
             <input
               id="seo_title"
@@ -204,7 +206,7 @@ function Create() {
               className="block my-2 text-sm font-medium text-gray-700"
               htmlFor="seo_description"
             >
-              seo_description:
+              Seo Description:
             </label>
             <input
               id="seo_description"
@@ -220,7 +222,7 @@ function Create() {
               className="block my-2 text-sm font-medium text-gray-700"
               htmlFor="seo_schema"
             >
-              seo_keywords:
+              Seo Keywords:
             </label>
             <input
               id="seo_keywords"
@@ -231,19 +233,7 @@ function Create() {
               onChange={(e) => setSeokeywords(e.target.value)}
             />
           </div>
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="description">
-              Description:
-            </label>
-            <textarea
-              id="description"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              rows="3"
-              name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div> */}
+         
       
       
           <div className=" my-4 uppercase">
@@ -251,7 +241,7 @@ function Create() {
               className="block my-2 text-sm font-medium text-gray-700"
               htmlFor="seo_schema"
             >
-              seo_schema:
+            Seo Schema:
             </label>
             <input
               id="seo_schema"

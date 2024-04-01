@@ -78,7 +78,7 @@ const Page = () => {
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-36 w-36 rounded-full" />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-24 rounded-sm" />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}

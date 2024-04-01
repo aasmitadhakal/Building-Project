@@ -69,7 +69,7 @@ function Create() {
           </div>
           
         
-        <div className="my-4 uppercase">
+        <div className="my-4 ">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>

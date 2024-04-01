@@ -48,70 +48,72 @@ function Create() {
   return (
     <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
-     
+
       <form onSubmit={handleFormSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Create Testimonial </h1>
-        
-             <Link href="/dashboard/testimonials">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
-       
-          <div className="uppercase my-4">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={order}
-              onChange={(e) => setOrder(e.target.value)}
-            />
-          </div>
-          <div className="uppercase my-4">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
-              Name:
-            </label>
-            <input
-              id="name"
-              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="uppercase my-4">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="position">
-              Position:
-            </label>
-            <input
-              id="position"
-              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="position"
-              value={position}
-              onChange={(e) => setPosition(e.target.value)}
-            />
-          </div>
-          <div className="uppercase my-4">
-            <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="rating">
-              Rating:
-            </label>
-            <input
-              id="rating"
-              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            />
-          </div>
-        
-        <div className="mb-4 uppercase my-4">
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Create Testimonial </h1>
+
+          <Link href="/dashboard/testimonials">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+
+        <div className="uppercase my-4">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={order}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+        </div>
+        <div className="uppercase my-4">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
+            Name:
+          </label>
+          <input
+            id="name"
+            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="uppercase my-4">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="position">
+            Position:
+          </label>
+          <input
+            id="position"
+            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="position"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+        </div>
+        <div className="uppercase my-4">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="rating">
+            Rating:
+          </label>
+          <input
+            id="rating"
+            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4  my-4">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -136,26 +138,17 @@ function Create() {
           />
         </div>
 
-       
-          <div className=" mt-20 uppercase my-4">
-            <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
-              Image:
-            </label>
-            <input
-              className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </div>
-     
+        <div className=" mt-20 uppercase my-4">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
+            Image:
+          </label>
+          <input type="file" id="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+        </div>
 
         <div className="flex gap-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          
         </div>
       </form>
     </div>

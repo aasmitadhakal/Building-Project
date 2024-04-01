@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
@@ -181,9 +182,7 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          <Link href={"/dashboard/whychooseus"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+          
         </div>
       </form>
     </div>

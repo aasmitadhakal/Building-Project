@@ -229,7 +229,7 @@ function Create() {
               Image One:
             </label>
             <input
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+              
               type="file"
               id="image"
               accept="image/*"
@@ -241,7 +241,7 @@ function Create() {
               Image Two:
             </label>
             <input
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+             
               type="file"
               id="other_image"
               accept="other_image/*"

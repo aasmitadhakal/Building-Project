@@ -95,14 +95,14 @@ const Update = ({ params }) => {
       updatedData.append("seo_keywords", formData.seo_keywords);
     
       
-      // updatedData.append("description", editorValue);
-      // if (formData.image) {
-      //   updatedData.append("image", formData.image);
-      // }
+      updatedData.append("description", editorValue);
+      if (formData.image) {
+        updatedData.append("image", formData.image);
+      }
      
       await axiosInstance.put(`/api/building/${params.id}`, updatedData);
 
-      toast("Data edited successfully");
+      toast("Data updated successfully");
       router.push("/dashboard/building");
     } catch (error) {
       console.error("Error updating data:", error);
@@ -178,10 +178,10 @@ const Update = ({ params }) => {
             <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
               Short Description:
             </label>
-            <input
+            <textarea
               id="short_description"
               className="block w-full h-36 px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
+              
               name="short_description"
               value={formData.short_description || ""}
               onChange={handleChange}

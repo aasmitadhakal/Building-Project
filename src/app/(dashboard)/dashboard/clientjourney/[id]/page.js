@@ -17,7 +17,7 @@ const Update = ({ params }) => {
     image: "",
    
   });
-  const [editorValue, setEditorValue] = useState("");
+  
   const [imageOnePreview, setImagePreview] = useState(null);
  
   const router = useRouter();
@@ -53,12 +53,11 @@ const Update = ({ params }) => {
           order: responseData.order || "",
           title: responseData.title || "",
           short_description: responseData.short_description || "",
-          description: responseData.description || "",
+         
           image: responseData.image || "",
         });
         setEditorValue(responseData.description || "");
-        console.log("FormData after setting data:", formData);
-        console.log("Editor Value:", editorValue);
+        
       } else {
         toast("Error fetching data");
       }
@@ -90,9 +89,7 @@ const Update = ({ params }) => {
     }
   };
 
-  const handleEditorChange = (value) => {
-    setEditorValue(value);
-  };
+
 
   const handleImagePreview = (file, setImagePreview) => {
     if (file) {
@@ -127,7 +124,7 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="my-12   bg-white rounded-md font-[Roboto] shadow-xl">
+    <div className="my-12   bg-white rounded-md font-['poppins'] shadow-xl">
       <ToastContainer />
       <form onSubmit={handleSubmit} className="p-6">
       <div className=" flex justify-between my-2">
@@ -152,32 +149,9 @@ const Update = ({ params }) => {
             />
           </div>
         
-          {/* <div>
-          <label className="block text-sm uppercasefont-medium text-gray-700" htmlFor="description">
-            Description:
-          </label>
-          <ReactQuill
-  className="bg-white text-black z-0"
-  modules={{
-    toolbar: [
-      [{ font: [] }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ["bold", "italic", "underline", "strike"],
-      ["blockquote", "code-block"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ script: "sub" }, { script: "super" }],
-      [{ indent: "-1" }, { indent: "+1" }],
-      [{ align: [] }],
-      ["clean"],
-    ],
-  }}
-  value={editorValue}
-  theme="snow"
-  onChange={(value) => setEditorValue(value)}
-/>
-        </div> */}
+       
           <div className=" my-4 ">
-            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="name">
+            <label className="block my-2 text-sm uppercase font-medium text-gray-700" htmlFor="name">
               Title:
             </label>
             <input
@@ -190,8 +164,8 @@ const Update = ({ params }) => {
             />
           </div>
           <div className=" my-4 ">
-            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="short_description">
-              short_description:
+            <label className="block my-2 text-sm uppercase font-medium text-gray-700" htmlFor="short_description">
+              Short Description:
             </label>
             <input
               id="short_description"
@@ -205,8 +179,8 @@ const Update = ({ params }) => {
        
        
           <div className=" my-4 ">
-            <label className="block my-2 text-sm uppercasefont-medium text-gray-700" htmlFor="image">
-              Image One:
+            <label className="block my-2 text-sm uppercase font-medium text-gray-700" htmlFor="image">
+              Image :
             </label>
             <input
               id="image"
