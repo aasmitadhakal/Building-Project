@@ -83,7 +83,7 @@ function Create() {
           />
         </div>
 
-        <div className="h-64  my-4 uppercase">
+        <div className="h-64  my-4 ">
           <label className="block text-sm font-medium my-2 text-gray-700 " htmlFor="description">
             Description:
           </label>{" "}
@@ -109,29 +109,19 @@ function Create() {
           />
         </div>
 
-        <div className=" my-4 uppercase mt-20  ">
-          <label className="block text-sm font-medium my-2 " htmlFor="image_one">
-            Image One:
-          </label>
-          <input
-            className="block w-full px-4 py-2 border  rounded-md focus:outline-none focus:border-blue-500"
-            type="file"
-            id="image_one"
-            accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])}
-          />
-        </div>
-        <div className=" my-4 uppercase ">
-          <label className="block text-sm font-medium my-2 " htmlFor="image_two">
-            Image Two:
-          </label>
-          <input
-            className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            type="file"
-            id="image_two"
-            accept="image/*"
-            onChange={(e) => setImageTwo(e.target.files[0])}
-          />
+        <div className="grid grid-cols-2 mt-20">
+          <div className=" my-4 uppercase   ">
+            <label className="block text-sm font-medium my-2 " htmlFor="image_one">
+              Image One:
+            </label>
+            <input type="file" id="image_one" accept="image/*" onChange={(e) => setImageOne(e.target.files[0])} />
+          </div>
+          <div className="  uppercase my-2">
+            <label className="block text-sm font-medium my-2 " htmlFor="image_two">
+              Image Two:
+            </label>
+            <input type="file" id="image_two" accept="image/*" onChange={(e) => setImageTwo(e.target.files[0])} />
+          </div>
         </div>
 
         <div className="flex  my-4 uppercase gap-2">

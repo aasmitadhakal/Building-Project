@@ -52,7 +52,7 @@ function Create() {
 
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/dual");
+        router.push("/dashboard/duol");
       } else {
         toast("Error creating post");
       }
@@ -226,7 +226,7 @@ function Create() {
           
           <div className=" my-4 uppercase">
             <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
-              Image:
+              Image One:
             </label>
             <input
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
@@ -238,7 +238,7 @@ function Create() {
           </div>
           <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="other_image">
-              other_image Two:
+              Image Two:
             </label>
             <input
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
@@ -253,9 +253,7 @@ function Create() {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          <Link href={"/dashboard/double"}>
-            <p className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link>
+
         </div>
       </form>
     </div>

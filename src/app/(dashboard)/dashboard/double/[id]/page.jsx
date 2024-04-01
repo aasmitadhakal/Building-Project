@@ -307,7 +307,7 @@ const Update = ({ params }) => {
          {/* for floor_plan */}
          <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            floor_plan:
+            Floor Plan:
           </label>
           <input
             id="floor_plan"
@@ -321,7 +321,7 @@ const Update = ({ params }) => {
          {/* for storey_type */}
          <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            storey_type:
+            Storey Type:
           </label>
           <input
             id="storey_type"

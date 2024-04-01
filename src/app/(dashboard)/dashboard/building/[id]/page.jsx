@@ -127,7 +127,7 @@ const Update = ({ params }) => {
        
           <div  className=" my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="order_number">
-              order_number:
+              Order Number:
             </label>
             <input
               id="order_number"
@@ -141,7 +141,7 @@ const Update = ({ params }) => {
          
           <div  className=" my-4 uppercase">
             <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              name:
+              Name:
             </label>
             <input
               id="name"
@@ -161,7 +161,7 @@ const Update = ({ params }) => {
             </label>
             <input
               id="image"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+             
               type="file"
               name="image"
               onChange={(e) => {
@@ -176,7 +176,7 @@ const Update = ({ params }) => {
            {/* for bedroom */}
            <div  className=" my-4 uppercase">
             <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
-              Short_description:
+              Short Description:
             </label>
             <input
               id="short_description"
@@ -190,7 +190,7 @@ const Update = ({ params }) => {
            {/* for cars */}
            <div  className=" my-4 uppercase">
             <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              Seo_title:
+              Seo Title:
             </label>
             <input
               id="seo_title"
@@ -204,7 +204,7 @@ const Update = ({ params }) => {
            {/* for bathrooms */}
            <div  className=" my-4 uppercase">
             <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              Seo_description:
+              Seo Description:
             </label>
             <input
               id="seo_description"
@@ -218,7 +218,7 @@ const Update = ({ params }) => {
            {/* for seo_schema */}
            <div  className=" my-4 uppercase">
             <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">
-              Seo_schema:
+              Seo Schema:
             </label>
             <input
               id="seo_schema"
@@ -232,7 +232,7 @@ const Update = ({ params }) => {
            {/* for seo_keywords */}
            <div  className=" my-4 uppercase">
             <label className="block text-sm font-medium  my-2  text-gray-700" htmlFor="seo_keywords">
-              Seo_keywords:
+              Seo Keywords:
             </label>
             <input
               id="seo_keywords"
