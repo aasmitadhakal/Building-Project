@@ -128,9 +128,7 @@ function Create() {
           <button type="submit" className="w-full md:w-auto px-4 py-2 my-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-          {/* <Link href={"/dashboard/aboutus"}>
-            <p className="w-full md:w-auto px-4 py-2 my-2 bg-red-500 text-white rounded-md">Cancel</p>
-          </Link> */}
+          
         </div>
       </form>
     </div>

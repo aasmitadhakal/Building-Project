@@ -14,7 +14,7 @@ const Update = ({ params }) => {
     title: "",
     // description: "",
     image: "",
-    other_image:"",
+    image_two:"",
     frontage: "",
     size : "",
     bedroom: "",
@@ -45,7 +45,7 @@ const Update = ({ params }) => {
         setEditorValue(responseData.price || "");
         setEditorValue(responseData.storey_type || "");
         setImageOnePreview(responseData.image || null);
-        setImageTwoPreview(responseData.other_image || null);
+        setImageTwoPreview(responseData.image_two || null);
       
       }
     } catch (error) {
@@ -113,7 +113,7 @@ const Update = ({ params }) => {
       updatedData.append("bedroom", formData.bedroom);
       updatedData.append("cars", formData.cars);
       updatedData.append("bathrooms", formData.bathrooms);
-      // updatedData.append("description", formData.description);
+     
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
@@ -123,8 +123,8 @@ const Update = ({ params }) => {
         updatedData.append("image", formData.image);
       }
      
-      if (formData.other_image) {
-        updatedData.append("other_image", formData.other_image);
+      if (formData.image_two) {
+        updatedData.append("image_two", formData.image_two);
       }
      
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
@@ -139,17 +139,18 @@ const Update = ({ params }) => {
 
   return (
     <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
-    <ToastContainer />
+      <ToastContainer />
 
-  
-    <form onSubmit={handleSubmit} className="p-6">
-    <div className=" flex justify-between my-2">
-      <h1 className="font-[600] text-[24px]  text-gray-700">Update Double Design</h1>
-      {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
-      <Link href="/dashboard/double">
-            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
+      <form onSubmit={handleSubmit} className="p-6">
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Double Design</h1>
+          {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
+          <Link href="/dashboard/double">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
           </Link>
-    </div>
+        </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="order">
             Order:
@@ -176,49 +177,67 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-     
-      <div className=" my-4 ">
-        <label className="block text-sm font-medium  my-2 text-gray-700" htmlFor="description">
-          Description:
-        </label>
-        <ReactQuill
-          className="bg-white text-black z-0 border-gray-200 h-64"
-          modules={{
-            toolbar: [
-              [{ font: [] }],
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-              ["bold", "italic", "underline", "strike"],
-              ["blockquote", "code-block"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              [{ script: "sub" }, { script: "super" }],
-              [{ indent: "-1" }, { indent: "+1" }],
-              [{ align: [] }],
-              ["clean"],
-            ],
-          }}
-           value=
-           {formData.description || ""}
-          theme="snow"
-          // onChange={handleChange}
-         
-        />
-      </div>
-    
-        <div className="mt-20 my-4 uppercase">
-          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
-            Image :
+
+        <div className=" my-4 ">
+          <label className="block text-sm font-medium  my-2 text-gray-700" htmlFor="description">
+            Description:
           </label>
-          <input
-            id="image"
-            
-            type="file"
-            name="image"
-            onChange={(e) => {
-              handleChange(e);
-              handleImagePreview(e.target.files[0], setImageOnePreview);
+          <ReactQuill
+            className="bg-white text-black z-0 border-gray-200 h-64"
+            modules={{
+              toolbar: [
+                [{ font: [] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["clean"],
+              ],
             }}
+            value={formData.description || ""}
+            theme="snow"
+            // onChange={handleChange}
           />
-          {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
+        </div>
+
+        <div className="grid grid-cols-2">
+          <div className="mt-20 my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+              Image :
+            </label>
+            <input
+              id="image"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && (
+              <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+            )}
+          </div>
+          <div className="mt-20 my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image_two">
+              Image Two :
+            </label>
+            <input
+              id="image_two"
+              type="file"
+              name="image_two"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && (
+              <img src={`${axiosInstance.defaults.baseURL}${formData.image_two}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+            )}
+          </div>
         </div>
         {/* for frontage */}
         <div className=" my-4 uppercase">
@@ -234,8 +253,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         {/* for size */}
-         <div className=" my-4 uppercase">
+        {/* for size */}
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             size:
           </label>
@@ -248,8 +267,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         {/* for bedroom */}
-         <div className=" my-4 uppercase">
+        {/* for bedroom */}
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             bedroom:
           </label>
@@ -262,8 +281,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         {/* for cars */}
-         <div className=" my-4 uppercase">
+        {/* for cars */}
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             cars:
           </label>
@@ -276,8 +295,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         
-         <div className=" my-4 uppercase">
+
+        <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="name">
             bathrooms:
           </label>
@@ -290,8 +309,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-       
-         <div className=" my-4 uppercase">
+
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             price:
           </label>
@@ -304,8 +323,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         {/* for floor_plan */}
-         <div className=" my-4 uppercase">
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             Floor Plan:
           </label>
@@ -318,8 +337,8 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-         {/* for storey_type */}
-         <div className=" my-4 uppercase">
+        {/* for storey_type */}
+        <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             Storey Type:
           </label>
@@ -332,17 +351,14 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        
-         
-     
-      <div className="flex gap-2 pt-1 mt-4">
-        <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
-          Update
-        </button>
-       
-      </div>
-    </form>
-  </div>
+
+        <div className="flex gap-2 pt-1 mt-4">
+          <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
