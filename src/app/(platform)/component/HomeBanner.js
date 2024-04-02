@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 const data = [
   {
-    "image": "https://s3-alpha-sig.figma.com/img/2543/dc0c/147aae5d1d374548dd2eac88859fe582?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=eYX51-YC~iNoWIX1uoruPSX-xs4Wofdv1RIiYvk5dAWnrffRKTC8wHt2nOdL80SDOMUTu62X-7HUF7cPvJDY7UughsZCKMadC5OufZ2xEn-zKx6NJOMYKnTJrmBBWF9~k8T3QB3bRwffe~7FxOXP9hX~y9G8U1U6NP-JxJeH1lD2c8jSi6IZUVAXwlb8~-DmjSxnYl7PtyFOVfXuQga~SJ2PMljcuSUzx-gKA-AoksLGs5rYAL6zySoIp1H1zvmmftgzzT0ce35eMQfsjTJwjmGXgfigvO7nNn8opB-7wBfq-YzuZ7gqmF6A5ZM4KMPczDhdaUHyaQg~OU0Vdx80eA__",
+    "image": "https://s3-alpha-sig.figma.com/img/2543/dc0c/147aae5d1d374548dd2eac88859fe582?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Zoj3Ra-ZZzGlHhmJGYYv7daT8ncUJyDkcJ-D0oEtTGydu53PFXrckjEwYTpfwJ~zDKJMooHxXOJvsKj2eGVQSKmlDyiJ6gBFldGTu-Hu8m1Ji-V3bE6Rp-xtsGLfypBNlcecV5MfUuoIqBKz36d-WMjk3-E7RHHWF43Lhv8fId75Ix0wq7TrbKi5NiRPTM23IuNoHwvgzxSEzk77UOEwSB6as5Qb3MmspAU3CSXTmsHDWe5IWTKuK~50eGoX5lF7Nt~b9OMMLIDAPhi2F1h5CnfWIf7nOqoaedD-V39jb6GgDqaN6ucq5fpB1N5qET-wqY8bc2YshzBHcyvXgT5cEw__",
     "title": "A FULLY INTEGRATED",
     "introduction": "Build to Last: Your Trusted Construction Partner"
   }

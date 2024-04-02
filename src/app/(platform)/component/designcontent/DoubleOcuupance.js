@@ -7,7 +7,7 @@ import axiosInstance from "@/app/utils/axiosInstance";
 const banneerdata = [
   {
     image:
-      "https://s3-alpha-sig.figma.com/img/2543/dc0c/147aae5d1d374548dd2eac88859fe582?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=eYX51-YC~iNoWIX1uoruPSX-xs4Wofdv1RIiYvk5dAWnrffRKTC8wHt2nOdL80SDOMUTu62X-7HUF7cPvJDY7UughsZCKMadC5OufZ2xEn-zKx6NJOMYKnTJrmBBWF9~k8T3QB3bRwffe~7FxOXP9hX~y9G8U1U6NP-JxJeH1lD2c8jSi6IZUVAXwlb8~-DmjSxnYl7PtyFOVfXuQga~SJ2PMljcuSUzx-gKA-AoksLGs5rYAL6zySoIp1H1zvmmftgzzT0ce35eMQfsjTJwjmGXgfigvO7nNn8opB-7wBfq-YzuZ7gqmF6A5ZM4KMPczDhdaUHyaQg~OU0Vdx80eA__",
+      "https://s3-alpha-sig.figma.com/img/ae47/d37b/600dc5f3c92919c0e90c6801d7c04d67?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HgqVAmAKPKTHnAl7w1-R2m8RvcYjYUfhKJP7qoE169NCM41XGP46Wh0YTgcAfI1MIOpKBKXtqROgsBnHzx41tnZOPOr5LU5Zjn9QqOX2mB2ImE6WrweZuLbhaokF1IiYIr4aWubY6DIazdRBn06qMD15AisMZY8tK9tio8SU9qZ6H5-3zYZxNkbBFtPkVTco6e3ga3PiZVT9x8CUkm~jZo9~y~qRhMwBRTZBBvm-MM~kV6qofuM2AZNaXPXhzSwaD1IUmKZ1M26p2lgjvM75JP5k0FomYhSbu9Q7vCxMMGfDimYXU1fVqGEFy~SNvGgn8CURDfJMWfdkVqyB8jNa~Q__",
     title: "Double Occupancy  Homes",
     introduction: "Build to Last: Your Trusted Construction Partner",
   },
@@ -107,7 +107,7 @@ function DoubleOcuupance() {
               <img
                 src={axiosInstance.defaults.baseURL + property.image}
                 alt={property.title}
-                className="h-[147px] w-[418px] mb-4"
+                className="h-[177px] w-[418px] mb-4"
               />
               <p className="text-cutombrown md:text-[18px] pl-4 text-[10px]  leading-[24px] font-[400]">{property.title1}</p>
             </div>
@@ -115,7 +115,7 @@ function DoubleOcuupance() {
               <img
               src={axiosInstance.defaults.baseURL + property.other_image}
                 alt={property.title}
-                className="h-[147px] w-[418px] mb-4"
+                className="h-[177px] w-[418px] mb-4"
               />
                <p className="text-cutombrown md:text-[18px] pl-4 text-[10px]  leading-[24px] font-[400]">{property.title2}</p>
             </div>

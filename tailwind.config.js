@@ -29,6 +29,9 @@ module.exports = {
         'customyellow': '#EECB5D',
        
       },
+      margin: {
+        '22px': '98px',
+      },
     },
   },
   plugins: [nextui(), require("flowbite/plugin")],
