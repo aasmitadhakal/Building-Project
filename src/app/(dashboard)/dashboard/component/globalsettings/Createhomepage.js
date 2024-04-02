@@ -1,9 +1,11 @@
 import axiosInstance from "@/app/utils/axiosInstance";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 
 const CreateHomePage = () => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     homeTitle: "",
     homeDescription: "",
@@ -71,11 +73,12 @@ const CreateHomePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.put(`/api/settings`, formData);
+      const response = await axiosInstance.put(`/api/settings/u/${formData.homeTitle}`, formData);
       if (response.status === 200) {
         // Update form data with the response data
         setFormData(response.data.data);
         toast("Data saved successfully");
+        router.push(`/dashboard/globalsettings`);
       } else {
         toast("Error updating data");
       }
@@ -92,7 +95,7 @@ const CreateHomePage = () => {
         <p className="text-2xl font-bold mb-4">Home</p>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
-            {Object.keys(formData).map((key, index) => (
+            {formData && Object.keys(formData).map((key, index) => (
               <div key={index} className="mb-4">
                 <label htmlFor={key} className="block text-medium mb-2">
                   {formatLabel(key)}

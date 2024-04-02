@@ -42,7 +42,6 @@ function Create() {
     formData.append("bedroom", bedroom);
     formData.append("cars", cars);
     formData.append("bathrooms", bathrooms);
-
     formData.append("price", price);
     formData.append("floor_plan", floorPlan);
     formData.append("storey_type", storeyType);

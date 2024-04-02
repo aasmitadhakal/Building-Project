@@ -14,7 +14,7 @@ function Create() {
   const [imageOne, setImageOne] = useState(null);
   const [slug, setSlug] = useState("");
   const [banner, setBanner] = useState("");
-  const [shortdescription, setShort_description] = useState("");
+  const [editorValue, setEditorValue] = useState("");
   const [seotitle, setSeo_title] = useState("");
   const [seodescription, setSeodescription] = useState("");
   const [seoschema, setSeoschema] = useState("");
@@ -32,7 +32,7 @@ function Create() {
     formData.append("order_number", order_number);
     formData.append("image", imageOne); // Append image file correctl
 
-    formData.append("short_description", shortdescription); // Use validated integer value
+    formData.append("short_description", editorValue);
     formData.append("seo_title", seotitle);
     formData.append("seo_description", seodescription); // Use validated integer value
     formData.append("seo_schema", seoschema);
@@ -102,12 +102,24 @@ function Create() {
           <label className="block  my-2  text-sm font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
-          <textarea
-            id="short_description"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500 h-36"
-            name="short_description"
-            value={shortdescription}
-            onChange={(e) => setShort_description(e.target.value)}
+          <ReactQuill
+            className="bg-white text-black z-0 h-full"
+            modules={{
+              toolbar: [
+                [{ font: [] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["clean"],
+              ],
+            }}
+            value={editorValue}
+            theme="snow"
+            onChange={(value) => setEditorValue(value)}
           />
         </div>
         <div className=" my-4 uppercase">
@@ -150,7 +162,7 @@ function Create() {
             onChange={(e) => setSeokeywords(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
@@ -162,7 +174,7 @@ function Create() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-        </div>
+        </div> */}
 
         <div className=" my-4 uppercase">
           <label className="block  my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">

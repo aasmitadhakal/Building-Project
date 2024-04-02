@@ -8,14 +8,13 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
     title: "",
-    description: "",
-    image: null,
-    other_image: null,
+    // description: "",
+    image: "",
+    image_two: "",
     frontage: "",
     size: "",
     bedroom: "",
@@ -44,7 +43,7 @@ const Update = ({ params }) => {
         setEditorValue(responseData.price || "");
         setEditorValue(responseData.storey_type || "");
         setImageOnePreview(responseData.image || null);
-        setImageTwoPreview(responseData.other_image || null);
+        setImageTwoPreview(responseData.image_two || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -58,20 +57,11 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      const selectedFile = e.target.files[0];
-      if (name === "image") {
-        setFormData((prevData) => ({
-          ...prevData,
-          image: selectedFile,
-        }));
-        setImageOnePreview(URL.createObjectURL(selectedFile));
-      } else if (name === "other_image") {
-        setFormData((prevData) => ({
-          ...prevData,
-          other_image: selectedFile,
-        }));
-        setImageTwoPreview(URL.createObjectURL(selectedFile));
-      }
+      handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
     } else {
       setFormData((prevData) => ({
         ...prevData,
@@ -82,6 +72,31 @@ const Update = ({ params }) => {
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
+  };
+
+  // const handleImagePreview = (file, setImagePreview) => {
+  //   if (file) {
+  //     const previewURL = URL.createObjectURL(file);
+  //     setImagePreview(previewURL);
+  //   } else {
+  //     setImagePreview(null);
+  //   }
+  // };
+  const handleImagePreview = (file, setImagePreview, isOtherImage = false) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      if (isOtherImage) {
+        setImagePreview(previewURL);
+      } else {
+        setImagePreview(previewURL);
+      }
+    } else {
+      if (isOtherImage) {
+        setImagePreview(null);
+      } else {
+        setImagePreview(null);
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -95,18 +110,18 @@ const Update = ({ params }) => {
       updatedData.append("bedroom", formData.bedroom);
       updatedData.append("cars", formData.cars);
       updatedData.append("bathrooms", formData.bathrooms);
-      updatedData.append("description", formData.description);
+
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
-      updatedData.append("description", editorValue);
 
+      updatedData.append("description", editorValue);
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
 
-      if (formData.other_image) {
-        updatedData.append("other_image", formData.other_image);
+      if (formData.image_two) {
+        updatedData.append("image_two", formData.image_two);
       }
 
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
@@ -120,38 +135,39 @@ const Update = ({ params }) => {
   };
 
   return (
-    <div className="my-12 bg-white rounded-md font-[karla] shadow-xl">
+    <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
       <form onSubmit={handleSubmit} className="p-6">
-        <div className="flex justify-between my-2">
-          <h1 className="font-[600] text-[24px] text-gray-700">Update Dual Design</h1>
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update duol Design</h1>
+          {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
           <Link href="/dashboard/duol">
             <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
               <FaArrowLeftLong className="mx-2" /> Back
             </p>
           </Link>
         </div>
-        <div className="my-4 uppercase">
+        <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="order">
             Order:
           </label>
           <input
             id="order"
-            className="border-gray-200 block my-2 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className=" border-gray-200 block  my-2 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="order"
             value={formData.order || ""}
             onChange={handleChange}
           />
         </div>
-        <div className="my-4 uppercase">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="name">
             Title:
           </label>
           <input
             id="title"
-            className="border-gray-200 block w-full my-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className=" border-gray-200 block w-full  my-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="title"
             value={formData.title || ""}
@@ -159,8 +175,8 @@ const Update = ({ params }) => {
           />
         </div>
 
-        <div className="my-4 uppercase">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+        <div className=" my-4 ">
+          <label className="block text-sm font-medium  my-2 text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
@@ -180,28 +196,46 @@ const Update = ({ params }) => {
             }}
             value={formData.description || ""}
             theme="snow"
-            onChange={(value) => handleEditorChange(value)}
+            // onChange={handleChange}
           />
         </div>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 mt-10">
-          <div className="my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-              Image:
+        <div className="grid grid-cols-2">
+          <div className="mt-20 my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+              Image :
             </label>
-            <input id="image" type="file" name="image" onChange={handleChange} />
-            {imageOnePreview && <img src={imageOnePreview} alt="Image One" className="h-12 w-12 rounded-full" />}
+            <input
+              id="image"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && (
+              <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+            )}
           </div>
-
-          <div className="my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="other_image">
-              Other Image:
+          <div className="mt-20 my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image_two">
+              Image Two :
             </label>
-            <input id="other_image" type="file" name="other_image" onChange={handleChange} />
-            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two" className="h-12 w-12 rounded-full" />}
+            <input
+              id="image_two"
+              type="file"
+              name="image_two"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && (
+              <img src={`${axiosInstance.defaults.baseURL}${formData.image_two}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+            )}
           </div>
         </div>
-
         {/* for frontage */}
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
@@ -247,7 +281,7 @@ const Update = ({ params }) => {
         {/* for cars */}
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            Cars:
+            cars:
           </label>
           <input
             id="cars"
@@ -261,7 +295,7 @@ const Update = ({ params }) => {
 
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-            Bathrooms:
+            bathrooms:
           </label>
           <input
             id="bathrooms"
@@ -275,7 +309,7 @@ const Update = ({ params }) => {
 
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            Price:
+            price:
           </label>
           <input
             id="price"
@@ -289,7 +323,7 @@ const Update = ({ params }) => {
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            floor_plan:
+            Floor Plan:
           </label>
           <input
             id="floor_plan"

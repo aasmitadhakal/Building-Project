@@ -33,8 +33,8 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        console.log(formData);
-         setEditorValue(responseData.description || "");
+        
+         setEditorValue(responseData.short_description || "");
         // setEditorValue(responseData.title || "");
         // setEditorValue(responseData.frontage || "");
         // setEditorValue(responseData.size || "");
@@ -88,7 +88,7 @@ const Update = ({ params }) => {
       const updatedData = new FormData();
       updatedData.append("order_number", formData.order_number);
       updatedData.append("name", formData.name);
-      updatedData.append("short_description", formData.short_description);
+      updatedData.append("short_description", editorValue);
       updatedData.append("seo_title", formData.seo_title);
       updatedData.append("seo_description", formData.seo_description);
       updatedData.append("seo_schema", formData.seo_schema);
@@ -116,140 +116,148 @@ const Update = ({ params }) => {
 
       {/* <h1 className="text-2xl font-bold">Update Building </h1> */}
       <form onSubmit={handleSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Update Building</h1>
-        
-             <Link href="/dashboard/building">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Building</h1>
 
-       
-          <div  className=" my-4 uppercase">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order_number">
-              Order Number:
-            </label>
-            <input
-              id="order_number"
-              className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order_number"
-              value={formData.order_number || ""}
-              onChange={handleChange}
-            />
-          </div>
-         
-          <div  className=" my-4 uppercase">
-            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              Name:
-            </label>
-            <input
-              id="name"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="name"
-              value={formData.name || ""}
-              onChange={handleChange}
-            />
-          </div>
-       
-       
-       
-          <div  className=" my-4 uppercase" >
-            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
-              Image :
-            </label>
-            <input
-              id="image"
-             
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
-              }}
-            />
-            {imageOnePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />}
-          </div>
-         
-          
-           {/* for bedroom */}
-           <div  className=" my-4 uppercase">
-            <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
-              Short Description:
-            </label>
-            <textarea
-              id="short_description"
-              className="block w-full h-36 px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              
-              name="short_description"
-              value={formData.short_description || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for cars */}
-           <div  className=" my-4 uppercase">
-            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              Seo Title:
-            </label>
-            <input
-              id="seo_title"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_title"
-              value={formData.seo_title || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for bathrooms */}
-           <div  className=" my-4 uppercase">
-            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
-              Seo Description:
-            </label>
-            <input
-              id="seo_description"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_description"
-              value={formData.seo_description || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for seo_schema */}
-           <div  className=" my-4 uppercase">
-            <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">
-              Seo Schema:
-            </label>
-            <input
-              id="seo_schema"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_schema"
-              value={formData.seo_schema || ""}
-              onChange={handleChange}
-            />
-          </div>
-           {/* for seo_keywords */}
-           <div  className=" my-4 uppercase">
-            <label className="block text-sm font-medium  my-2  text-gray-700" htmlFor="seo_keywords">
-              Seo Keywords:
-            </label>
-            <input
-              id="seo_keywords"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="seo_keywords"
-              value={formData.seo_keywords || ""}
-              onChange={handleChange}
-            />
-          </div>
-           
-        
+          <Link href="/dashboard/building">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="order_number">
+            Order Number:
+          </label>
+          <input
+            id="order_number"
+            className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order_number"
+            value={formData.order_number || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
+            Name:
+          </label>
+          <input
+            id="name"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="name"
+            value={formData.name || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
+            Image :
+          </label>
+          <input
+            id="image"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImageOnePreview);
+            }}
+          />
+          {imageOnePreview && (
+            <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
+          )}
+        </div>
+
+        {/* for bedroom */}
+        <div className=" my-4 ">
+          <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
+            Short Description:
+          </label>
+          <ReactQuill
+            className="bg-white text-black z-0 h-full"
+            modules={{
+              toolbar: [
+                [{ font: [] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["clean"],
+              ],
+            }}
+            value={editorValue}
+            theme="snow"
+            onChange={(value) => setEditorValue(value)}
+          />
+        </div>
+        {/* for cars */}
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
+            Seo Title:
+          </label>
+          <input
+            id="seo_title"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="seo_title"
+            value={formData.seo_title || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for bathrooms */}
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
+            Seo Description:
+          </label>
+          <input
+            id="seo_description"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="seo_description"
+            value={formData.seo_description || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for seo_schema */}
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">
+            Seo Schema:
+          </label>
+          <input
+            id="seo_schema"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="seo_schema"
+            value={formData.seo_schema || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for seo_keywords */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm font-medium  my-2  text-gray-700" htmlFor="seo_keywords">
+            Seo Keywords:
+          </label>
+          <input
+            id="seo_keywords"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="seo_keywords"
+            value={formData.seo_keywords || ""}
+            onChange={handleChange}
+          />
+        </div>
+
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          
         </div>
       </form>
     </div>
