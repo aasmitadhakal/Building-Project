@@ -1,5 +1,6 @@
+import axiosInstance from "@/app/utils/axiosInstance";
 import React, { useState, useEffect } from "react";
-import axiosInstance from "@/utils/axiosInstance";
+
 import { ToastContainer, toast } from "react-toastify";
 
 const CreateHomePage = () => {
