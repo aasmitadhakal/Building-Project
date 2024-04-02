@@ -4,6 +4,7 @@ import Link from "next/link";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);
@@ -22,7 +23,8 @@ const AboutUs = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("/api/aboutus");
+       const response = await axiosInstance.get("/api/aboutus");
+     
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);

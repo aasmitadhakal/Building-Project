@@ -93,7 +93,7 @@ const Sidenav = () => {
                 <Link href="/dashboard/services">
                   <span
                     className={`${
-                      pathname === "/dashboard/contact" ? "bg-blue-100 text-black" : "text-black"
+                      pathname === "/dashboard/services" ? "bg-blue-100 text-black" : "text-black"
                     } flex items-center uppercase rounded-md px-4 py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground`}
                   >
                     <i className=" ri-settings-2-line mr-4 text-xl"></i>

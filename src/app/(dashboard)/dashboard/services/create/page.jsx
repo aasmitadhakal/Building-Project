@@ -13,7 +13,7 @@ function Create() {
   const [order, setOrder] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [slug, setSlug] = useState("");
-  const [banner, setBanner] = useState("");
+  const [status, setStatus] = useState("");
   const [shortdescription, setShort_description] = useState("");
   const [seotitle, setSeo_title] = useState("");
   const [seodescription, setSeodescription] = useState("");
@@ -35,7 +35,7 @@ function Create() {
     formData.append("image", imageOne); // Append image file correctly
     // Append additional fields
     formData.append("slug", slug);
-    formData.append("banner", banner);
+    formData.append("status", "done");
     
     formData.append("description", editorValue);
     formData.append("short_description", shortdescription); // Use validated integer value
@@ -152,17 +152,17 @@ function Create() {
           <div className=" my-4 uppercase">
             <label
               className="block my-2 text-sm font-medium text-gray-700"
-              htmlFor="banner"
+              htmlFor="status"
             >
-              Banner:
+              Status:
             </label>
             <input
-              id="banner"
+              id="status"
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
               type="text"
-              name="banner"
-              value={banner}
-              onChange={(e) => setBanner(e.target.value)}
+              name="status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
             />
           </div>
        

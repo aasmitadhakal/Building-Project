@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,8 @@ const Update = ({ params }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/aboutus/${params.id}`);
+       const response = await axiosInstance.get(`/api/aboutus/${params.id}`);
+     
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
@@ -84,7 +86,8 @@ const Update = ({ params }) => {
         updatedData.append("image_two", formData.image_two);
       }
 
-      await axiosInstance.put(`/api/aboutus/${params.id}`, updatedData);
+       await axiosInstance.put(`/api/aboutus/${params.id}`, updatedData);
+     
 
       toast("Data edited successfully");
       router.push("/dashboard/aboutus");
