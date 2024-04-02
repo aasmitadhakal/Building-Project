@@ -22,7 +22,7 @@ function HomeBanner() {
             <div className="bg-black bg-opacity-75 p-8 md:w-1/2 md:mx-0 mx-4 rounded-lg text-white text-center">
               <h1 className=" mb-4 md:font-[500] md:text-[24px]  leading-[32px]">{card.title}</h1>
               <p className=" md:font-[800] font-[500] md:text-[40px] text-[35px] leading-[54px] ">{card.introduction}</p>
-              <Link href='' className=''><button className='mt-4 md:font-[600] font-[400] md:text-[20px] text-[10px] bg-white px-8 py-2 rounded text-[#4581AC] ring-[#4581AC] hover:bg-blues hover:text-white ring-2 leading-[22px]'>Contact Us</button></Link>
+              <Link href='' className=''><button className='mt-4 md:font-[600] font-[400] md:text-[20px] text-[10px] bg-white hover:bg-[#4581AC] px-8 py-2 rounded text-[#4581AC] ring-[#4581AC] hover:bg-blues hover:text-white ring-2 leading-[22px]'>Contact Us</button></Link>
             </div>
           </div>
         </div>

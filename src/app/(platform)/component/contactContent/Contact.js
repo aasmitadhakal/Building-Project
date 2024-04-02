@@ -1,6 +1,7 @@
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdContactPhone } from "react-icons/md";
+import { IoPeopleOutline } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 const banneerdata = [
   {
@@ -95,11 +96,19 @@ function Contact() {
           
            <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
-            <div className="">
-                <label className="text-slate-600 font-[400]">Enter your name</label>
-                <input type='text'
-                
-                className=" outline-none w-full rounded ">
+            <div className=" flex items-center  ">
+            <IoPeopleOutline />
+                <input type='name'
+                className=" appearance-none bg-transparent  w-full text-gray-700 border-b  border-gray-500 py-1 leading-tight focus:outline-none "  placeholder="Enter a Name">
+                    
+                </input>
+
+            </div>
+            <div className="  ">
+            <label className="text-slate-600 font-[400] ">  <IoPeopleOutline />Subject</label>
+          
+                <input type='name'
+                className=" appearance-none bg-transparent  w-full text-gray-700 border-b  border-gray-500 py-1 leading-tight focus:outline-none "  >
                     
                 </input>
 

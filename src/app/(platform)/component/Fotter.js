@@ -62,7 +62,7 @@ const Footer = () => {
         {sections.map((section, index) => (
           <div key={index}>
             <h6 className="font-[Montserrat] text-white font-[600] leading-[32px] text-[24px] pt-2">{section.title}</h6>
-            <ul>
+            <ul >
               {section.items.map((item, i) => (
                 <li key={i} className="py-1   font-[Montserrat]  font-[400] text-[16px] leading-[25px]">
                   {item}

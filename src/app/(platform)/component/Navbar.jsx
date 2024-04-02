@@ -37,12 +37,12 @@ function Navbar() {
           </Link>
           <div
             className="relative"
-            onMouseEnter={handleDropdown}
-            onMouseLeave={handleDropdown}
+            // onMouseEnter={handleDropdown}
+            // onMouseLeave={handleDropdown}
           >
-            <div className="hover:text-customblue cursor-pointer flex items-center justify-items-center">Design <IoIosArrowDown  className="ml-1"/></div>
+            <div onClick={handleDropdown} className="hover:text-customblue cursor-pointer flex items-center justify-items-center ">Design <IoIosArrowDown  onClick={handleDropdown} className="ml-1"/></div>
             {dropdownOpen && (
-              <div className="absolute top-full w-52 left-0 bg-white p-4 shadow-2xl rounded ">
+              <div className="absolute top-full w-52 left-0  bg-customblue mt-8 text-white p-4 shadow-2xl rounded ">
                 <div className="hover:text-blues">
                   <Link href="/design/singlehome">Single Home</Link>
                 </div>
@@ -88,7 +88,7 @@ function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-14 container mx-auto left-0 w-full mt-4 bg-white py-4 px-2"
+            className="md:hidden absolute top-16 container mx-auto left-0 w-full mt-4 bg-white py-4 px-2"
             style={{ zIndex: 1000 }}
           >
             <div className="flex flex-col items-center gap-4">
@@ -115,8 +115,8 @@ function Navbar() {
               >
                 <div className="hover:text-customblue cursor-pointer flex items-center justify-center">Design <IoIosArrowDown  className="ml-1"/></div>
                 {dropdownOpen && (
-                  <div className="absolute top-full w-52 left-0 bg-white p-4 shadow-2xl rounded ">
-                    <div className="hover:text-customblue">
+                  <div className="absolute top-full w-52 left-0 bg-customblue text-white p-4 shadow-2xl rounded ">
+                    <div className="hover:bg-customblue hover:text-white">
                       <Link href="/design/singlehome" >Single Home</Link>
                     </div>
                     <div>

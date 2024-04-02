@@ -36,16 +36,16 @@ function HomeDesignPart() {
         {/* Images */}
         <div className='mx-auto container grid md:grid-cols-3 md:px-0 px-4 gap-4'>
         {data1.map((datas, index) => (
-      <div key={index} className="image-container relative">
-    <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
-      {/* Overlay to darken the image */}
-      <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
-      <img src={datas.img} alt='img1' className="object-cover w-full h-[350px]"></img>
+    <div key={index} className="image-container relative">
+      <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
+        {/* Overlay to darken the image */}
+        <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
+        <img src={datas.img} alt='img1' className="object-cover w-full h-[350px] hover:translate-x-2 transition-transform ease-in duration-300"></img>
+      </div>
+      {/* Title with improved visibility */}
+      <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{datas.title}</p>
     </div>
-    {/* Title with improved visibility */}
-    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{datas.title}</p>
-  </div>
-))}
+  ))}
            {data2.map((datas, index) => (
       <div key={index} className="image-container relative">
     <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
