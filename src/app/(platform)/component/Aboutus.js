@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '@/utils/axiosInstance'; // Import axios for making API calls
+import axiosInstance from '@/app/utils/axiosInstance';
 
 function Aboutus() {
   const [data, setData] = useState([]);

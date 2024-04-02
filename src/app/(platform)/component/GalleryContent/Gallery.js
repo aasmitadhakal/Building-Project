@@ -1,7 +1,7 @@
 "use client"
 import { useState,useEffect } from 'react';
 import Fancybox from './Fancybox';
-import axiosInstance from '@/utils/axiosInstance';
+import axiosInstance from '@/app/utils/axiosInstance';
 // const data =[
 //     {
 //         "largeImageUrl": "https://lipsum.app/id/62/1600x1200",

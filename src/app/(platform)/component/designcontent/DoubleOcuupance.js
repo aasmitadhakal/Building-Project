@@ -3,7 +3,7 @@ import { FaCar } from "react-icons/fa";
 import { FaToilet } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa6";
 import { useState,useEffect } from "react";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/app/utils/axiosInstance";
 const banneerdata = [
   {
     image:

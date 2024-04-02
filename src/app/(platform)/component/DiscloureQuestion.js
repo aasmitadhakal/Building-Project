@@ -1,6 +1,7 @@
 "use client";
+import axiosInstance from '@/app/utils/axiosInstance';
 import { useState ,useEffect} from 'react';
-import axiosInstance from '@/utils/axiosInstance';
+// import axiosInstance from '@/utils/axiosInstance';
 import { GoPlus } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 // const data =[
