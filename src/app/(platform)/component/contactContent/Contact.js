@@ -99,7 +99,7 @@ function Contact() {
             <div className=" flex items-center  ">
             <IoPeopleOutline />
                 <input type='name'
-                className=" appearance-none bg-transparent  w-full text-gray-700 border-b  border-gray-500 py-1 leading-tight focus:outline-none "  placeholder="Enter a Name">
+                className=" appearance-none bg-transparent  w-full text-gray-700 border-b mr-4 focus:border-customblue pr-10 border-gray-500 py-1 leading-tight focus:outline-none "  placeholder="Enter a Name">
                     
                 </input>
 

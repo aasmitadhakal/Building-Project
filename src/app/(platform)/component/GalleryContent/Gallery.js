@@ -128,10 +128,11 @@ const Bannerdata = [
     },
   }}
 >
-    <div className='grid md:grid-cols-5 grid-cols-2 md:gap-5 gap-2 md:px-0 px-4 container  mb-28 mx-auto pt-12'>
-    {data.map((item, index) => (
+   
+<div className='grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-2 md:px-0 px-4 container mb-28 mx-auto pt-12'>
+          {data.map((item, index) => (
             <a key={index} data-fancybox="gallery" href={axiosInstance.defaults.baseURL + item.image} className='aspect-square'>
-              <img src={axiosInstance.defaults.baseURL + item.image} className='aspect-square'  alt={`Image ${index + 1}`} />
+              <img src={axiosInstance.defaults.baseURL + item.image} className='aspect-square' alt={`Image ${index + 1}`} style={{ width: '100%', height: '100%' }} />
             </a>
           ))}
         </div>
