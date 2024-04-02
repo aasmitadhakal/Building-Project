@@ -19,12 +19,10 @@ const Update = ({ params }) => {
     seo_description: "",
     seo_schema: "",
     seo_keywords: "",
-  
-    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
- 
+
   const router = useRouter();
 
   const fetchData = async () => {
@@ -33,8 +31,8 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        
-         setEditorValue(responseData.short_description || "");
+
+        setEditorValue(responseData.short_description || "");
         // setEditorValue(responseData.title || "");
         // setEditorValue(responseData.frontage || "");
         // setEditorValue(responseData.size || "");
@@ -42,7 +40,6 @@ const Update = ({ params }) => {
         // setEditorValue(responseData.price || "");
         // setEditorValue(responseData.storey_type || "");
         // setImageOnePreview(responseData.image || null);
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -93,13 +90,12 @@ const Update = ({ params }) => {
       updatedData.append("seo_description", formData.seo_description);
       updatedData.append("seo_schema", formData.seo_schema);
       updatedData.append("seo_keywords", formData.seo_keywords);
-    
-      
+
       updatedData.append("description", editorValue);
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
-     
+
       await axiosInstance.put(`/api/building/${params.id}`, updatedData);
 
       toast("Data updated successfully");

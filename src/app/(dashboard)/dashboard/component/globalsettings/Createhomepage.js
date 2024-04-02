@@ -57,6 +57,7 @@ const CreateHomePage = () => {
       const response = await axiosInstance.get(`/api/settings`);
       const responseData = response.data.data.data; // Extracting data from response
       setFormData(responseData);
+      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -77,8 +78,8 @@ const CreateHomePage = () => {
       if (response.status === 200) {
         // Update form data with the response data
         setFormData(response.data.data);
+        router.push("/dashboard/globalsettings");
         toast("Data saved successfully");
-        router.push(`/dashboard/globalsettings`);
       } else {
         toast("Error updating data");
       }
