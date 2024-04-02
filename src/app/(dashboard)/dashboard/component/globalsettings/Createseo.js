@@ -39,10 +39,22 @@ const CreateSeo = () => {
     fetchData();
   }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  
+
+  // Validation for string input
+  if (typeof value !== "string") {
+    // Display error message for non-string input
+    toast.error(`${name} must be a string`);
+    return;
+  }
+
+  // If input passes validations, update the form data
+  setFormData({ ...formData, [name]: value });
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

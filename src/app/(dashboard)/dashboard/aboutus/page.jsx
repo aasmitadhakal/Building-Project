@@ -23,8 +23,8 @@ const AboutUs = () => {
 
   const fetchData = async () => {
     try {
-       const response = await axiosInstance.get("/api/aboutus");
-     
+      const response = await axiosInstance.get("/api/aboutus");
+
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -46,6 +46,9 @@ const AboutUs = () => {
       console.error("Error deleting data:", error);
     }
   };
+  function formatColumnName(columnName) {
+    return columnName.replace(/_/g, " ");
+  }
 
   const columns = ["SN", "order", "title", "image_one", "image_two", "Actions"];
 
@@ -65,7 +68,7 @@ const AboutUs = () => {
               <tr>
                 {columns.map((column, index) => (
                   <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {column}
+                    {formatColumnName(column)}
                   </th>
                 ))}
               </tr>
