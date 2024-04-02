@@ -143,7 +143,7 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        {orderError && <p className="text-red-500">Please enter a valid order number</p>}
+        {orderError && <p className="text-red-500 text-sm -mt-4">* Please enter a valid number *</p>}
         <div className="my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="title">
             Title:

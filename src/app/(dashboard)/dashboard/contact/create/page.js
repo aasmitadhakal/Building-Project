@@ -46,14 +46,14 @@ function Create() {
       const response = await axiosInstance.post("/api/contact", formData);
 
       if (response.status === 200) {
-        toast("Post created successfully");
+        toast.success("Post created successfully");
         router.push("/dashboard/contact");
       } else {
         toast("Error creating post");
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast("Error creating post");
+      toast.error("Error creating post");
     }
   };
 
@@ -63,7 +63,7 @@ function Create() {
 
       <form onSubmit={handleFormSubmit} className="p-6">
         <div className=" flex justify-between my-2">
-          <h1 className="font-[600] text-[24px]  text-gray-700">Update Gallery</h1>
+          <h1 className="font-[600] text-[24px]  text-gray-700">Contact Us</h1>
 
           <Link href="/dashboard/contact">
             <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">

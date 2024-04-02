@@ -196,7 +196,7 @@ const Update = ({ params }) => {
             }}
             value={formData.description || ""}
             theme="snow"
-            // onChange={handleChange}
+            onChange={(value) => handleEditorChange(value)}
           />
         </div>
 

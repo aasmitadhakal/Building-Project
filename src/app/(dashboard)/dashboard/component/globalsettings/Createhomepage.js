@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 const CreateHomePage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setFormData] = useState({
     homeTitle: "",
     homeDescription: "",
@@ -57,7 +57,6 @@ const CreateHomePage = () => {
       const response = await axiosInstance.get(`/api/settings`);
       const responseData = response.data.data.data; // Extracting data from response
       setFormData(responseData);
-      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -76,16 +75,13 @@ const CreateHomePage = () => {
     try {
       const response = await axiosInstance.put(`/api/settings/u/${formData.homeTitle}`, formData);
       if (response.status === 200) {
-        // Update form data with the response data
-        setFormData(response.data.data);
-        router.push("/dashboard/globalsettings");
-        toast("Data saved successfully");
+        toast.success("Data saved successfully");
       } else {
-        toast("Error updating data");
+        toast.error("Error updating data");
       }
     } catch (error) {
       console.error("Error updating item:", error);
-      toast("Error updating data");
+      toast.error("Error updating data");
     }
   };
 
@@ -96,22 +92,23 @@ const CreateHomePage = () => {
         <p className="text-2xl font-bold mb-4">Home</p>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
-            {formData && Object.keys(formData).map((key, index) => (
-              <div key={index} className="mb-4">
-                <label htmlFor={key} className="block text-medium mb-2">
-                  {formatLabel(key)}
-                </label>
-                <input
-                  type="text"
-                  name={key}
-                  value={formData[key]}
-                  onChange={handleChange}
-                  placeholder={key}
-                  className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                />
-                {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
-              </div>
-            ))}
+            {formData &&
+              Object.keys(formData).map((key, index) => (
+                <div key={index} className="mb-4">
+                  <label htmlFor={key} className="block text-medium mb-2">
+                    {formatLabel(key)}
+                  </label>
+                  <input
+                    type="text"
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    placeholder={key}
+                    className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                  />
+                  {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
+                </div>
+              ))}
           </div>
           <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
             Update

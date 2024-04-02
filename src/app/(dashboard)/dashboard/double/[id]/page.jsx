@@ -14,17 +14,15 @@ const Update = ({ params }) => {
     title: "",
     // description: "",
     image: "",
-    image_two:"",
+    image_two: "",
     frontage: "",
-    size : "",
+    size: "",
     bedroom: "",
     cars: "",
     bathrooms: "",
     price: "",
     floor_plan: "",
     storey_type: "",
-    
-    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
@@ -46,7 +44,6 @@ const Update = ({ params }) => {
         setEditorValue(responseData.storey_type || "");
         setImageOnePreview(responseData.image || null);
         setImageTwoPreview(responseData.image_two || null);
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -60,7 +57,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-       handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+      handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -113,20 +110,18 @@ const Update = ({ params }) => {
       updatedData.append("bedroom", formData.bedroom);
       updatedData.append("cars", formData.cars);
       updatedData.append("bathrooms", formData.bathrooms);
-     
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
-
       updatedData.append("description", editorValue);
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
-     
+
       if (formData.image_two) {
         updatedData.append("image_two", formData.image_two);
       }
-     
+
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
 
       toast("Data edited successfully");
@@ -199,7 +194,7 @@ const Update = ({ params }) => {
             }}
             value={formData.description || ""}
             theme="snow"
-            // onChange={handleChange}
+            onChange={(value)=>handleEditorChange(value)}
           />
         </div>
 

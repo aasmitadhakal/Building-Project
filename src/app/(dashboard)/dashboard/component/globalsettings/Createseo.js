@@ -61,16 +61,15 @@ const handleChange = (e) => {
     try {
       const response = await axiosInstance.put(`/api/settings/u/${formData}`, formData);
       if (response.status === 200) {
-        // Update form data with the response data
-        // setFormData(response.data.data);
-        toast("Data saved successfully");
-        router.push("/dashboard/globalsettings");
+        
+        toast.success("Data saved successfully");
+       
       } else {
-        toast("Error updating data");
+        toast.error("Error updating data");
       }
     } catch (error) {
       console.error("Error updating item:", error);
-      toast("Error updating data");
+      toast.error("Error updating data");
     }
   };
 
