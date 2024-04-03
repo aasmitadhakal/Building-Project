@@ -1,23 +1,42 @@
 "use client";
 import React, { useState } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Link from "next/link";
+
 function Create() {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [image, setImage] = useState(null);
   const [editorValue, setEditorValue] = useState("");
-  const [short_description, setshort_description] = useState("");
+  const [short_description, setShortDescription] = useState("");
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
 
   const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation for Order field
+    if (!order.trim() || isNaN(order)) {
+      setOrderError(true);
+      toast.error("Please enter a valid numeric value for Order");
+      return;
+    } else {
+      setOrderError(false);
+    }
+
+    // Validation for Title field
+    if (!title.trim() || !/^[a-zA-Z\s]*$/.test(title)) {
+      setTitleError(true);
+      toast.error("Please enter a valid string value for Title");
+      return;
+    } else {
+      setTitleError(false);
+    }
 
     // Create FormData object
     const formData = new FormData();
@@ -42,6 +61,7 @@ function Create() {
       toast("Error creating post");
     }
   };
+
   return (
     <div className="my-12   bg-white rounded-md  shadow-xl">
       <ToastContainer />
@@ -63,12 +83,18 @@ function Create() {
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border ${
+              orderError ? "border-red-500" : "border-gray-200"
+            } rounded-md focus:outline-none focus:border-blue-500`}
             type="text"
             name="order"
             value={order}
-            onChange={(e) => setOrder(e.target.value)}
+            onChange={(e) => {
+              setOrder(e.target.value);
+              setOrderError(false); // Reset error when input changes
+            }}
           />
+          {orderError && <p className="text-red-500 text-sm">* Please enter a valid numeric value for Order * </p>}
         </div>
         <div className=" my-4 ">
           <label className="block my-2   uppercase text-sm font-medium text-gray-700" htmlFor="title">
@@ -76,25 +102,31 @@ function Create() {
           </label>
           <input
             id="title"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border ${
+              titleError ? "border-red-500" : "border-gray-200"
+            } rounded-md focus:outline-none focus:border-blue-500`}
             type="text"
             name="name"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setTitleError(false); // Reset error when input changes
+            }}
           />
+          {titleError && <p className="text-red-500 text-sm">* Please enter a valid string value for Title * </p>}
         </div>
 
         <div className=" my-4 ">
           <label className="block my-2   uppercase text-sm font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
-          <input
+          <textarea
             id="short_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="name"
             value={short_description}
-            onChange={(e) => setshort_description(e.target.value)}
+            onChange={(e) => setShortDescription(e.target.value)}
           />
         </div>
 

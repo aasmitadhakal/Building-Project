@@ -11,29 +11,73 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 function Create() {
   const [title, setTitle] = useState("");
   const [map, setMap] = useState("");
-  // const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
-  // const [banner_image, setbanner_image] = useState(null);
-  const [short_description, setshort_description] = useState("");
+  const [short_description, setShortDescription] = useState("");
   const [email, setEmail] = useState("");
-  const [contact, setcontact] = useState("");
-  const [location, setlocation] = useState("");
-  const [seo_title, setseo_title] = useState("");
-  const [seo_keyword, setseo_keyword] = useState("");
-  // const[description,setDescription]=useState("");
+  const [contact, setContact] = useState("");
+  const [location, setLocation] = useState("");
+  const [seo_title, setSeoTitle] = useState("");
+  const [seo_keyword, setSeoKeyword] = useState("");
+
+  const [titleError, setTitleError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [contactError, setContactError] = useState("");
+  const [seoTitleError, setSeoTitleError] = useState("");
+  const [seoKeywordError, setSeoKeywordError] = useState("");
+  
 
   const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Validation
+    let isValid = true;
+
+    if (!/^[a-zA-Z\s]+$/.test(title)) {
+      setTitleError("Please enter a valid string value for Title");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
+
+    if (!/^\d+$/.test(contact)) {
+      setContactError("Please enter a valid numeric value for Contact");
+      isValid = false;
+    } else {
+      setContactError("");
+    }
+
+    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+      setEmailError("Please enter a valid email address");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (/^\d+$/.test(seo_title)) {
+      setSeoTitleError("Seo Title should not contain numeric values");
+      isValid = false;
+    } else {
+      setSeoTitleError("");
+    }
+
+    if (/^\d+$/.test(seo_keyword)) {
+      setSeoKeywordError("Seo Keyword should not contain numeric values");
+      isValid = false;
+    } else {
+      setSeoKeywordError("");
+    }
+
+    if (!isValid) {
+      return;
+    }
+
     // Create FormData object
     const formData = new FormData();
     formData.append("title", title);
     formData.append("map", map);
     formData.append("description", editorValue);
-    // formData.append("order", order);
-    // formData.append("banner_image", banner_image);
     formData.append("short_description", short_description);
     formData.append("email", email);
     formData.append("contact", contact);
@@ -58,12 +102,12 @@ function Create() {
   };
 
   return (
-    <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
+    <div className="my-12 bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
       <form onSubmit={handleFormSubmit} className="p-6">
-        <div className=" flex justify-between my-2">
-          <h1 className="font-[600] text-[24px]  text-gray-700">Contact Us</h1>
+        <div className="flex justify-between my-2">
+          <h1 className="font-[600] text-[24px] text-gray-700">Contact Us</h1>
 
           <Link href="/dashboard/contact">
             <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
@@ -72,39 +116,45 @@ function Create() {
           </Link>
         </div>
 
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="title">
             Title:
           </label>
           <input
             id="title"
-            className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              titleError ? "border-red-500" : ""
+            }`}
             type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {titleError && <p className="text-red-500 text-sm">* {titleError} *</p>}
         </div>
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="email">
             Email:
           </label>
           <input
             id="email"
-            className="block border-gray-200  w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              emailError ? "border-red-500" : ""
+            }`}
             type="text"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {emailError && <p className="text-red-500 text-sm">* {emailError} *</p>}
         </div>
 
-        <div className="mb-4 my-4 ">
+        <div className="mb-12 my-4">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
-            className="bg-white text-black z-0  border-gray-200 h-64"
+            className="bg-white text-black z-0 border-gray-200 h-64"
             modules={{
               toolbar: [
                 [{ font: [] }],
@@ -124,84 +174,98 @@ function Create() {
           />
         </div>
 
-        <div className=" my-4 uppercase mt-20">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
           <input
             id="short_description"
-            className="block w-full  border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              short_description ? "border-red-500" : ""
+            }`}
             type="text"
             name="short_description"
             value={short_description}
-            onChange={(e) => setshort_description(e.target.value)}
+            onChange={(e) => setShortDescription(e.target.value)}
           />
         </div>
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_keyword">
             Seo Keyword:
           </label>
           <input
             id="seo_keyword"
-            className="block w-full  border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              seoKeywordError ? "border-red-500" : ""
+            }`}
             type="text"
             name="seo_keyword"
             value={seo_keyword}
-            onChange={(e) => setseo_keyword(e.target.value)}
+            onChange={(e) => setSeoKeyword(e.target.value)}
           />
+          {seoKeywordError && <p className="text-red-500 text-sm">* {seoKeywordError} *</p>}
         </div>
 
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="contact">
             Contact:
           </label>
           <input
             id="contact"
-            className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              contactError ? "border-red-500" : ""
+            }`}
             type="text"
             name="contact"
             value={contact}
-            onChange={(e) => setcontact(e.target.value)}
+            onChange={(e) => setContact(e.target.value)}
           />
+          {contactError && <p className="text-red-500 text-sm">* {contactError} *</p>}
         </div>
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="location">
             Location:
           </label>
           <input
             id="location"
-            className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 
+            }`}
             type="text"
             name="location"
             value={location}
-            onChange={(e) => setlocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value)}
           />
+         
         </div>
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_title">
             Seo Title:
           </label>
           <input
             id="seo_title"
-            className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              seoTitleError ? "border-red-500" : ""
+            }`}
             type="text"
             name="seo_title"
             value={seo_title}
-            onChange={(e) => setseo_title(e.target.value)}
+            onChange={(e) => setSeoTitle(e.target.value)}
           />
+          {seoTitleError && <p className="text-red-500 text-sm">* {seoTitleError} *</p>}
         </div>
-        <div className=" my-4 uppercase">
+        <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
             Map:
           </label>
           <input
             id="map"
-            className="block  border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 `}
             type="text"
             name="map"
             value={map}
             onChange={(e) => setMap(e.target.value)}
           />
+         
         </div>
 
         <div className="flex gap-2 mt-2">
