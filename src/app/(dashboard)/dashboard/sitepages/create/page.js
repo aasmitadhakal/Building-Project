@@ -9,20 +9,18 @@ import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 function Create() {
- 
   const [order, setOrder] = useState("");
-   const [imageOne, setImageOne] = useState(null);
+  const [imageOne, setImageOne] = useState(null);
   //  const[link,setLink]=useState();
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [editorValue, setEditorValue] = useState("");
   // const [meta_keywords, setmeta_keywords] = useState("");
- // const [shortdescription, setShort_description] = useState("");
+  // const [shortdescription, setShort_description] = useState("");
   // const [seotitle, setSeo_title] = useState("");
- // const [meta_description, setmeta_description] = useState("");
+  // const [meta_description, setmeta_description] = useState("");
   const router = useRouter();
 
-  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,13 +35,13 @@ function Create() {
     // formData.append("short_description",shortdescription); // Use validated integer value
     // formData.append("seo_title", seotitle);
     // formData.append("meta_description", meta_description); // Use validated integer value
-   
+
     // formData.append("meta_keywords", setmeta_keywords);
-  
+
     try {
       // Send data to the server using axiosInstance with authorization header
       const response = await axiosInstance.post("/api/pages", formData);
-  
+
       if (response.status === 200) {
         toast("Post created successfully");
         router.push("/dashboard/sitepages");
@@ -59,72 +57,74 @@ function Create() {
   return (
     <div className="my-12 bg-white rounded-md  shadow-xl">
       <ToastContainer />
-      
-      <form onSubmit={handleFormSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Create Pages</h1>
-        
-             <Link href="/dashboard/sitepages">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
 
-        {/* Existing form fields */}
-       
-          <div>
-            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={order}
-              onChange={(e) => setOrder(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="name">
-              name:
-            </label>
-            <input
-              id="name"
-              className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="title">
-              title:
-            </label>
-            <input
-              id="title"
-              className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="image">
-              Image:
-            </label>
-            <input
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
-            />
-          </div>
+      <form onSubmit={handleFormSubmit} className="p-6">
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Create Pages</h1>
+
+          <Link href="/dashboard/sitepages">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+
         
+
+        <div>
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={order}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
+            Name:
+          </label>
+          <input
+            id="name"
+            className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="title">
+            Title:
+          </label>
+          <input
+            id="title"
+            className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
+            Image:
+          </label>
+          <input
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => setImageOne(e.target.files[0])} 
+          />
+        </div>
+
         <div className="mb-4">
-          <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
@@ -147,9 +147,8 @@ function Create() {
             onChange={(value) => setEditorValue(value)}
           />
         </div>
-        
-        
-          {/* <div>
+
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="short_description">
               Short_description:
             </label>
@@ -162,7 +161,7 @@ function Create() {
               onChange={(e) => setShort_description(e.target.value)}
             />
           </div> */}
-          {/* <div>
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="seo_title">
               Seo_title:
             </label>
@@ -175,8 +174,8 @@ function Create() {
               onChange={(e) => setSeo_title(e.target.value)}
             />
           </div> */}
-        
-          {/* <div>
+
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="meta_description">
             meta_description
             </label>
@@ -189,7 +188,7 @@ function Create() {
               onChange={(e) => setmeta_description(e.target.value)}
             />
           </div> */}
-           {/* <div>
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="link">
               link:
             </label>
@@ -202,10 +201,8 @@ function Create() {
               onChange={(e) => setLink(e.target.value)}
             />
           </div> */}
-        
-      
-       
-          {/* <div>
+
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="meta_keywords">
               meta_keywords:
             </label>
@@ -218,7 +215,7 @@ function Create() {
               onChange={(e) => setmeta_keywords(e.target.value)}
             />
           </div> */}
-          {/* <div>
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="image">
               Image:
             </label>
@@ -230,7 +227,7 @@ function Create() {
               onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
             />
           </div> */}
-          {/* <div>
+        {/* <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="seo_schema">
               seo_keywords:
             </label>
@@ -243,12 +240,11 @@ function Create() {
               onChange={(e) => set(e.target.value)}
             />
           </div> */}
-      
+
         <div className="flex gap-2 md:mt-20 mt-40">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-         
         </div>
       </form>
     </div>

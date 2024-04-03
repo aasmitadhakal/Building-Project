@@ -135,7 +135,7 @@ const Update = ({ params }) => {
           </label>
           <input
             id="title"
-            className="block w-full my-2 uppercase px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className="block w-full my-2  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="title"
             value={formData.title || ""}
@@ -144,7 +144,7 @@ const Update = ({ params }) => {
         </div>
 
         <div className=" my-4 ">
-          <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
@@ -173,7 +173,7 @@ const Update = ({ params }) => {
           </label>
           <input
             id="name"
-            className="block my-2 uppercase w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="name"
             value={formData.name || ""}
@@ -182,7 +182,7 @@ const Update = ({ params }) => {
         </div>
 
         <div className=" my-4 ">
-          <label className="block my-2 uppercase text-sm font-medium text-gray-700" htmlFor="image">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
             Image :
           </label>
           <input

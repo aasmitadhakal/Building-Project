@@ -42,7 +42,7 @@ const Page = () => {
       console.error("Error deleting data:", error);
     }
   };
-  const columns = ["SN", "name", "image","short_description", "Actions"];
+  const columns = ["SN", "name", "image", "Actions"];
 
   return (
     <>
