@@ -32,22 +32,22 @@ function Create() {
     const bedOderValue = parseInt(order);
     const carsValue = parseInt(cars);
     const priceValue = parseInt(price);
-    if (isNaN(bedOderValue)) {
-      toast("Please enter valid integer values for Ordervalue");
-      return; // Stop form submission if validation fails
-    }
-    if (isNaN(bedroomValue)) {
-      toast("Please enter valid integer values for Bedroom");
-      return; // Stop form submission if validation fails
-    }
-    if (isNaN(carsValue)) {
-      toast("Please enter valid integer values for Car");
-      return; // Stop form submission if validation fails
-    }
-    if (isNaN(priceValue)) {
-      toast("Please enter valid integer values for Price");
-      return; // Stop form submission if validation fails
-    }
+    // if (isNaN(bedOderValue)) {
+    //   toast("Please enter valid integer values for Ordervalue");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(bedroomValue)) {
+    //   toast("Please enter valid integer values for Bedroom");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(carsValue)) {
+    //   toast("Please enter valid integer values for Car");
+    //   return; // Stop form submission if validation fails
+    // }
+    // if (isNaN(priceValue)) {
+    //   toast("Please enter valid integer values for Price");
+    //   return; // Stop form submission if validation fails
+    // }
 
     // Create FormData object
     const formData = new FormData();
@@ -159,7 +159,20 @@ function Create() {
             onChange={(e) => setFrontage(e.target.value)}
           />
         </div>
-
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            Floor Plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={floorPlan}
+            onChange={(e)=>setFloorPlan(e.target.value)}
+          />
+        </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="size">
             Size:

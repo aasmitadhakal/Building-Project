@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import axios from "axios";
+
+import Link from "next/link";
+import axiosInstance from "@/app/utils/axiosInstance";
 
 const CreateGlobalSettings = () => {
   const [formData, setFormData] = useState({
+    id: "",
     imageFooter: "",
     imageMain: "",
     favIcon: "",
@@ -12,87 +15,67 @@ const CreateGlobalSettings = () => {
     siteCopyright: "",
   });
 
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const fetchData = async () => {
     try {
-      // const response = await axios.post("/api/create", formData);
-      console.log(formData.siteCopyright);
-      // Handle success or show a message to the user
+      const response = await axiosInstance.get(`api/global`);
+      const data = response.data.data[0]; // Assuming there's only one global settings data
+      if (response.status === 200) {
+        setFormData({
+          id: data.id,
+          imageFooter: data.footer || "",
+          imageMain: data.logo || "",
+          favIcon: data.icon || "",
+          siteInformation: data.info || "",
+          siteCopyright: data.copyright || "",
+        });
+      }
     } catch (error) {
-      console.error("Error creating item:", error);
-      // Handle error or show an error message to the user
+      console.error("Error fetching data:", error);
     }
   };
-
-  // Array of input fields
-  const inputFields = [
-    { name: "imageFooter", type: "file", placeholder: "Choose Site Footer Logo", label: "Site Footer Logo", required: true },
-    { name: "imageMain", type: "file", placeholder: "Choose Site main Logo", label: "Site Main Logo", required: true },
-    { name: "favIcon", type: "file", placeholder: "Choose Fav Icon", label: "Fav Icon", required: true },
-    { name: "siteInformation", type: "textarea", placeholder: "Site information", label: "Site information", required: true },
-    { name: "siteCopyright", type: "textarea", placeholder: "Site Copyright", label: "Site Copyright", required: true },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="px-5 rounded-md w-full ">
       <div>
-        <p className="text-2xl font-bold mb-4">Global Settings</p>
-        <form onSubmit={handleSubmit}>
-          {inputFields.map((field, index) => (
-            <div key={index} className="mb-4">
-              {field.type === "file" ? (
-                <div className="">
-                  <label htmlFor={field.name} className="block text-medium mb-2">
-                    {field.label}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="file"
-                      id={field.name}
-                      name={field.name}
-                      onChange={handleChange}
-                      className="absolute inset-0 w-1/2 h-full opacity-0"
-                    />
-                    <label
-                      htmlFor={field.name}
-                      className=" w-full h-full px-4 py-2 border rounded-md flex items-center justify-center focus:outline-none focus:border-blue-500"
-                    >
-                      {field.placeholder}
-                    </label>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <label htmlFor={field.name} className="block text-medium mb-2">
-                    {field.placeholder}
-                  </label>
-                  <textarea
-                    id={field.name}
-                    name={field.name}
-                    value={formData[field.name]}
-                    onChange={handleChange}
-                    placeholder={field.placeholder}
-                    className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                    rows="5"
-                  />
-                </>
-              )}
-              {errors[field.name] && <p className="text-red-500 text-sm">{errors[field.name]}</p>}
-            </div>
-          ))}
-
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Create
-          </button>
-        </form>
+        <div className="flex justify-between">
+          <p className="text-2xl font-bold mb-4">Global Settings</p>
+          <div>
+            <Link href={`/dashboard/globalsettings/${formData.id}`}>
+              <button className="  bg-indigo-500 hover:bg-indigo-700 px-4 py-1 text-white rounded-md">
+                <i className="ri-file-edit-line text-xl "></i> Edit
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          <div className="shadow-md">
+            <h2 className="text-lg pb-1 ">Site Footer Logo</h2>
+            <img src={`${axiosInstance.defaults.baseURL}${formData.imageFooter}`} alt="" className="h-56 rounded-md" />
+          </div>
+          <div className="shadow-md">
+            <h2 className="text-lg pb-1 ">Site Main Logo</h2>
+            <img src={`${axiosInstance.defaults.baseURL}${formData.imageMain}`} alt="" className="h-56 rounded-md" />
+          </div>
+          <div className="shadow-md">
+            <h2 className="text-lg pb-1 ">Fav Icon</h2>
+            <img src={`${axiosInstance.defaults.baseURL}${formData.favIcon}`} alt="" className="h-56 rounded-md" />
+          </div>
+        </div>
+        <div className="mt-5">
+          <div className="border rounded-md px-4 py-2 border-gray-600">
+            <h4 className="font-semibold text-xl py-2">Site information</h4>
+            <p>{formData.siteInformation}</p>
+          </div>
+        </div>
+        <div className="mt-5">
+          <div className="border rounded-md px-4 py-2 border-gray-600">
+            <h2 className="font-semibold text-xl py-2">Site Copyright</h2>
+            <p>{formData.siteCopyright}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

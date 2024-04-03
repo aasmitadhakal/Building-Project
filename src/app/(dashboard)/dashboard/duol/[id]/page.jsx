@@ -36,12 +36,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setEditorValue(responseData.title || "");
-        setEditorValue(responseData.frontage || "");
-        setEditorValue(responseData.size || "");
-        setEditorValue(responseData.bedroom || "");
-        setEditorValue(responseData.price || "");
-        setEditorValue(responseData.storey_type || "");
+        
         setImageOnePreview(responseData.image || null);
         setImageTwoPreview(responseData.image_two || null);
       }
@@ -112,7 +107,8 @@ const Update = ({ params }) => {
       updatedData.append("bathrooms", formData.bathrooms);
 
       updatedData.append("price", formData.price);
-      updatedData.append("floor_plan", formData.floor_plan);
+      updatedData.append("floor_plan", formData.floor_plan); 
+
       updatedData.append("storey_type", formData.storey_type);
 
       updatedData.append("description", editorValue);
@@ -267,7 +263,7 @@ const Update = ({ params }) => {
         {/* for bedroom */}
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            bedroom:
+            Bedroom:
           </label>
           <input
             id="bedroom"
@@ -275,6 +271,20 @@ const Update = ({ params }) => {
             type="text"
             name="bedroom"
             value={formData.bedroom || ""}
+            onChange={handleChange}
+          />
+        </div>
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            Floor Plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={formData.floor_plan}
             onChange={handleChange}
           />
         </div>

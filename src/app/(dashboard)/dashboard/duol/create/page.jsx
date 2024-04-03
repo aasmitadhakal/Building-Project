@@ -222,6 +222,20 @@ function Create() {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            Floor Plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={floorPlan}
+            onChange={(e) => setFloorPlan(e.target.value)}
+          />
+        </div>
 
         <div className="grid md:grid-cols-2 grid-cols-1">
           {" "}

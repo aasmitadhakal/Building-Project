@@ -34,7 +34,7 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-        // setEditorValue(responseData.description || "");
+        setEditorValue(responseData.description || "");
         // setEditorValue(responseData.title || "");
         // setEditorValue(responseData.frontage || "");
         // setEditorValue(responseData.size || "");
@@ -59,11 +59,13 @@ const Update = ({ params }) => {
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
+       
       }));
     } else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
+        description: editorValue,
       }));
     }
   };
@@ -92,7 +94,7 @@ const Update = ({ params }) => {
       updatedData.append("bedroom", formData.bedroom);
       updatedData.append("cars", formData.cars);
       updatedData.append("bathrooms", formData.bathrooms);
-      updatedData.append("description", formData.description);
+      updatedData.append("description", editorValue);
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
@@ -144,7 +146,7 @@ const Update = ({ params }) => {
             type="text"
             name="title"
             value={formData.title || ""}
-            onChange={handleChange}
+            onChange={(value) => handleEditorChange(value)}
           />
         </div>
 
@@ -167,9 +169,9 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-            value={formData.description || ""}
+            value={editorValue}
             theme="snow"
-            // onChange={handleChange}
+            onChange={(value) => setEditorValue(value)}
           />
         </div>
 
@@ -179,7 +181,6 @@ const Update = ({ params }) => {
           </label>
           <input
             id="image"
-            
             type="file"
             name="image"
             onChange={(e) => {

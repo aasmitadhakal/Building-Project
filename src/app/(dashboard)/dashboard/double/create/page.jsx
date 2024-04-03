@@ -142,6 +142,20 @@ function Create() {
             onChange={(e) => setFrontage(e.target.value)}
           />
         </div>
+        {/* for floor_plan */}
+        <div className=" my-4 uppercase">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
+            Floor Plan:
+          </label>
+          <input
+            id="floor_plan"
+            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="floor_plan"
+            value={floorPlan}
+            onChange={(e) => setFloorPlan(e.target.value)}
+          />
+        </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="size">
             Size:
@@ -252,7 +266,6 @@ function Create() {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create
           </button>
-         
         </div>
       </form>
     </div>
