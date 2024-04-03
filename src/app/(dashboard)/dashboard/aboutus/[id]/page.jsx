@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
@@ -82,15 +81,14 @@ const Update = ({ params }) => {
       setOrderError(false);
     }
 
-    // Validate title field
-    if (!formData.title.trim()) {
+    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
       setTitleError(true);
     } else {
       setTitleError(false);
     }
 
     // Check if there are any validation errors
-    if (isNaN(formData.order) || !formData.title.trim()) {
+    if (isNaN(formData.order) || !formData.title.trim() || !formData.title.match(/^\D+$/)) {
       toast.error("Please fill in all required fields correctly");
       return;
     }
@@ -143,7 +141,7 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        {orderError && <p className="text-red-500 text-sm -mt-4">* Please enter a valid number *</p>}
+        {orderError && <p className="text-red-500 text-sm -mt-3">* Please enter a valid number *</p>}
         <div className="my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="title">
             Title:
@@ -159,7 +157,7 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        {titleError && <p className="text-red-500">Please enter a title</p>}
+        {titleError && <p className="text-red-500 text-sm -mt-3">* Please enter a valid title *</p>}
         <div className="my-4">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="description">
             Description:

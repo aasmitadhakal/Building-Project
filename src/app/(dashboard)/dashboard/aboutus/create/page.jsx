@@ -19,61 +19,62 @@ function Create() {
   const [imageTwoError, setImageTwoError] = useState(false);
   const router = useRouter();
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+ const handleFormSubmit = async (e) => {
+   e.preventDefault();
 
-    if (!title) {
-      setTitleError(true);
-    } else {
-      setTitleError(false);
-    }
+   if (!title.trim() || !title.match(/^\D+$/)) {
+     setTitleError(true);
+   } else {
+     setTitleError(false);
+   }
 
-    if (!imageOne) {
-      setImageOneError(true);
-    } else {
-      setImageOneError(false);
-    }
+   if (!imageOne) {
+     setImageOneError(true);
+   } else {
+     setImageOneError(false);
+   }
 
-    if (!imageTwo) {
-      setImageTwoError(true);
-    } else {
-      setImageTwoError(false);
-    }
+   if (!imageTwo) {
+     setImageTwoError(true);
+   } else {
+     setImageTwoError(false);
+   }
 
-    if (isNaN(order)) {
-      setOrderError(true);
-    } else {
-      setOrderError(false);
-    }
+   if (isNaN(order.trim()) || !order.trim()) {
+     setOrderError(true);
+   } else {
+     setOrderError(false);
+   }
 
-    if (!title || !imageOne || !imageTwo || isNaN(order)) {
-      toast.error("Please fill in all required fields correctly");
-      return;
-    }
+   if (!title.match(/^\D+$/) || !title.trim() || !imageOne || !imageTwo || isNaN(order.trim()) || !order.trim()) {
+     toast.error("Please fill in all required fields correctly");
+     return;
+   }
 
-    // Create FormData object
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", editorValue);
-    formData.append("order", order);
-    formData.append("image_one", imageOne);
-    formData.append("image_two", imageTwo);
+   // Create FormData object
+   const formData = new FormData();
+   formData.append("title", title);
+   formData.append("description", editorValue);
+   formData.append("order", order.trim());
+   formData.append("image_one", imageOne);
+   formData.append("image_two", imageTwo);
 
-    try {
-      // Send data to the server using axiosInstance with authorization header
-      const response = await axiosInstance.post("/api/aboutus", formData);
+   try {
+     // Send data to the server using axiosInstance with authorization header
+     const response = await axiosInstance.post("/api/aboutus", formData);
 
-      if (response.status === 200) {
-        toast("Post created successfully");
-        router.push("/dashboard/aboutus");
-      } else {
-        toast("Error creating post");
-      }
-    } catch (error) {
-      console.error("Error creating post:", error);
-      toast.error("Error creating post");
-    }
-  };
+     if (response.status === 200) {
+       toast("Post created successfully");
+       router.push("/dashboard/aboutus");
+     } else {
+       toast("Error creating post");
+     }
+   } catch (error) {
+     console.error("Error creating post:", error);
+     toast.error("Error creating post");
+   }
+ };
+
 
   return (
     <div className="my-12 bg-white rounded-md font-[karla] shadow-xl">
@@ -99,6 +100,7 @@ function Create() {
             value={order}
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className="my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="title">
@@ -114,6 +116,7 @@ function Create() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {titleError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
 
         <div className="h-64 my-4">
@@ -156,7 +159,7 @@ function Create() {
                 setImageOneError(false);
               }}
             />
-            {imageOneError && <p className="text-red-500">Please upload Image One</p>}
+            {imageOneError && <p className="text-red-500 text-sm">* Please upload Image One *</p>}
           </div>
           <div className="uppercase my-2">
             <label className="block text-sm font-medium my-2 " htmlFor="image_two">
@@ -171,7 +174,7 @@ function Create() {
                 setImageTwoError(false);
               }}
             />
-            {imageTwoError && <p className="text-red-500">Please upload Image Two</p>}
+            {imageTwoError && <p className="text-red-500 text-sm">* Please upload Image Two *</p>}
           </div>
         </div>
 

@@ -5,10 +5,11 @@ import axios from "axios";
 
 const CreateGlobalSettings = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    order: "",
-    shortDescription: "",
-    image: "",
+    imageFooter: "",
+    imageMain: "",
+    favIcon: "",
+    siteInformation: "",
+    siteCopyright: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -18,52 +19,26 @@ const CreateGlobalSettings = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name) {
-      errors.name = "Name is required";
-    }
-    if (!formData.order) {
-      errors.order = "Order is required";
-    } else if (isNaN(formData.order)) {
-      errors.order = "Order must be a number";
-    }
-
-    if (!formData.shortDescription) {
-      errors.shortDescription = "Short Description is required";
-    }
-    if (!formData.image) {
-      errors.image = "Image is required";
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        const formDataWithEditor = {
-          ...formData,
-        };
 
-        const response = await axios.post("/api/create", formDataWithEditor);
-        // console.log(formDataWithEditor);
-        // Handle success or show a message to the user
-      } catch (error) {
-        console.error("Error creating item:", error);
-        // Handle error or show an error message to the user
-      }
+    try {
+      // const response = await axios.post("/api/create", formData);
+      console.log(formData.siteCopyright);
+      // Handle success or show a message to the user
+    } catch (error) {
+      console.error("Error creating item:", error);
+      // Handle error or show an error message to the user
     }
   };
 
   // Array of input fields
   const inputFields = [
-    { name: "image", type: "file", placeholder: "Choose Site Footer Logo", label: "Site Footer Logo", required: true },
-    { name: "image", type: "file", placeholder: "Choose Site main Logo", label: "Site Main Logo", required: true },
-    { name: "image", type: "file", placeholder: "Choose Fav Icon", label: "Fav Icon", required: true },
-    { name: "siteinformation", type: "textarea", placeholder: "Site information", label: "Site information", required: true },
-    { name: "sitecopyright", type: "textarea", placeholder: "Site Copyright", label: "Site Copyright", required: true },
+    { name: "imageFooter", type: "file", placeholder: "Choose Site Footer Logo", label: "Site Footer Logo", required: true },
+    { name: "imageMain", type: "file", placeholder: "Choose Site main Logo", label: "Site Main Logo", required: true },
+    { name: "favIcon", type: "file", placeholder: "Choose Fav Icon", label: "Fav Icon", required: true },
+    { name: "siteInformation", type: "textarea", placeholder: "Site information", label: "Site information", required: true },
+    { name: "siteCopyright", type: "textarea", placeholder: "Site Copyright", label: "Site Copyright", required: true },
   ];
 
   return (
