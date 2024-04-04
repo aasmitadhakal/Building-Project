@@ -29,6 +29,16 @@ const Update = ({ params }) => {
   const [imageTwoPreview, setImageTwoPreview] = useState(null);
   const router = useRouter();
 
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [frontageError, setFrontageError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
+  const [bedroomError, setBedroomError] = useState(false);
+  const [bathroomError, setBathroomError] = useState(false);
+  const [floorplanError, setFloorPlanError] = useState(false);
+  const [carsError, setCarsError] = useState(false);
+  const [priceError, setPriceError] = useState(false);
+  
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/design/${params.id}`);
@@ -36,12 +46,6 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setEditorValue(responseData.title || "");
-        setEditorValue(responseData.frontage || "");
-        setEditorValue(responseData.size || "");
-        setEditorValue(responseData.bedroom || "");
-        setEditorValue(responseData.price || "");
-        setEditorValue(responseData.storey_type || "");
         setImageOnePreview(responseData.image || null);
         setImageTwoPreview(responseData.image_two || null);
       }
@@ -101,6 +105,81 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+
+    
+
+    if (isNaN(formData.frontage.trim()) || !formData.frontage.trim()) {
+      setFrontageError(true);
+    } else {
+      setFrontageError(false);
+    }
+    if (isNaN(formData.size.trim()) || !formData.size.trim()) {
+      setSizeError(true);
+    } else {
+      setSizeError(false);
+    }
+    if (isNaN(formData.price.trim()) || !formData.price.trim()) {
+      setPriceError(true);
+    } else {
+      setPriceError(false);
+    }
+    if (isNaN(formData.floor_plan.trim()) || !formData.floor_plan.trim()) {
+      setFloorPlanError(true);
+    } else {
+      setFloorPlanError(false);
+    }
+    if (isNaN(formData.bathrooms.trim()) || !formData.bathrooms.trim()) {
+      setBathroomError(true);
+    } else {
+      setBathroomError(false);
+    }
+    if (isNaN(formData.bedroom.trim()) || !formData.bedroom.trim()) {
+      setBedroomError(true);
+    } else {
+      setBedroomError(false);
+    }
+    if (isNaN(formData.cars.trim()) || !formData.cars.trim()) {
+      setCarsError(true);
+    } else {
+      setCarsError(false);
+    }
+
+    if (
+      !formData.title.match(/^\D+$/) ||
+      !formData.title.trim() ||
+     
+      isNaN(formData.order.trim()) ||
+      !formData.order.trim() ||
+      isNaN(formData.bedroom.trim()) ||
+      !formData.bedroom.trim() ||
+      isNaN(formData.size.trim()) ||
+      !formData.size.trim() ||
+      isNaN(formData.frontage.trim()) ||
+      !formData.frontage.trim() ||
+      isNaN(formData.floor_plan.trim()) ||
+      !formData.floor_plan.trim() ||
+      isNaN(formData.bathroorim() ||
+      isNaN(formDatams.trim()) ||
+      !formData.bathrooms.t.bedroom.trim()) ||
+      !formData.bedroom.trim() ||
+      isNaN(formData.price.trim()) ||
+      !formData.price.trim() ||
+      isNaN(formData.price.trim()) ||
+      !formData.price.trim()
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
@@ -152,12 +231,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="order"
-            className=" border-gray-200 block  my-2 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             value={formData.order || ""}
             onChange={handleChange}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="name">
@@ -165,12 +245,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="title"
-            className=" border-gray-200 block w-full  my-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              titleError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="title"
             value={formData.title || ""}
             onChange={handleChange}
           />
+          {titleError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
 
         <div className=" my-4 ">
@@ -192,9 +275,9 @@ const Update = ({ params }) => {
                 ["clean"],
               ],
             }}
-            value={formData.description || ""}
+            value={editorValue}
             theme="snow"
-            onChange={(value)=>handleEditorChange(value)}
+            onChange={(value) => handleEditorChange(value)}
           />
         </div>
 
@@ -210,8 +293,10 @@ const Update = ({ params }) => {
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageOnePreview);
+                
               }}
             />
+            
             {imageOnePreview && (
               <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
             )}
@@ -227,8 +312,10 @@ const Update = ({ params }) => {
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageOnePreview);
+                
               }}
             />
+           
             {imageOnePreview && (
               <img src={`${axiosInstance.defaults.baseURL}${formData.image_two}`} alt={formData.title} className="h-12 w-12 rounded-full" />
             )}
@@ -241,12 +328,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="frontage"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              frontageError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="frontage"
             value={formData.frontage || ""}
             onChange={handleChange}
           />
+          {frontageError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for size */}
         <div className=" my-4 uppercase">
@@ -255,12 +345,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="size"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              sizeError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="size"
             value={formData.size || ""}
             onChange={handleChange}
           />
+          {sizeError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for bedroom */}
         <div className=" my-4 uppercase">
@@ -269,12 +362,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="bedroom"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bedroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bedroom"
             value={formData.bedroom || ""}
             onChange={handleChange}
           />
+          {bedroomError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for cars */}
         <div className=" my-4 uppercase">
@@ -283,12 +379,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="cars"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              carsError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="cars"
             value={formData.cars || ""}
             onChange={handleChange}
           />
+          {carsError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -297,12 +396,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="bathrooms"
-            className="block w-full px-4  my-2 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bathroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bathrooms"
             value={formData.bathrooms || ""}
             onChange={handleChange}
           />
+          {bathroomError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -311,12 +413,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="price"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              priceError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="price"
             value={formData.price || ""}
             onChange={handleChange}
           />
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
@@ -325,12 +430,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="floor_plan"
-            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              floorplanError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="floor_plan"
             value={formData.floor_plan || ""}
             onChange={handleChange}
           />
+          {floorplanError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for storey_type */}
         <div className=" my-4 uppercase">

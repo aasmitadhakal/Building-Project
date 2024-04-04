@@ -9,7 +9,7 @@ import Sidenav from "./component/Sidenav";
 const Layout = ({ children }) => {
   return (
     <AuthLayout>
-      <section className="bg-gray-100  font-['poppins']" style={{ height: "100%" }}>
+      <section className="bg-gray-100 min-h-screen font-['poppins']" >
         <Sidenav />
 
         <div className="px-4 xl:ml-80">{children}</div>

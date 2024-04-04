@@ -59,7 +59,6 @@ const Update = ({ params }) => {
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
-       
       }));
     } else {
       setFormData((prevData) => ({
@@ -98,6 +97,7 @@ const Update = ({ params }) => {
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
       updatedData.append("storey_type", formData.storey_type);
+      updatedData.append("image", formData.image);
 
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
 
