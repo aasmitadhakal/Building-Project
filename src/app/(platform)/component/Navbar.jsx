@@ -58,9 +58,9 @@ function Navbar() {
           <Link href="/contactus">
             <div className="hover:text-customblue">Contact Us</div>
           </Link>
-          <Link href="/privacy">
+          {/* <Link href="/privacy">
             <div className="hover:text-customblue">  Privacy & Policy</div>
-          </Link>
+          </Link> */}
         </div>
      
         {/* for mobile view */}
@@ -134,9 +134,9 @@ function Navbar() {
                 <Link href="/contactus">Contact Us</Link>
               </div>
               <div className="hover:text-customblue">
-              <Link href="/privacy">
+              {/* <Link href="/privacy">
          Privacy & Policy
-          </Link>
+          </Link> */}
               </div>
             </div>
           </motion.div>

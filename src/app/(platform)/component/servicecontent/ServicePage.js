@@ -25,20 +25,7 @@ function ServicePage() {
 
   return (
     <>
-      {/* <style>
-        {`
-          .service-item {
-            position: relative;
-            overflow: hidden;
-          }
-          .service-item:hover img {
-            background-color: white;
-          }
-          .service-item img {
-            transition: background-color 0.3s ease-in-out;
-          }
-        `}
-      </style> */}
+   
       <section className='grid md:grid-cols-3 container mx-auto gap-6 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
         {data.map((datas, index) => (
           <div

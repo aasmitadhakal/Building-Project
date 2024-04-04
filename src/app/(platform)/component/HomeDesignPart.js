@@ -45,12 +45,9 @@ function HomeDesignPart() {
         <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
         <img 
           src={datas.img}
-          style={{
-            transform: hoveredIndex === index ? 'translateX(10px)' : 'translateX(0)',
-            transition: 'transform 0.3s ease-in-out'
-          }}
+         
           alt='img1' 
-          className="object-cover w-full h-[350px] hover:translate-x-2 transition-transform ease-in duration-300"
+          className="object-cover w-full h-[350px] hover:scale-[1.01] transition-transform ease-in duration-300"
 />
       </div>
       {/* Title with improved visibility */}
