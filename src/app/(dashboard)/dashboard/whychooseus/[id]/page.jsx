@@ -5,13 +5,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
- import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
     title: "",
+    icon: "",
     image: null,
     short_description: "",
     description: "",
@@ -19,6 +20,12 @@ const Update = ({ params }) => {
   const [editorValue, setEditorValue] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
+
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [iconError, setIconError] = useState(false);
+  const [shortDescriptionError, setShortDescriptionError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -69,11 +76,42 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+
+    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (!formData.icon.trim()) {
+      setIconError(true);
+    } else {
+      setIconError(false);
+    }
+
+    if (!formData.short_description.trim()) {
+      setShortDescriptionError(true);
+    } else {
+      setShortDescriptionError(false);
+    }
+
+    if (!formData.title.match(/^\D+$/) || isNaN(formData.order.trim()) || !formData.order.trim() || !formData.icon.trim()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
       updatedData.append("title", formData.title);
       updatedData.append("image", formData.image);
+      updatedData.append("icon", formData.icon);
       updatedData.append("short_description", formData.short_description);
       updatedData.append("description", editorValue);
 
@@ -93,66 +131,85 @@ const Update = ({ params }) => {
 
       {/* <h1 className="text-2xl font-bold">Update Why choose us?</h1> */}
       <form onSubmit={handleSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Update Why Choose Us</h1>
-        
-             <Link href="/dashboard/whychooseus">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Why Choose Us</h1>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
-              Title:
-            </label>
-            <input
-              id="title"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-              Image:
-            </label>
-            <input
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleChange}
-            />
-            {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[200px]" />}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
-              Short Description:
-            </label>
-            <textarea
-              id="short_description"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              name="short_description"
-              value={formData.short_description}
-              onChange={handleChange}
-            />
-          </div>
-       
+          <Link href="/dashboard/whychooseus">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="order"
+            value={formData.order}
+            onChange={handleChange}
+          />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid order *</p>}
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+            Title:
+          </label>
+          <input
+            id="title"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+          {titleError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="icon">
+            Icon:
+          </label>
+          <input
+            id="icon"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="icon"
+            value={formData.icon}
+            onChange={handleChange}
+          />
+          {iconError && <p className="text-red-500 text-sm ">* Please enter a valid icon *</p>}
+        </div>
+        <div className="mb-4 relative">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="image">
+            Image:
+          </label>
+          <input
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={handleChange}
+          />
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[200px]" />}
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
+            Short Description:
+          </label>
+          <textarea
+            id="short_description"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            name="short_description"
+            value={formData.short_description}
+            onChange={handleChange}
+          />
+          {shortDescriptionError && <p className="text-red-500 text-sm">* Please enter a valid short description *</p>}
+        </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
@@ -182,7 +239,6 @@ const Update = ({ params }) => {
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-          
         </div>
       </form>
     </div>

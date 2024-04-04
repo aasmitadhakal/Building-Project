@@ -16,8 +16,31 @@ function Create() {
   const [status, setStatus] = useState(null);
   const router = useRouter();
 
+  const [orderError, setOrderError] = useState(false);
+  const [questionError, setQuestionError] = useState(false);
+  const [answerError, setAnswerError] = useState(false);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!question.trim() || !question.match(/^\D+$/)) {
+      setQuestionError(true);
+    } else {
+      setQuestionError(false);
+    }
+    if (!answer.trim() || !answer.match(/^\D+$/)) {
+      setAnswerError(true);
+    } else {
+      setAnswerError(false);
+    }
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!question.match(/^\D+$/) || !question.trim() || isNaN(order.trim()) || !order.trim() || !answer.trim() || !answer.match(/^\D+$/)) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
 
     // Create FormData object
     const formData = new FormData();
@@ -64,11 +87,12 @@ function Create() {
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className=" my-4 ">
           <label className="block my-2  uppercase  text-sm font-medium text-gray-700" htmlFor="question">
@@ -76,11 +100,12 @@ function Create() {
           </label>
           <input
             id="question"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${questionError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="question" // Assuming 'name' is the actual question field
             onChange={(e) => setQuestion(e.target.value)}
           />
+          {questionError && <p className="text-red-500 text-sm ">* Please enter a string *</p>}
         </div>
 
         <div className=" my-4 ">
@@ -89,11 +114,12 @@ function Create() {
           </label>
           <input
             id="answer"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${answerError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="answer" // Assuming 'name' is the actual answer field
             onChange={(e) => setAnswer(e.target.value)}
           />
+          {answerError && <p className="text-red-500 text-sm ">* Please enter a string *</p>}
         </div>
         <div className=" my-4 ">
           <label className="block my-2  uppercase  text-sm font-medium text-gray-700" htmlFor="status">
