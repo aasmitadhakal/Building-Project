@@ -13,9 +13,19 @@ function Create() {
   const [editorValue, setEditorValue] = useState("");
   const router = useRouter();
 
+  
+  const [orderError, setOrderError] = useState(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (isNaN(order.trim()) || !order.trim()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     // Create FormData object
     const formData = new FormData();
     formData.append("description", editorValue);
@@ -58,12 +68,13 @@ function Create() {
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             value={order}
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
 
         <div className="my-4 ">

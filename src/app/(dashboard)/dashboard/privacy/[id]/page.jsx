@@ -12,12 +12,12 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     order: "",
     description: "",
-  
   });
   const [editorValue, setEditorValue] = useState("");
 
   const router = useRouter();
 
+  const [orderError, setOrderError] = useState(false);
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/privacy/${params.id}`);
@@ -25,7 +25,6 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -67,15 +66,22 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
-     
-
       updatedData.append("description", editorValue);
-     
       await axiosInstance.put(`/api/privacy/${params.id}`, updatedData);
-
       toast("Data edited successfully");
       router.push("/dashboard/privacy");
     } catch (error) {
@@ -88,31 +94,32 @@ const Update = ({ params }) => {
     <div className="my-12   bg-white rounded-md font-[karla] shadow-xl">
       <ToastContainer />
 
-     
       <form onSubmit={handleSubmit} className="p-6">
-      <div className=" flex justify-between my-2">
-        <h1 className="font-[600] text-[24px]  text-gray-700">Update Privacy </h1>
-        
-             <Link href="/dashboard/privacy">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center "><FaArrowLeftLong className="mx-2" /> Back</p>
-             </Link>
-      </div>
-        
-          <div className="uppercase my-4">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="order">
-              Order:
-            </label>
-            <input
-              id="order"
-              className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              name="order"
-              value={formData.order || ""}
-              onChange={handleChange}
-            />
-          </div>
-          
-        
+        <div className=" flex justify-between my-2">
+          <h1 className="font-[600] text-[24px]  text-gray-700">Update Privacy </h1>
+
+          <Link href="/dashboard/privacy">
+            <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center ">
+              <FaArrowLeftLong className="mx-2" /> Back
+            </p>
+          </Link>
+        </div>
+
+        <div className="uppercase my-4">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="order">
+            Order:
+          </label>
+          <input
+            id="order"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
+            type="text"
+            name="order"
+            value={formData.order || ""}
+            onChange={handleChange}
+          />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
             Description:
@@ -137,12 +144,11 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-        
+
         <div className="flex gap-2 pt-1 mt-20">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update
           </button>
-         
         </div>
       </form>
     </div>
