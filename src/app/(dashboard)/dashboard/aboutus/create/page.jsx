@@ -19,62 +19,59 @@ function Create() {
   const [imageTwoError, setImageTwoError] = useState(false);
   const router = useRouter();
 
- const handleFormSubmit = async (e) => {
-   e.preventDefault();
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-   if (!title.trim() || !title.match(/^\D+$/)) {
-     setTitleError(true);
-   } else {
-     setTitleError(false);
-   }
+    if (!title.trim() || !title.match(/^\D+$/)) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!imageOne) {
+      setImageOneError(true);
+    } else {
+      setImageOneError(false);
+    }
 
-   if (!imageOne) {
-     setImageOneError(true);
-   } else {
-     setImageOneError(false);
-   }
+    if (!imageTwo) {
+      setImageTwoError(true);
+    } else {
+      setImageTwoError(false);
+    }
 
-   if (!imageTwo) {
-     setImageTwoError(true);
-   } else {
-     setImageTwoError(false);
-   }
+    if (!title.match(/^\D+$/) || !title.trim() || !imageOne || !imageTwo || isNaN(order.trim()) || !order.trim()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
 
-   if (isNaN(order.trim()) || !order.trim()) {
-     setOrderError(true);
-   } else {
-     setOrderError(false);
-   }
+    // Create FormData object
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", editorValue);
+    formData.append("order", order.trim());
+    formData.append("image_one", imageOne);
+    formData.append("image_two", imageTwo);
 
-   if (!title.match(/^\D+$/) || !title.trim() || !imageOne || !imageTwo || isNaN(order.trim()) || !order.trim()) {
-     toast.error("Please fill in all required fields correctly");
-     return;
-   }
+    try {
+      // Send data to the server using axiosInstance with authorization header
+      const response = await axiosInstance.post("/api/aboutus", formData);
 
-   // Create FormData object
-   const formData = new FormData();
-   formData.append("title", title);
-   formData.append("description", editorValue);
-   formData.append("order", order.trim());
-   formData.append("image_one", imageOne);
-   formData.append("image_two", imageTwo);
-
-   try {
-     // Send data to the server using axiosInstance with authorization header
-     const response = await axiosInstance.post("/api/aboutus", formData);
-
-     if (response.status === 200) {
-       toast("Post created successfully");
-       router.push("/dashboard/aboutus");
-     } else {
-       toast("Error creating post");
-     }
-   } catch (error) {
-     console.error("Error creating post:", error);
-     toast.error("Error creating post");
-   }
- };
-
+      if (response.status === 200) {
+        toast("Post created successfully");
+        router.push("/dashboard/aboutus");
+      } else {
+        toast("Error creating post");
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+      toast.error("Error creating post");
+    }
+  };
 
   return (
     <div className="my-12 bg-white rounded-md font-[karla] shadow-xl">
