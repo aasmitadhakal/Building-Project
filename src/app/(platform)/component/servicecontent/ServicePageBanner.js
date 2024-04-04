@@ -1,31 +1,45 @@
-import React from 'react'
-const data = [
-    {
-      "image": "https://s3-alpha-sig.figma.com/img/27a8/f4f0/177a8f21664166aee3f60441d49e7e40?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cciCql5FRNtJBObkoQaBQ3sc4MIZY23eSzUxGp-r3ZPNOhQT6PLZWS-TWAirFX7ft-IHt8b8xrnPluRMx5AVI8Mk0nJXYWbLCTyqxurIxzZuL0mB80NAEm1pTwqDoNtBrafZ98DIijau~znzFo5m3mIHcw-L9Y6BulLqhBSJbuBG5jifqVqf94Mk8w6WMs3S4XtNPTvKif4teKoq~xX5pF5n82phBLpAunCICrlo54DTYxyNdPSeZ3LHj00Kn1RaAWxcHOEnALAfgKVjggzBomsjdK8vEWTtGW~IIDJ6cYL-nl1dgauDOaJpbXYxB6mI-W8in6-WIEawVF4djI2zOg__",
-      "title": "Services",
-      "introduction": "Build to Last: Your Trusted Construction Partner"
-    }
-  ];
+"use client"
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '@/app/utils/axiosInstance';
+
 function ServicePageBanner() {
+  const [data, setData] = useState([]);
+ 
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get('/api/pages/3');
+      if (response.data.success) {
+        setData(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    // Function to fetch data from APi
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []); // Empty dependency array ensures that this effect runs only once when the component mounts
   return (
    <>
-    {data.map((card, index) => (
-        <section key={index} className="relative w-full mt-20 h-96 font-[Karla]">
+   
+        <section  className="relative w-full mt-20 h-96 font-[Karla]">
               <div className='w-full h-96' style={{ position: 'absolute', backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
           <img
             className="absolute inset-0 w-full h-96 object-cover"
-            src={card.image}
+            src={axiosInstance.defaults.baseURL + data.image} 
             alt="Background"
           />
            
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white', width: '100%', zIndex: '2' }} >
             
-              <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">{card.title}</h1>
+              <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">{data.title}</h1>
             
            
           </div>
         </section>
-      ))}
+    
    </>
   )
 }

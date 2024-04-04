@@ -26,49 +26,62 @@ import axiosInstance from '@/app/utils/axiosInstance';
 // ];
 
 function Buliding() {
-    const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // Function to fetch data from API
-    const fetchData = async () => {
-      try {
+  const [data, setData] = useState([]);
+  const [headerdata, setheaderdata] = useState([]);
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/settings');
+      if (response.data.success) {
+        setheaderdata(response.data.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchData = async () => {
+    try {
         const response = await axiosInstance.get('/api/building');
         if (response.data.success) {
-          setData(response.data.data); // Update state with fetched data
+            setData(response.data.data);
         } else {
-          console.error('Failed to fetch data');
+            console.error('Failed to fetch data');
         }
-      } catch (error) {
+    } catch (error) {
         console.error('Error fetching data:', error);
-      }
-    };
+    }
+};
 
-    fetchData(); // Call the fetchData function when the component mounts
-  }, []); // Empty dependency array ensures that this effect runs only once when the component mounts
+  useEffect(() => {
+      fetchData1();
+      fetchData();
+  }, []);
 
-    return (
-        <>
-        <section className="bg-customgray py-8 font-[Montserrat]">
-            <div className=' mb-4'>
-            <p className='text-cutombrown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>Building Excellence Together.</p>
-          <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>Our Building Process</p>
-            </div>
-            <div className="container mx-auto px-4 font-[Montserrat]">
-                {data.map((item, index) => (
-                    <div key={index} className={`flex flex-wrap items-center mb-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                        <div className="w-full md:w-1/2 mb-4 md:mb-0">
-                            <h2 className="my-1 text-customblues font-[600] text-[24px] leading-[32px] mx-4">{item.name}</h2>
-                            <p className="font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify mx-4">{item.short_description}</p>
-                        </div>
-                        <div className="w-full md:w-1/2 ">
-                            <img  src={axiosInstance.defaults.baseURL + item.image} alt={item.name} className="w-[569px] h-[269px] rounded-xl" />
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-        </>
-    );
+  return (
+      <>
+          <section className="bg-customgray py-8 font-[Montserrat]">
+              <div className=' mb-4'>
+                  <p className='text-cutombrown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>{headerdata.building_title}</p>
+                  <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>{headerdata.building_section_title}</p>
+              </div>
+              <div className="container mx-auto px-4 font-[Montserrat]">
+                  {data.map((item, index) => (
+                      <div key={index} className={`flex flex-wrap items-center mb-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                          <div className="w-full md:w-1/2 mb-4 md:mb-0">
+                              {/* Add the number before the name */}
+                              <h2 className="my-1 text-customblues font-[600] text-[24px] leading-[32px] mx-4">{index + 1}. {item.name}</h2>
+                              <p className="font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify mx-4" dangerouslySetInnerHTML={{ __html: item.short_description }} />
+                          </div>
+                          <div className="w-full md:w-1/2 ">
+                              <img src={axiosInstance.defaults.baseURL + item.image} alt={item.name} className="w-[569px] h-[269px] rounded-xl" />
+                          </div>
+                      </div>
+                  ))}
+              </div>
+          </section>
+      </>
+  );
 }
 
 export default Buliding;
