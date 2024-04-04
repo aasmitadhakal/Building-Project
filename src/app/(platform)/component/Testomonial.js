@@ -90,7 +90,7 @@ function Testonomial() {
         
        {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className=' text-black font-[Montserrat] my-20 shadow-2xl rounded p-8 '>
+            <div className=' text-black font-[Montserrat] my-20  shadow-xl rounded p-8 '>
              <p className='grid place-content-center my-2'><FaQuoteLeft  className='text-[#EECB5D]'/></p>
               <div className='line-clamp-5 my-2 font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify 'dangerouslySetInnerHTML={{ __html: item.description }}/>
               <div className='h-24 w-24 rounded-full overflow-hidden mx-auto ring-[#EECB5D] ring-2'><img  src={axiosInstance.defaults.baseURL + item.image} className='h-full w-full object-cover rounded-full ring-4 font-[Montserrat] ring-[#EECB5D]' alt={item.title} /></div>

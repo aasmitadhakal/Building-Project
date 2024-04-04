@@ -3,16 +3,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import Singlestoreyhomes from "@/app/(platform)/component/designcontent/Singlestoreyhomes";
-const banneerdata = [
-  {
-    image:
-      "https://s3-alpha-sig.figma.com/img/ae47/d37b/600dc5f3c92919c0e90c6801d7c04d67?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HgqVAmAKPKTHnAl7w1-R2m8RvcYjYUfhKJP7qoE169NCM41XGP46Wh0YTgcAfI1MIOpKBKXtqROgsBnHzx41tnZOPOr5LU5Zjn9QqOX2mB2ImE6WrweZuLbhaokF1IiYIr4aWubY6DIazdRBn06qMD15AisMZY8tK9tio8SU9qZ6H5-3zYZxNkbBFtPkVTco6e3ga3PiZVT9x8CUkm~jZo9~y~qRhMwBRTZBBvm-MM~kV6qofuM2AZNaXPXhzSwaD1IUmKZ1M26p2lgjvM75JP5k0FomYhSbu9Q7vCxMMGfDimYXU1fVqGEFy~SNvGgn8CURDfJMWfdkVqyB8jNa~Q__",
-    title: "Single Storey Homes",
-    introduction: "Build to Last: Your Trusted Construction Partner",
-  },
-];
+
 function page({ params }) {
   const [data, setData] = useState([]);
+  const [bannerdara, setbannerData] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/design/${params.id}`);
@@ -25,16 +19,31 @@ function page({ params }) {
       console.error("Error fetching data:", error);
     }
   };
+  
+ 
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/pages/6');
+      if (response.data.success) {
+        setbannerData(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
+    fetchData1();
   }, [params.id]);
 
   return (
     <>
       {/* forbanner */}
-      {banneerdata.map((card, index) => (
-        <section key={index} className="relative w-full mt-20 h-96 font-[karla]">
+    
+        <section  className="relative w-full mt-20 h-96 font-[karla]">
           <div
             className="w-full h-96"
             style={{
@@ -46,7 +55,7 @@ function page({ params }) {
           ></div>
           <img
             className="absolute inset-0 w-full h-96 object-cover"
-            src={card.image}
+            src={axiosInstance.defaults.baseURL + bannerdara.image}
             alt="Background"
           />
 
@@ -63,11 +72,11 @@ function page({ params }) {
             }}
           >
             <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
-              {card.title}
+              {data.title}
             </h1>
           </div>
         </section>
-      ))}
+      
       {/* for dynamic content */}
 
       <div className="container mx-auto mt-22 my-4 mb-44 mt-8 font-[Montserrat]">

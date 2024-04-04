@@ -25,13 +25,13 @@ function Aboutus() {
 
   return (
     <>
-     <section  className='container mx-auto font-[Montserrat]'>
-          <div className='grid md:grid-cols-2 my-0 md:my-12  md:px-0 px-4 '>
+     <section  className='container mx-auto font-[Montserrat] my-20'>
+          <div className='grid md:grid-cols-2 my-0 md:my-12  gap-x-8 md:px-0 px-4 '>
             {/* for text part */}
             <div className='grid place-content-center'>
               <p className='my-4 text-customblue font-[700] text-[36px] leading-[49px]'>{data.title}</p>
               {/* Render HTML content safely */}
-              <div className='font-[Montserrat] font-[400] leading-[24px] text-[16px]' dangerouslySetInnerHTML={{ __html: data.description }} />
+              <div className='font-[Montserrat] font-[400] leading-[24px] text-[16px] text-justify' dangerouslySetInnerHTML={{ __html: data.description }} />
             </div>
             {/* for img part */}
             <div className='relative flex justify-center items-center overflow-hidden'>
@@ -39,7 +39,7 @@ function Aboutus() {
 
                 <img
                   src={axiosInstance.defaults.baseURL + data.image_one} // Concatenate base URL with image path
-                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded ring-4 ring-white mt-36 absolute top-0 left-0'
+                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded ring-4 ring-white md:mt-36 mt-28 absolute top-0 left-0'
     
                 />
   
@@ -47,7 +47,7 @@ function Aboutus() {
 
                 <img
                   src={axiosInstance.defaults.baseURL + data.image_two} // Concatenate base URL with image path
-                  className='md:w-[484px] md:h-[430px] w-[250px] h-[250px] rounded ring-4 ring-white mb-6' // Added margin-top here
+                  className='md:w-[484px] md:h-[430px] w-[280px] h-[250px] rounded ring-4 ring-white md:mb-6 mb-4' // Added margin-top here
    
                 />
             </div>

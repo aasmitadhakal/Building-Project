@@ -32,7 +32,7 @@ function WhychooseUs() {
       return (
         <div className='flex flex-col justify-between mt-4'>
           {Array.from(listItems).map((item, index) => (
-            <div key={index} className='flex items-start text-justify leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'>
+            <div key={index} className='flex my-2 items-start text-justify leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'>
               <div className='flex items-center mr-4'>
                 <FaCircleCheck className='text-customyellow mt-1' />
               </div>
