@@ -23,18 +23,74 @@ function Create() {
 
   const router = useRouter();
 
+  const [orderError, setOrderError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [seoTitleError, setSeoTitleError] = useState(false);
+  const [seoKeywordError, setSeoKeywordError] = useState(false);
+  const [seoSchemaError, setSeoSchemaError] = useState(false);
+  const [seoDescriptionError, setSeoDescriptionError] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name.trim() || !name.match(/^\D+$/)) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (!seotitle.match(/^\D+$/)) {
+      setSeoTitleError(true);
+    } else {
+      setSeoTitleError(false);
+    }
+    if (!seokeywords.match(/^\D+$/)) {
+      setSeoKeywordError(true);
+    } else {
+      setSeoKeywordError(false);
+    }
+    if (!seodescription.match(/^\D+$/)) {
+      setSeoDescriptionError(true);
+    } else {
+      setSeoDescriptionError(false);
+    }
+    if (!seoschema.match(/^\D+$/)) {
+      setSeoSchemaError(true);
+    } else {
+      setSeoSchemaError(false);
+    }
+    if (isNaN(order_number.trim()) || !order_number.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!imageOne) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+    if (
+      !name.trim() ||
+      !name.match(/^\D+$/) ||
+      !imageOne ||
+      !seotitle.match(/^\D+$/) ||
+      !seokeywords.match(/^\D+$/) ||
+      !seodescription.match(/^\D+$/) ||
+      !seoschema.match(/^\D+$/) ||
+      isNaN(order.trim()) ||
+      !order.trim()
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     // Create FormData object
     const formData = new FormData();
     formData.append("name", name);
     formData.append("order_number", order_number);
-    formData.append("image", imageOne); // Append image file correctl
+    formData.append("image", imageOne);
 
     formData.append("short_description", editorValue);
     formData.append("seo_title", seotitle);
-    formData.append("seo_description", seodescription); // Use validated integer value
+    formData.append("seo_description", seodescription);
     formData.append("seo_schema", seoschema);
     formData.append("seo_keywords", seokeywords);
 
@@ -77,12 +133,13 @@ function Create() {
           </label>
           <input
             id="order_number"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order_number"
             value={order_number}
             onChange={(e) => setorder_number(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block  my-2  text-sm font-medium text-gray-700" htmlFor="name">
@@ -90,12 +147,15 @@ function Create() {
           </label>
           <input
             id="name"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              nameError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {nameError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
 
         <div className=" my-4 ">
@@ -128,12 +188,13 @@ function Create() {
           </label>
           <input
             id="seo_title"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoTitleError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_title"
             value={seotitle}
             onChange={(e) => setSeo_title(e.target.value)}
           />
+          {seoTitleError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -142,12 +203,15 @@ function Create() {
           </label>
           <input
             id="seo_description"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${
+              seoDescriptionError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="seo_description"
             value={seodescription}
             onChange={(e) => setSeodescription(e.target.value)}
           />
+          {seoDescriptionError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block  my-2  text-sm font-medium text-gray-700" htmlFor="seo_schema">
@@ -155,12 +219,13 @@ function Create() {
           </label>
           <input
             id="seo_keywords"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoKeywordError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_keywords"
             value={seokeywords}
             onChange={(e) => setSeokeywords(e.target.value)}
           />
+          {seoKeywordError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         {/* <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="description">
@@ -182,12 +247,13 @@ function Create() {
           </label>
           <input
             id="seo_schema"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoSchemaError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_schema"
             value={seoschema}
             onChange={(e) => setSeoschema(e.target.value)}
           />
+          {seoSchemaError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700" htmlFor="image">
@@ -197,8 +263,12 @@ function Create() {
             type="file"
             id="image"
             accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
+            onChange={(e) => {
+              setImageOne(e.target.files[0]);
+              setImageError(false);
+            }}
           />
+          {imageError && <p className="text-red-500 text-sm">* Please upload a Image *</p>}
         </div>
 
         <div className="flex gap-2 mt-2">

@@ -25,6 +25,15 @@ const Update = ({ params }) => {
 
   const router = useRouter();
 
+
+  const [orderError, setOrderError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [seoTitleError, setSeoTitleError] = useState(false);
+  const [seoKeywordError, setSeoKeywordError] = useState(false);
+  const [seoSchemaError, setSeoSchemaError] = useState(false);
+  const [seoDescriptionError, setSeoDescriptionError] = useState(false);
+ 
+
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/building/${params.id}`);
@@ -81,6 +90,53 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name.trim() || !formData.name.match(/^\D+$/)) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (!formData.seo_title.match(/^\D+$/)) {
+      setSeoTitleError(true);
+    } else {
+      setSeoTitleError(false);
+    }
+    if (!formData.seo_keywords.match(/^\D+$/)) {
+      setSeoKeywordError(true);
+    } else {
+      setSeoKeywordError(false);
+    }
+    if (!formData.seo_description.match(/^\D+$/)) {
+      setSeoDescriptionError(true);
+    } else {
+      setSeoDescriptionError(false);
+    }
+    if (!formData.seo_schema.match(/^\D+$/)) {
+      setSeoSchemaError(true);
+    } else {
+      setSeoSchemaError(false);
+    }
+    if (isNaN(formData.order_number.trim()) || !formData.order_number.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    
+    if (
+      !formData.name.trim() ||
+      !formData.name.match(/^\D+$/) ||
+      
+      !formData.seo_title.match(/^\D+$/) ||
+      !formData.seo_keywords.match(/^\D+$/) ||
+      !formData.seo_description.match(/^\D+$/) ||
+      !formData.seo_schema.match(/^\D+$/) ||
+      isNaN(formData.order.trim()) ||
+      !formData.order.trim()
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
     try {
       const updatedData = new FormData();
       updatedData.append("order_number", formData.order_number);
@@ -128,12 +184,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="order_number"
-            className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order_number"
             value={formData.order_number || ""}
             onChange={handleChange}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -142,12 +199,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="name"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              nameError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="name"
             value={formData.name || ""}
             onChange={handleChange}
           />
+          {nameError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -161,11 +221,13 @@ const Update = ({ params }) => {
             onChange={(e) => {
               handleChange(e);
               handleImagePreview(e.target.files[0], setImageOnePreview);
+              
             }}
           />
           {imageOnePreview && (
             <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
           )}
+          
         </div>
 
         {/* for bedroom */}
@@ -200,12 +262,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="seo_title"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoTitleError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_title"
             value={formData.seo_title || ""}
             onChange={handleChange}
           />
+          {seoTitleError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         {/* for bathrooms */}
         <div className=" my-4 uppercase">
@@ -214,12 +277,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="seo_description"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${
+              seoDescriptionError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="seo_description"
             value={formData.seo_description || ""}
             onChange={handleChange}
           />
+          {seoDescriptionError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         {/* for seo_schema */}
         <div className=" my-4 uppercase">
@@ -228,12 +294,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="seo_schema"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoSchemaError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_schema"
             value={formData.seo_schema || ""}
             onChange={handleChange}
           />
+          {seoSchemaError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
         {/* for seo_keywords */}
         <div className=" my-4 uppercase">
@@ -242,12 +309,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="seo_keywords"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${seoKeywordError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="seo_keywords"
             value={formData.seo_keywords || ""}
             onChange={handleChange}
           />
+          {seoKeywordError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
 
         <div className="flex gap-2 pt-1 mt-4">
