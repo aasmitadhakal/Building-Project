@@ -19,6 +19,10 @@ const Update = ({ params }) => {
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
 
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const router = useRouter();
 
   const fetchData = async () => {
@@ -79,6 +83,43 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (!formData.name.trim() || !formData.name.match(/^\D+$/)) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+
+    if (!formData.image) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+    if (
+      !formData.title.match(/^\D+$/) ||
+      !formData.title.trim() ||
+      isNaN(formData.order.trim()) ||
+      !formData.order.trim() ||
+      !formData.image ||
+      !formData.name.trim() ||
+      !formData.name.match(/^\D+$/)
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
@@ -122,12 +163,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             value={formData.order || ""}
             onChange={handleChange}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className=" my-4 ">
           <label className="block text-sm font-medium text-gray-700" htmlFor="name">
@@ -135,12 +177,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="title"
-            className="block w-full my-2  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${titleError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="title"
             value={formData.title || ""}
             onChange={handleChange}
           />
+          {titleError && <p className="text-red-500 text-sm ">* Please enter a valid name *</p>}
         </div>
 
         <div className=" my-4 ">
@@ -173,12 +216,13 @@ const Update = ({ params }) => {
           </label>
           <input
             id="name"
-            className="block my-2  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${nameError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="name"
             value={formData.name || ""}
             onChange={handleChange}
           />
+          {nameError && <p className="text-red-500 text-sm ">* Please enter a valid name *</p>}
         </div>
 
         <div className=" my-4 ">

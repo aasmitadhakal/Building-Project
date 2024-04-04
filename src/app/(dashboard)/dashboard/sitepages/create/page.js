@@ -15,6 +15,11 @@ function Create() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [editorValue, setEditorValue] = useState("");
+
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [imageError, setImageError] = useState(false);
   // const [meta_keywords, setmeta_keywords] = useState("");
   // const [shortdescription, setShort_description] = useState("");
   // const [seotitle, setSeo_title] = useState("");
@@ -23,7 +28,33 @@ function Create() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!name.trim() || !name.match(/^\D+$/)) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
 
+     if (!title.trim() || !title.match(/^\D+$/)) {
+       setTitleError(true);
+     } else {
+       setTitleError(false);
+     }
+
+    if (!imageOne) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+    if (!name.match(/^\D+$/) || !name.trim() || isNaN(order.trim()) || !order.trim() || !imageOne || !title.trim() || !title.match(/^\D+$/)) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     const formData = new FormData();
     formData.append("image", imageOne);
     // formData.append("link", link);
@@ -69,20 +100,19 @@ function Create() {
           </Link>
         </div>
 
-        
-
         <div>
           <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="order">
             Order:
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             value={order}
             onChange={(e) => setOrder(e.target.value)}
-          />
+          />{" "}
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div>
           <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
@@ -90,12 +120,13 @@ function Create() {
           </label>
           <input
             id="name"
-            className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${nameError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {nameError && <p className="text-red-500 text-sm ">* Please enter a valid name *</p>}
         </div>
         <div>
           <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="title">
@@ -103,24 +134,29 @@ function Create() {
           </label>
           <input
             id="title"
-            className="block w-full px-4 py-2 border-gray-200  rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${titleError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {titleError && <p className="text-red-500 text-sm ">* Please enter a valid name *</p>}
         </div>
         <div>
           <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
-            Image:
+            Image: <span className="text-xs"> Image size should be less than 1 mb</span>
           </label>
           <input
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="file"
             id="image"
             accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])} 
+            onChange={(e) => {
+              setImageOne(e.target.files[0]);
+              setImageError(false);
+            }}
           />
+          {imageError && <p className="text-red-500 text-sm">* Please upload Image *</p>}
         </div>
 
         <div className="mb-4">
