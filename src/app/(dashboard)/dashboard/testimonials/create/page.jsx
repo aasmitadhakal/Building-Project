@@ -15,11 +15,60 @@ function Create() {
   const [editorValue, setEditorValue] = useState("");
   const [image, setImage] = useState(null);
 
+  const [orderError, setOrderError] = useState(false);
+  const [ratingError, setRatingError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [positionError, setPositionError] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name.trim() || !name.match(/^\D+$/)) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (!position.trim() || !position.match(/^\D+$/)) {
+      setPositionError(true);
+    } else {
+      setPositionError(false);
+    }
+
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    const ratingValue = parseFloat(rating.trim());
+    if (isNaN(ratingValue) || ratingValue < 0 || ratingValue > 5 || !rating.trim()) {
+      setRatingError(true);
+    } else {
+      setRatingError(false);
+    }
+    if (!image) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+    if (
+      !name.match(/^\D+$/) ||
+      !name.trim() ||
+      !image ||
+      isNaN(order.trim()) ||
+      !order.trim() ||
+      !position.trim() ||
+      !position.match(/^\D+$/) ||
+      isNaN(ratingValue) ||
+      ratingValue < 0 ||
+      ratingValue > 5 ||
+      !rating.trim()
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     // Create FormData object
     const formData = new FormData();
     formData.append("name", name);
@@ -66,12 +115,13 @@ function Create() {
           </label>
           <input
             id="order"
-            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full border-gray-200 rounded-md focus:outline-none ${orderError ? "border-red-500" : "focus:border-blue-500"}`}
             type="text"
             name="order"
             value={order}
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
         <div className="uppercase my-4">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
@@ -79,12 +129,15 @@ function Create() {
           </label>
           <input
             id="name"
-            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              nameError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {nameError && <p className="text-red-500 text-sm ">* Please enter a valid name *</p>}
         </div>
         <div className="uppercase my-4">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="position">
@@ -92,12 +145,15 @@ function Create() {
           </label>
           <input
             id="position"
-            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              positionError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="position"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
           />
+          {positionError && <p className="text-red-500 text-sm ">* Please enter a valid position *</p>}
         </div>
         <div className="uppercase my-4">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="rating">
@@ -105,12 +161,15 @@ function Create() {
           </label>
           <input
             id="rating"
-            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              ratingError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="rating"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           />
+          {ratingError && <p className="text-red-500 text-sm ">* Please enter a valid number *</p>}
         </div>
 
         <div className="mb-4  my-4">
@@ -142,7 +201,16 @@ function Create() {
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
             Image:
           </label>
-          <input type="file" id="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+              setImageError(false);
+            }}
+          />
+          {imageError && <p className="text-red-500 text-sm">* Please upload a Image *</p>}
         </div>
 
         <div className="flex gap-2">
