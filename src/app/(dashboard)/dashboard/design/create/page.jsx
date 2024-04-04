@@ -19,8 +19,20 @@ function Create() {
   const [cars, setCars] = useState("");
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
-  const [floorPlan, setFloorPlan] = useState(null);
+  const [floorPlan, setFloorPlan] = useState("");
   const [storeyType, setStoreyType] = useState("single");
+
+
+  const [titleError, setTitleError] = useState(false);
+  const [orderError, setOrderError] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [frontageError, setFrontageError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
+  const [bedroomError, setBedroomError] = useState(false);
+  const [bathroomError, setBathroomError] = useState(false);
+  const [priceError, setPriceError] = useState(false);
+  const [floorPlanError, setFloorPlanError] = useState(false);
+  const [carsError, setCarsError] = useState(false);
 
   const router = useRouter();
 
@@ -28,26 +40,93 @@ function Create() {
     e.preventDefault();
 
     // Validate inputs
-    const bedroomValue = parseInt(bedroom);
-    const bedOderValue = parseInt(order);
-    const carsValue = parseInt(cars);
-    const priceValue = parseInt(price);
-    // if (isNaN(bedOderValue)) {
-    //   toast("Please enter valid integer values for Ordervalue");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(bedroomValue)) {
-    //   toast("Please enter valid integer values for Bedroom");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(carsValue)) {
-    //   toast("Please enter valid integer values for Car");
-    //   return; // Stop form submission if validation fails
-    // }
-    // if (isNaN(priceValue)) {
-    //   toast("Please enter valid integer values for Price");
-    //   return; // Stop form submission if validation fails
-    // }
+    const isTitleInvalid = !title.trim() || !title.match(/^\D+$/);
+    const isOrderInvalid = !order.trim() || isNaN(order.trim());
+    const isImageInvalid = !imageOne;
+    const isSizeInvalid = !size.trim() || isNaN(size.trim());
+    const isPriceInvalid = !price.trim() || isNaN(price.trim());
+    const isBedroomInvalid = !bedroom.trim() || isNaN(bedroom.trim());
+    const isBathroomInvalid = !bathrooms.trim() || isNaN(bathrooms.trim());
+    const isFloorPlanInvalid = !floorPlan.trim() || isNaN(floorPlan.trim());
+    const isFrontageInvalid = !frontage.trim() || isNaN(frontage.trim());
+    const isCarsInvalid = !cars.trim() || isNaN(cars.trim());
+
+    if (isTitleInvalid) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (isImageInvalid) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+    if (isOrderInvalid) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+
+    if (isSizeInvalid) {
+      setSizeError(true);
+    } else {
+      setSizeError(false);
+    }
+
+    if (isBedroomInvalid) {
+      setBedroomError(true);
+    } else {
+      setBedroomError(false);
+    }
+
+    if (isBathroomInvalid) {
+      setBathroomError(true);
+    } else {
+      setBathroomError(false);
+    }
+
+    if (isPriceInvalid) {
+      setPriceError(true);
+    } else {
+      setPriceError(false);
+    }
+
+    if (isFloorPlanInvalid) {
+      setFloorPlanError(true);
+    } else {
+      setFloorPlanError(false);
+    }
+
+    if (isFrontageInvalid) {
+      setFrontageError(true);
+    } else {
+      setFrontageError(false);
+    }
+
+    if (isCarsInvalid) {
+      setCarsError(true);
+    } else {
+      setCarsError(false);
+    }
+
+    if (
+      isTitleInvalid ||
+      isOrderInvalid ||
+      isImageInvalid ||
+      isSizeInvalid ||
+      isBedroomInvalid ||
+      isBathroomInvalid ||
+      isPriceInvalid ||
+      isFrontageInvalid ||
+      isCarsInvalid
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
+    
 
     // Create FormData object
     const formData = new FormData();
@@ -63,7 +142,7 @@ function Create() {
     formData.append("bathrooms", bathrooms);
     formData.append("price", priceValue); // Use validated integer value
     formData.append("floor_plan", floorPlan);
-    formData.append("storey_type", storeyType);
+    formData.append("storey_type", 'single');
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -106,6 +185,7 @@ function Create() {
             value={order}
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm">* Please enter a valid order *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="title">
@@ -119,6 +199,7 @@ function Create() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {titleError && <p className="text-red-500 text-sm">* Please enter a valid title *</p>}
         </div>
 
         <div className="mb-4 my-4  h-64">
@@ -158,6 +239,7 @@ function Create() {
             value={frontage}
             onChange={(e) => setFrontage(e.target.value)}
           />
+          {frontageError && <p className="text-red-500 text-sm">* Please enter a valid frontage *</p>}
         </div>
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
@@ -170,8 +252,9 @@ function Create() {
             type="text"
             name="floor_plan"
             value={floorPlan}
-            onChange={(e)=>setFloorPlan(e.target.value)}
+            onChange={(e) => setFloorPlan(e.target.value)}
           />
+          {floorPlanError && <p className="text-red-500 text-sm">* Please enter a valid floor plan *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="size">
@@ -185,6 +268,7 @@ function Create() {
             value={size}
             onChange={(e) => setSize(e.target.value)}
           />
+          {sizeError && <p className="text-red-500 text-sm">* Please enter a valid size *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -199,6 +283,7 @@ function Create() {
             value={bedroom}
             onChange={(e) => setBedroom(e.target.value)}
           />
+          {bedroomError && <p className="text-red-500 text-sm">* Please enter a valid bedroom count *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="cars">
@@ -212,6 +297,7 @@ function Create() {
             value={cars}
             onChange={(e) => setCars(e.target.value)}
           />
+          {carsError && <p className="text-red-500 text-sm">* Please enter a valid cars *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -226,8 +312,9 @@ function Create() {
             value={bathrooms}
             onChange={(e) => setBathrooms(e.target.value)}
           />
+          {bathroomError && <p className="text-red-500 text-sm">* Please enter a valid bathroom count *</p>}
         </div>
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="storeyType">
             Storey Type:
           </label>
@@ -238,7 +325,8 @@ function Create() {
             name="storeyType"
             value={storeyType}
           />
-        </div>
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
+        </div> */}
 
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="price">

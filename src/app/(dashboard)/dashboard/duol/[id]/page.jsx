@@ -22,7 +22,6 @@ const Update = ({ params }) => {
     bathrooms: "",
     price: "",
     floor_plan: "",
-    storey_type: "",
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
@@ -36,7 +35,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        
+
         setImageOnePreview(responseData.image || null);
         setImageTwoPreview(responseData.image_two || null);
       }
@@ -107,9 +106,9 @@ const Update = ({ params }) => {
       updatedData.append("bathrooms", formData.bathrooms);
 
       updatedData.append("price", formData.price);
-      updatedData.append("floor_plan", formData.floor_plan); 
+      updatedData.append("floor_plan", formData.floor_plan);
 
-      updatedData.append("storey_type", formData.storey_type);
+      updatedData.append("storey_type", "dual");
 
       updatedData.append("description", editorValue);
       if (formData.image) {
@@ -330,22 +329,10 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        {/* for floor_plan */}
-        <div className=" my-4 uppercase">
-          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            Floor Plan:
-          </label>
-          <input
-            id="floor_plan"
-            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-            type="text"
-            name="floor_plan"
-            value={formData.floor_plan || ""}
-            onChange={handleChange}
-          />
-        </div>
+       
+
         {/* for storey_type */}
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             Storey Type:
           </label>
@@ -357,7 +344,7 @@ const Update = ({ params }) => {
             value={formData.storey_type || ""}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">

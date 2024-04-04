@@ -21,7 +21,7 @@ function Create() {
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
-  const [storeyType, setStoreyType] = useState("double");
+  
 
   const router = useRouter();
 
@@ -141,7 +141,7 @@ function Create() {
 
     formData.append("price", price);
     formData.append("floor_plan", floorPlan);
-    formData.append("storey_type", storeyType);
+    formData.append("storey_type", "double");
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -329,7 +329,7 @@ function Create() {
           />
           {bathroomError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="storeyType">
             Storey Type:
           </label>
@@ -340,7 +340,7 @@ function Create() {
             name="storeyType"
             value={storeyType}
           />
-        </div>
+        </div> */}
 
         <div className=" my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="price">

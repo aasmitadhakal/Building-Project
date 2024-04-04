@@ -42,7 +42,7 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN", "title", "image", "other_image", "price", "storey_type", "action"];
+  const columns = ["SN", "title", "image", "other_image", "price", "action"];
 
   return (
     <>

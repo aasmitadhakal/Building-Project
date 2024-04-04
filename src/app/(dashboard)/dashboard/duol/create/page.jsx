@@ -21,8 +21,8 @@ function Create() {
   const [cars, setCars] = useState("");
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
-  const [floorPlan, setFloorPlan] = useState(null);
-  const [storeyType, setStoreyType] = useState("dual");
+  const [floorPlan, setFloorPlan] = useState("");
+  
 
   const router = useRouter();
 
@@ -44,7 +44,7 @@ function Create() {
     formData.append("bathrooms", bathrooms);
     formData.append("price", price);
     formData.append("floor_plan", floorPlan);
-    formData.append("storey_type", storeyType);
+    formData.append("storey_type", "dual");
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -196,7 +196,7 @@ function Create() {
             onChange={(e) => setBathrooms(e.target.value)}
           />
         </div>
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="storeyType">
             Storey Type:
           </label>
@@ -207,7 +207,7 @@ function Create() {
             name="storeyType"
             value={storeyType}
           />
-        </div>
+        </div> */}
 
         <div className=" my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="price">

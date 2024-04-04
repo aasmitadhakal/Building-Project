@@ -21,12 +21,22 @@ const Update = ({ params }) => {
     bathrooms: "",
     price: "",
     floor_plan: "",
-    storey_type: "",
+    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
 
   const router = useRouter();
+
+  const [titleError, setTitleError] = useState(false);
+  const [orderError, setOrderError] = useState(false);
+  const [frontageError, setFrontageError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
+  const [bedroomError, setBedroomError] = useState(false);
+  const [bathroomError, setBathroomError] = useState(false);
+  const [priceError, setPriceError] = useState(false);
+  const [floorPlanError, setFloorPlanError] = useState(false);
+  const [carsError, setCarsError] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -35,13 +45,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        // setEditorValue(responseData.title || "");
-        // setEditorValue(responseData.frontage || "");
-        // setEditorValue(responseData.size || "");
-        // setEditorValue(responseData.bedroom || "");
-        // setEditorValue(responseData.price || "");
-        // setEditorValue(responseData.storey_type || "");
-        // setImageOnePreview(responseData.image || null);
+        
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -84,6 +88,85 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const isTitleInvalid = !formData.title.trim() || !formData.title.match(/^\D+$/);
+    const isOrderInvalid = !formData.order.trim() || isNaN(formData.order.trim());
+    const isSizeInvalid = !formData.size.trim() || isNaN(formData.size.trim());
+    const isBedroomInvalid = !formData.bedroom.trim() || isNaN(formData.bedroom.trim());
+    const isBathroomInvalid = !formData.bathrooms.trim() || isNaN(formData.bathrooms.trim());
+    const isPriceInvalid = !formData.price.trim() || isNaN(formData.price.trim());
+    const isFloorPlanInvalid = !formData.floor_plan.trim() || isNaN(formData.floor_plan.trim());
+    const isFrontageInvalid = !formData.frontage.trim() || isNaN(formData.frontage.trim());
+    const isCarsInvalid = !formData.cars.trim() || isNaN(formData.cars.trim());
+
+    if (isTitleInvalid) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (isOrderInvalid) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+
+    if (isSizeInvalid) {
+      setSizeError(true);
+    } else {
+      setSizeError(false);
+    }
+
+    if (isBedroomInvalid) {
+      setBedroomError(true);
+    } else {
+      setBedroomError(false);
+    }
+
+    if (isBathroomInvalid) {
+      setBathroomError(true);
+    } else {
+      setBathroomError(false);
+    }
+
+    if (isPriceInvalid) {
+      setPriceError(true);
+    } else {
+      setPriceError(false);
+    }
+
+    if (isFloorPlanInvalid) {
+      setFloorPlanError(true);
+    } else {
+      setFloorPlanError(false);
+    }
+
+    if (isFrontageInvalid) {
+      setFrontageError(true);
+    } else {
+      setFrontageError(false);
+    }
+
+    if (isCarsInvalid) {
+      setCarsError(true);
+    } else {
+      setCarsError(false);
+    }
+
+    if (
+      isTitleInvalid ||
+      isOrderInvalid ||
+      isSizeInvalid ||
+      isBedroomInvalid ||
+      isBathroomInvalid ||
+      isPriceInvalid ||
+      isFrontageInvalid ||
+      isCarsInvalid
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
     try {
       const updatedData = new FormData();
       updatedData.append("order", formData.order);
@@ -96,7 +179,7 @@ const Update = ({ params }) => {
       updatedData.append("description", editorValue);
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
-      updatedData.append("storey_type", formData.storey_type);
+      updatedData.append("storey_type", "single");
       updatedData.append("image", formData.image);
 
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
@@ -135,6 +218,7 @@ const Update = ({ params }) => {
             value={formData.order || ""}
             onChange={handleChange}
           />
+          {orderError && <p className="text-red-500 text-sm">* Please enter a valid order *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="name">
@@ -148,6 +232,7 @@ const Update = ({ params }) => {
             value={formData.title || ""}
             onChange={(value) => handleEditorChange(value)}
           />
+          {titleError && <p className="text-red-500 text-sm">* Please enter a valid title *</p>}
         </div>
 
         <div className=" my-4 ">
@@ -205,6 +290,7 @@ const Update = ({ params }) => {
             value={formData.frontage || ""}
             onChange={handleChange}
           />
+          {frontageError && <p className="text-red-500 text-sm">* Please enter a valid frontage *</p>}
         </div>
         {/* for size */}
         <div className=" my-4 uppercase">
@@ -219,6 +305,7 @@ const Update = ({ params }) => {
             value={formData.size || ""}
             onChange={handleChange}
           />
+          {sizeError && <p className="text-red-500 text-sm">* Please enter a valid size *</p>}
         </div>
         {/* for bedroom */}
         <div className=" my-4 uppercase">
@@ -233,6 +320,7 @@ const Update = ({ params }) => {
             value={formData.bedroom || ""}
             onChange={handleChange}
           />
+          {bedroomError && <p className="text-red-500 text-sm">* Please enter a valid bedroom count *</p>}
         </div>
         {/* for cars */}
         <div className=" my-4 uppercase">
@@ -247,6 +335,7 @@ const Update = ({ params }) => {
             value={formData.cars || ""}
             onChange={handleChange}
           />
+          {carsError && <p className="text-red-500 text-sm">* Please enter a valid cars *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -261,6 +350,7 @@ const Update = ({ params }) => {
             value={formData.bathrooms || ""}
             onChange={handleChange}
           />
+          {bathroomError && <p className="text-red-500 text-sm">* Please enter a valid bathroom count *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -289,9 +379,10 @@ const Update = ({ params }) => {
             value={formData.floor_plan || ""}
             onChange={handleChange}
           />
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
         </div>
         {/* for storey_type */}
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             storey_type:
           </label>
@@ -303,7 +394,7 @@ const Update = ({ params }) => {
             value={formData.storey_type || ""}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">

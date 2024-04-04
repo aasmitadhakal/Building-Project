@@ -22,7 +22,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/design/s/single");
-      console.log(response.data.data);
+      
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -46,7 +46,7 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN", "title", "image", "price", "storey_type", "action"];
+  const columns = ["SN", "title", "image", "price",  "action"];
 
   return (
     <>

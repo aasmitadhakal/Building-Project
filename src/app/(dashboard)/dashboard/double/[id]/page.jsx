@@ -22,7 +22,7 @@ const Update = ({ params }) => {
     bathrooms: "",
     price: "",
     floor_plan: "",
-    storey_type: "",
+    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
@@ -168,9 +168,9 @@ const Update = ({ params }) => {
       !formData.frontage.trim() ||
       isNaN(formData.floor_plan.trim()) ||
       !formData.floor_plan.trim() ||
-      isNaN(formData.bathroorim() ||
-      isNaN(formDatams.trim()) ||
-      !formData.bathrooms.t.bedroom.trim()) ||
+      isNaN(formData.bathrooms.trim() ||
+      
+      !formData.bathrooms.trim()) ||
       !formData.bedroom.trim() ||
       isNaN(formData.price.trim()) ||
       !formData.price.trim() ||
@@ -191,7 +191,7 @@ const Update = ({ params }) => {
       updatedData.append("bathrooms", formData.bathrooms);
       updatedData.append("price", formData.price);
       updatedData.append("floor_plan", formData.floor_plan);
-      updatedData.append("storey_type", formData.storey_type);
+      updatedData.append("storey_type", "double");
       updatedData.append("description", editorValue);
       if (formData.image) {
         updatedData.append("image", formData.image);
@@ -441,7 +441,7 @@ const Update = ({ params }) => {
           {floorplanError && <p className="text-red-500 text-sm">* Please enter a valid number *</p>}
         </div>
         {/* for storey_type */}
-        <div className=" my-4 uppercase">
+        {/* <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             Storey Type:
           </label>
@@ -453,7 +453,7 @@ const Update = ({ params }) => {
             value={formData.storey_type || ""}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
