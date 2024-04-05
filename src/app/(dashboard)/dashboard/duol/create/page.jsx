@@ -24,10 +24,110 @@ function Create() {
   const [floorPlan, setFloorPlan] = useState("");
   
 
+
+   const [orderError, setOrderError] = useState(false);
+   const [titleError, setTitleError] = useState(false);
+   const [frontageError, setFrontageError] = useState(false);
+   const [sizeError, setSizeError] = useState(false);
+   const [bedroomError, setBedroomError] = useState(false);
+   const [bathroomError, setBathroomError] = useState(false);
+   const [floorplanError, setFloorPlanError] = useState(false);
+   const [carsError, setCarsError] = useState(false);
+   const [priceError, setPriceError] = useState(false);
+   const [imageError, setImageError] = useState(false);
+   const [imageTwoError, setImageTwoError] = useState(false);
+
   const router = useRouter();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate inputs
+    const isTitleInvalid = !title.trim() || !title.match(/^\D+$/);
+    const isOrderInvalid = !order.trim() || isNaN(order.trim());
+    const isImageInvalid = !imageOne;
+    const isSizeInvalid = !size.trim() || isNaN(size.trim());
+    const isPriceInvalid = !price.trim() || isNaN(price.trim());
+    const isBedroomInvalid = !bedroom.trim() || isNaN(bedroom.trim());
+    const isBathroomInvalid = !bathrooms.trim() || isNaN(bathrooms.trim());
+    const isFloorPlanInvalid = !floorPlan.trim() || isNaN(floorPlan.trim());
+    const isFrontageInvalid = !frontage.trim() || isNaN(frontage.trim());
+    const isCarsInvalid = !cars.trim() || isNaN(cars.trim());
+
+    if (isTitleInvalid) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (isImageInvalid) {
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+    if (isOrderInvalid) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+
+    if (isSizeInvalid) {
+      setSizeError(true);
+    } else {
+      setSizeError(false);
+    }
+
+    if (isBedroomInvalid) {
+      setBedroomError(true);
+    } else {
+      setBedroomError(false);
+    }
+
+    if (isBathroomInvalid) {
+      setBathroomError(true);
+    } else {
+      setBathroomError(false);
+    }
+
+    if (isPriceInvalid) {
+      setPriceError(true);
+    } else {
+      setPriceError(false);
+    }
+
+    if (isFloorPlanInvalid) {
+      setFloorPlanError(true);
+    } else {
+      setFloorPlanError(false);
+    }
+
+    if (isFrontageInvalid) {
+      setFrontageError(true);
+    } else {
+      setFrontageError(false);
+    }
+
+    if (isCarsInvalid) {
+      setCarsError(true);
+    } else {
+      setCarsError(false);
+    }
+
+    if (
+      isTitleInvalid ||
+      isOrderInvalid ||
+      isImageInvalid ||
+      isSizeInvalid ||
+      isBedroomInvalid ||
+      isBathroomInvalid ||
+      isPriceInvalid ||
+      isFrontageInvalid ||
+      isCarsInvalid
+    ) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
 
     // Create FormData object
     const formData = new FormData();
@@ -63,7 +163,7 @@ function Create() {
   };
 
   return (
-    <div className="my-12  bg-white rounded-md font-[karla] shadow-xl">
+    <div className="my-12  bg-white rounded-md font-['poppins'] shadow-xl">
       <ToastContainer />
 
       <form onSubmit={handleFormSubmit} className="p-6">
@@ -83,12 +183,15 @@ function Create() {
           </label>
           <input
             id="order"
-            className="block w-full  border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              orderError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="order"
             value={order}
             onChange={(e) => setOrder(e.target.value)}
           />
+          {orderError && <p className="text-red-500 text-sm">* Please enter a valid order *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="title">
@@ -96,12 +199,15 @@ function Create() {
           </label>
           <input
             id="title"
-            className="block border-gray-200  w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              titleError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {titleError && <p className="text-red-500 text-sm">* Please enter a valid title *</p>}
         </div>
 
         <div className="mb-4">
@@ -135,12 +241,15 @@ function Create() {
           </label>
           <input
             id="frontage"
-            className="block w-full  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              frontageError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="frontage"
             value={frontage}
             onChange={(e) => setFrontage(e.target.value)}
           />
+          {frontageError && <p className="text-red-500 text-sm">* Please enter a valid frontage *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="size">
@@ -148,12 +257,15 @@ function Create() {
           </label>
           <input
             id="size"
-            className="block  w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              sizeError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="size"
             value={size}
             onChange={(e) => setSize(e.target.value)}
           />
+          {sizeError && <p className="text-red-500 text-sm">* Please enter a valid size *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -162,12 +274,15 @@ function Create() {
           </label>
           <input
             id="bedroom"
-            className="block w-full  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bedroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bedroom"
             value={bedroom}
             onChange={(e) => setBedroom(e.target.value)}
           />
+          {bedroomError && <p className="text-red-500 text-sm">* Please enter a valid bedroom count *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="cars">
@@ -175,12 +290,15 @@ function Create() {
           </label>
           <input
             id="cars"
-            className="block w-full  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              carsError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="cars"
             value={cars}
             onChange={(e) => setCars(e.target.value)}
           />
+          {carsError && <p className="text-red-500 text-sm">* Please enter a valid cars *</p>}
         </div>
 
         <div className=" my-4 uppercase">
@@ -189,12 +307,15 @@ function Create() {
           </label>
           <input
             id="bathrooms"
-            className="block w-full  px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bathroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bathrooms"
             value={bathrooms}
             onChange={(e) => setBathrooms(e.target.value)}
           />
+          {bathroomError && <p className="text-red-500 text-sm">* Please enter a valid bathroom count *</p>}
         </div>
         {/* <div className=" my-4 uppercase">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="storeyType">
@@ -215,12 +336,15 @@ function Create() {
           </label>
           <input
             id="price"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              priceError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
         </div>
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
@@ -229,12 +353,15 @@ function Create() {
           </label>
           <input
             id="floor_plan"
-            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              floorplanError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="floor_plan"
             value={floorPlan}
             onChange={(e) => setFloorPlan(e.target.value)}
           />
+          {floorplanError && <p className="text-red-500 text-sm">* Please enter a valid floor plan *</p>}
         </div>
 
         <div className="grid md:grid-cols-2 grid-cols-1">
@@ -243,23 +370,15 @@ function Create() {
             <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
               Image One:
             </label>
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
-            />
+            <input type="file" id="image" accept="image/*" onChange={(e) => setImageOne(e.target.files[0])} />
+            {imageError && <p className="text-red-500 text-sm">* Please enter a image *</p>}
           </div>
           <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="other_image">
               Image Two:
             </label>
-            <input
-              type="file"
-              id="other_image"
-              accept="other_image/*"
-              onChange={(e) => setImageTwo(e.target.files[0])} // Ensure that this sets the state correctly
-            />
+            <input type="file" id="other_image" accept="other_image/*" onChange={(e) => setImageTwo(e.target.files[0])} />
+            {imageTwoError && <p className="text-red-500 text-sm">* Please enter a image *</p>}
           </div>
         </div>
         <div className="flex gap-2 mt-2">

@@ -22,7 +22,6 @@ function Create() {
   const [floorPlan, setFloorPlan] = useState("");
   const [storeyType, setStoreyType] = useState("single");
 
-
   const [titleError, setTitleError] = useState(false);
   const [orderError, setOrderError] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -126,23 +125,21 @@ function Create() {
       return;
     }
 
-    
-
     // Create FormData object
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", editorValue);
     formData.append("order", order);
-    formData.append("image", imageOne); // Append image file correctly
+    formData.append("image", imageOne);
     formData.append("frontage", frontage);
     formData.append("size", size);
 
-    formData.append("bedroom", bedroomValue); // Use validated integer value
-    formData.append("cars", carsValue); // Use validated integer value
+    formData.append("bedroom", bedroom);
+    formData.append("cars", cars);
     formData.append("bathrooms", bathrooms);
-    formData.append("price", priceValue); // Use validated integer value
+    formData.append("price", price);
     formData.append("floor_plan", floorPlan);
-    formData.append("storey_type", 'single');
+    formData.append("storey_type", "single");
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -179,7 +176,9 @@ function Create() {
           </label>
           <input
             id="order"
-            className=" border-gray-200 block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              orderError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="order"
             value={order}
@@ -193,7 +192,9 @@ function Create() {
           </label>
           <input
             id="title"
-            className="block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              titleError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="title"
             value={title}
@@ -233,7 +234,9 @@ function Create() {
           </label>
           <input
             id="frontage"
-            className="block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              frontageError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="frontage"
             value={frontage}
@@ -248,7 +251,9 @@ function Create() {
           </label>
           <input
             id="floor_plan"
-            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              floorPlanError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="floor_plan"
             value={floorPlan}
@@ -262,7 +267,9 @@ function Create() {
           </label>
           <input
             id="size"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              sizeError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="size"
             value={size}
@@ -277,7 +284,9 @@ function Create() {
           </label>
           <input
             id="bedroom"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bedroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bedroom"
             value={bedroom}
@@ -291,7 +300,9 @@ function Create() {
           </label>
           <input
             id="cars"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              carsError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="cars"
             value={cars}
@@ -306,7 +317,9 @@ function Create() {
           </label>
           <input
             id="bathrooms"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bathroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bathrooms"
             value={bathrooms}
@@ -334,23 +347,22 @@ function Create() {
           </label>
           <input
             id="price"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              priceError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
         </div>
         <div className=" my-4 uppercase">
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="image">
             Image:
           </label>
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
-          />
+          <input type="file" id="image" accept="image/*" onChange={(e) => setImageOne(e.target.files[0])} />
+          
         </div>
 
         <div className="flex gap-2 mt-2">

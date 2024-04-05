@@ -22,7 +22,6 @@ const Update = ({ params }) => {
     bathrooms: "",
     price: "",
     floor_plan: "",
-    
   });
   const [editorValue, setEditorValue] = useState("");
   const [imageOnePreview, setImageOnePreview] = useState(null);
@@ -38,7 +37,7 @@ const Update = ({ params }) => {
   const [floorplanError, setFloorPlanError] = useState(false);
   const [carsError, setCarsError] = useState(false);
   const [priceError, setPriceError] = useState(false);
-  
+
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(`/api/design/${params.id}`);
@@ -116,8 +115,6 @@ const Update = ({ params }) => {
       setOrderError(false);
     }
 
-    
-
     if (isNaN(formData.frontage.trim()) || !formData.frontage.trim()) {
       setFrontageError(true);
     } else {
@@ -157,7 +154,6 @@ const Update = ({ params }) => {
     if (
       !formData.title.match(/^\D+$/) ||
       !formData.title.trim() ||
-     
       isNaN(formData.order.trim()) ||
       !formData.order.trim() ||
       isNaN(formData.bedroom.trim()) ||
@@ -168,9 +164,7 @@ const Update = ({ params }) => {
       !formData.frontage.trim() ||
       isNaN(formData.floor_plan.trim()) ||
       !formData.floor_plan.trim() ||
-      isNaN(formData.bathrooms.trim() ||
-      
-      !formData.bathrooms.trim()) ||
+      isNaN(formData.bathrooms.trim() || !formData.bathrooms.trim()) ||
       !formData.bedroom.trim() ||
       isNaN(formData.price.trim()) ||
       !formData.price.trim() ||
@@ -293,10 +287,9 @@ const Update = ({ params }) => {
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageOnePreview);
-                
               }}
             />
-            
+
             {imageOnePreview && (
               <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
             )}
@@ -312,10 +305,9 @@ const Update = ({ params }) => {
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageOnePreview);
-                
               }}
             />
-           
+
             {imageOnePreview && (
               <img src={`${axiosInstance.defaults.baseURL}${formData.image_two}`} alt={formData.title} className="h-12 w-12 rounded-full" />
             )}

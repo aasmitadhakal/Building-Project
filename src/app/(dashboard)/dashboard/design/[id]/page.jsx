@@ -212,7 +212,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="order"
-            className=" border-gray-200 block   w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              orderError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="order"
             value={formData.order || ""}
@@ -226,7 +228,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="title"
-            className=" border-gray-200 block w-full   px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              titleError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="title"
             value={formData.title || ""}
@@ -284,7 +288,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="frontage"
-            className="block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              frontageError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="frontage"
             value={formData.frontage || ""}
@@ -299,7 +305,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="size"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              sizeError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="size"
             value={formData.size || ""}
@@ -314,7 +322,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="bedroom"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bedroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bedroom"
             value={formData.bedroom || ""}
@@ -329,7 +339,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="cars"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              carsError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="cars"
             value={formData.cars || ""}
@@ -344,7 +356,9 @@ const Update = ({ params }) => {
           </label>
           <input
             id="bathrooms"
-            className="block w-full px-4  my-2 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              bathroomError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="bathrooms"
             value={formData.bathrooms || ""}
@@ -359,12 +373,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="price"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              priceError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="price"
             value={formData.price || ""}
             onChange={handleChange}
           />
+          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
         </div>
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
@@ -373,13 +390,15 @@ const Update = ({ params }) => {
           </label>
           <input
             id="floor_plan"
-            className="block w-full px-4  py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${
+              floorPlanError ? "border-red-500" : "focus:border-blue-500"
+            }`}
             type="text"
             name="floor_plan"
             value={formData.floor_plan || ""}
             onChange={handleChange}
           />
-          {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
+          {floorPlanError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
         </div>
         {/* for storey_type */}
         {/* <div className=" my-4 uppercase">
