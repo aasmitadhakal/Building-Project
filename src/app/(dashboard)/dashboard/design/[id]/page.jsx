@@ -89,7 +89,7 @@ const Update = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const isTitleInvalid = !formData.title.trim() || !formData.title.match(/^\D+$/);
+    const isTitleInvalid = !formData.title.trim() ;
     const isOrderInvalid = !formData.order.trim() || isNaN(formData.order.trim());
     const isSizeInvalid = !formData.size.trim() || isNaN(formData.size.trim());
     const isBedroomInvalid = !formData.bedroom.trim() || isNaN(formData.bedroom.trim());
