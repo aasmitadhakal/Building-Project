@@ -7,21 +7,23 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 
-const data = [
-  {
-    title: "Contact Us",
-    introduction: "Have Questions? Get in Touch",
-    short_description:
-      "Get in touch with us for any questions, feedback, or support you may need.",
-    location: "123 Main Street, Cityville, State, Zip",
-    phone: "+1234567890",
-    email: "contact@example.com",
-  },
-];
+
 
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
-
+  const [headerdata, setheaderdata] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get('/api/settings');
+      if (response.data.success) {
+        setheaderdata(response.data.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   const fetchData1 = async () => {
     try {
       const response = await axiosInstance.get("/api/pages/7");
@@ -35,6 +37,7 @@ function Contact() {
     }
   };
   useEffect(() => {
+    fetchData();
     fetchData1();
   }, []);
   return (
@@ -76,33 +79,33 @@ function Contact() {
       </div>
 
       {/* for cantact detailas */}
-      <div className="mb-2a4 md:flex container mx-auto  my-8">
+      <div className="mb-24 md:flex container mx-auto  my-8">
         {/* for text part */}
-        {data.map((card, index) => (
-          <div key={index} className="px-6 grid place-content-center">
+     
+          <div  className="px-6 grid place-content-center">
             <div className="my-1 font-[karla] font-[400] text-[18px] leading-[24px] ">
-              {card.title}
+              {headerdata.contactus_title}
             </div>
             <div className="font-[karla] font-[700] text-[38px] leading-[44px] text-customblue my-1">
-              {card.introduction}
+              {headerdata.contactus_section_title}
             </div>
             <div className="font-[karla] font-[400] my-4 text-[18px] leading-[24px]">
-              {card.short_description}
+              {headerdata.contactus_description}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
               <IoLocationOutline className="text-customblue font-[500] mx-2" />{" "}
-              {card.location}
+              {headerdata.site_location}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
               <MdContactPhone className="text-customblue font-[500] mx-2" />{" "}
-              {card.phone}
+              {headerdata.site_phone}
             </div>
             <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
               <MdEmail className="mx-2 text-customblue font-[500]" />{" "}
-              {card.email}
+              {headerdata.site_mail}
             </div>
           </div>
-        ))}
+      
 
         {/* for form */}
         <div>
