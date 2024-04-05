@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,6 +24,7 @@ const CreateSeo = () => {
     seo_privacy_keywords: "",
     seo_privacy_description: "",
   });
+  const [errorFields, setErrorFields] = useState({}); // State to keep track of error fields
 
   // Fetch data from server and populate the form fields
   const fetchData = async () => {
@@ -39,31 +41,37 @@ const CreateSeo = () => {
     fetchData();
   }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  
+    // If input passes validations, update the form data
+    setFormData({ ...formData, [name]: value });
 
-  // Validation for string input
-  if (typeof value !== "string") {
-    // Display error message for non-string input
-    toast.error(`${name} must be a string`);
-    return;
-  }
-
-  // If input passes validations, update the form data
-  setFormData({ ...formData, [name]: value });
-};
-
+    // Clear the error for the field when user starts typing again
+    setErrorFields({ ...errorFields, [name]: false });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Simple validation for each input field
+    const isFormValid = Object.entries(formData).every(([name, value]) => {
+      const isValid = value && isNaN(value);
+      if (!isValid) {
+        setErrorFields((prevErrors) => ({ ...prevErrors, [name]: true }));
+      }
+      return isValid;
+    });
+
+    if (!isFormValid) {
+      toast.error("Please fill all fields with valid data");
+      return;
+    }
+
     try {
       const response = await axiosInstance.put(`/api/settings/u/${formData}`, formData);
       if (response.status === 200) {
-        
         toast.success("Data saved successfully");
-       
       } else {
         toast.error("Error updating data");
       }
@@ -71,6 +79,13 @@ const handleChange = (e) => {
       console.error("Error updating item:", error);
       toast.error("Error updating data");
     }
+  };
+
+  // Apply red border style if error field is true
+  const getInputClassName = (name) => {
+    return `block w-full px-4 py-2 border rounded-md focus:outline-none ${
+      errorFields[name] ? "border-red-500" : "border-gray-200 focus:border-blue-500"
+    }`;
   };
 
   // Define an array of sections with their input fields
@@ -193,21 +208,30 @@ const handleChange = (e) => {
                         value={formData[field.name] || ""}
                         onChange={handleChange}
                         placeholder={field.placeholder}
-                        className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                        className={`block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+                          errorFields[field.name] ? "border-red-500" : "border-gray-200 focus:border-blue-500"
+                        }`}
                         rows={4}
                         required={field.required}
                       />
                     ) : (
-                      <input
-                        type={field.type}
-                        id={field.name}
-                        name={field.name}
-                        value={formData[field.name] || ""}
-                        onChange={handleChange}
-                        placeholder={field.placeholder}
-                        className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                        required={field.required}
-                      />
+                      <div className="relative">
+                        <input
+                          type={field.type}
+                          id={field.name}
+                          name={field.name}
+                          value={formData[field.name] || ""}
+                          onChange={handleChange}
+                          placeholder={field.placeholder}
+                          className={getInputClassName(field.name)} // Apply dynamic class based on error field
+                          required={field.required}
+                        />
+                        {errorFields[field.name] && (
+                          <p className="text-sm text-red-500">
+                            * Please enter a valid {field.label.toLowerCase()} *
+                          </p>
+                        )}
+                      </div>
                     )}
                   </div>
                 ))}
