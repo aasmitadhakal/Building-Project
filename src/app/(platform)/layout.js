@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Navbar from './component/Navbar';
 import Footer from './component/Fotter';
+import 'remixicon/fonts/remixicon.css'
 
 export const metadata = {
   title: "Create Next App",
