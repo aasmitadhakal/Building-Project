@@ -39,7 +39,7 @@ function Create() {
     e.preventDefault();
 
     // Validate inputs
-    const isTitleInvalid = !title.trim() || !title.match(/^\D+$/);
+    const isTitleInvalid = !title.trim() ;
     const isOrderInvalid = !order.trim() || isNaN(order.trim());
     const isImageInvalid = !imageOne;
     const isSizeInvalid = !size.trim() || isNaN(size.trim());
