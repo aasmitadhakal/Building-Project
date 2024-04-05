@@ -39,7 +39,7 @@ function Aboutus() {
 
                 <img
                   src={axiosInstance.defaults.baseURL + data.image_one} // Concatenate base URL with image path
-                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded ring-4 ring-white md:mt-36 mt-28 absolute top-0 left-0'
+                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded-md ring-4 ring-white md:mt-36 mt-28 absolute top-0 left-0'
     
                 />
   
@@ -47,7 +47,7 @@ function Aboutus() {
 
                 <img
                   src={axiosInstance.defaults.baseURL + data.image_two} // Concatenate base URL with image path
-                  className='md:w-[484px] md:h-[430px] w-[280px] h-[250px] rounded ring-4 ring-white md:mb-6 mb-4' // Added margin-top here
+                  className='md:w-[484px] md:h-[430px] w-[280px] h-[250px] rounded-md ring-4 ring-white md:mb-6 mb-4' // Added margin-top here
    
                 />
             </div>

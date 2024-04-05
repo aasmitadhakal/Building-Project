@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '@/app/utils/axiosInstance';
 import Link from 'next/link';
-
+import { IoIosArrowForward } from "react-icons/io";
 
 function AboutBanner() {
   const [data, setData] = useState([]);
@@ -41,6 +41,15 @@ function AboutBanner() {
             
            
           </div>
+        </div>
+        <div className='  bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center md:px-0 px-4 gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p> About Us</p>
+        
+          </div>
+        
         </div>
       {/* ))} */}
     </>

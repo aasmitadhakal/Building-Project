@@ -5,7 +5,8 @@ import { FaToilet } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa6";
 import { useState,useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 // const data = [
 //   {
 //     title: "ANCHOR283",
@@ -98,12 +99,22 @@ function DoubleStore() {
               zIndex: "2",
             }}
           >
-            <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
+            <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">
               {bannerdata.title}
             </h1>
           </div>
         </div>
-    
+        <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p>Design</p>
+         <IoIosArrowForward />
+         <p>Double Storey Houses</p>
+          </div>
+        
+        </div>
+
       {/* for cards */}
       <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24 font-[Montserrat]">
         {data.map((property, index) => (

@@ -1,7 +1,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '@/app/utils/axiosInstance';
-
+import Link from 'next/link';
+import { IoIosArrowForward } from "react-icons/io";
 function ServicePageBanner() {
   const [data, setData] = useState([]);
  
@@ -39,6 +40,15 @@ function ServicePageBanner() {
            
           </div>
         </section>
+        <div className='  bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] md:px-0 px-4 leading-[25px]'>
+          <div className='container mx-auto flex items-center md:px-0 px-4 gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p> Services</p>
+        
+          </div>
+        
+        </div>
     
    </>
   )

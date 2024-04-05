@@ -4,7 +4,8 @@ import { FaToilet } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa6";
 import { useState,useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 // const data = [
 //   {
 //     title: "ANCHOR283",
@@ -100,6 +101,16 @@ fetchData1();
               {bannerdata.title}
             </h1>
           </div>
+        </div>
+        <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p>Design</p>
+         <IoIosArrowForward />
+         <p>Dual Occupancy Houses</p>
+          </div>
+        
         </div>
     
       {/* for cards */}

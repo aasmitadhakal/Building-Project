@@ -2,7 +2,8 @@
 import { useState,useEffect } from 'react';
 import Fancybox from './Fancybox';
 import axiosInstance from '@/app/utils/axiosInstance';
-
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 
 
  function Gallery() {
@@ -55,6 +56,15 @@ import axiosInstance from '@/app/utils/axiosInstance';
             
            
           </div>
+        </div>
+        <div className=' md:px-0 px-4 md: bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p>Gallery</p>
+        
+          </div>
+        
         </div>
       
      <Fancybox

@@ -68,17 +68,17 @@ const Footer = () => {
     </div>
      
       {/* <div className="flex justify-center items-center border-t-2 border-white py-2">© Copyright 2024 by @paradisegroup</div>  */}
-      <div className="md:flex justify-between pb-8 container mx-auto ">
+      <div className="md:flex justify-between pb-8 container mx-auto md:px-0 px-4 ">
       {/* for descriptiion */}
-      <div className="grid place-content-center">
+      <div className="grid md:place-content-center">
      <div className="md:flex items-center my-2 justify-center"> 
      <img
     src={axiosInstance.defaults.baseURL + headerdata1.footer} 
      className="h-20 w-20"></img></div>
-      <div className="md:flex items-center justify-center my-2">{headerdata.webpage_slogan}</div>
-      <div className="md:flex items-center justify-center ">Social Media :</div>
+      <div className="flex md:items-center md:justify-center my-2">{headerdata.webpage_slogan}</div>
+      <div className="flex md:items-center md:justify-center ">Social Media :</div>
       
-      <div className="my-2 md:flex items-center justify-center gap-x-2">
+      <div className="my-2 flex md:items-center md:justify-center gap-x-2">
   {headerdata2.map((item, index) => (
     <div key={index} className="text-[24px] rounded-full">
       {item.link && (

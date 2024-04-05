@@ -63,7 +63,7 @@ function Navbar() {
             <div className="hover:text-customblue">  Privacy & Policy</div>
           </Link> */}
         </div>
-        {/* <div></div> */}
+        <div></div>
         {/* for mobile view */}
         <div className="md:hidden ">
           {showMenu ? (

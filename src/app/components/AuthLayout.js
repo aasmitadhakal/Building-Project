@@ -7,7 +7,8 @@ const AuthLayout = ({ children }) => {
 
   useEffect(() => {
     // Check if user is authenticated
-    if (!isAuthenticated) {
+    const token = localStorage.getItem('authorizations')
+    if (!isAuthenticated || !token) {
       // If not authenticated and trying to access the dashboard, redirect to login page
       router.push('/login');
     }

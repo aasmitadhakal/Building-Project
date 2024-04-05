@@ -1,7 +1,8 @@
 "use client"
 import { useState,useEffect } from 'react';
 import axiosInstance from '@/app/utils/axiosInstance';
-
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 function SingleStoreBanner() {
   const [bannerdara, setbannerData] = useState([]);
  
@@ -39,7 +40,16 @@ function SingleStoreBanner() {
            
           </div>
         </section>
-      
+        <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p>Design</p>
+         <IoIosArrowForward />
+         <p>Single Storey Houses</p>
+          </div>
+        
+        </div>
 
     </>
   )

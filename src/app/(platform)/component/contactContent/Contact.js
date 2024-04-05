@@ -8,6 +8,8 @@ import { MdEmail } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
   const [headerdata, setheaderdata] = useState([]);
@@ -110,7 +112,15 @@ function Contact() {
           </h1>
         </div>
       </div>
-
+      <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
+          <div className='container mx-auto flex items-center gap-x-2'>
+          <Link href='/'>Home</Link>
+         <IoIosArrowForward />
+         <p>Contact Us</p>
+        
+          </div>
+        
+        </div>
       {/* for cantact detailas */}
       <div className="mb-24 md:flex container mx-auto  my-8">
         {/* for text part */}
