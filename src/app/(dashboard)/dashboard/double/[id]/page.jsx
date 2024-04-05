@@ -104,7 +104,7 @@ const Update = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
+    if (!formData.title.trim() ) {
       setTitleError(true);
     } else {
       setTitleError(false);
@@ -152,7 +152,7 @@ const Update = ({ params }) => {
     }
 
     if (
-      !formData.title.match(/^\D+$/) ||
+     
       !formData.title.trim() ||
       isNaN(formData.order.trim()) ||
       !formData.order.trim() ||

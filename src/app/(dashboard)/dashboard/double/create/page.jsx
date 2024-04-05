@@ -40,7 +40,7 @@ function Create() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !title.match(/^\D+$/)) {
+    if (!title.trim() ) {
       setTitleError(true);
     } else {
       setTitleError(false);
@@ -99,7 +99,7 @@ function Create() {
     }
 
     if (
-      !title.match(/^\D+$/) ||
+      
       !title.trim() ||
       !imageOne ||
       !imageTwo ||

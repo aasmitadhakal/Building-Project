@@ -107,7 +107,7 @@ const Update = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // error checks
-    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
+    if (!formData.title.trim() ) {
       setTitleError(true);
     } else {
       setTitleError(false);
