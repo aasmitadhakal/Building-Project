@@ -125,12 +125,12 @@ const Update = ({ params }) => {
     } else {
       setSizeError(false);
     }
-    if (isNaN(formData.price.trim()) || !formData.price.trim()) {
+    if ( !formData.price.trim()) {
       setPriceError(true);
     } else {
       setPriceError(false);
     }
-    if (isNaN(formData.floor_plan.trim()) || !formData.floor_plan.trim()) {
+    if ( !formData.floor_plan.trim()) {
       setFloorPlanError(true);
     } else {
       setFloorPlanError(false);
@@ -163,12 +163,8 @@ const Update = ({ params }) => {
       isNaN(formData.frontage.trim()) ||
       !formData.frontage.trim() ||
       isNaN(formData.floor_plan.trim()) ||
-      !formData.floor_plan.trim() ||
       isNaN(formData.bathrooms.trim() || !formData.bathrooms.trim()) ||
       !formData.bedroom.trim() ||
-      isNaN(formData.price.trim()) ||
-      !formData.price.trim() ||
-      isNaN(formData.price.trim()) ||
       !formData.price.trim()
     ) {
       toast.error("Please fill in all required fields correctly");

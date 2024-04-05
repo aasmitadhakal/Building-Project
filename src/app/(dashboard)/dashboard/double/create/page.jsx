@@ -72,12 +72,12 @@ function Create() {
     } else {
       setSizeError(false);
     }
-    if (isNaN(price.trim()) || !price.trim()) {
+    if ( !price.trim()) {
       setPriceError(true);
     } else {
       setPriceError(false);
     }
-    if (isNaN(floorPlan.trim()) || !floorPlan.trim()) {
+    if ( !floorPlan.trim()) {
       setFloorPlanError(true);
     } else {
       setFloorPlanError(false);
@@ -111,15 +111,14 @@ function Create() {
       !size.trim() ||
       isNaN(frontage.trim()) ||
       !frontage.trim() ||
-      isNaN(floorPlan.trim()) ||
+      
       !floorPlan.trim() ||
       isNaN(bathrooms.trim()) ||
       !bathrooms.trim() ||
       isNaN(bedroom.trim()) ||
       !bedroom.trim() ||
-      isNaN(price.trim()) ||
-      !price.trim() ||
-      isNaN(price.trim()) ||
+      
+      
       !price.trim()
     ) {
       toast.error("Please fill in all required fields correctly");

@@ -22,20 +22,18 @@ function Create() {
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
-  
 
-
-   const [orderError, setOrderError] = useState(false);
-   const [titleError, setTitleError] = useState(false);
-   const [frontageError, setFrontageError] = useState(false);
-   const [sizeError, setSizeError] = useState(false);
-   const [bedroomError, setBedroomError] = useState(false);
-   const [bathroomError, setBathroomError] = useState(false);
-   const [floorplanError, setFloorPlanError] = useState(false);
-   const [carsError, setCarsError] = useState(false);
-   const [priceError, setPriceError] = useState(false);
-   const [imageError, setImageError] = useState(false);
-   const [imageTwoError, setImageTwoError] = useState(false);
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [frontageError, setFrontageError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
+  const [bedroomError, setBedroomError] = useState(false);
+  const [bathroomError, setBathroomError] = useState(false);
+  const [floorplanError, setFloorPlanError] = useState(false);
+  const [carsError, setCarsError] = useState(false);
+  const [priceError, setPriceError] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [imageTwoError, setImageTwoError] = useState(false);
 
   const router = useRouter();
 
@@ -47,10 +45,10 @@ function Create() {
     const isOrderInvalid = !order.trim() || isNaN(order.trim());
     const isImageInvalid = !imageOne;
     const isSizeInvalid = !size.trim() || isNaN(size.trim());
-    const isPriceInvalid = !price.trim() || isNaN(price.trim());
+    const isPriceInvalid = !price.trim();
     const isBedroomInvalid = !bedroom.trim() || isNaN(bedroom.trim());
     const isBathroomInvalid = !bathrooms.trim() || isNaN(bathrooms.trim());
-    const isFloorPlanInvalid = !floorPlan.trim() || isNaN(floorPlan.trim());
+    const isFloorPlanInvalid = !floorPlan.trim();
     const isFrontageInvalid = !frontage.trim() || isNaN(frontage.trim());
     const isCarsInvalid = !cars.trim() || isNaN(cars.trim());
 

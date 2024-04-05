@@ -94,8 +94,8 @@ const Update = ({ params }) => {
     const isSizeInvalid = !formData.size.trim() || isNaN(formData.size.trim());
     const isBedroomInvalid = !formData.bedroom.trim() || isNaN(formData.bedroom.trim());
     const isBathroomInvalid = !formData.bathrooms.trim() || isNaN(formData.bathrooms.trim());
-    const isPriceInvalid = !formData.price.trim() || isNaN(formData.price.trim());
-    const isFloorPlanInvalid = !formData.floor_plan.trim() || isNaN(formData.floor_plan.trim());
+    const isPriceInvalid = !formData.price.trim() ;
+    const isFloorPlanInvalid = !formData.floor_plan.trim() ;
     const isFrontageInvalid = !formData.frontage.trim() || isNaN(formData.frontage.trim());
     const isCarsInvalid = !formData.cars.trim() || isNaN(formData.cars.trim());
 
