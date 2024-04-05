@@ -63,7 +63,7 @@ function UpdateSlider({ params }) {
       }
     } catch (error) {
       console.error("Error updating slider:", error);
-      toast("Error updating slider");
+      toast.error(error.response.data.error );
     }
   };
 

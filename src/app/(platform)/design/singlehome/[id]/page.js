@@ -128,17 +128,8 @@ function page({ params }) {
         </div>
         <div className=" bg-[#ECECEC] my-8 rounded p-4">
           <p className="border-l-1 border-gray-400 my-2 p-2">Description</p>
-          <p className="font-[400] text-[15px] leading-[25px] my-1">
-            “AZURE242" is a cutting-edge cloud computing platform developed by
-            Microsoft Azure. Renowned for its scalability, reliability, and
-            extensive range of services, AZURE242 is designed to empower
-            businesses of all sizes with seamless digital transformation
-            capabilities. It offers a comprehensive suite of cloud services
-            including infrastructure as a service (IaaS), platform as a service
-            (PaaS), and software as a service (SaaS), enabling organizations to
-            build, deploy, and manage applications and services with
-            unparalleled flexibility and efficiency.
-          </p>
+          <p className="font-[400] text-[15px] leading-[25px] my-1 text-justify" dangerouslySetInnerHTML={{ __html: data.description }}/>
+            
         </div>
         {/* for price */}
         <div className=" bg-[#ECECEC] my-8 rounded p-4">

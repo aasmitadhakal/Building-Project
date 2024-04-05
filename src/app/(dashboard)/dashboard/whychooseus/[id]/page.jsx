@@ -121,7 +121,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/whychooseus");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast("Error updating data");
+      toast.error(error.response.data.error );
     }
   };
 

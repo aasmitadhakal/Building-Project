@@ -40,7 +40,7 @@ function Create() {
         toast("Error creating post");
       }
     } catch (error) {
-      toast("Error creating post");
+      toast.error(error.response.data.error );
     }
   };
 

@@ -136,7 +136,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/contact");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error("Error updating data");
+      toast.error(error.response.data.error );
     }
   };
 

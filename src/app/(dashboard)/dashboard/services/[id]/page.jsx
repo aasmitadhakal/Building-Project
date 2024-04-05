@@ -103,9 +103,9 @@ const Update = ({ params }) => {
       updatedData.append("status", formData.status);
       updatedData.append("description", editorValue);
       // updatedData.append("description", editorValue);
-      // if (formData.image) {
-      //   updatedData.append("image", formData.image);
-      // }
+      if (formData.image) {
+        updatedData.append("image", formData.image);
+      }
      
       await axiosInstance.put(`/api/service/${params.id}`, updatedData);
 
@@ -113,7 +113,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/services");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast("Error updating data");
+      toast.error(error.response.data.error );
     }
   };
 

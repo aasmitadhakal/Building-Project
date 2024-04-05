@@ -77,7 +77,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/aboutus");
       // you can add other logics like showing toast
     } catch (error) {
-      console.error("Error updating data:", error);
+      toast.error(error.response.data.error );
     }
   };
 

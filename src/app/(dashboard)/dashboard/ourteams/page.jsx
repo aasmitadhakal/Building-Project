@@ -14,6 +14,7 @@ const AboutUs = () => {
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast.error(error.response.data.error );
     }
   };
 

@@ -34,7 +34,7 @@ const Update = ({ params }) => {
         setImagePreview(responseData.image || null);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      toast.error(error.response.data.error );
     }
   };
 

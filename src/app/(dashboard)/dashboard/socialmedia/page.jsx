@@ -28,7 +28,7 @@ const Socilmedia = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error, e.g., display a toast message or retry the request
-      toast("Error fetching data");
+      toast.error(error.response.data.error );
     }
   };
 
