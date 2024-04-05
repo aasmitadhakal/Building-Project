@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axiosInstance from '@/app/utils/axiosInstance';
 import Link from 'next/link';
 
-
+import '../component/servicecontent/index.css'
 
 function HomeBanner() {
   const [data, setData] = useState([]);
@@ -49,7 +49,7 @@ function HomeBanner() {
             alt="Background"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-black bg-opacity-75 p-8 md:w-1/2 md:mx-0 mx-4  text-white text-center">
+            <div className="bg-black bg-opacity-75 p-8 md:w-1/2 md:mx-0 mx-4  text-white text-center gradient-border">
               <h1 className="mb-4 md:font-[500] md:text-[24px] leading-[32px] ">{data.name}</h1>
               <p className="md:font-[800] font-[500] md:text-[40px] text-[35px] leading-[54px]" dangerouslySetInnerHTML={{ __html: data.description }} />
               <Link href=''><button className='mt-4 md:font-[600] font-[400] md:text-[20px] text-[10px] bg-white hover:bg-[#4581AC] px-8 py-4 rounded-lg text-[#4581AC] ring-[#4581AC] hover:bg-blues hover:text-white ring-2 leading-[22px]'>{buttondata.home_button}</button></Link>

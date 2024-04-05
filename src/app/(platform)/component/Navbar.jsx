@@ -32,9 +32,7 @@ function Navbar() {
           <Link href="/services">
             <div className="hover:text-customblue">Service</div>
           </Link>
-          <Link href="/gallery">
-            <div className="hover:text-customblue">Gallery</div>
-          </Link>
+          
           <div
             className="relative"
             // onMouseEnter={handleDropdown}
@@ -42,19 +40,22 @@ function Navbar() {
           >
             <div onClick={handleDropdown} className="hover:text-customblue cursor-pointer flex items-center justify-items-center ">Design <IoIosArrowDown  onClick={handleDropdown} className="ml-1"/></div>
             {dropdownOpen && (
-              <div className="absolute top-full w-52 left-0  bg-customblue mt-8 text-white p-4 shadow-2xl rounded ">
-                <div className="hover:text-blues">
-                  <Link href="/design/singlehome">Single Home</Link>
+              <div className="absolute top-full w-52 left-0  bg-customblue mt-8 text-white p-4 shadow-2xl  ">
+                <div className="hover:text-blues my-1">
+                  <Link href="/design/singlehome">Single Storey</Link>
                 </div>
-                <div className="hover:text-blues">
-                  <Link href="/design/doublehome">Double</Link>
+                <div className="hover:text-blues  my-1">
+                  <Link href="/design/doublehome">Double Storey</Link>
                 </div>
-                <div className="hover:text-blues">
-                  <Link href="/design/doubleoccupance">doubleoccupance</Link>
+                <div className="hover:text-blues  my-1">
+                  <Link href="/design/doubleoccupance">Dual Occupancy</Link>
                 </div>
               </div>
             )}
           </div>
+          <Link href="/gallery">
+            <div className="hover:text-customblue">Gallery</div>
+          </Link>
           <Link href="/contactus">
             <div className="hover:text-customblue">Contact Us</div>
           </Link>
@@ -116,17 +117,15 @@ function Navbar() {
                 <div className="hover:text-customblue cursor-pointer flex items-center justify-center">Design <IoIosArrowDown  className="ml-1"/></div>
                 {dropdownOpen && (
                   <div className="absolute top-full w-52 left-0 bg-customblue text-white p-4 shadow-2xl rounded ">
-                    <div className="hover:bg-customblue hover:text-white">
-                      <Link href="/design/singlehome" >Single Home</Link>
-                    </div>
-                    <div>
-                      <Link href="/design/doublehome">Double</Link>
-                    </div>
-                    <div>
-                      <Link href="/design/doubleoccupance">
-                        doubleoccupance
-                      </Link>
-                    </div>
+                     <div className="hover:text-blues">
+                  <Link href="/design/singlehome">Single Storey</Link>
+                </div>
+                <div className="hover:text-blues">
+                  <Link href="/design/doublehome">Double Storey</Link>
+                </div>
+                <div className="hover:text-blues">
+                  <Link href="/design/doubleoccupance">Dual Occupancy</Link>
+                </div>
                   </div>
                 )}
               </div>

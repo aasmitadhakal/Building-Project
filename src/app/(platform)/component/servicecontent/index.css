@@ -8,3 +8,29 @@
   .service-item img {
     transition: background-color 0.3s ease-in-out;
   }
+ 
+
+.image-container {
+  overflow: hidden;
+}
+
+.img-transition {
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .img-transition {
+  transform: scale(1.1); /* Adjust the scale value as needed */
+}
+/* .gradient-border{
+  border-inline-start:10px solid;
+  border-block-start:10px solid;
+
+  border-left-color: chocolate;
+  border-image-sources:
+  radial-gradient(
+    circle at top left,
+    limegreen,
+    transparent 50%);
+  border-image-slice: 1;
+  padding: 10px;
+} */

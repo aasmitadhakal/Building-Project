@@ -1,81 +1,127 @@
 "use client"
 import { useState } from "react";
-
-const data1 = [
-  {
-    "title": "single Storeu",
-    "img": "https://s3-alpha-sig.figma.com/img/599e/6cd4/c434bf17bd06739bd22813d7f23784da?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TRwJpFP-oSHCiWyCyZ1TItFEY2hfmqvhT5E~r75DvyrwnUfLnLQDzxKyckQQtW93BOxLuQMc4RmQSQ1WfAP7XGv8DkzofmDxXgThpZBg0qwyCq64IkNvWGEsw8gKOEHO-b4xcrLnHNnZ4G78IGAi0W0A5kS06poJ4fxpdBZ-oxgKmBin4B4gulyROZO6voHxqewlfyK-UWzdhTOvAMRQ8OJKjEdDxZ4mUQK36fhD68kZLoAu5S2G0HxG5qGF8NNRHNaJsSwJ~iSwKvJpaLe5SOGhJ3zQ9r~cRNNspjGFD24rRbIxEuoUrmbUH3aAYCn29brV~mhmn0LDfwrLTnzwmw__"
-  }
-];
-
-const data2 = [
-  {
-    "title": "single Storeu",
-    "img": "https://s3-alpha-sig.figma.com/img/599e/6cd4/c434bf17bd06739bd22813d7f23784da?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TRwJpFP-oSHCiWyCyZ1TItFEY2hfmqvhT5E~r75DvyrwnUfLnLQDzxKyckQQtW93BOxLuQMc4RmQSQ1WfAP7XGv8DkzofmDxXgThpZBg0qwyCq64IkNvWGEsw8gKOEHO-b4xcrLnHNnZ4G78IGAi0W0A5kS06poJ4fxpdBZ-oxgKmBin4B4gulyROZO6voHxqewlfyK-UWzdhTOvAMRQ8OJKjEdDxZ4mUQK36fhD68kZLoAu5S2G0HxG5qGF8NNRHNaJsSwJ~iSwKvJpaLe5SOGhJ3zQ9r~cRNNspjGFD24rRbIxEuoUrmbUH3aAYCn29brV~mhmn0LDfwrLTnzwmw__"
-  }
-];
-
-const data3 = [
-  {
-    "title": "single Storeu",
-    "img": "https://s3-alpha-sig.figma.com/img/599e/6cd4/c434bf17bd06739bd22813d7f23784da?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TRwJpFP-oSHCiWyCyZ1TItFEY2hfmqvhT5E~r75DvyrwnUfLnLQDzxKyckQQtW93BOxLuQMc4RmQSQ1WfAP7XGv8DkzofmDxXgThpZBg0qwyCq64IkNvWGEsw8gKOEHO-b4xcrLnHNnZ4G78IGAi0W0A5kS06poJ4fxpdBZ-oxgKmBin4B4gulyROZO6voHxqewlfyK-UWzdhTOvAMRQ8OJKjEdDxZ4mUQK36fhD68kZLoAu5S2G0HxG5qGF8NNRHNaJsSwJ~iSwKvJpaLe5SOGhJ3zQ9r~cRNNspjGFD24rRbIxEuoUrmbUH3aAYCn29brV~mhmn0LDfwrLTnzwmw__"
-  }
-];
-
+import'../component/servicecontent/index.css'
+import axiosInstance from "@/app/utils/axiosInstance";
+import { useEffect } from "react";
 function HomeDesignPart() {
-  const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
+  const [headerdata, setheaderdata] = useState([]);
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/settings');
+      if (response.data.success) {
+        setheaderdata(response.data.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get('/api/pages/9');
+      if (response.data.success) {
+        setData(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchData2 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/pages/10');
+      if (response.data.success) {
+        setData2(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchData3 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/pages/11');
+      if (response.data.success) {
+        setData3(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    // Function to fetch data from APi
+    fetchData(); 
+    fetchData2();
+    fetchData3();
+    fetchData1();
+    // Call the fetchData function when the component mounts
+  }, []); // Empty dependency array ensures that this effect runs only once when the component mounts
   return (
     <>
       <div className='bg-customgray py-16 font-[karla]'>
         {/* Header */}
         <div className='font-karla'>
           <p className='text-brown md:text-[18px] text-[15px] leading-[24px] font-[400] grid place-content-center'>Design & construction.</p>
-          <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center'>Visit Our Designs</p>
+          <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center'>{headerdata.design_section_description}</p>
         </div>
 
         {/* Images */}
         <div className='mx-auto container grid md:grid-cols-3 md:px-0 px-4 gap-4'>
-        {data1.map((datas, index) => (
-    <div key={index} 
-    onMouseEnter={() => setHoveredIndex(index)}
-    onMouseLeave={() => setHoveredIndex(-1)}
-    className="image-container relative">
-      <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
+        
+        <div className="image-container relative h-[350px]">
+    <div className="bg-black w-full flex justify-center items-center relative">
         {/* Overlay to darken the image */}
-        <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
+        <div className='w-full h-full absolute top-0 left-0 bg-black opacity-70'  style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
         <img 
-          src={datas.img}
-         
-          alt='img1' 
-          className="object-cover w-full h-[350px] hover:scale-[1.01] transition-transform ease-in duration-300"
-/>
-      </div>
-      {/* Title with improved visibility */}
-      <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{datas.title}</p>
-    </div>
-  ))}
-           {data2.map((datas, index) => (
-      <div key={index} className="image-container relative">
-    <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
-      {/* Overlay to darken the image */}
-      <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
-      <img src={datas.img} alt='img1' className="object-cover w-full h-[350px]"></img>
+            src={axiosInstance.defaults.baseURL + data.image} 
+            alt='img1' 
+            className="img-transition h-[350px]"
+            style={{ transition: 'transform 0.3s ease', zIndex: '0' }}
+        />
     </div>
     {/* Title with improved visibility */}
-    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{datas.title}</p>
-  </div>
-))}
-          {data3.map((datas, index) => (
-      <div key={index} className="image-container relative">
-    <div className="bg-black w-full h-[350px] flex justify-center items-center relative">
-      {/* Overlay to darken the image */}
-      <div className='w-full h-[350px] absolute inset-0' style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
-      <img src={datas.img} alt='img1' className="object-cover w-full h-[350px]"></img>
+    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{data.title}</p>
+</div>
+{/* for dual */}
+<div className="image-container relative h-[350px]">
+    <div className="bg-black w-full flex justify-center items-center relative">
+        {/* Overlay to darken the image */}
+        <div className='w-full h-full absolute top-0 left-0 bg-black opacity-70'  style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
+        <img 
+            src={axiosInstance.defaults.baseURL + data2.image} 
+            alt='img1' 
+            className="img-transition h-[350px]"
+            style={{ transition: 'transform 0.3s ease', zIndex: '0' }}
+        />
     </div>
     {/* Title with improved visibility */}
-    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{datas.title}</p>
-  </div>
-))}
+    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{data2.title}</p>
+</div>
+{/* for dual occupanc */}
+<div className="image-container relative h-[350px]">
+    <div className="bg-black w-full flex justify-center items-center relative">
+        {/* Overlay to darken the image */}
+        <div className='w-full h-full absolute top-0 left-0 bg-black opacity-70'  style={{ backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
+        <img 
+            src={axiosInstance.defaults.baseURL + data3.image} 
+            alt='img1' 
+            className="img-transition h-[350px]"
+            style={{ transition: 'transform 0.3s ease', zIndex: '0' }}
+        />
+    </div>
+    {/* Title with improved visibility */}
+    <p className="absolute inset-0 flex items-center justify-center text-white text-[24px] leading-[32px] font-[600] z-10">{data3.title}</p>
+</div>
+ 
+
         </div>
       </div>
     </>

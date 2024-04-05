@@ -7,34 +7,14 @@ import { FiTwitter } from "react-icons/fi";
 import Link from "next/link";
 
 
-const img = "/assets/image/logo.jpg";
-const sections = [
-  {
-    title: " Quick Links",
-    items: [<Link href="/">Home</Link>,<Link href="/about">About Us</Link>, <Link href="/service">Service</Link>, <Link href="/gallery">Gallery</Link>, <Link href="/contactus">Contact</Link>],
-  },
-  {
-    title: "Company",
-    items: ["Privacy Policy"],
-  },
-
-  {
-    title: "Details",
-    items: [
-      <Link href="/contact">Our Story</Link>,
-       "Address: "  ,
-      "Millennium City, PH17",
-      "Phone: 023 456 7890",
-      "Email: travel@gmail.com",
-      "Maps: Millennium City, Accra"
-    ]
-  },
-];
+    
 
 
 
 const Footer = () => {
   const [headerdata, setheaderdata] = useState([]);
+  const [headerdata1, setheaderdata1] = useState([]);
+  const [headerdata2, setheaderdata2] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get('/api/settings');
@@ -47,8 +27,34 @@ const Footer = () => {
       console.error('Error fetching data:', error);
     }
   };
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/global');
+      if (response.data.success) {
+        setheaderdata1(response.data.data[0]); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchData3 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/social');
+      if (response.data.success) {
+        setheaderdata2(response.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   useEffect(() => {
     fetchData();
+    fetchData1();
+    fetchData3();
     
   }, []);
   return (
@@ -65,14 +71,24 @@ const Footer = () => {
       <div className="md:flex justify-between pb-8 container mx-auto ">
       {/* for descriptiion */}
       <div className="grid place-content-center">
-     <div className="md:flex items-center my-2 justify-center"> <img src={img} className="h-20 w-20"></img></div>
-      <div className="md:flex items-center justify-center my-2">"We're partners in creating exceptional spaces."</div>
-      <div className="md:flex items-center justify-center ">Social Media</div>
+     <div className="md:flex items-center my-2 justify-center"> 
+     <img
+    src={axiosInstance.defaults.baseURL + headerdata1.footer} 
+     className="h-20 w-20"></img></div>
+      <div className="md:flex items-center justify-center my-2">{headerdata.webpage_slogan}</div>
+      <div className="md:flex items-center justify-center ">Social Media :</div>
+      
       <div className="my-2 md:flex items-center justify-center gap-x-2">
-      <div className="bg-white p-2 rounded-full"> <FaFacebookSquare className="text-blue-400 text-[16px]" /></div>
-      <div><FaInstagram /></div>
-      <div><FiTwitter /></div>  
-      </div>
+  {headerdata2.map((item, index) => (
+    <div key={index} className="text-[24px] rounded-full">
+      {item.link && (
+        <Link href={item.link}>
+          <i className={item.icon}></i>
+        </Link>
+      )}
+    </div>
+  ))}
+</div>
       </div>
       {/* for 1 colum  */}
       <div className="">
