@@ -45,7 +45,7 @@ const CreateGlobalSettings = () => {
           <div>
             <Link href={`/dashboard/globalsettings/${formData.id}`}>
               <button className="  bg-indigo-500 hover:bg-indigo-700 px-4 py-1 text-white rounded-md">
-                <i className="ri-file-edit-line text-xl "></i> Edit
+                <i className="ri-file-edit-line text-xl font-thin"></i> Edit
               </button>
             </Link>
           </div>

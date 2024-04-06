@@ -57,7 +57,7 @@ const Page = () => {
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                  <th key={index} className="pr-2 py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
                     {column}
                   </th>
                 ))}
@@ -67,7 +67,7 @@ const Page = () => {
               {data.length > 0 ? (
                 data.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    <td className="pr-2 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
@@ -77,7 +77,7 @@ const Page = () => {
                         )}
                       </td>
                     ))}
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className=" py-4 whitespace-nowrap">
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
                         <i class="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>

@@ -9,6 +9,10 @@ const Whyus = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
+  function formatColumn(str) {
+    // Replace underscores with spaces
+    return str.replace(/_/g, " ");
+  }
 
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
@@ -28,7 +32,7 @@ const Whyus = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error, e.g., display a toast message or retry the request
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -65,8 +69,8 @@ const Whyus = () => {
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {column}
+                  <th key={index} className=" py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                    {formatColumn(column)}
                   </th>
                 ))}
               </tr>
@@ -75,7 +79,7 @@ const Whyus = () => {
               {data.length > 0 ? (
                 data.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    <td className=" py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
@@ -89,14 +93,14 @@ const Whyus = () => {
                         )}
                       </td>
                     ))}
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className=" py-4 whitespace-nowrap">
                       <Link href={`/dashboard/whychooseus/${item.id}`}>
                         <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                          <i class="ri-file-edit-line text-xl "></i>
                         </button>
                       </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
+                        <i class="ri-delete-bin-6-line text-xl "></i>
                       </button>
                     </td>
                   </tr>

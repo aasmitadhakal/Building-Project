@@ -23,7 +23,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/contact");
-      console.log(response.data.data);
+
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -46,7 +46,7 @@ const Page = () => {
       console.error("Error deleting data:", error);
     }
   };
-  const columns = ["SN", "title", "email", "contact","location", "Actions"];
+  const columns = ["SN", "title", "email", "contact", "location", "Actions"];
 
   return (
     <>
@@ -59,11 +59,11 @@ const Page = () => {
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
           </div>
-          <table className="w-full divide-y divide-gray-200">
+          <table className="w-full divide-y divide-gray-200 ">
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                  <th key={index} className=" py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
                     {column}
                   </th>
                 ))}
@@ -73,18 +73,18 @@ const Page = () => {
               {data.length > 0 ? (
                 data.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    <td className=" py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>{item[column.toLowerCase().replace(/\s/g, "_")]}</td>
                     ))}
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className=" py-4 whitespace-nowrap">
                       <Link href={`/dashboard/contact/${item.id}`}>
-                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                        <button className="  text-indigo-500 hover:text-indigo-700 pr-4 py-1 rounded-md">
+                          <i class="ri-file-edit-line text-xl "></i>
                         </button>
                       </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
+                        <i class="ri-delete-bin-6-line text-xl "></i>
                       </button>
                     </td>
                   </tr>

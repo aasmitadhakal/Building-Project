@@ -9,6 +9,10 @@ const Page = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
+function formatColumn(str) {
+  // Replace underscores with spaces
+  return str.replace(/_/g, " ");
+}
 
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
@@ -60,8 +64,8 @@ const Page = () => {
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {column}
+                  <th key={index} className=" py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
+                    {formatColumn(column)}
                   </th>
                 ))}
               </tr>
@@ -70,26 +74,26 @@ const Page = () => {
               {data.length > 0 ? (
                 data.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                    <td className=" py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="size-20 rounded "  />
                         ) : column === "other_image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="size-20 rounded "  />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}
                       </td>
                     ))}
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className=" py-4 whitespace-nowrap">
                       <Link href={`/dashboard/duol/${item.id}`}>
-                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i class="ri-file-edit-line text-xl font-bold"></i>
+                        <button className="  text-indigo-500 hover:text-indigo-700 pr-2 py-1 rounded-md">
+                          <i class="ri-file-edit-line text-xl "></i>
                         </button>
                       </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
+                        <i class="ri-delete-bin-6-line text-xl "></i>
                       </button>
                     </td>
                   </tr>
