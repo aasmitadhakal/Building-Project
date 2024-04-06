@@ -287,7 +287,7 @@ const Update = ({ params }) => {
             />
 
             {imageOnePreview && (
-              <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-20 rounded" onChange={} />
+              <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-20 rounded"  />
             )}
           </div>
           <div className="mt-20 my-4 uppercase">
