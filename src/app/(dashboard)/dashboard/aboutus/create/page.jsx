@@ -13,12 +13,22 @@ function Create() {
   const [editorValue, setEditorValue] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
+  const [imageOnePreview, setImageOnePreview] = useState(null);
+  const [imageTwoPreview, setImageTwoPreview] = useState(null);
   const [orderError, setOrderError] = useState(false);
   const [titleError, setTitleError] = useState(false);
   const [imageOneError, setImageOneError] = useState(false);
   const [imageTwoError, setImageTwoError] = useState(false);
   const router = useRouter();
 
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,7 +79,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -154,8 +164,10 @@ function Create() {
               onChange={(e) => {
                 setImageOne(e.target.files[0]);
                 setImageOneError(false);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
               }}
             />
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-56" />}
             {imageOneError && <p className="text-red-500 text-sm">* Please upload Image One *</p>}
           </div>
           <div className="uppercase my-2">
@@ -169,8 +181,10 @@ function Create() {
               onChange={(e) => {
                 setImageTwo(e.target.files[0]);
                 setImageTwoError(false);
+                handleImagePreview(e.target.files[0], setImageTwoPreview);
               }}
             />
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 h-56" />}
             {imageTwoError && <p className="text-red-500 text-sm">* Please upload Image Two *</p>}
           </div>
         </div>

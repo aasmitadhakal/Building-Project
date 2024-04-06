@@ -196,7 +196,7 @@ const Update = ({ params }) => {
                 handleImagePreview(e.target.files[0], setImageOnePreview);
               }}
             />
-            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 w-full" />}
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-56" />}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="image_two">
@@ -211,7 +211,7 @@ const Update = ({ params }) => {
                 handleImagePreview(e.target.files[0], setImageTwoPreview);
               }}
             />
-            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 w-full" />}
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 h-56" />}
           </div>
         </div>
         <div className="flex gap-2 pt-1 mt-4">
