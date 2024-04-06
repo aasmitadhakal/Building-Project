@@ -29,8 +29,32 @@
   border-image-sources:
   radial-gradient(
     circle at top left,
-    limegreen,
+    
     transparent 50%);
   border-image-slice: 1;
   padding: 10px;
 } */
+
+
+.corner-border::after {
+  content:'';
+  position: absolute;
+  background-color: #fcba03;
+  width: 3px;
+  height: 60%;
+  top: 0;
+  left:-15px;
+ 
+}
+
+/* horizontal line */
+.corner-border::before{
+  content:'';
+  position: absolute;
+  background-color: pink;
+  width: 20%;
+  height: 3px;
+  top: 0;
+  left:-12px;
+ 
+}

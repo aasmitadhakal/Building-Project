@@ -42,20 +42,23 @@ function HomeBanner() {
   return (
     <>
       {/* {data.map((card, index) => ( */}
-        <div  className="relative w-full h-screen overflow-hidden font-[Montserrat]">
-          <img
-            className="absolute inset-0 w-full h-full object-cover"
-            src={axiosInstance.defaults.baseURL + data.image} 
-            alt="Background"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-black bg-opacity-75 p-8 md:w-1/2 md:mx-0 mx-4  text-white text-center gradient-border">
-              <h1 className="mb-4 md:font-[500] md:text-[24px] leading-[32px] ">{data.name}</h1>
-              <p className="md:font-[800] font-[500] md:text-[40px] text-[35px] leading-[54px]" dangerouslySetInnerHTML={{ __html: data.description }} />
-              <Link href=''><button className='mt-4 md:font-[600] font-[400] md:text-[20px] text-[10px] bg-white hover:bg-[#4581AC] px-8 py-4 rounded-lg text-[#4581AC] ring-[#4581AC] hover:bg-blues hover:text-white ring-2 leading-[22px]'>{buttondata.home_button}</button></Link>
-            </div>
-          </div>
-        </div>
+      <div className="relative w-full h-screen overflow-hidden font-[Montserrat]">
+  <img
+    className="absolute inset-0 w-full h-full object-cover"
+    src={axiosInstance.defaults.baseURL + data.image}
+    alt="Background"
+  />
+  <div className=" bottom-corner corner-border absolute inset-0 flex items-center justify-center ">
+    <div className="bg-black bg-opacity-75 p-8 md:w-1/2 md:mx-0 mx-4 text-white text-center ">
+      <h1 className="mb-4 md:font-[500] md:text-[24px] leading-[32px]">{data.name}</h1>
+      <p className="md:font-[800] font-[500] md:text-[40px] text-[35px] leading-[54px]" dangerouslySetInnerHTML={{ __html: data.description }} />
+      <Link href=""><button className="mt-4 md:font-[600] font-[400] md:text-[20px] text-[10px] bg-white hover:bg-[#4581AC] px-8 py-4 rounded-lg text-[#4581AC] ring-[#4581AC] hover:bg-blues hover:text-white ring-2 leading-[22px]">{buttondata.home_button}</button></Link>
+    </div>
+  </div>
+</div>
+<div>
+  {/* <h2 className='p-4 bg-white corner-border bottom-corner'>hlo world </h2> */}
+</div>
       {/* ))} */}
     </>
   );
