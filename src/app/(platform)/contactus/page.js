@@ -1,6 +1,6 @@
 import React from 'react'
 import Contact from '../component/contactContent/Contact'
-function page() {
+function Page() {
   return (
     <div className='mt-20'>
         <Contact/>
@@ -8,4 +8,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

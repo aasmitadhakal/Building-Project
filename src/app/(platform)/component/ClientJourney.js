@@ -42,7 +42,7 @@ function ClientJourney() {
         <div className="grid md:grid-cols-3 font-[Montserrat] my-24 container mx-auto md:px-0 px-4 ">
           {/* for title headding */}
           <div className="grid place-content-center">
-            <div className="text-customblue font-[700] text-[36px] leading-[49px] flex justify-center item-center">
+            <div className="text-customblue font-[700] text-[36px] leading-[49px] flex justify-center item-center text-center">
               {" "}
               {headerdata.client_description}{" "}
             </div>

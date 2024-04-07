@@ -4,7 +4,7 @@ import Aboutus from '../component/Aboutus';
 import MissionPart from '../component/aboutcontent2/MissionPart';
 import WhychooseUs from '../component/aboutcontent2/WhychooseUs';
 
-function page() {
+function Page() {
   return (
     <div className='mt-20'>
      <AboutBanner/>
@@ -16,4 +16,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

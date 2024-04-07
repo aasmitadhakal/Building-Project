@@ -1,6 +1,6 @@
 import React from 'react'
 import DoubleStore from '../../component/designcontent/DoubleStore'
-function page() {
+function Page() {
   return (
     <div className='mt-20'>
       <DoubleStore/>
@@ -8,4 +8,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

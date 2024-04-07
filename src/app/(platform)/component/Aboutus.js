@@ -25,7 +25,7 @@ function Aboutus() {
 
   return (
     <>
-     <section  className='container mx-auto font-[Montserrat] my-20'>
+     <section  className='container mx-auto font-[Montserrat] '>
           <div className='grid md:grid-cols-2 place-content-between my-0 md:my-12  gap-x-8 md:px-0 px-4 '>
             {/* for text part */}
             <div className='grid place-content-center'>

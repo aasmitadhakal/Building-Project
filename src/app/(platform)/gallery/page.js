@@ -1,6 +1,6 @@
 import React from 'react'
 import Gallery from '../component/GalleryContent/Gallery'
-function page() {
+function Page() {
   return (
     <div className='mt-20 '>
         <Gallery/>
@@ -8,4 +8,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

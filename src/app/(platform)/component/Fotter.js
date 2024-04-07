@@ -75,7 +75,7 @@ const Footer = () => {
     src={axiosInstance.defaults.baseURL + headerdata1.footer} 
      className="h-20 w-20"></img></div>
       <div className="flex md:items-center md:justify-center my-2">{headerdata.webpage_slogan}</div>
-      <div className="flex md:items-center md:justify-center ">Social Media :</div>
+      <div className="flex md:items-center md:justify-center font-[600] leading-[24px] text-[20px]">Social Media :</div>
       
       <div className="my-2 flex md:items-center md:justify-center gap-x-2">
   {headerdata2.map((item, index) => (

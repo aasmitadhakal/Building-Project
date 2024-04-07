@@ -1,6 +1,6 @@
 import DoubleOcuupance from "../../component/designcontent/DoubleOcuupance"
 
-function page() {
+function Page() {
   return (
     <div className='mt-20'>
       <DoubleOcuupance/>
@@ -8,4 +8,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
