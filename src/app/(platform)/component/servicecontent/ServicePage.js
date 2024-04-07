@@ -27,9 +27,9 @@ function ServicePage() {
     <>
    
       <section className='grid md:grid-cols-3 container mx-auto gap-x-12 gap-y-12 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
-        {data.map((datas, index) => (
+        {data.map((datas) => (
           <div
-            key={index.id}
+            key={datas.id}
             className='service-item shadow-xl rounded p-4 hover:bg-customblue hover:text-white'
           >
             <img
