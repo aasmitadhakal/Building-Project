@@ -21,10 +21,9 @@ const Update = ({ params }) => {
     seo_keywords: "",
   });
   const [editorValue, setEditorValue] = useState("");
-  const [imageOnePreview, setImageOnePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const router = useRouter();
-
 
   const [orderError, setOrderError] = useState(false);
   const [nameError, setNameError] = useState(false);
@@ -32,7 +31,6 @@ const Update = ({ params }) => {
   const [seoKeywordError, setSeoKeywordError] = useState(false);
   const [seoSchemaError, setSeoSchemaError] = useState(false);
   const [seoDescriptionError, setSeoDescriptionError] = useState(false);
- 
 
   const fetchData = async () => {
     try {
@@ -40,15 +38,8 @@ const Update = ({ params }) => {
       if (response && response.data && response.data.success) {
         const responseData = response.data.data;
         setFormData(responseData);
-
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
         setEditorValue(responseData.short_description || "");
-        // setEditorValue(responseData.title || "");
-        // setEditorValue(responseData.frontage || "");
-        // setEditorValue(responseData.size || "");
-        // setEditorValue(responseData.bedroom || "");
-        // setEditorValue(responseData.price || "");
-        // setEditorValue(responseData.storey_type || "");
-        // setImageOnePreview(responseData.image || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -62,7 +53,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      // handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+      handleImagePreview(files[0], name === "image" && setImagePreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -121,11 +112,10 @@ const Update = ({ params }) => {
     } else {
       setOrderError(false);
     }
-    
+
     if (
       !formData.name.trim() ||
       !formData.name.match(/^\D+$/) ||
-      
       !formData.seo_title.match(/^\D+$/) ||
       !formData.seo_keywords.match(/^\D+$/) ||
       !formData.seo_description.match(/^\D+$/) ||
@@ -210,26 +200,6 @@ const Update = ({ params }) => {
           {nameError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
 
-        <div className=" my-4 uppercase">
-          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
-            Image :
-          </label>
-          <input
-            id="image"
-            type="file"
-            name="image"
-            onChange={(e) => {
-              handleChange(e);
-              handleImagePreview(e.target.files[0], setImageOnePreview);
-              
-            }}
-          />
-          {imageOnePreview && (
-            <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
-          )}
-          
-        </div>
-
         {/* for bedroom */}
         <div className=" my-4 ">
           <label className="block text-sm my-2  font-medium text-gray-700" htmlFor="short_description">
@@ -256,7 +226,7 @@ const Update = ({ params }) => {
           />
         </div>
         {/* for cars */}
-        <div className=" my-4 uppercase">
+        <div className="mt-10 my-4 uppercase">
           <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="name">
             Seo Title:
           </label>
@@ -317,7 +287,21 @@ const Update = ({ params }) => {
           />
           {seoKeywordError && <p className="text-red-500 text-sm ">* Please enter a string value *</p>}
         </div>
-
+        <div className=" my-4 uppercase">
+          <label className="block my-2  text-sm font-medium text-gray-700" htmlFor="image">
+            Image :
+          </label>
+          <input
+            id="image"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImageOnePreview);
+            }}
+          />
+          {imagePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-40 rounded" />}
+        </div>
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update

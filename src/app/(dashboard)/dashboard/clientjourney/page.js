@@ -29,7 +29,6 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/journey");
-      console.log(response.data.data);
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -53,7 +52,7 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN", "order", "title", "image","short_description" , "Actions"];
+  const columns = ["SN", "order", "title", "image", "Actions"];
 
   return (
     <>

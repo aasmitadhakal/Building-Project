@@ -34,7 +34,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setImagePreview(responseData.image ? responseData.image : null);
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -48,7 +48,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      handleImagePreview(files[0]);
+      handleImagePreview(files[0], name === "image" && setImagePreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -121,7 +121,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/whychooseus");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -130,7 +130,7 @@ const Update = ({ params }) => {
       <ToastContainer />
 
       {/* <h1 className="text-2xl font-bold">Update Why choose us?</h1> */}
-      <form onSubmit={handleSubmit} className="p-6">
+      <form onSubmit={handleSubmit} className="p-6 ">
         <div className=" flex justify-between my-2">
           <h1 className="font-[600] text-[24px]  text-gray-700">Update Why Choose Us</h1>
 
@@ -141,8 +141,8 @@ const Update = ({ params }) => {
           </Link>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="order">
+        <div className="my-4">
+          <label className="block text-base  text-gray-700" htmlFor="order">
             Order:
           </label>
           <input
@@ -155,8 +155,8 @@ const Update = ({ params }) => {
           />
           {orderError && <p className="text-red-500 text-sm ">* Please enter a valid order *</p>}
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+        <div className="my-4">
+          <label className="block text-base  text-gray-700" htmlFor="title">
             Title:
           </label>
           <input
@@ -169,8 +169,8 @@ const Update = ({ params }) => {
           />
           {titleError && <p className="text-red-500 text-sm ">* Please enter a valid title *</p>}
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="icon">
+        <div className="my-4">
+          <label className="block text-base  text-gray-700" htmlFor="icon">
             Icon:
           </label>
           <input
@@ -183,21 +183,9 @@ const Update = ({ params }) => {
           />
           {iconError && <p className="text-red-500 text-sm ">* Please enter a valid icon *</p>}
         </div>
-        <div className="mb-4 relative">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="image">
-            Image:
-          </label>
-          <input
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={handleChange}
-          />
-          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[200px]" />}
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="shortDescription">
+
+        <div className="my-4">
+          <label className="block text-base font-medium text-gray-700" htmlFor="shortDescription">
             Short Description:
           </label>
           <textarea
@@ -211,7 +199,7 @@ const Update = ({ params }) => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block text-base  text-gray-700" htmlFor="description">
             Description:
           </label>
           <ReactQuill
@@ -234,7 +222,19 @@ const Update = ({ params }) => {
             onChange={handleEditorChange}
           />
         </div>
-
+        <div className="mt-14 ">
+          <label className="block text-base  text-gray-700" htmlFor="image">
+            Image:
+          </label>
+          <input
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={handleChange}
+          />
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-[200px]" />}
+        </div>
         <div className="flex gap-2 mt-20">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update

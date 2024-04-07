@@ -10,6 +10,7 @@ function Create() {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
   const [editorValue, setEditorValue] = useState("");
   const [short_description, setShortDescription] = useState("");
   const [orderError, setOrderError] = useState(false);
@@ -17,6 +18,15 @@ function Create() {
 
   const router = useRouter();
 
+
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -139,8 +149,12 @@ function Create() {
             type="file"
             id="image"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+              handleImagePreview(e.target.files[0], setImagePreview);
+            }}
           />
+          {imagePreview && <img src={imagePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
         </div>
 
         <div className="flex gap-2">

@@ -19,6 +19,7 @@ function Create() {
   const [shortDescription, setShortDescription] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const [icon, setIcon] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
 
   const [orderError, setOrderError] = useState(false);
   const [titleError, setTitleError] = useState(false);
@@ -28,6 +29,14 @@ function Create() {
 
   const router = useRouter();
 
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -85,7 +94,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -145,19 +154,7 @@ function Create() {
           />
           {iconError && <p className="text-red-500 text-sm ">* Please enter a valid icon *</p>}
         </div>
-        <div className="mb-4 relative my-4 uppercase">
-          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
-            Image:
-          </label>
-          <input
-            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          {imageError && <p className="text-red-500 text-sm">* Please upload Image *</p>}
-        </div>
+
         <div>
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="shortDescription">
             Short Description:
@@ -195,6 +192,23 @@ function Create() {
             theme="snow"
             onChange={(value) => setEditorValue(value)}
           />
+        </div>
+        <div className="mt-14  my-4 uppercase">
+          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="image">
+            Image:
+          </label>
+          <input
+            className="block w-full px-4 py-2  border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+              handleImagePreview(e.target.files[0], setImagePreview);
+            }}
+          />
+          {imagePreview && <img src={imagePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
+          {imageError && <p className="text-red-500 text-sm">* Please upload Image *</p>}
         </div>
 
         <div className="flex gap-2 md:mt-20 mt-40">

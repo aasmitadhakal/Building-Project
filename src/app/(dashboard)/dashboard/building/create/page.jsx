@@ -11,10 +11,13 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 // dynamic import of quill editor to avoid running into document not defined error when in buil
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+
 function Create() {
   const [name, setName] = useState("");
   const [order_number, setorder_number] = useState("");
   const [imageOne, setImageOne] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [slug, setSlug] = useState("");
   const [banner, setBanner] = useState("");
   const [editorValue, setEditorValue] = useState("");
@@ -33,6 +36,15 @@ function Create() {
   const [seoSchemaError, setSeoSchemaError] = useState(false);
   const [seoDescriptionError, setSeoDescriptionError] = useState(false);
   const [imageError, setImageError] = useState(false);
+
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -270,8 +282,10 @@ function Create() {
             onChange={(e) => {
               setImageOne(e.target.files[0]);
               setImageError(false);
+              handleImagePreview(e.target.files[0], setImagePreview);
             }}
           />
+          {imagePreview && <img src={imagePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
           {imageError && <p className="text-red-500 text-sm">* Please upload a Image *</p>}
         </div>
 
