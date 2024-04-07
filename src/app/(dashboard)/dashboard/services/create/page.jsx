@@ -1,12 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
+
+// dynamic import of quill editor to avoid running into document not defined error when in build
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 function Create() {
   const [name, setName] = useState("");
 
@@ -212,7 +216,8 @@ function Create() {
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="seo_description">
             Seo Description:
           </label>
-          <input
+          <textarea
+          rows={5}
             id="seo_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"

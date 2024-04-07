@@ -1,13 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
+// dynamic import of quill editor to avoid running into document not defined error when in buil
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 function Create() {
   const [name, setName] = useState("");
   const [order_number, setorder_number] = useState("");
@@ -76,8 +79,8 @@ function Create() {
       !seokeywords.match(/^\D+$/) ||
       !seodescription.match(/^\D+$/) ||
       !seoschema.match(/^\D+$/) ||
-      isNaN(order.trim()) ||
-      !order.trim()
+      isNaN(order_number.trim()) ||
+      !order_number.trim()
     ) {
       toast.error("Please fill in all required fields correctly");
       return;
@@ -201,7 +204,8 @@ function Create() {
           <label className="block  my-2  text-sm font-medium text-gray-700" htmlFor="seo_description">
             Seo Description:
           </label>
-          <input
+          <textarea
+            rows={5}
             id="seo_description"
             className={`block w-full border-gray-200 rounded-md focus:outline-none ${
               seoDescriptionError ? "border-red-500" : "focus:border-blue-500"

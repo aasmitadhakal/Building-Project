@@ -1,19 +1,22 @@
 "use client";
 import React, { useState } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
+
+// dynamic import of quill editor to avoid running into document not defined error when in build
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 function Create() {
   const [order, setOrder] = useState("");
   const [editorValue, setEditorValue] = useState("");
   const router = useRouter();
 
-  
   const [orderError, setOrderError] = useState(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +46,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 

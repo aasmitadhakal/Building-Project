@@ -1,11 +1,17 @@
 "use client";
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import axiosInstance from "@/app/utils/axiosInstance";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+
+
+// dynamic import of quill editor to avoid running into document not defined error when in build
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+
 
 function Create() {
   const [title, setTitle] = useState("");

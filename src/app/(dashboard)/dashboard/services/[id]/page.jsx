@@ -235,7 +235,8 @@ const Update = ({ params }) => {
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="name">
             Seo Description:
           </label>
-          <input
+          <textarea
+          rows={5}
             id="seo_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
