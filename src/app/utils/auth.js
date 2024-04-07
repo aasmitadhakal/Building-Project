@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
  
 export const isAuthenticated = () => {
-  const token = localStorage.getItem('authorizations');
+  const token = localStorage.getItem('authorization');
  
   if (!token) {
     // No token found, user is not authenticated

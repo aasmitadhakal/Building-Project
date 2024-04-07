@@ -1,7 +1,11 @@
 "use client";
 import axios from "axios";
-const token = localStorage.getItem("authorizations");
-
+let token;
+// Check if user is authenticated
+if (typeof window !== "undefined") {
+  // Access localStorage only when running in the browser
+  token = localStorage.getItem("authorization");
+}
 const axiosInstance = axios.create({
    baseURL: "https://admin108builder.pits.com.np/", // Replace this with your API base URL
   // baseURL: "http://192.168.1.142:4000/", // Replace this with your API base URL
@@ -12,21 +16,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// export default axiosInstance;
-// import axios from "axios";
-// // import Cookies from "js-cookie";
 
-// // Retrieve the token from the cookie
-// const token = localStorage.get("authorization");
-
-// const axiosInstance = axios.create({
-//   baseURL: "https://admin108builder.pits.com.np/", // Replace this with your API base URL
-//   // baseURL: "http://192.168.1.142:4000/", // Replace this with your API base URL
-//   // Other Axios configuration options can be added here
-//   headers: {
-//     "Content-Type": "multipart/form-data",
-//     Authorization: `${token}`, // Note: it should be "Authorization" instead of "Authorizations"
-//   },
-// });
 
 export default axiosInstance;

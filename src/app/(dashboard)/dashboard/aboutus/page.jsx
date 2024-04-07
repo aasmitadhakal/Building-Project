@@ -4,7 +4,6 @@ import Link from "next/link";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);

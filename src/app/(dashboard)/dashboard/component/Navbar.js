@@ -43,13 +43,13 @@
 // };
 
 // export default NavbarComponent;
-'use client';
+"use client";
 import React from "react";
 import { Navbar, Typography } from "@material-tailwind/react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify"; // Import toast function
-import Cookies from "js-cookie"; // Import Cookies
+
 import "react-toastify/dist/ReactToastify.css"; // Import toastify CSS
 
 const NavbarComponent = ({ className, setOpenSidenav, openSidenav }) => {
