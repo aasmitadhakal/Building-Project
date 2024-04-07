@@ -6,10 +6,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
-  
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
+
+  function formatColumn(str) {
+    // Replace underscores with spaces
+    return str.replace(/_/g, " ");
+  }
+
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
     setDeleteItemId(id);
@@ -42,7 +47,7 @@ const Page = () => {
       console.error("Error deleting data:", error);
     }
   };
-  const columns = ["SN", "name", "image","short_description", "Actions"];
+  const columns = ["SN", "name", "image", "short_description", "Actions"];
 
   return (
     <>
@@ -59,8 +64,8 @@ const Page = () => {
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className="px-6 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {column}
+                  <th key={index} className="px-2 py-3 text-left mx-20 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                    {formatColumn(column)}
                   </th>
                 ))}
               </tr>
@@ -68,25 +73,25 @@ const Page = () => {
             <tbody className="bg-white divide-y divide-gray-200 ">
               {data.length > 0 ? (
                 data.map((item, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                  <tr key={index} >
+                    <td className="py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
-                      <td key={columnIndex}>
+                      <td key={columnIndex} className="px-2">
                         {column === "image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="w-24 rounded " />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}
                       </td>
                     ))}
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="py-4 whitespace-nowrap">
                       <Link href={`/dashboard/building/${item.id}`}>
                         <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i className="ri-file-edit-line text-xl font-bold"></i>
+                          <i className="ri-file-edit-line text-xl "></i>
                         </button>
                       </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i className="ri-delete-bin-6-line text-xl font-bold"></i>
+                        <i className="ri-delete-bin-6-line text-xl "></i>
                       </button>
                     </td>
                   </tr>

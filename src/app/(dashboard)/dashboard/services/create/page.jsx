@@ -9,42 +9,48 @@ import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 function Create() {
   const [name, setName] = useState("");
-  
+
   const [order, setOrder] = useState("");
   const [imageOne, setImageOne] = useState(null);
   const [slug, setSlug] = useState("");
   const [status, setStatus] = useState("");
   // const [shortdescription, setShort_description] = useState("");
   const [seotitle, setSeo_title] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
   const [seodescription, setSeodescription] = useState("");
   const [seoschema, setSeoschema] = useState("");
   const [seokeywords, setSeokeywords] = useState("");
   const [editorValue, setEditorValue] = useState("");
 
-
-   const [orderError, setOrderError] = useState(false);
-   const [titleError, setTitleError] = useState(false);
+  const [orderError, setOrderError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
   const router = useRouter();
-
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    
-   if (isNaN(order.trim()) || !order.trim()) {
-     setOrderError(true);
-   } else {
-     setOrderError(false);
-   }
-   if (!name.trim() || !name.match(/^\D+$/)) {
-     setTitleError(true);
-   } else {
-     setTitleError(false);
-   }
+    if (isNaN(order.trim()) || !order.trim()) {
+      setOrderError(true);
+    } else {
+      setOrderError(false);
+    }
+    if (!name.trim() || !name.match(/^\D+$/)) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
 
-if (!name.match(/^\D+$/) || !name.trim()  || isNaN(order.trim()) || !order.trim()) {
-  toast.error("Please fill in all required fields correctly");
-  return;
-}
+    if (!name.match(/^\D+$/) || !name.trim() || isNaN(order.trim()) || !order.trim()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
     // Create FormData object
     const formData = new FormData();
     formData.append("name", name);
@@ -53,7 +59,7 @@ if (!name.match(/^\D+$/) || !name.trim()  || isNaN(order.trim()) || !order.trim(
     // Append additional fields
     formData.append("slug", slug);
     formData.append("status", "done");
-    
+
     formData.append("description", editorValue);
     // formData.append("short_description", shortdescription); // Use validated integer value
     formData.append("seo_title", seotitle);
@@ -73,7 +79,7 @@ if (!name.match(/^\D+$/) || !name.trim()  || isNaN(order.trim()) || !order.trim(
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -251,8 +257,10 @@ if (!name.match(/^\D+$/) || !name.trim()  || isNaN(order.trim()) || !order.trim(
             type="file"
             id="image"
             accept="image/*"
-            onChange={(e) => setImageOne(e.target.files[0])} // Ensure that this sets the state correctly
+            onChange={(e) => {setImageOne(e.target.files[0]);
+            handleImagePreview(e.target.files[0], setImagePreview);}}
           />
+          {imagePreview && <img src={imagePreview} alt="Image  Preview" className="mt-2 h-40 rounded" />}
         </div>
 
         <div className="flex gap-2 mt-2">

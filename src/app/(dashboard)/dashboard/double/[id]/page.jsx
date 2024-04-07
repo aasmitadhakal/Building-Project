@@ -14,7 +14,7 @@ const Update = ({ params }) => {
     title: "",
     // description: "",
     image: "",
-    image_two: "",
+    other_image: "",
     frontage: "",
     size: "",
     bedroom: "",
@@ -45,8 +45,8 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setImageOnePreview(responseData.image || null);
-        setImageTwoPreview(responseData.image_two || null);
+        setImageOnePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
+        setImageTwoPreview(`${axiosInstance.defaults.baseURL}${responseData.other_image}` || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -60,7 +60,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+      handleImagePreview(files[0], name === "image" ? setImageOnePreview : setImageTwoPreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -77,34 +77,18 @@ const Update = ({ params }) => {
     setEditorValue(value);
   };
 
-  // const handleImagePreview = (file, setImagePreview) => {
-  //   if (file) {
-  //     const previewURL = URL.createObjectURL(file);
-  //     setImagePreview(previewURL);
-  //   } else {
-  //     setImagePreview(null);
-  //   }
-  // };
-  const handleImagePreview = (file, setImagePreview, isOtherImage = false) => {
+  const handleImagePreview = (file, setImagePreview) => {
     if (file) {
       const previewURL = URL.createObjectURL(file);
-      if (isOtherImage) {
-        setImagePreview(previewURL);
-      } else {
-        setImagePreview(previewURL);
-      }
+      setImagePreview(previewURL);
     } else {
-      if (isOtherImage) {
-        setImagePreview(null);
-      } else {
-        setImagePreview(null);
-      }
+      setImagePreview(null);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title.trim() ) {
+    if (!formData.title.trim()) {
       setTitleError(true);
     } else {
       setTitleError(false);
@@ -125,12 +109,12 @@ const Update = ({ params }) => {
     } else {
       setSizeError(false);
     }
-    if ( !formData.price.trim()) {
+    if (!formData.price.trim()) {
       setPriceError(true);
     } else {
       setPriceError(false);
     }
-    if ( !formData.floor_plan.trim()) {
+    if (!formData.floor_plan.trim()) {
       setFloorPlanError(true);
     } else {
       setFloorPlanError(false);
@@ -152,7 +136,6 @@ const Update = ({ params }) => {
     }
 
     if (
-     
       !formData.title.trim() ||
       isNaN(formData.order.trim()) ||
       !formData.order.trim() ||
@@ -188,7 +171,7 @@ const Update = ({ params }) => {
       }
 
       if (formData.image_two) {
-        updatedData.append("image_two", formData.image_two);
+        updatedData.append("other_image", formData.other_image);
       }
 
       await axiosInstance.put(`/api/design/${params.id}`, updatedData);
@@ -197,7 +180,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/double");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -271,46 +254,8 @@ const Update = ({ params }) => {
           />
         </div>
 
-        <div className="grid grid-cols-2">
-          <div className="mt-20 my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
-              Image :
-            </label>
-            <input
-              id="image"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
-              }}
-            />
-
-            {imageOnePreview && (
-              <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
-            )}
-          </div>
-          <div className="mt-20 my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image_two">
-              Image Two :
-            </label>
-            <input
-              id="image_two"
-              type="file"
-              name="image_two"
-              onChange={(e) => {
-                handleChange(e);
-                handleImagePreview(e.target.files[0], setImageOnePreview);
-              }}
-            />
-
-            {imageOnePreview && (
-              <img src={`${axiosInstance.defaults.baseURL}${formData.image_two}`} alt={formData.title} className="h-12 w-12 rounded-full" />
-            )}
-          </div>
-        </div>
         {/* for frontage */}
-        <div className=" my-4 uppercase">
+        <div className="mt-15 my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             frontage:
           </label>
@@ -442,6 +387,38 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div> */}
+        <div className="grid grid-cols-2">
+          <div className=" my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+              Ground Floor :
+            </label>
+            <input
+              id="image"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && <img src={imageOnePreview} alt={formData.title} className="h-40 rounded" />}
+          </div>
+          <div className=" my-4 uppercase">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image_two">
+              First Floor :
+            </label>
+            <input
+              id="image_two"
+              type="file"
+              name="image_two"
+              onChange={(e) => {
+                handleChange(e);
+                handleImagePreview(e.target.files[0], setImageTwoPreview);
+              }}
+            />
+            {imageTwoPreview && <img src={imageTwoPreview} alt={formData.title} className="h-40 rounded" />}
+          </div>
+        </div>
 
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">

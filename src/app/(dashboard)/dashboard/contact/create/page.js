@@ -24,7 +24,6 @@ function Create() {
   const [contactError, setContactError] = useState("");
   const [seoTitleError, setSeoTitleError] = useState("");
   const [seoKeywordError, setSeoKeywordError] = useState("");
-  
 
   const router = useRouter();
 
@@ -97,7 +96,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -178,7 +177,7 @@ function Create() {
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
-          <input
+          <textarea
             id="short_description"
             className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
               short_description ? "border-red-500" : ""
@@ -188,22 +187,6 @@ function Create() {
             value={short_description}
             onChange={(e) => setShortDescription(e.target.value)}
           />
-        </div>
-        <div className="my-4 uppercase">
-          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_keyword">
-            Seo Keyword:
-          </label>
-          <input
-            id="seo_keyword"
-            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
-              seoKeywordError ? "border-red-500" : ""
-            }`}
-            type="text"
-            name="seo_keyword"
-            value={seo_keyword}
-            onChange={(e) => setSeoKeyword(e.target.value)}
-          />
-          {seoKeywordError && <p className="text-red-500 text-sm">* {seoKeywordError} *</p>}
         </div>
 
         <div className="my-4 uppercase">
@@ -235,7 +218,36 @@ function Create() {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
-         
+        </div>
+
+        <div className="my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
+            Map:
+          </label>
+          <input
+            id="map"
+            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 `}
+            type="text"
+            name="map"
+            value={map}
+            onChange={(e) => setMap(e.target.value)}
+          />
+        </div>
+        <div className="my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_keyword">
+            Seo Keyword:
+          </label>
+          <input
+            id="seo_keyword"
+            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+              seoKeywordError ? "border-red-500" : ""
+            }`}
+            type="text"
+            name="seo_keyword"
+            value={seo_keyword}
+            onChange={(e) => setSeoKeyword(e.target.value)}
+          />
+          {seoKeywordError && <p className="text-red-500 text-sm">* {seoKeywordError} *</p>}
         </div>
         <div className="my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="seo_title">
@@ -253,21 +265,6 @@ function Create() {
           />
           {seoTitleError && <p className="text-red-500 text-sm">* {seoTitleError} *</p>}
         </div>
-        <div className="my-4 uppercase">
-          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
-            Map:
-          </label>
-          <input
-            id="map"
-            className={`block border-gray-200 w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 `}
-            type="text"
-            name="map"
-            value={map}
-            onChange={(e) => setMap(e.target.value)}
-          />
-         
-        </div>
-
         <div className="flex gap-2 mt-2">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Create

@@ -20,10 +20,10 @@ const Update = ({ params }) => {
     location: "",
     seo_title: "",
     seo_keyword: "",
-    banner_image: "",
+    // banner_image: "",
   });
   const [editorValue, setEditorValue] = useState("");
-  const [imageOnePreview, setImageOnePreview] = useState(null);
+  // const [imageOnePreview, setImageOnePreview] = useState(null);
 
   const [titleError, setTitleError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -69,14 +69,14 @@ const Update = ({ params }) => {
     setEditorValue(value);
   };
 
-  const handleImagePreview = (file, setImagePreview) => {
-    if (file) {
-      const previewURL = URL.createObjectURL(file);
-      setImagePreview(previewURL);
-    } else {
-      setImagePreview(null);
-    }
-  };
+  // const handleImagePreview = (file, setImagePreview) => {
+  //   if (file) {
+  //     const previewURL = URL.createObjectURL(file);
+  //     setImagePreview(previewURL);
+  //   } else {
+  //     setImagePreview(null);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,7 +136,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/contact");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -197,7 +197,7 @@ const Update = ({ params }) => {
           />
         </div>
 
-        <div className="mt-24 uppercase my-4">
+        {/* <div className="mt-24 uppercase my-4">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
             Image :
           </label>
@@ -213,19 +213,20 @@ const Update = ({ params }) => {
           {imageOnePreview && (
             <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
           )}
-        </div>
+        </div> */}
         {/* for short_description */}
-        <div className=" my-4 uppercase">
+        <div className=" my-4 uppercase mt-16">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
             Short Description:
           </label>
-          <input
+          <textarea
             id="short_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
             name="short_description"
             value={formData.short_description || ""}
             onChange={handleChange}
+            rows={5}
           />
         </div>
         {/* for email */}
@@ -276,6 +277,21 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
+        {/* for map */}
+
+        <div className=" my-4 uppercase">
+          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
+            Map:
+          </label>
+          <input
+            id="map"
+            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            name="map"
+            value={formData.map || ""}
+            onChange={handleChange}
+          />
+        </div>
         {/* for seo_title */}
         <div className=" my-4 uppercase">
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="name">
@@ -309,21 +325,6 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
           {seoKeywordError && <p className="text-red-500 text-sm">* Please enter a valid keyword *</p>}
-        </div>
-        {/* for map */}
-
-        <div className=" my-4 uppercase">
-          <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
-            Map:
-          </label>
-          <input
-            id="map"
-            className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-            type="text"
-            name="map"
-            value={formData.map || ""}
-            onChange={handleChange}
-          />
         </div>
 
         <div className="flex gap-2 pt-1 mt-4">

@@ -22,6 +22,8 @@ function Create() {
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
+  const [imageOnePreview, setImageOnePreview] = useState(null);
+  const [imageTwoPreview, setImageTwoPreview] = useState(null);
 
   const [orderError, setOrderError] = useState(false);
   const [titleError, setTitleError] = useState(false);
@@ -36,12 +38,19 @@ function Create() {
   const [imageTwoError, setImageTwoError] = useState(false);
 
   const router = useRouter();
-
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Validate inputs
-    const isTitleInvalid = !title.trim() ;
+    const isTitleInvalid = !title.trim();
     const isOrderInvalid = !order.trim() || isNaN(order.trim());
     const isImageInvalid = !imageOne;
     const isSizeInvalid = !size.trim() || isNaN(size.trim());
@@ -156,7 +165,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -366,16 +375,27 @@ function Create() {
           {" "}
           <div className=" my-4 uppercase">
             <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
-              Image One:
+              Ground Floor:
             </label>
-            <input type="file" id="image" accept="image/*" onChange={(e) => setImageOne(e.target.files[0])} />
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => {
+                setImageOne(e.target.files[0]);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
+              }}
+            />
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
             {imageError && <p className="text-red-500 text-sm">* Please enter a image *</p>}
           </div>
           <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="other_image">
-              Image Two:
+              First Floor:
             </label>
-            <input type="file" id="other_image" accept="other_image/*" onChange={(e) => setImageTwo(e.target.files[0])} />
+            <input type="file" id="other_image" accept="other_image/*" onChange={(e) => {setImageTwo(e.target.files[0]);
+            handleImagePreview(e.target.files[0], setImageTwoPreview);}} />
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Preview" className="mt-2 h-40 rounded" />}
             {imageTwoError && <p className="text-red-500 text-sm">* Please enter a image *</p>}
           </div>
         </div>
