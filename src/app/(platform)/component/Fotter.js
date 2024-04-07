@@ -115,7 +115,7 @@ const Footer = () => {
 
     </div>
     
-      <div className="flex justify-center items-center border-t-1  border-white py-4">© Copyright 2024 by @paradisegroup</div> 
+      <div className="flex justify-center items-center border-t-1  border-white py-4">{headerdata1.copyright}</div> 
     </footer>
   );
 };
