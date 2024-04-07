@@ -48,8 +48,8 @@ function DiscloureQuestion() {
   };
 
   return (
-    <section className='bg-customgray py-20 md:px-0 px-4 font-[Montserrat]'>
-      <div className='grid place-content-center mb-4 bg-g mt-12'>
+    <section className='bg-customgray pb-20 pt-8 md:px-0 px-4 font-[Montserrat]'>
+      <div className='grid place-content-center mb-4 bg-g '>
         <p className='text-cutombrown text-[18px] leading-[24px] font-[400] grid place-content-center'>know about frequently asked questions to us</p>
         <p className='text-customblue text-[36px] leading-[49px] font-[700] my-1 grid place-content-center'>Frequently Asked Questions</p>
       </div>

@@ -113,7 +113,7 @@ function Contact() {
         </div>
       </div>
       <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
-          <div className='container mx-auto flex items-center gap-x-2'>
+          <div className='container mx-auto flex items-center gap-x-1'>
           <Link href='/'>Home</Link>
          <IoIosArrowForward />
          <p>Contact Us</p>
@@ -122,7 +122,7 @@ function Contact() {
         
         </div>
       {/* for cantact detailas */}
-      <div className=" md:flex container mx-auto  ">
+      <div className=" md:flex container mx-auto  my-8">
         {/* for text part */}
 
         <div className="px-6 grid place-content-center">
