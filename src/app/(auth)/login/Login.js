@@ -4,14 +4,17 @@ import axiosInstance from "@/app/utils/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 import "react-toastify/dist/ReactToastify.css";
 const img = "/assets/image/logo.jpg";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordView, setPasswordView] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+
   const passwordToggle = () => {
     setPasswordView(!passwordView);
   };
@@ -35,7 +38,8 @@ const Login = () => {
 
       if (response.status === 200) {
         const data = response.data.data;
-        localStorage.setItem("authorizations", data.accessToken);
+        // Set the token in a cookie named 'authorization'
+        Cookies.set("authorization", data.accessToken);
         router.push("/dashboard");
       } else {
         toast.error("Invalid username or password");

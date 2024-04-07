@@ -40,7 +40,7 @@ const Update = ({ params }) => {
 
   useEffect(() => {
     fetchData();
-  }, [params.id]);
+  },[params.id]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
