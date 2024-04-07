@@ -60,7 +60,7 @@ function Buliding() {
 
   return (
       <>
-          <section className="bg-customgray py-8 font-[Montserrat]">
+          <section className="bg-customgray py-16 font-[Montserrat]">
               <div className=' mb-4'>
                   <p className='text-cutombrown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>{headerdata.building_title}</p>
                   <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>{headerdata.building_section_title}</p>
@@ -70,7 +70,7 @@ function Buliding() {
                       <div key={index} className={`flex flex-wrap items-center mb-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
                           <div className="w-full md:w-1/2 mb-4 md:mb-0">
                               {/* Add the number before the name */}
-                              <h2 className="my-1 text-customblues font-[600] text-[24px] leading-[32px] mx-4">{index + 1}. {item.name}</h2>
+                              <h2 className="my-3 text-customblues font-[600] text-[24px] leading-[32px] mx-4">{index + 1}. {item.name}</h2>
                               <p className="font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify mx-4" dangerouslySetInnerHTML={{ __html: item.short_description }} />
                           </div>
                           <div className="w-full md:w-1/2 ">

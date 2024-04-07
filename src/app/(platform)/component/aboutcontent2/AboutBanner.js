@@ -43,7 +43,7 @@ function AboutBanner() {
           </div>
         </div>
         <div className='  bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
-          <div className='container mx-auto flex items-center md:px-0 px-4 gap-x-2'>
+          <div className='container mx-auto flex items-center md:px-0 px-4 gap-x-1 leading-[24px] text-[18px]'>
           <Link href='/'>Home</Link>
          <IoIosArrowForward />
          <p> About Us</p>

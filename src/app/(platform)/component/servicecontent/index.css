@@ -21,29 +21,25 @@
 .image-container:hover .img-transition {
   transform: scale(1.1); /* Adjust the scale value as needed */
 }
-/* .gradient-border{
-  border-inline-start:10px solid;
-  border-block-start:10px solid;
-
-  border-left-color: chocolate;
-  border-image-sources:
-  radial-gradient(
-    circle at top left,
-    
-    transparent 50%);
-  border-image-slice: 1;
-  padding: 10px;
-} */
 
 
+
+.top-and-bottom, .left-and-right, .corner-border, .bottom-corner {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+/* vertical line */
 .corner-border::after {
   content:'';
   position: absolute;
-  background-color: #fcba03;
-  width: 3px;
-  height: 60%;
+  background-color: #EECB5D;
+  width: 8px;
+  height: 44%;
   top: 0;
-  left:-15px;
+  left:0px;
  
 }
 
@@ -51,10 +47,33 @@
 .corner-border::before{
   content:'';
   position: absolute;
-  background-color: pink;
-  width: 20%;
-  height: 3px;
+  background-color: #EECB5D;
+  width: 24%;
+  height: 8px;
   top: 0;
-  left:-12px;
+  left:0px;
+ 
+}
+
+/* vertical line */
+.relative .bottom-corner::after {
+  content:'';
+  position: absolute;
+  background-color: #EECB5D;
+  width: 8px;
+  height: 44%;
+  bottom: -63px;
+  right:-32px;
+ 
+}
+/* horizontal line */
+.bottom-corner::before {
+  content:'';
+  position: absolute;
+  background-color: #EECB5D;
+  width: 24%;
+  height: 8px;
+  bottom: -63px;
+  right:-32px;
  
 }

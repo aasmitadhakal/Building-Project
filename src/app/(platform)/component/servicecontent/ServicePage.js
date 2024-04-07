@@ -26,18 +26,18 @@ function ServicePage() {
   return (
     <>
    
-      <section className='grid md:grid-cols-3 container mx-auto gap-6 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
-        {data.map((datas, index) => (
+      <section className='grid md:grid-cols-3 container mx-auto gap-x-12 gap-y-12 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
+        {data.map((datas) => (
           <div
-            key={index.id}
+            key={datas.id}
             className='service-item shadow-xl rounded p-4 hover:bg-customblue hover:text-white'
           >
             <img
               src={axiosInstance.defaults.baseURL + datas.image}
               alt='img'
-              className='h-[35px] w-[35px] bg-customyellow text-white rounded px-1 py-1'
+              className='h-[45px] w-[45px] bg-customyellow text-white rounded px-1 py-1'
             />
-            <p className='my-1 font-[600] text-[24px] leading-[32px]'>
+            <p className='my-3 font-[600] text-[24px] leading-[32px]'>
               {datas.name}
             </p>
             <p

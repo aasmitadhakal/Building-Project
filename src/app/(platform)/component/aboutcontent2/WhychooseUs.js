@@ -53,16 +53,16 @@ function WhychooseUs() {
   return (
     <>
       {data && (
-        <section className='bg-white mb-36 '>
-          <div className='bg-white grid md:grid-cols-2 grid-cols-1 my-12 container mx-auto px-4 text-justify font-[Montserrat]'>
+        <section className='bg-white mb-28 '>
+          <div className='bg-white grid md:grid-cols-2 grid-cols-1 place-content-between container mx-auto px-4 text-justify font-[Montserrat]'>
             <div className='flex items-center justify-center text-[16px] font-[400] text-[#37454D]'>
-              <div className=' bg-white p-6 gap-x-4'>
-                <p className='font-[700] text-[32px]  leading-10 font-montserrat text-customblue my-4'>{data.title}</p>
+              <div className=' bg-white  gap-x-4'>
+                <p className='font-[700] text-[34px]  leading-[32px] font-montserrat text-customblue my-4'>{data.title}</p>
                 {renderDescription(data.description)}
               </div>
             </div>
-            <div className='my-12 flex items-center gap-x-4 justify-center  '>
-              <img src={axiosInstance.defaults.baseURL + data.image} alt='' className=' rounded object-cover aspect-[4/3]' />
+            <div className=' flex items-center gap-x-4 justify-center  '>
+              <img src={axiosInstance.defaults.baseURL + data.image} alt='' className=' rounded object-cover aspect-square ' />
             </div>
           </div>
         </section>
