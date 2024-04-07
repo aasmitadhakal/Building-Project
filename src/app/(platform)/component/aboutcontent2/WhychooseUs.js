@@ -62,7 +62,7 @@ function WhychooseUs() {
               </div>
             </div>
             <div className=' flex items-center gap-x-4 justify-center  '>
-              <img src={axiosInstance.defaults.baseURL + data.image} alt='' className=' rounded object-cover aspect-square ' />
+              <img src={axiosInstance.defaults.baseURL + data.image} alt='' className=' rounded-md object-cover aspect-square ' />
             </div>
           </div>
         </section>

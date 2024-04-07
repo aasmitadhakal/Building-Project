@@ -30,7 +30,7 @@ function ServicePage() {
         {data.map((datas) => (
           <div
             key={datas.id}
-            className='service-item shadow-xl rounded p-4 hover:bg-customblue hover:text-white'
+            className='service-item shadow-xl rounded-md p-4 hover:bg-customblue hover:text-white'
           >
             <img
               src={axiosInstance.defaults.baseURL + datas.image}
