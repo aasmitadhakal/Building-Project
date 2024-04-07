@@ -30,8 +30,8 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setImageOnePreview(responseData.image_one || null);
-        setImageTwoPreview(responseData.image_two || null);
+        setImageOnePreview(`${axiosInstance.defaults.baseURL}${responseData.image_one}` || null);
+        setImageTwoPreview(`${axiosInstance.defaults.baseURL}${responseData.image_two}` || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -196,7 +196,7 @@ const Update = ({ params }) => {
                 handleImagePreview(e.target.files[0], setImageOnePreview);
               }}
             />
-            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-56" />}
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="image_two">
@@ -211,7 +211,7 @@ const Update = ({ params }) => {
                 handleImagePreview(e.target.files[0], setImageTwoPreview);
               }}
             />
-            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 h-56" />}
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Preview" className="mt-2 h-40 rounded" />}
           </div>
         </div>
         <div className="flex gap-2 pt-1 mt-4">

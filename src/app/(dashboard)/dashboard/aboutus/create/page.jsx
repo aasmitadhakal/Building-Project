@@ -75,7 +75,7 @@ function Create() {
         toast("Post created successfully");
         router.push("/dashboard/aboutus");
       } else {
-        toast("Error creating post");
+        toast.error("Error creating post");
       }
     } catch (error) {
       console.error("Error creating post:", error);
@@ -167,7 +167,7 @@ function Create() {
                 handleImagePreview(e.target.files[0], setImageOnePreview);
               }}
             />
-            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-56" />}
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
             {imageOneError && <p className="text-red-500 text-sm">* Please upload Image One *</p>}
           </div>
           <div className="uppercase my-2">
@@ -184,7 +184,7 @@ function Create() {
                 handleImagePreview(e.target.files[0], setImageTwoPreview);
               }}
             />
-            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 h-56" />}
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image Two Preview" className="mt-2 h-40 rounded" />}
             {imageTwoError && <p className="text-red-500 text-sm">* Please upload Image Two *</p>}
           </div>
         </div>

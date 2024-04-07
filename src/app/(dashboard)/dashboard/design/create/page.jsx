@@ -20,6 +20,7 @@ function Create() {
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
   const [storeyType, setStoreyType] = useState("single");
 
   const [titleError, setTitleError] = useState(false);
@@ -34,7 +35,14 @@ function Create() {
   const [carsError, setCarsError] = useState(false);
 
   const router = useRouter();
-
+const handleImagePreview = (file, setImagePreview) => {
+  if (file) {
+    const previewURL = URL.createObjectURL(file);
+    setImagePreview(previewURL);
+  } else {
+    setImagePreview(null);
+  }
+};
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -361,8 +369,16 @@ function Create() {
           <label className="block text-sm font-medium text-gray-700 my-2" htmlFor="image">
             Image:
           </label>
-          <input type="file" id="image" accept="image/*" onChange={(e) => setImageOne(e.target.files[0])} />
-          
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => {
+              setImageOne(e.target.files[0]);
+              handleImagePreview(e.target.files[0], setImagePreview);
+            }}
+          />
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-40 rounded" />}
         </div>
 
         <div className="flex gap-2 mt-2">

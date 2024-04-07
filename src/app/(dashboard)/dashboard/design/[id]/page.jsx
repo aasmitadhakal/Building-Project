@@ -24,7 +24,7 @@ const Update = ({ params }) => {
     
   });
   const [editorValue, setEditorValue] = useState("");
-  const [imageOnePreview, setImageOnePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const router = useRouter();
 
@@ -45,6 +45,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || "");
         
       }
     } catch (error) {
@@ -264,25 +265,8 @@ const Update = ({ params }) => {
           />
         </div>
 
-        <div className="mt-20 my-4 ">
-          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
-            Image :
-          </label>
-          <input
-            id="image"
-            type="file"
-            name="image"
-            onChange={(e) => {
-              handleChange(e);
-              handleImagePreview(e.target.files[0], setImageOnePreview);
-            }}
-          />
-          {imageOnePreview && (
-            <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-12 w-12 rounded-full" />
-          )}
-        </div>
         {/* for frontage */}
-        <div className=" my-4 uppercase">
+        <div className=" my-4 uppercase mt-20">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             frontage:
           </label>
@@ -386,7 +370,7 @@ const Update = ({ params }) => {
         {/* for floor_plan */}
         <div className=" my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
-            floor_plan:
+            floor plan:
           </label>
           <input
             id="floor_plan"
@@ -414,7 +398,21 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div> */}
-
+        <div className=" my-4 ">
+          <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image">
+            Image :
+          </label>
+          <input
+            id="image"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleChange(e);
+              handleImagePreview(e.target.files[0], setImagePreview);
+            }}
+          />
+          {imagePreview && <img src={imagePreview} alt={formData.title} className="h-40 rounded mt-5" />}
+        </div>
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">
             Update

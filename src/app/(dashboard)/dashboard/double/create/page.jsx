@@ -21,7 +21,8 @@ function Create() {
   const [bathrooms, setBathrooms] = useState("");
   const [price, setPrice] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
-  
+  const [imageOnePreview, setImageOnePreview] = useState(null);
+  const [imageTwoPreview, setImageTwoPreview] = useState(null);
 
   const router = useRouter();
 
@@ -37,10 +38,18 @@ function Create() {
   const [imageError, setImageError] = useState(false);
   const [imageTwoError, setImageTwoError] = useState(false);
 
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() ) {
+    if (!title.trim()) {
       setTitleError(true);
     } else {
       setTitleError(false);
@@ -72,12 +81,12 @@ function Create() {
     } else {
       setSizeError(false);
     }
-    if ( !price.trim()) {
+    if (!price.trim()) {
       setPriceError(true);
     } else {
       setPriceError(false);
     }
-    if ( !floorPlan.trim()) {
+    if (!floorPlan.trim()) {
       setFloorPlanError(true);
     } else {
       setFloorPlanError(false);
@@ -99,7 +108,6 @@ function Create() {
     }
 
     if (
-      
       !title.trim() ||
       !imageOne ||
       !imageTwo ||
@@ -111,14 +119,11 @@ function Create() {
       !size.trim() ||
       isNaN(frontage.trim()) ||
       !frontage.trim() ||
-      
       !floorPlan.trim() ||
       isNaN(bathrooms.trim()) ||
       !bathrooms.trim() ||
       isNaN(bedroom.trim()) ||
       !bedroom.trim() ||
-      
-      
       !price.trim()
     ) {
       toast.error("Please fill in all required fields correctly");
@@ -154,7 +159,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -361,7 +366,7 @@ function Create() {
         <div className="grid grid-cols-2">
           <div className=" my-4 uppercase">
             <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="image">
-              Image:
+              Ground Floor:
             </label>
             <input
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
@@ -370,14 +375,16 @@ function Create() {
               accept="image/*"
               onChange={(e) => {
                 setImageOne(e.target.files[0]);
+                handleImagePreview(e.target.files[0], setImageOnePreview);
                 setImageError(false);
-              }} 
+              }}
             />
+            {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
             {imageError && <p className="text-red-500 text-sm ">* Please enter a image *</p>}
           </div>
           <div className=" my-4 uppercase">
             <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="other_image">
-              Image Two:
+              First Floor:
             </label>
             <input
               className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
@@ -386,9 +393,11 @@ function Create() {
               accept="other_image/*"
               onChange={(e) => {
                 setImageTwo(e.target.files[0]);
+                handleImagePreview(e.target.files[0], setImageTwoPreview);
                 setImageTwoError(false);
-              }} 
+              }}
             />
+            {imageTwoPreview && <img src={imageTwoPreview} alt="Image One Preview" className="mt-2 h-40 rounded" />}
             {imageTwoError && <p className="text-red-500 text-sm ">* Please enter a image *</p>}
           </div>
         </div>
