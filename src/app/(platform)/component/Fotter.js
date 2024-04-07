@@ -67,14 +67,14 @@ const Footer = () => {
        
     </div>
      
-      <div className="md:flex justify-between pb-8 container mx-auto md:px-0 px-4 md:py-0 py-5">
+      <div className="md:flex justify-between pb-8 container mb-8 mx-auto md:px-0 px-4 md:py-0 py-5">
       {/* for descriptiion */}
       <div className="grid md:place-content-center">
      <div className="md:flex items-center my-2 justify-center"> 
      <img
     src={axiosInstance.defaults.baseURL + headerdata1.footer} 
      className="h-20 w-20"></img></div>
-      <div className="flex md:items-center md:justify-center my-2">{headerdata.webpage_slogan}</div>
+      <div className="flex md:items-center md:justify-center my-2 mb-4">{headerdata.webpage_slogan}</div>
       <div className="flex md:items-center md:justify-center font-[600] leading-[24px] text-[20px]">Social Media :</div>
       
       <div className="my-2 flex md:items-center md:justify-center gap-x-2">

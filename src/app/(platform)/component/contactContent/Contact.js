@@ -122,7 +122,7 @@ function Contact() {
         
         </div>
       {/* for cantact detailas */}
-      <div className="mb-24 md:flex container mx-auto  my-8">
+      <div className=" md:flex container mx-auto  ">
         {/* for text part */}
 
         <div className="px-6 grid place-content-center">
