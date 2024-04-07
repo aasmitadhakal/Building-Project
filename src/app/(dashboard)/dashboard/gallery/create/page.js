@@ -12,13 +12,21 @@ function Create() {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const [orderError, setOrderError] = useState(false);
   const [titleError, setTitleError] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   const router = useRouter();
-
+ const handleImagePreview = (file, setImagePreview) => {
+   if (file) {
+     const previewURL = URL.createObjectURL(file);
+     setImagePreview(previewURL);
+   } else {
+     setImagePreview(null);
+   }
+ };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim() || !title.match(/^\D+$/)) {
@@ -61,7 +69,7 @@ function Create() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -135,8 +143,10 @@ function Create() {
             onChange={(e) => {
               setImage(e.target.files[0]);
               setImageError(false);
+              handleImagePreview(e.target.files[0], setImagePreview);
             }}
           />
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-40 rounded" />}
           {imageError && <p className="text-red-500 text-sm">* Please upload a Image *</p>}
         </div>
 

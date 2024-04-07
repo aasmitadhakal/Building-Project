@@ -15,7 +15,7 @@ const Update = ({ params }) => {
     image: "",
   });
   
-  const [imageOnePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
    const [orderError, setOrderError] = useState(false);
    const [titleError, setTitleError] = useState(false);
@@ -31,7 +31,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         // setEditorValue(responseData.date || "");
-        setImagePreview(responseData.image || null);
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
       }
     } catch (error) {
       toast.error(error.response.data.error );
@@ -45,7 +45,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      // handleImagePreview(files[0], name === "image_one" ? setImageOnePreview : setImageTwoPreview);
+      handleImagePreview(files[0], name === "image" && setImagePreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -165,7 +165,6 @@ const Update = ({ params }) => {
           </label>
           <input
             id="image"
-            className="block w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="file"
             name="image"
             onChange={(e) => {
@@ -173,7 +172,7 @@ const Update = ({ params }) => {
               handleImagePreview(e.target.files[0], setImagePreview);
             }}
           />
-          {imageOnePreview && <img src={imageOnePreview} alt="Image One Preview" className="mt-2 h-52" />}
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 h-40 rounded" />}
           {imageError && <p className="text-red-500 text-sm">* Please upload a Image *</p>}
         </div>
 

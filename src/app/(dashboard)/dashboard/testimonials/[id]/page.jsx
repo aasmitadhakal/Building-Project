@@ -32,7 +32,7 @@ const Update = ({ params }) => {
         const responseData = response.data.data;
         setFormData(responseData);
         setEditorValue(responseData.description || "");
-        setImagePreview(responseData.image ? responseData.image : null);
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -46,7 +46,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      handleImagePreview(files[0]);
+      handleImagePreview(files[0], name === "image" && setImagePreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -137,7 +137,7 @@ const Update = ({ params }) => {
       router.push("/dashboard/testimonials");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
