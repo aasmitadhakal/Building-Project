@@ -118,7 +118,7 @@ function DoubleStore() {
       {/* for cards */}
       <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24 font-[Montserrat]">
         {data.map((property, index) => (
-          <div key={index} className=" shadow-xl p-4  ">
+          <Link href={`/design/doublehome/${property.id}`}  key={index} className=" shadow-xl p-4  ">
             <h3 className="text-customblue   font-[600] text-[24px] leading-[35px] mx-2 my-2">
               {property.title}
             </h3>
@@ -157,7 +157,7 @@ function DoubleStore() {
               </p>
             </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

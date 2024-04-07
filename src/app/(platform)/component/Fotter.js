@@ -67,8 +67,7 @@ const Footer = () => {
        
     </div>
      
-      {/* <div className="flex justify-center items-center border-t-2 border-white py-2">© Copyright 2024 by @paradisegroup</div>  */}
-      <div className="md:flex justify-between pb-8 container mx-auto md:px-0 px-4 ">
+      <div className="md:flex justify-between pb-8 container mx-auto md:px-0 px-4 md:py-0 py-5">
       {/* for descriptiion */}
       <div className="grid md:place-content-center">
      <div className="md:flex items-center my-2 justify-center"> 
@@ -115,6 +114,8 @@ const Footer = () => {
         </div>
 
     </div>
+    
+      <div className="flex justify-center items-center border-t-1  border-white py-4">© Copyright 2024 by @paradisegroup</div> 
     </footer>
   );
 };

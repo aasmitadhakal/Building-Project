@@ -26,15 +26,15 @@ function Aboutus() {
   return (
     <>
      <section  className='container mx-auto font-[Montserrat] my-20'>
-          <div className='grid md:grid-cols-2 my-0 md:my-12  gap-x-8 md:px-0 px-4 '>
+          <div className='grid md:grid-cols-2 place-content-between my-0 md:my-12  gap-x-8 md:px-0 px-4 '>
             {/* for text part */}
             <div className='grid place-content-center'>
-              <p className='my-4 text-customblue font-[700] text-[36px] leading-[49px]'>{data.title}</p>
+              <p className='my-4 text-customblue font-[700] text-[36px] leading-[49px] flex justify-center items-center'>{data.title}</p>
               {/* Render HTML content safely */}
               <div className='font-[Montserrat] font-[400] leading-[24px] text-[16px] text-justify' dangerouslySetInnerHTML={{ __html: data.description }} />
             </div>
             {/* for img part */}
-            <div className='relative flex justify-center items-center overflow-hidden'>
+            <div className='relative flex justify-center items-center overflow-hidden mb-4'>
               {/* Fetch and render the first image */}
 
                 <img

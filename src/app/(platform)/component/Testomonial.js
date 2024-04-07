@@ -60,9 +60,9 @@ function Testonomial() {
   }, []); // Empty dependency array ensures that this effect runs only once when the component mounts
   return (
     <>
-    <section className='grid place-content-center mt-8 font-[Montserrat]'>
+    <section className='grid place-content-center mt-14 font-[Montserrat]'>
             <p className='text-cutombrown text-[18px] leading-[24px] font-[400] grid place-content-center'>Our clients review</p>
-          <p className='text-customblue text-[36px] leading-[49px] font-[700] my-1 grid place-content-center'>Testimonials</p>
+          <p className='text-customblue text-[36px] leading-[49px] font-[700]  grid place-content-center'>Testimonials</p>
             </section>
       <Swiper
       slidesPerView={1}
@@ -85,12 +85,12 @@ function Testonomial() {
         },
       }}
       modules={[Pagination]}
-      className="container mx-auto"
+      className="container mx-auto "
       >
         
        {data.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className=' text-black font-[Montserrat] my-20  shadow-xl rounded p-8 '>
+          <SwiperSlide key={index} className='md:px-0 px-4'>
+            <div className=' text-black font-[Montserrat] mb-20  shadow-xl rounded p-8 '>
              <p className='grid place-content-center my-2'><FaQuoteLeft  className='text-[#EECB5D]'/></p>
               <div className='line-clamp-5 my-2 font-[Montserrat] font-[400] leading-[24px] text-[16px] text-[#6C6C6C] text-justify 'dangerouslySetInnerHTML={{ __html: item.description }}/>
               <div className='h-24 w-24 rounded-full overflow-hidden mx-auto ring-[#EECB5D] ring-2'><img  src={axiosInstance.defaults.baseURL + item.image} className='h-full w-full object-cover rounded-full ring-4 font-[Montserrat] ring-[#EECB5D]' alt={item.title} /></div>
