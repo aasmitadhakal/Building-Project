@@ -79,7 +79,7 @@ const Page = () => {
                     ))}
                     <td className=" py-4 whitespace-nowrap">
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i class="ri-delete-bin-6-line text-xl font-bold"></i>
+                        <i className="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>
                     </td>
                   </tr>

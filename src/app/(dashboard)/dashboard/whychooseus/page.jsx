@@ -96,11 +96,11 @@ const Whyus = () => {
                     <td className=" py-4 whitespace-nowrap">
                       <Link href={`/dashboard/whychooseus/${item.id}`}>
                         <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i class="ri-file-edit-line text-xl "></i>
+                          <i className="ri-file-edit-line text-xl "></i>
                         </button>
                       </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i class="ri-delete-bin-6-line text-xl "></i>
+                        <i className="ri-delete-bin-6-line text-xl "></i>
                       </button>
                     </td>
                   </tr>

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import Singlestoreyhomes from "@/app/(platform)/component/designcontent/Singlestoreyhomes";
 
-function page({ params }) {
+function Page({ params }) {
   const [data, setData] = useState([]);
   const [bannerdara, setbannerData] = useState([]);
   const fetchData = async () => {
@@ -154,4 +154,4 @@ function page({ params }) {
   );
 }
 
-export default page;
+export default Page;
