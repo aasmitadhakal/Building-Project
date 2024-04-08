@@ -42,7 +42,7 @@ const Sidenav = () => {
               variant="text"
               size="sm"
               ripple={false}
-              className="absolute bg-indigo-500 right-10 top-5 grid rounded-br-none rounded-tl-none xl:hidden"
+              className="absolute  right-4 top-5 grid rounded-br-none rounded-tl-none xl:hidden"
               onClick={() => setOpenSidenav(!openSidenav)}
             >
               <i className="ri-close-large-line text-xl font-bold "></i>

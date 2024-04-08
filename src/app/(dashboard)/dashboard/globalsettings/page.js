@@ -14,9 +14,9 @@ const Page = () => {
   return (
     <div className="bg-white mt-10 p-5 rounded-md">
       <div className="grid lg:grid-cols-4 container mx-auto">
-        <div className="w-full lg:w-40 ">
+        <div className="w-72 md:w-52 flex sm:justify-around md:justify-normal  md:flex-col ">
           <button
-            className={`w-full py-2   hover:bg-indigo-700 rounded-md ${activeButton === "Global" && "bg-indigo-700 text-white"}`}
+            className={`w-full py-2 mt-2   hover:bg-indigo-700 rounded-md ${activeButton === "Global" && "bg-indigo-700 text-white"}`}
             onClick={() => handleButtonClick("Global")}
           >
             Global
