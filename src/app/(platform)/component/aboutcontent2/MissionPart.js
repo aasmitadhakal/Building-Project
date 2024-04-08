@@ -26,7 +26,7 @@ function MissionPart() {
    <>
      {/* {data.map((item, index) => ( */}
         <section className='bg-customgray  font-[Montserrat]'>
-      <div  className=' bg-customgray grid md:grid-cols-3 grid-cols-1 place-content-between my-12  container mx-auto px-4 text-justify  font-[karla]'>
+      <div  className=' bg-customgray grid md:grid-cols-3 grid-cols-1 place-content-between my-4  container mx-auto px-4 text-justify  font-[karla]'>
          {/* for img part */}
          <div  className=' md:my-12 my-6 flex items-end justify-end'>
           <img 
