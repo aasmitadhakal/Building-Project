@@ -1,15 +1,19 @@
-"use client";
+"use client"
 import { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdContactPhone } from "react-icons/md";
+import { MdOutlinePhone } from "react-icons/md";
 import { IoPeopleOutline } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
+import './index.css'
 import { ToastContainer, toast } from "react-toastify";
+import { IoPencil } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from 'next/link';
+import { HiExclamationCircle } from "react-icons/hi";
+import { BiMessageAltEdit } from "react-icons/bi";
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
   const [headerdata, setheaderdata] = useState([]);
@@ -21,6 +25,7 @@ function Contact() {
     subject: "",
     message: "",
   });
+
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/settings");
@@ -33,6 +38,7 @@ function Contact() {
       console.error("Error fetching data:", error);
     }
   };
+
   const fetchData1 = async () => {
     try {
       const response = await axiosInstance.get("/api/pages/7");
@@ -45,10 +51,12 @@ function Contact() {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
     fetchData1();
   }, []);
+
   const validateForm = () => {
     const errors = {};
     if (!formData.name.trim()) {
@@ -68,7 +76,13 @@ function Contact() {
       errors.subject = "Subject is required";
     }
     if (!formData.message.trim()) {
-      errors.message = "Subject is required";
+      errors.message = "Message is required";
+    }
+    if (Object.keys(errors).length > 0) {
+      // If there are errors, show them using Toastify
+      Object.values(errors).forEach(error => {
+        toast.error(error);
+      });
     }
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -80,7 +94,7 @@ function Contact() {
       try {
         const response = await axiosInstance.post("/api/inquiry", formData);
         if (response.data.success) {
-          toast("Form submitted successfully");
+          toast.success("Form submitted successfully");
           setFormData({
             name: "",
             email: "",
@@ -104,10 +118,10 @@ function Contact() {
       [name]: value,
     });
   };
+
   return (
     <>
       {/* forbanner */}
-
       <div className="relative w-full h-96 font-[Karla]">
         <div
           className="w-full h-96"
@@ -123,7 +137,6 @@ function Contact() {
           src={axiosInstance.defaults.baseURL + bannerdara.image}
           alt="Background"
         />
-
         <div
           style={{
             position: "absolute",
@@ -142,18 +155,14 @@ function Contact() {
         </div>
       </div>
       <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
-          <div className='container mx-auto flex items-center gap-x-1'>
+        <div className='container mx-auto flex items-center gap-x-1'>
           <Link href='/'>Home</Link>
-         <IoIosArrowForward />
-         <p>Contact Us</p>
-        
-          </div>
-        
+          <IoIosArrowForward />
+          <p>Contact Us</p>
         </div>
-      {/* for cantact detailas */}
+      </div>
+      {/* for contact details */}
       <div className=" md:flex container mx-auto  my-8">
-        {/* for text part */}
-
         <div className="px-6 grid place-content-center">
           <div className="my-1 font-[karla] font-[400] text-[18px] leading-[24px] ">
             {headerdata.contactus_title}
@@ -169,7 +178,7 @@ function Contact() {
             {headerdata.site_location}
           </div>
           <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
-            <MdContactPhone className="text-customblue font-[500] mx-2" />{" "}
+            <MdOutlinePhone className="text-customblue font-[500] mx-2" />{" "}
             {headerdata.site_phone}
           </div>
           <div className="font-[karla] my-1 font-[400] text-[18px] leading-[24px] flex">
@@ -177,90 +186,83 @@ function Contact() {
             {headerdata.site_mail}
           </div>
         </div>
-
-        {/* for form */}
         <div>
           <form onSubmit={handleFormSubmit}>
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
-              <div className="">
-                <label className="text-slate-600  font-[400]">
-                  Enter your name
-                </label>
+              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
                 <input
                   type="text"
                   name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  className=" outline-none w-full mt-2 rounded border-gray-300 "
-                ></input>
-                 {errors.name && (
-    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-  )}
+                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  placeholder="Enter your Name"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <IoPeopleOutline />
+                </div>
               </div>
-              <div className="">
-                <label className="text-slate-600 font-[400]">
-                  Enter your Email
-                </label>
+              {/* for email */}
+              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
                 <input
+                  type="text"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  type="email"
-                  className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
-                ></input>
-                 {errors.email && (
-    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-  )}
+                  className="focus:outline-none focus:shadow-outline focus:border-blue-300 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  placeholder="Enter your Email"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <AiOutlineMail />
+                </div>
               </div>
-
-              <div className="">
-                <label className="text-slate-600 font-[400]">
-                  Enter your Phone No
-                </label>
+              {/* for phone */}
+              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
                 <input
                   type="text"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
-                ></input>
-                 {errors.phone && (
-    <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-  )}
+                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  placeholder="Enter your Phone No"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <MdOutlinePhone />
+                </div>
               </div>
-
-              <div className="">
-                <label className="text-slate-600 font-[400]">Subject</label>
+              {/* for subject */}
+              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
-                ></input>
-                 {errors.subject && (
-    <p className="text-red-500 text-xs mt-1">{errors.subject}</p>
-  )}
+                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  placeholder="Enter your Subject"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <BiMessageAltEdit />
+                </div>
               </div>
+             
             </div>
-            <div className=" my-4 px-4 font-[Montserrat]">
-              <label className="text-slate-600 font-[400]">
-                How can we help you? Feel free to get in touch!
-              </label>
-              <input
-                type="text"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                className="outline-none  w-full  mt-2  h-24 rounded align-top  border-gray-300"
-              />
-              {errors.message && (
-    <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-  )}
-            </div>
+             {/* for message */}
+             <div className=" font-[400] text-[16px] leading-[25px] border-b mb-8 mt-4   mx-4">
+              <div className="flex items-center text-[#656565] "> <IoPencil  className="mx-2"/><label>How can we help you? Feel free to get in touch!</label></div>  
+                <input
+                  type="text"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="focus:outline-none focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+          
+                />
+                
+              </div>
             <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">
               <button className="border-customblue px-8 py-2 rounded border-2 text-customblue hover:bg-customblue hover:text-white">
-                Submit{" "}
+                Submit
               </button>
               <div className="font-[Montserrat]">
                 <label className="inline-flex items-center">
@@ -282,7 +284,7 @@ function Contact() {
         height="600"
         src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=sydney+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
       ></iframe>
-        <ToastContainer />
+      <ToastContainer />
     </>
   );
 }
