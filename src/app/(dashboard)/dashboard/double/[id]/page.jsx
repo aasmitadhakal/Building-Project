@@ -255,7 +255,7 @@ const Update = ({ params }) => {
         </div>
 
         {/* for frontage */}
-        <div className="mt-15 my-4 uppercase">
+        <div className="mt-14 my-4 uppercase">
           <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="name">
             frontage:
           </label>

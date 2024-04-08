@@ -47,11 +47,12 @@ const Update = ({ params }) => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (files) {
-      handleImagePreview(files[0], name === "image" && setImagePreview);
+    if (files && files[0]) {
+      const file = files[0];
+      handleImagePreview(file);
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0],
+        [name]: file,
       }));
     } else {
       setFormData((prevData) => ({
@@ -60,6 +61,7 @@ const Update = ({ params }) => {
       }));
     }
   };
+
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
@@ -74,56 +76,60 @@ const Update = ({ params }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+   e.preventDefault();
 
-    if (isNaN(formData.order.trim()) || !formData.order.trim()) {
-      setOrderError(true);
-    } else {
-      setOrderError(false);
-    }
+   if (isNaN(formData.order.trim()) || !formData.order.trim()) {
+     setOrderError(true);
+     return;
+   } else {
+     setOrderError(false);
+   }
 
-    if (!formData.title.trim() || !formData.title.match(/^\D+$/)) {
-      setTitleError(true);
-    } else {
-      setTitleError(false);
-    }
+   if (!formData.title.trim()) {
+     setTitleError(true);
+     return;
+   } else {
+     setTitleError(false);
+   }
 
-    if (!formData.icon.trim()) {
-      setIconError(true);
-    } else {
-      setIconError(false);
-    }
+   if (!formData.icon.trim()) {
+     setIconError(true);
+     return;
+   } else {
+     setIconError(false);
+   }
 
-    if (!formData.short_description.trim()) {
-      setShortDescriptionError(true);
-    } else {
-      setShortDescriptionError(false);
-    }
+   if (!formData.short_description.trim()) {
+     setShortDescriptionError(true);
+     return;
+   } else {
+     setShortDescriptionError(false);
+   }
 
-    if (!formData.title.match(/^\D+$/) || isNaN(formData.order.trim()) || !formData.order.trim() || !formData.icon.trim()) {
-      toast.error("Please fill in all required fields correctly");
-      return;
-    }
+   try {
+     const updatedData = new FormData();
+     updatedData.append("order", formData.order);
+     updatedData.append("title", formData.title);
+     updatedData.append("icon", formData.icon);
+     updatedData.append("short_description", formData.short_description);
+     updatedData.append("description", editorValue);
 
-    try {
-      const updatedData = new FormData();
-      updatedData.append("order", formData.order);
-      updatedData.append("title", formData.title);
-      updatedData.append("image", formData.image);
-      updatedData.append("icon", formData.icon);
-      updatedData.append("short_description", formData.short_description);
-      updatedData.append("description", editorValue);
+     if (formData.image) {
+       updatedData.append("image", formData.image);
+     }
+    
 
-      await axiosInstance.put(`/api/whyus/${params.id}`, updatedData);
+     await axiosInstance.put(`/api/whyus/${params.id}`, updatedData);
 
-      toast("Data updated successfully");
-      router.push("/dashboard/whychooseus");
-    } catch (error) {
-      console.error("Error updating data:", error);
-      toast.error(error.response.data.error);
-    }
-  };
+     toast("Data updated successfully");
+     router.push("/dashboard/whychooseus");
+   } catch (error) {
+     console.error("Error updating data:", error);
+     toast.error(error.response.data.error);
+   }
+ };
+
 
   return (
     <div className="min-w-screen bg-white rounded-md p-5">
@@ -230,6 +236,7 @@ const Update = ({ params }) => {
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="file"
             id="image"
+            name="image"
             accept="image/*"
             onChange={handleChange}
           />
