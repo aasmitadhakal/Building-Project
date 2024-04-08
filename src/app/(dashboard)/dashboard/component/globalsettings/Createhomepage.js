@@ -110,10 +110,10 @@ const CreateHomePage = () => {
   };
 
   return (
-    <div className="px-5 rounded-md w-full">
+    <div className="px-5 rounded-md w-full ">
       <ToastContainer />
       <div>
-        <p className="text-2xl font-bold mb-4">Home</p>
+       
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             {formData &&

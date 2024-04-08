@@ -191,14 +191,13 @@ const CreateSeo = () => {
       <ToastContainer />
       <div className="rounded-md w-full ">
         <div>
-          <p className="text-2xl font-bold mb-4">SEO Settings</p>
           <form onSubmit={handleSubmit}>
             {formSections.map((section, index) => (
               <fieldset key={index} className="mb-6 border p-4 rounded">
                 <legend className="text-lg font-semibold">{section.title}</legend>
                 {section.fields.map((field) => (
                   <div key={field.name} className="mb-2">
-                    <label htmlFor={field.name} className="block text-sm font-medium text-gray-700">
+                    <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 my-2">
                       {field.label}
                     </label>
                     {field.type === "textarea" ? (
@@ -208,7 +207,7 @@ const CreateSeo = () => {
                         value={formData[field.name] || ""}
                         onChange={handleChange}
                         placeholder={field.placeholder}
-                        className={`block w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
+                        className={`block w-full my-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
                           errorFields[field.name] ? "border-red-500" : "border-gray-200 focus:border-blue-500"
                         }`}
                         rows={4}
@@ -226,11 +225,7 @@ const CreateSeo = () => {
                           className={getInputClassName(field.name)} // Apply dynamic class based on error field
                           required={field.required}
                         />
-                        {errorFields[field.name] && (
-                          <p className="text-sm text-red-500">
-                            * Please enter a valid {field.label.toLowerCase()} *
-                          </p>
-                        )}
+                        {errorFields[field.name] && <p className="text-sm text-red-500">* Please enter a valid {field.label.toLowerCase()} *</p>}
                       </div>
                     )}
                   </div>

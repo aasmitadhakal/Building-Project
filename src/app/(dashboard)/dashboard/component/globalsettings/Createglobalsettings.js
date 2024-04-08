@@ -38,10 +38,10 @@ const CreateGlobalSettings = () => {
   }, []);
 
   return (
-    <div className="px-5 rounded-md w-full ">
+    <div className="px-5 rounded-md w-full text-slate-500 font-[poppins]">
       <div>
         <div className="flex justify-between">
-          <p className="text-2xl font-bold mb-4">Global Settings</p>
+          <div></div>
           <div>
             <Link href={`/dashboard/globalsettings/${formData.id}`}>
               <button className="  bg-indigo-500 hover:bg-indigo-700 px-4 py-1 text-white rounded-md">
@@ -50,29 +50,36 @@ const CreateGlobalSettings = () => {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-2">
-          <div className="shadow-md">
-            <h2 className="text-lg pb-1 ">Site Footer Logo</h2>
-            <img src={`${axiosInstance.defaults.baseURL}${formData.imageFooter}`} alt="" className="h-56 rounded-md" />
+        <div className="grid grid-cols-2 gap-10">
+          <div className="shadow-sm ">
+            <h2 className="text-base pb-1 ">Site Footer Logo</h2>
+            <div className="flex justify-center items-center border cursor-pointer">
+              <img src={`${axiosInstance.defaults.baseURL}${formData.imageFooter}`} alt="" className="h-36  p-2 rounded-md" />
+            </div>
           </div>
-          <div className="shadow-md">
-            <h2 className="text-lg pb-1 ">Site Main Logo</h2>
-            <img src={`${axiosInstance.defaults.baseURL}${formData.imageMain}`} alt="" className="h-56 rounded-md" />
+          <div className="shadow-sm cursor-pointer">
+            <h2 className="text-base pb-1 ">Site Main Logo</h2>
+            <div className="flex justify-center items-center border">
+              <img src={`${axiosInstance.defaults.baseURL}${formData.imageMain}`} alt="" className="h-36 p-2 rounded-md" />
+            </div>
           </div>
-          <div className="shadow-md">
-            <h2 className="text-lg pb-1 ">Fav Icon</h2>
-            <img src={`${axiosInstance.defaults.baseURL}${formData.favIcon}`} alt="" className="h-56 rounded-md" />
+          <div className="shadow-sm cursor-pointer">
+            <h2 className="text-base pb-1 ">Fav Icon</h2>
+            <div className="flex justify-center items-center border">
+              {" "}
+              <img src={`${axiosInstance.defaults.baseURL}${formData.favIcon}`} alt="" className="h-24 p-2 rounded-md" />
+            </div>
           </div>
         </div>
         <div className="mt-5">
-          <div className="border rounded-md px-4 py-2 border-gray-600">
-            <h4 className="font-semibold text-xl py-2">Site information</h4>
+          <div className="border rounded-md px-4 py-2 ">
+            <h4 className="font-semibold text-xl py-2 text-slate-700">Site information</h4>
             <p>{formData.siteInformation}</p>
           </div>
         </div>
         <div className="mt-5">
-          <div className="border rounded-md px-4 py-2 border-gray-600">
-            <h2 className="font-semibold text-xl py-2">Site Copyright</h2>
+          <div className="border rounded-md px-4 py-2 ">
+            <h2 className="font-semibold text-xl py-2 text-slate-700">Site Copyright</h2>
             <p>{formData.siteCopyright}</p>
           </div>
         </div>

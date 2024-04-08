@@ -42,7 +42,7 @@ const Sidenav = () => {
               variant="text"
               size="sm"
               ripple={false}
-              className="absolute bg-indigo-500 right-10 top-5 grid rounded-br-none rounded-tl-none xl:hidden"
+              className="absolute  right-4 top-5 grid rounded-br-none rounded-tl-none xl:hidden"
               onClick={() => setOpenSidenav(!openSidenav)}
             >
               <i className="ri-close-large-line text-xl font-bold "></i>
@@ -98,6 +98,18 @@ const Sidenav = () => {
                   >
                     <i className=" ri-settings-2-line mr-4 text-xl"></i>
                     <span>Services</span>
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard/packages">
+                  <span
+                    className={`${
+                      pathname === "/dashboard/packages" ? "bg-blue-100 text-black" : "text-black"
+                    } flex items-center uppercase rounded-md px-4 py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground`}
+                  >
+                    <i className=" ri-gift-line mr-4 text-xl"></i>
+                    <span>Packages</span>
                   </span>
                 </Link>
               </li>
