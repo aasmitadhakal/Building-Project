@@ -53,26 +53,26 @@ function Create() {
     } else {
       setNameError(false);
     }
-    if (!seotitle.match(/^\D+$/)) {
-      setSeoTitleError(true);
-    } else {
-      setSeoTitleError(false);
-    }
-    if (!seokeywords.match(/^\D+$/)) {
-      setSeoKeywordError(true);
-    } else {
-      setSeoKeywordError(false);
-    }
-    if (!seodescription.match(/^\D+$/)) {
-      setSeoDescriptionError(true);
-    } else {
-      setSeoDescriptionError(false);
-    }
-    if (!seoschema.match(/^\D+$/)) {
-      setSeoSchemaError(true);
-    } else {
-      setSeoSchemaError(false);
-    }
+    // if (!seotitle.match(/^\D+$/)) {
+    //   setSeoTitleError(true);
+    // } else {
+    //   setSeoTitleError(false);
+    // }
+    // if (!seokeywords.match(/^\D+$/)) {
+    //   setSeoKeywordError(true);
+    // } else {
+    //   setSeoKeywordError(false);
+    // }
+    // if (!seodescription.match(/^\D+$/)) {
+    //   setSeoDescriptionError(true);
+    // } else {
+    //   setSeoDescriptionError(false);
+    // }
+    // if (!seoschema.match(/^\D+$/)) {
+    //   setSeoSchemaError(true);
+    // } else {
+    //   setSeoSchemaError(false);
+    // }
     if (isNaN(order_number.trim()) || !order_number.trim()) {
       setOrderError(true);
     } else {
@@ -87,10 +87,10 @@ function Create() {
       !name.trim() ||
       !name.match(/^\D+$/) ||
       !imageOne ||
-      !seotitle.match(/^\D+$/) ||
-      !seokeywords.match(/^\D+$/) ||
-      !seodescription.match(/^\D+$/) ||
-      !seoschema.match(/^\D+$/) ||
+      // !seotitle.match(/^\D+$/) ||
+      // !seokeywords.match(/^\D+$/) ||
+      // !seodescription.match(/^\D+$/) ||
+      // !seoschema.match(/^\D+$/) ||
       isNaN(order_number.trim()) ||
       !order_number.trim()
     ) {

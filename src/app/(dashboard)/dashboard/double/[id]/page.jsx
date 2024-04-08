@@ -170,7 +170,7 @@ const Update = ({ params }) => {
         updatedData.append("image", formData.image);
       }
 
-      if (formData.image_two) {
+      if (formData.other_image) {
         updatedData.append("other_image", formData.other_image);
       }
 
@@ -404,13 +404,13 @@ const Update = ({ params }) => {
             {imageOnePreview && <img src={imageOnePreview} alt={formData.title} className="h-40 rounded" />}
           </div>
           <div className=" my-4 uppercase">
-            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="image_two">
+            <label className="block text-sm  my-2 font-medium text-gray-700" htmlFor="other_image">
               First Floor :
             </label>
             <input
-              id="image_two"
+              id="other_image"
               type="file"
-              name="image_two"
+              name="other_image" // Changed from image_two to other_image
               onChange={(e) => {
                 handleChange(e);
                 handleImagePreview(e.target.files[0], setImageTwoPreview);

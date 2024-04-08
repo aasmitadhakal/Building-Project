@@ -14,7 +14,7 @@ const Update = ({ params }) => {
     image: "",
   });
 
-  const [imageOnePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [orderError, setOrderError] = useState(false);
   const [titleError, setTitleError] = useState(false);
 
@@ -29,8 +29,8 @@ const Update = ({ params }) => {
           order: responseData.order || "",
           title: responseData.title || "",
           short_description: responseData.short_description || "",
-          image: responseData.image || "",
         });
+        setImagePreview(`${axiosInstance.defaults.baseURL}${responseData.image}` || null);
       } else {
         toast("Error fetching data");
       }
@@ -47,6 +47,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
+      handleImagePreview(files[0], name === "image" && setImagePreview);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -59,7 +60,7 @@ const Update = ({ params }) => {
     }
   };
 
-  const handleImagePreview = (file) => {
+  const handleImagePreview = (file, setImagePreview) => {
     if (file) {
       const previewURL = URL.createObjectURL(file);
       setImagePreview(previewURL);
@@ -159,7 +160,8 @@ const Update = ({ params }) => {
           <label className="block my-2 text-sm uppercase font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
-          <input
+          <textarea
+            rows={5}
             id="short_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
@@ -183,7 +185,7 @@ const Update = ({ params }) => {
               handleImagePreview(e.target.files[0]);
             }}
           />
-          {imageOnePreview && <img src={imageOnePreview} alt="Image Preview" className="mt-2 w-full" />}
+          {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 w-40 rounded" />}
         </div>
 
         <div className="flex gap-2 pt-1">

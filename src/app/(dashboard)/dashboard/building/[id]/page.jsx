@@ -87,26 +87,26 @@ const Update = ({ params }) => {
     } else {
       setNameError(false);
     }
-    if (!formData.seo_title.match(/^\D+$/)) {
-      setSeoTitleError(true);
-    } else {
-      setSeoTitleError(false);
-    }
-    if (!formData.seo_keywords.match(/^\D+$/)) {
-      setSeoKeywordError(true);
-    } else {
-      setSeoKeywordError(false);
-    }
-    if (!formData.seo_description.match(/^\D+$/)) {
-      setSeoDescriptionError(true);
-    } else {
-      setSeoDescriptionError(false);
-    }
-    if (!formData.seo_schema.match(/^\D+$/)) {
-      setSeoSchemaError(true);
-    } else {
-      setSeoSchemaError(false);
-    }
+    // if (!formData.seo_title.match(/^\D+$/)) {
+    //   setSeoTitleError(true);
+    // } else {
+    //   setSeoTitleError(false);
+    // }
+    // if (!formData.seo_keywords.match(/^\D+$/)) {
+    //   setSeoKeywordError(true);
+    // } else {
+    //   setSeoKeywordError(false);
+    // }
+    // if (!formData.seo_description.match(/^\D+$/)) {
+    //   setSeoDescriptionError(true);
+    // } else {
+    //   setSeoDescriptionError(false);
+    // }
+    // if (!formData.seo_schema.match(/^\D+$/)) {
+    //   setSeoSchemaError(true);
+    // } else {
+    //   setSeoSchemaError(false);
+    // }
     if (isNaN(formData.order_number.trim()) || !formData.order_number.trim()) {
       setOrderError(true);
     } else {
@@ -116,12 +116,12 @@ const Update = ({ params }) => {
     if (
       !formData.name.trim() ||
       !formData.name.match(/^\D+$/) ||
-      !formData.seo_title.match(/^\D+$/) ||
-      !formData.seo_keywords.match(/^\D+$/) ||
-      !formData.seo_description.match(/^\D+$/) ||
-      !formData.seo_schema.match(/^\D+$/) ||
-      isNaN(formData.order.trim()) ||
-      !formData.order.trim()
+      // !formData.seo_title.match(/^\D+$/) ||
+      // !formData.seo_keywords.match(/^\D+$/) ||
+      // !formData.seo_description.match(/^\D+$/) ||
+      // !formData.seo_schema.match(/^\D+$/) ||
+      isNaN(formData.order_number.trim()) ||
+      !formData.order_number.trim()
     ) {
       toast.error("Please fill in all required fields correctly");
       return;
@@ -297,10 +297,10 @@ const Update = ({ params }) => {
             name="image"
             onChange={(e) => {
               handleChange(e);
-              handleImagePreview(e.target.files[0], setImageOnePreview);
+              handleImagePreview(e.target.files[0], setImagePreview);
             }}
           />
-          {imagePreview && <img src={`${axiosInstance.defaults.baseURL}${formData.image}`} alt={formData.title} className="h-40 rounded" />}
+          {imagePreview && <img src={imagePreview} alt={formData.title} className="h-40 rounded" />}
         </div>
         <div className="flex gap-2 pt-1 mt-4">
           <button type="submit" className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-md">

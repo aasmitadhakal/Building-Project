@@ -16,20 +16,20 @@ const Page = () => {
       <div className="grid lg:grid-cols-4 container mx-auto">
         <div className="w-full lg:w-40 ">
           <button
-            className={`w-full py-2 bg-indigo-500 text-white hover:bg-indigo-700 rounded-sm ${activeButton === "Global" && "bg-indigo-700"}`}
+            className={`w-full py-2   hover:bg-indigo-700 rounded-md ${activeButton === "Global" && "bg-indigo-700 text-white"}`}
             onClick={() => handleButtonClick("Global")}
           >
             Global
           </button>
           <button
-            className={`w-full py-2 mt-2 bg-indigo-500 text-white hover:bg-indigo-700 rounded-sm ${activeButton === "Home" && "bg-indigo-700"}`}
+            className={`w-full py-2 mt-2   hover:bg-indigo-700 rounded-md ${activeButton === "Home" && "bg-indigo-700 text-white"}`}
             onClick={() => handleButtonClick("Home")}
           >
             Home
           </button>
 
           <button
-            className={`w-full py-2 mt-2 bg-indigo-500 text-white hover:bg-indigo-700 rounded-sm ${activeButton === "Seo" && "bg-indigo-700"}`}
+            className={`w-full py-2 mt-2   hover:bg-indigo-700 rounded-md ${activeButton === "Seo" && "bg-indigo-700 text-white"}`}
             onClick={() => handleButtonClick("Seo")}
           >
             Seo
