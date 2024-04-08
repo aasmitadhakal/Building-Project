@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const img = "/assets/image/logo.jpg";
+const img = "/assets/image/logo.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -51,19 +51,19 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-20 border font-[poppins]  p-10 rounded-md container">
+    <form onSubmit={handleSubmit} className="max-w-sm mx-auto  shadow-sm bg-white font-[poppins] p-5 rounded-sm container">
       <ToastContainer />
-      <div className="flex justify-center mb-5">
-        <img src={img} className="h-20"></img>
+      <div className="flex justify-center mb-5  ">
+        <img src={img} className="h-32 bg-white rounded-b-xl shadow-md p-2 pb-5"></img>
       </div>
 
       <div>
-        <h2 className="font-semibold text-xl text-gray-500">Welcome to 108 build! </h2>
-        <p className="text-sm my-2 text-gray-500">Please sign in with your credentials</p>
+        <h2 className="font-semibold text-xl text-gray-800">Welcome to 108 Builds !</h2>
+        <p className="text-sm font-normal my-2 text-gray-500">Please sign-in to your account</p>
       </div>
-      <div className="mb-5">
-        <label htmlFor="email" className="block my-2 text-sm font-medium text-gray-600 dark:text-white">
-          Email :
+      <div className="my-5">
+        <label htmlFor="email" className="block my-2 text-base font-normal text-slate-800 dark:text-white">
+          EMAIL :
         </label>
         <input
           type="email"
@@ -76,10 +76,15 @@ const Login = () => {
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700 dark:text-white">
-          Password :
+        <label htmlFor="password" className="block mb-2 text-base font-normal text-slate-800 dark:text-white ">
+          <div className="flex justify-between">
+            PASSWORD : <p className="text-sm text-blue-500 font-[Montserrat]">Forgot password?</p>
+          </div>
         </label>
-        <i className={`${passwordView ? "ri-eye-off-line" : "ri-eye-line"} text-lg  absolute ml-52 sm:ml-[17rem] mt-2 xm:ml-64`} onClick={passwordToggle}></i>
+        <i
+          className={`${passwordView ? "ri-eye-off-line" : "ri-eye-line"} text-lg  absolute ml-52 sm:ml-[19rem] mt-2 xm:ml-64`}
+          onClick={passwordToggle}
+        ></i>
         <input
           type={`${passwordView ? "text" : "password"}`}
           placeholder="Please enter your Password "
@@ -93,7 +98,7 @@ const Login = () => {
 
       <button
         type="submit"
-        className="text-white flex justify-center items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-white flex justify-center items-center bg-[#4581AC]   font-semibold rounded-lg text-xl w-full  px-5 py-2.5 text-center "
       >
         Login
       </button>

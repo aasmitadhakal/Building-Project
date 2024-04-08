@@ -4,7 +4,7 @@ import Login from "./Login";
 
 const LoginSignup = () => {
   return (
-    <div className="min-h-screen">
+    <div className="p-14">
       <Login />
     </div>
   );

@@ -10,7 +10,7 @@ const AboutUs = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("/api/country");
+      const response = await axiosInstance.get("/api/packages");
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -24,7 +24,7 @@ const AboutUs = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axiosInstance.delete(`/api/country/${id}`);
+      await axiosInstance.delete(`/api/packages/${id}`);
       toast("Item deleted successfully");
       fetchData(); // Update the list after successful deletion
     } catch (error) {
@@ -41,7 +41,7 @@ const AboutUs = () => {
         <div className=" w-full">
           <div className="flex justify-between mb-4">
             <h3 className="text-2xl font-bold">Packages</h3>
-            <Link href="/dashboard/aboutus/create">
+            <Link href="/dashboard/packages/create">
               <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
             </Link>
           </div>
