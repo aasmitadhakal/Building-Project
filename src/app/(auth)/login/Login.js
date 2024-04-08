@@ -78,7 +78,7 @@ const Login = () => {
         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700 dark:text-white">
           Password :
         </label>
-        <i className={`${passwordView ? "ri-eye-off-line" : "ri-eye-line"} text-lg  absolute ml-52 sm:ml-[17rem] mt-2 `} onClick={passwordToggle}></i>
+        <i className={`${passwordView ? "ri-eye-off-line" : "ri-eye-line"} text-lg  absolute ml-52 sm:ml-[17rem] mt-2 xm:ml-64`} onClick={passwordToggle}></i>
         <input
           type={`${passwordView ? "text" : "password"}`}
           placeholder="Please enter your Password "
