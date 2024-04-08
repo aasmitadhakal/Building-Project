@@ -1,14 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
+import axiosInstance from "@/app/utils/axiosInstance";
 const img = "/assets/image/logo.jpg";
 
 function Navbar() {
+  const [headerdata1, setheaderdata1] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/global');
+      if (response.data.success) {
+        setheaderdata1(response.data.data[0]); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData1();
+  }, []);
+
   const handleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -20,7 +39,7 @@ function Navbar() {
     <header className="bg-white w-full fixed top-0 z-50 shadow-xl">
       <div className="container mx-auto md:px-0 px-4 flex justify-between items-center py-1">
         <Link href="/">
-          <img src={img} className="h-[78px]" alt="Logo" />
+          <img   src={axiosInstance.defaults.baseURL + headerdata1.logo}  className="h-[78px]" alt="Logo" />
         </Link>
         <div className="hidden  md:flex gap-x-8 items-center justify-center font-[400] text-[18px] leading-[24px] font-[karla]">
           <Link href="/">

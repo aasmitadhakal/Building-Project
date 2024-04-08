@@ -67,13 +67,13 @@ function HomeDesignPart() {
   }, []); // Empty dependency array ensures that this effect runs only once when the component mounts
   return (
     <>
-      <div className="bg-customgray py-16 font-[karla]">
+      <div className="bg-customgray md:py-16 py-8 font-[karla]">
         {/* Header */}
         <div className="">
           <p className="text-cutombrown md:text-[18px] text-[15px] leading-[24px] font-[400] grid place-content-center">
             Design & construction.
           </p>
-          <p className="text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700]  grid mb-6 place-content-center">
+          <p className="text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700]  grid mb-4 md:mb-6 place-content-center">
             {headerdata.design_section_description}
           </p>
         </div>

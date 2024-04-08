@@ -91,7 +91,7 @@ fetchData1();
         
         </div>
      {/* Property cards */}
-     <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 mb-36 mt-24">
+     <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container mx-auto md:gap-8 md:mb-36 mb-10 mt-24">
         {data.map((property, index) => (
           <Link key={index} href={`/design/doubleoccupance/${property.id}`}>
             <div className="shadow-xl p-4">

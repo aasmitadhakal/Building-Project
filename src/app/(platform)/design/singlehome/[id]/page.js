@@ -72,7 +72,7 @@ function Page({ params }) {
               zIndex: "2",
             }}
           >
-            <h1 className=" mb-4 md:font-[500] md:text-[44px] text-white leading-[32px]">
+            <h1 className=" mb-4 font-[500] text-[44px] text-white leading-[32px]">
               {data.title}
             </h1>
           </div>
@@ -89,9 +89,9 @@ function Page({ params }) {
         </div>
       {/* for dynamic content */}
 
-      <div className="container mx-auto mt-22 my-4 mb-44 mt-8 font-[Montserrat]">
+      <div className="container mx-auto mt-22 my-4 md:px:0 px-4 md:mb-44 mb-12 mt-8 font-[Montserrat]">
         {/* for box */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3  gap-4">
           {data && (
             <div className="shadow rounded p-4">
               <div className="flex justify-between mx-2 py-4 border-b border-customblue text-black font-[400] text-[24px] ">
@@ -128,7 +128,7 @@ function Page({ params }) {
             </div>
           )}
           {/* for img */}
-          <div className="col-span-2">
+          <div className="md:col-span-2">
             <img
               src={axiosInstance.defaults.baseURL + data.image}
               alt={data.title}

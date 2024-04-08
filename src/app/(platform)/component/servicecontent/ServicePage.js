@@ -24,9 +24,7 @@ function ServicePage() {
   }, []);
 
   return (
-    <>
-   
-      <section className='grid md:grid-cols-3 container mx-auto gap-x-12 gap-y-12 my-12 mb-44  md:px-0 px-4 font-[Montserrat]'>
+      <section className='grid md:grid-cols-3 container mx-auto gap-x-12 gap-y-12 my-12 md:mb-44  md:px-0 px-4 font-[Montserrat]'>
         {data.map((datas) => (
           <div
             key={datas.id}
@@ -47,7 +45,7 @@ function ServicePage() {
           </div>
         ))}
       </section>
-    </>
+    
   );
 }
 
