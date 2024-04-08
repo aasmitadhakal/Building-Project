@@ -41,6 +41,7 @@ const Login = () => {
         // localStorage.set("authorization", data.accessToken);
         localStorage.setItem("authorization", data.accessToken);
         router.push("/dashboard");
+        toast.success("Login Successful");
       } else {
         toast.error("Invalid username or password");
       }

@@ -102,6 +102,18 @@ const Sidenav = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/dashboard/packages">
+                  <span
+                    className={`${
+                      pathname === "/dashboard/packages" ? "bg-blue-100 text-black" : "text-black"
+                    } flex items-center uppercase rounded-md px-4 py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground`}
+                  >
+                    <i className=" ri-gift-line mr-4 text-xl"></i>
+                    <span>Packages</span>
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <Accordion
                   open={open === 2}
                   icon={<ChevronDownIcon strokeWidth={2.5} className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`} />}
