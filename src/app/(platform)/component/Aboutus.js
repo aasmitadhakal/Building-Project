@@ -28,7 +28,7 @@ function Aboutus() {
      <section  className='container mx-auto font-[Montserrat] '>
           <div className='grid md:grid-cols-2 place-content-between my-0 md:my-12  gap-x-8 md:px-0 px-4 '>
             {/* for text part */}
-            <div className='grid place-content-center'>
+            <div className='grid place-content-center md:mb-0 mb-8 md:0 mt-4'>
               <p className='my-4 text-customblue font-[700] text-[36px] leading-[49px] flex justify-center items-center'>{data.title}</p>
               {/* Render HTML content safely */}
               <div className='font-[Montserrat] font-[400] leading-[24px] text-[16px] text-justify' dangerouslySetInnerHTML={{ __html: data.description }} />

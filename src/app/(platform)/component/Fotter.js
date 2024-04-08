@@ -67,7 +67,7 @@ const Footer = () => {
        
     </div>
      
-      <div className="md:flex justify-between pb-8 container mb-8 mx-auto md:px-0 px-4 md:py-0 py-5">
+      <div className="md:flex justify-between md:pb-8 pb-0 container mb-8 mx-auto md:px-0 px-4 md:py-0 py-5">
       {/* for descriptiion */}
       <div className="grid md:place-content-center">
      <div className="md:flex items-center my-2 justify-center"> 

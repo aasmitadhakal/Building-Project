@@ -26,15 +26,15 @@ function MissionPart() {
    <>
      {/* {data.map((item, index) => ( */}
         <section className='bg-customgray  font-[Montserrat]'>
-      <div  className=' bg-customgray grid md:grid-cols-3 grid-cols-1 place-content-between my-12 container mx-auto px-4 text-justify  font-[karla]'>
+      <div  className=' bg-customgray grid md:grid-cols-3 grid-cols-1 place-content-between my-12  container mx-auto px-4 text-justify  font-[karla]'>
          {/* for img part */}
-         <div  className=' my-12 flex items-end justify-end'>
+         <div  className=' md:my-12 my-6 flex items-end justify-end'>
           <img 
          src={axiosInstance.defaults.baseURL + data.image} 
            alt='' className='2xl:w-screen  rounded-lg object-cover  ' />
         </div>
         {/* for text part */}
-        <div  className=' col-span-2 flex items-center justify-center   my-2 text-[16px] font-[400] text-[#37454D] ' >
+        <div  className=' col-span-2 flex items-center justify-center md:mb-0 mb-10 md:mt-0 mt-4  my-2 text-[16px] font-[400] text-[#37454D] ' >
           <div className='h-[205px]w-[781px] bg-white px-4 py-10 shaadow-2xl'>
           <p className=' font-[600] text-[30px]  leading-10 text-blues font-montserrat text-customblue my-2'>{data.title}</p>
           <div className='flex items-center text-justify justify-center mt-2 leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'dangerouslySetInnerHTML={{ __html: data.description }}/>

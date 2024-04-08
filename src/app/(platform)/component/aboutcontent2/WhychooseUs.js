@@ -53,9 +53,9 @@ function WhychooseUs() {
   return (
     <>
       {data && (
-        <section className='bg-white mb-28 '>
+        <section className='bg-white md:mb-28 mb-20'>
           <div className='bg-white grid md:grid-cols-2 grid-cols-1 place-content-between container mx-auto px-4 text-justify font-[Montserrat]'>
-            <div className='flex items-center justify-center text-[16px] font-[400] text-[#37454D]'>
+            <div className='flex items-center justify-center text-[16px] font-[400] text-[#37454D] md:mb-0 mb-8'>
               <div className=' bg-white  gap-x-4'>
                 <p className='font-[700] text-[34px]  leading-[32px] font-montserrat text-customblue my-4'>{data.title}</p>
                 {renderDescription(data.description)}

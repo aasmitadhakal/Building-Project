@@ -60,7 +60,7 @@ function Buliding() {
 
   return (
       <>
-          <section className="bg-customgray py-16 font-[Montserrat]">
+          <section className="bg-customgray md:py-16 my-8 font-[Montserrat]">
               <div className=' mb-4'>
                   <p className='text-cutombrown md:text-[18px] text-[10px]  leading-[24px] font-[400] grid place-content-center'>{headerdata.building_title}</p>
                   <p className='text-customblue md:text-[36px] text-[26px] leading-[49px] md:font-[700] font-[700] my-1 grid place-content-center '>{headerdata.building_section_title}</p>

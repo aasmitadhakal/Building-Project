@@ -13,6 +13,7 @@ import Link from 'next/link';
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
   const [headerdata, setheaderdata] = useState([]);
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,26 +49,54 @@ function Contact() {
     fetchData();
     fetchData1();
   }, []);
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      errors.email = "Invalid email address";
+    }
+    if (!formData.phone.trim()) {
+      errors.phone = "Phone number is required";
+    } else if (!/^\d+$/.test(formData.phone)) {
+      errors.phone = "Phone number should contain only digits";
+    }
+    if (!formData.subject.trim()) {
+      errors.subject = "Subject is required";
+    }
+    if (!formData.message.trim()) {
+      errors.message = "Subject is required";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axiosInstance.post("/api/inquiry", formData);
-      if (response.data.success) {
-        toast("Form submitted sucesfully ");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        console.error("Failed to submit form");
+    if (validateForm()) {
+      try {
+        const response = await axiosInstance.post("/api/inquiry", formData);
+        if (response.data.success) {
+          toast("Form submitted successfully");
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+          });
+        } else {
+          console.error("Failed to submit form");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
     }
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -161,8 +190,12 @@ function Contact() {
                 <input
                   type="text"
                   name="name"
+                  onChange={handleInputChange}
                   className=" outline-none w-full mt-2 rounded border-gray-300 "
                 ></input>
+                 {errors.name && (
+    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+  )}
               </div>
               <div className="">
                 <label className="text-slate-600 font-[400]">
@@ -175,6 +208,9 @@ function Contact() {
                   type="email"
                   className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
                 ></input>
+                 {errors.email && (
+    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+  )}
               </div>
 
               <div className="">
@@ -188,6 +224,9 @@ function Contact() {
                   onChange={handleInputChange}
                   className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
                 ></input>
+                 {errors.phone && (
+    <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+  )}
               </div>
 
               <div className="">
@@ -199,6 +238,9 @@ function Contact() {
                   onChange={handleInputChange}
                   className="border-b outline-none w-full  mt-2 rounded  border-gray-300"
                 ></input>
+                 {errors.subject && (
+    <p className="text-red-500 text-xs mt-1">{errors.subject}</p>
+  )}
               </div>
             </div>
             <div className=" my-4 px-4 font-[Montserrat]">
@@ -212,6 +254,9 @@ function Contact() {
                 onChange={handleInputChange}
                 className="outline-none  w-full  mt-2  h-24 rounded align-top  border-gray-300"
               />
+              {errors.message && (
+    <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+  )}
             </div>
             <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">
               <button className="border-customblue px-8 py-2 rounded border-2 text-customblue hover:bg-customblue hover:text-white">
