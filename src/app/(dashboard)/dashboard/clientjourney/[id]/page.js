@@ -47,7 +47,7 @@ const Update = ({ params }) => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
-      handleImagePreview(files[0], name === "image" && setImagePreview);
+      handleImagePreview(files[0]);
       setFormData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -60,7 +60,7 @@ const Update = ({ params }) => {
     }
   };
 
-  const handleImagePreview = (file, setImagePreview) => {
+  const handleImagePreview = (file) => {
     if (file) {
       const previewURL = URL.createObjectURL(file);
       setImagePreview(previewURL);
