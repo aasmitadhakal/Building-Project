@@ -40,8 +40,8 @@ const Login = () => {
         // Set the token in a cookie named 'authorization'
         // localStorage.set("authorization", data.accessToken);
         localStorage.setItem("authorization", data.accessToken);
-        router.push("/dashboard");
         toast.success("Login Successful");
+        router.push("/dashboard");
       } else {
         toast.error("Invalid username or password");
       }

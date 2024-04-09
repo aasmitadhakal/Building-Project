@@ -141,8 +141,8 @@ const Update = ({ params }) => {
       <ToastContainer />
       <form onSubmit={handleSubmit} className="p-6">
         <div className="flex justify-between my-2">
-          <h1 className="font-[600] text-[24px] text-gray-700">Update Land package</h1>
-          <Link href="/dashboard/land">
+          <h1 className="font-[600] text-[24px] text-gray-700">Update Land & House package</h1>
+          <Link href="/dashboard/landHouse">
             <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md flex items-center justify-center">
               <FaArrowLeftLong className="mx-2" /> Back
             </p>

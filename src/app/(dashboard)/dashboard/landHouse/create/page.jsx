@@ -164,7 +164,7 @@ function Create() {
     formData.append("price_start", price_start);
     formData.append("price_end", price_end);
     // formData.append("floor_plan", floorPlan);
-    formData.append("package_type", "LAND");
+    formData.append("package_type", "HOME");
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -172,7 +172,7 @@ function Create() {
 
       if (response.status === 200) {
         toast("Post created successfully");
-        router.push("/dashboard/land");
+        router.push("/dashboard/landHouse");
       } else {
         toast("Error creating post");
       }
@@ -188,9 +188,9 @@ function Create() {
 
       <form onSubmit={handleFormSubmit} className="p-6 bg-white">
         <div className=" flex justify-between my-2">
-          <h1 className="font-[600] text-[24px]  text-gray-700">Create Land Packages</h1>
+          <h1 className="font-[600] text-[24px]  text-gray-700">Create Land & House Packages</h1>
           {/* <button className="bg-blue-600 text-white px-6 rounded">Back</button> */}
-          <Link href="/dashboard/land">
+          <Link href="/dashboard/landHouse">
             <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Back</p>
           </Link>
         </div>
