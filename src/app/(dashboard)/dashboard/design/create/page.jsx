@@ -38,23 +38,23 @@ function Create() {
   const [carsError, setCarsError] = useState(false);
 
   const router = useRouter();
-const handleImagePreview = (file, setImagePreview) => {
-  if (file) {
-    const previewURL = URL.createObjectURL(file);
-    setImagePreview(previewURL);
-  } else {
-    setImagePreview(null);
-  }
-};
+  const handleImagePreview = (file, setImagePreview) => {
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+    } else {
+      setImagePreview(null);
+    }
+  };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Validate inputs
-    const isTitleInvalid = !title.trim() ;
+    const isTitleInvalid = !title.trim();
     const isOrderInvalid = !order.trim() || isNaN(order.trim());
     const isImageInvalid = !imageOne;
     const isSizeInvalid = !size.trim() || isNaN(size.trim());
-    const isPriceInvalid = !price.trim() || isNaN(price.trim());
+    const isPriceInvalid = !price.trim();
     const isBedroomInvalid = !bedroom.trim() || isNaN(bedroom.trim());
     const isBathroomInvalid = !bathrooms.trim() || isNaN(bathrooms.trim());
     const isFloorPlanInvalid = !floorPlan.trim() || isNaN(floorPlan.trim());
@@ -164,7 +164,7 @@ const handleImagePreview = (file, setImagePreview) => {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 

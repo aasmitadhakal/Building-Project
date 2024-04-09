@@ -1,22 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  Button,
-  IconButton,
-  List,
-  ListItem,
-  Typography,
-} from "@material-tailwind/react";
+import { Accordion, AccordionBody, AccordionHeader, Button, IconButton, List, ListItem, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import NavbarComponent from "./Navbar";
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ChevronRightIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 const img = "/assets/image/logo.jpg";
 const Sidenav = () => {
@@ -90,6 +77,41 @@ const Sidenav = () => {
                 </Link>
               </li>
               <li>
+                <Accordion
+                  open={open === 3}
+                  icon={<ChevronDownIcon strokeWidth={2.5} className={`mx-auto h-4 w-4 transition-transform ${open === 3 ? "rotate-180" : ""}`} />}
+                >
+                  <ListItem className="p-0" selected={open === 3}>
+                    <AccordionHeader onClick={() => handleOpen(3)} className="border-none shadow-none py-0 px-4">
+                      <span className="flex items-center uppercase rounded-md py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground">
+                        <i className=" ri-gift-line mr-4 text-xl"></i>
+                        <span>Packages</span>
+                      </span>
+                    </AccordionHeader>
+                  </ListItem>
+                  <AccordionBody className="py-1">
+                    <Link href="/dashboard/land">
+                      <span
+                        className={` ${
+                          pathname === "/dashboard/land" ? "bg-blue-100 text-black" : "text-black"
+                        } flex items-center rounded-md px-12 py-3 text-sm font-normal capitalize hover:bg-accent hover:text-accent-foreground`}
+                      >
+                        <span>Land</span>
+                      </span>
+                    </Link>
+                    <Link href="/dashboard/landHouse">
+                      <span
+                        className={` ${
+                          pathname === "/dashboard/landHouse" ? "bg-blue-100 text-black" : "text-black"
+                        } flex items-center rounded-md px-12 py-3 text-sm font-normal capitalize hover:bg-accent hover:text-accent-foreground`}
+                      >
+                        <span>Land and House</span>
+                      </span>
+                    </Link>
+                  </AccordionBody>
+                </Accordion>
+              </li>
+              <li>
                 <Link href="/dashboard/services">
                   <span
                     className={`${
@@ -101,18 +123,7 @@ const Sidenav = () => {
                   </span>
                 </Link>
               </li>
-              <li>
-                <Link href="/dashboard/packages">
-                  <span
-                    className={`${
-                      pathname === "/dashboard/packages" ? "bg-blue-100 text-black" : "text-black"
-                    } flex items-center uppercase rounded-md px-4 py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground`}
-                  >
-                    <i className=" ri-gift-line mr-4 text-xl"></i>
-                    <span>Packages</span>
-                  </span>
-                </Link>
-              </li>
+
               <li>
                 <Accordion
                   open={open === 2}
