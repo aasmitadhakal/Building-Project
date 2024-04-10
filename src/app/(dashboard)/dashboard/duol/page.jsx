@@ -9,11 +9,21 @@ const Page = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
-function formatColumn(str) {
-  // Replace underscores with spaces
-  return str.replace(/_/g, " ");
-}
+  function formatColumn(str) {
+    // Replace underscores with spaces
+    return str.replace(/_/g, " ");
+  }
 
+  const getDisplayColumnName = (column) => {
+    switch (column) {
+      case "image":
+        return "Ground Floor";
+      case "other_image":
+        return "First Floor";
+      default:
+        return formatColumn(column);
+    }
+  };
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
     setDeleteItemId(id);
@@ -29,7 +39,7 @@ function formatColumn(str) {
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
   useEffect(() => {
@@ -65,7 +75,7 @@ function formatColumn(str) {
               <tr>
                 {columns.map((column, index) => (
                   <th key={index} className=" py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {formatColumn(column)}
+                    {getDisplayColumnName(column)}
                   </th>
                 ))}
               </tr>
@@ -78,9 +88,9 @@ function formatColumn(str) {
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="size-20 rounded "  />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="size-20 rounded " />
                         ) : column === "other_image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="size-20 rounded "  />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="size-20 rounded " />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}

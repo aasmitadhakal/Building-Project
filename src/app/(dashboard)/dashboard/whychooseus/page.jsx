@@ -52,7 +52,7 @@ const Whyus = () => {
     }
   };
 
-  const columns = ["SN", "order", "title", "image", "short_description", "icon", "Actions"];
+  const columns = ["SN", "order", "title", "image", "icon", "Actions"];
 
   return (
     <>

@@ -7,10 +7,6 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-
-
-
-
 // dynamic import of quill editor to avoid running into document not defined error when in build
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -18,6 +14,9 @@ function Create() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [map, setMap] = useState("");
+  const [topography, setTopography] = useState("");
+  const [area, setArea] = useState("");
+  const [zoning, setZoning] = useState("");
   const [editorValue, setEditorValue] = useState("");
   //   const [imageOne, setImageOne] = useState(null);
   const [frontage, setFrontage] = useState("");
@@ -56,14 +55,13 @@ function Create() {
 
     // Validate inputs
     const isNameInvalid = !name.trim();
-    // const isOrderInvalid = !order.trim() || isNaN(order.trim());
-    // const isImageInvalid = !imageOne;
+
     const isSizeInvalid = !size.trim() || isNaN(size.trim());
     const isPriceInvalid = !price_start.trim();
     const isPriceEndInvalid = !price_end.trim();
     const isBedroomInvalid = !bedrooms.trim() || isNaN(bedrooms.trim());
     const isBathroomInvalid = !bathrooms.trim() || isNaN(bathrooms.trim());
-    // const isFloorPlanInvalid = !floorPlan.trim() || isNaN(floorPlan.trim());
+
     const isFrontageInvalid = !frontage.trim() || isNaN(frontage.trim());
     const isCarsInvalid = !cars.trim() || isNaN(cars.trim());
 
@@ -72,18 +70,6 @@ function Create() {
     } else {
       setNameError(false);
     }
-
-    // if (isImageInvalid) {
-    //   setImageError(true);
-    // } else {
-    //   setImageError(false);
-    // }
-
-    // if (isOrderInvalid) {
-    //   setOrderError(true);
-    // } else {
-    //   setOrderError(false);
-    // }
 
     if (isSizeInvalid) {
       setSizeError(true);
@@ -113,12 +99,6 @@ function Create() {
     } else {
       setPriceError(false);
     }
-
-    // if (isFloorPlanInvalid) {
-    //   setFloorPlanError(true);
-    // } else {
-    //   setFloorPlanError(false);
-    // }
 
     if (isFrontageInvalid) {
       setFrontageError(true);
@@ -153,8 +133,8 @@ function Create() {
     formData.append("location", location);
     formData.append("map", map);
     formData.append("description", editorValue);
-    // formData.append("order", order);
-    // formData.append("image", imageOne);
+    formData.append("zoning", zoning);
+    formData.append("topography", topography);
     formData.append("frontage", frontage);
     formData.append("size", size);
 
@@ -163,7 +143,7 @@ function Create() {
     formData.append("bathrooms", bathrooms);
     formData.append("price_start", price_start);
     formData.append("price_end", price_end);
-    // formData.append("floor_plan", floorPlan);
+    formData.append("area", area);
     formData.append("package_type", "HOME");
 
     try {
@@ -251,7 +231,42 @@ function Create() {
               onChange={(e) => setMap(e.target.value)}
             />
           </div>
-
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium  text-gray-700" htmlFor="name">
+              Area:
+            </label>
+            <input
+              id="area"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="area"
+              onChange={(e) => setArea(e.target.value)}
+            />
+          </div>
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium  text-gray-700" htmlFor="name">
+              Topography:
+            </label>
+            <input
+              id="topography"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="topography"
+              onChange={(e) => setTopography(e.target.value)}
+            />
+          </div>
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium  text-gray-700" htmlFor="name">
+              Zoning:
+            </label>
+            <input
+              id="zoning"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="zoning"
+              onChange={(e) => setZoning(e.target.value)}
+            />
+          </div>
           {/* for frontage */}
           <div className="uppercase my-4">
             <label className="block text-sm    font-medium text-gray-700" htmlFor="name">
@@ -412,7 +427,6 @@ function Create() {
           </button>
         </div>
       </form>
-     
     </div>
   );
 }

@@ -16,6 +16,10 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     id: params.id,
     name: "",
+    zoning: "",
+    area: "",
+    map: "",
+    topography: "",
     description: "",
     location: "",
     map: "",
@@ -188,6 +192,45 @@ const Update = ({ params }) => {
               type="text"
               name="map"
               value={formData.map || ""}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              Area:
+            </label>
+            <input
+              id="area"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="area"
+              value={formData.area || ""}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              Topography:
+            </label>
+            <input
+              id="topography"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="topography"
+              value={formData.topography || ""}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              Zoning:
+            </label>
+            <input
+              id="zoning"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none ${"focus:border-blue-500"}`}
+              type="text"
+              name="zoning"
+              value={formData.zoning || ""}
               onChange={handleChange}
             />
           </div>

@@ -205,6 +205,18 @@ const Sidenav = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/dashboard/maintenance">
+                  <span
+                    className={`${
+                      pathname === "/dashboard/maintenance" ? "bg-blue-100 text-black" : "text-black"
+                    } flex items-center uppercase rounded-md px-4 py-2 text-sm font-normal hover:bg-accent hover:text-accent-foreground`}
+                  >
+                    <i className=" ri-message-2-line mr-4 text-xl"></i>
+                    <span>Maintenance</span>
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard/privacy">
                   <span
                     className={`${

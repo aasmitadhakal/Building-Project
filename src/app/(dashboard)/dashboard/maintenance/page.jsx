@@ -1,20 +1,16 @@
-// components/AboutUs.js
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Pagination } from "antd";
+
 const Page = () => {
   const [data, setData] = useState([]);
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState(null);
-
-
-  function formatColumn(str) {
-    // Replace underscores with spaces
-    return str.replace(/_/g, " ");
-  }
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handleDeletePopup = (id) => {
     setDeletePopUp(true);
@@ -25,41 +21,39 @@ const Page = () => {
     setDeletePopUp(false);
     setDeleteItemId(null);
   };
-  const fetchData = async () => {
+
+  const fetchData = async (page = 1) => {
     try {
-      const response = await axiosInstance.get("/api/design/s/double");
+      const response = await axiosInstance.get(`/api/maintenance?page=${page}`);
       setData(response.data.data);
+      setTotalPages(response.data.totalCount);
+      setCurrentPage(response.data.page);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-const getDisplayColumnName = (column) => {
-  switch (column) {
-    case "image":
-      return "Ground Floor";
-    case "other_image":
-      return "First Floor";
-    default:
-      return formatColumn(column);
-  }
-};
-
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/design/${deleteItemId}`);
+      await axiosInstance.delete(`/api/maintenance/${deleteItemId}`);
       toast("Item deleted successfully");
-      closeDeletePopup();
-      fetchData(); // Update the list after successful deletion
+      fetchData(currentPage); // Update the list after successful deletion
+      closeDeletePopup(); // Close the delete modal after deletion
     } catch (error) {
       console.error("Error deleting data:", error);
     }
   };
 
-  const columns = ["SN", "title", "image", "other_image", "price", "action"];
+  const columns = ["SN", "firstnam", "lastname", "address", "phone", "issues", "subject", "Actions"];
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page + 1);
+    fetchData(page);
+  };
 
   return (
     <>
@@ -67,45 +61,37 @@ const getDisplayColumnName = (column) => {
         <ToastContainer />
         <div className=" w-full">
           <div className="flex justify-between mb-4">
-            <h3 className="text-2xl font-bold">Double Design</h3>
-            <Link href="/dashboard/double/create">
-              <p className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">+ Create</p>
-            </Link>
+            <h3 className="text-2xl font-bold">Maintenance</h3>
           </div>
           <table className="w-full divide-y divide-gray-200">
+            {/* Table Header */}
             <thead className="bg-gray-50 space-x-40">
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index} className=" py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {getDisplayColumnName(column)}
+                  <th key={index} className="pr-2 py-3 text-left  text-sm font-bold text-gray-500 uppercase tracking-wider">
+                    {column === "firstnam" ? "firstname" : column}
                   </th>
                 ))}
               </tr>
             </thead>
+            {/* Table Body */}
             <tbody className="bg-white divide-y divide-gray-200 ">
               {data.length > 0 ? (
                 data.map((item, index) => (
                   <tr key={index}>
-                    <td className=" py-4 whitespace-nowrap">{index + 1}</td>
+                    <td className="pr-2 py-4 whitespace-nowrap">{index + 1}</td>
                     {columns.slice(1, columns.length - 1).map((column, columnIndex) => (
                       <td key={columnIndex}>
                         {column === "image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="w-20 rounded " />
-                        ) : column === "other_image" ? (
-                          <img src={`${axiosInstance.defaults.baseURL}${item.other_image}`} alt={item.title} className="w-20 rounded " />
+                          <img src={`${axiosInstance.defaults.baseURL}${item.image}`} alt={item.title} className="h-12 w-12 rounded-full" />
                         ) : (
                           item[column.toLowerCase().replace(/\s/g, "_")]
                         )}
                       </td>
                     ))}
                     <td className=" py-4 whitespace-nowrap">
-                      <Link href={`/dashboard/double/${item.id}`}>
-                        <button className="  text-indigo-500 hover:text-indigo-700 px-4 py-1 rounded-md">
-                          <i className="ri-file-edit-line text-xl "></i>
-                        </button>
-                      </Link>
                       <button onClick={() => handleDeletePopup(item.id)} className="text-red-500 hover:text-red-700 px-4 py-1 rounded-md">
-                        <i className="ri-delete-bin-6-line text-xl "></i>
+                        <i className="ri-delete-bin-6-line text-xl font-bold"></i>
                       </button>
                     </td>
                   </tr>
@@ -118,7 +104,10 @@ const getDisplayColumnName = (column) => {
             </tbody>
           </table>
         </div>
+        {/* Pagination */}
+        <Pagination total={totalPages} current={currentPage} onChange={handlePageChange} />
       </section>
+      {/* Delete modal */}
       {deletePopUp && (
         <section className="z-[100] h-screen w-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-slate-400/80 px-6 lg:px-20 py-14">
           <div className="bg-[#E5E5E5] md:w-1/2 xl:w-1/3 rounded-lg p-8 relative text-black space-y-6">
