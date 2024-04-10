@@ -6,6 +6,8 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Space } from "antd";
 
 // dynamic import of quill editor to avoid running into document not defined error when in build
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -40,6 +42,7 @@ function Create() {
   const [priceError, setPriceError] = useState(false);
   //   const [floorPlanError, setFloorPlanError] = useState(false);
   const [carsError, setCarsError] = useState(false);
+  const [status, setStatus] = useState("");
 
   const router = useRouter();
   const handleImagePreview = (file, setImagePreview) => {
@@ -145,6 +148,7 @@ function Create() {
     formData.append("price_end", price_end);
     formData.append("area", area);
     formData.append("package_type", "HOME");
+    formData.append("status", status);
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -162,6 +166,25 @@ function Create() {
     }
   };
 
+  // onclick for the dropdown
+  const onClick = ({ key }) => {
+    if (key === "1") {
+      setStatus("For sale");
+    } else if (key === "2") {
+      setStatus("Sold");
+    }
+  };
+  // status menu items
+  const items = [
+    {
+      label: "For Sale",
+      key: "1",
+    },
+    {
+      label: "Sold",
+      key: "2",
+    },
+  ];
   return (
     <div className="my-12   rounded-md font-[karla] shadow-xl">
       <ToastContainer />
@@ -377,6 +400,22 @@ function Create() {
               onChange={(e) => setPrice_end(e.target.value)}
             />
             {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
+          </div>
+
+          <div className="my-4">
+            <Dropdown
+              menu={{
+                items,
+                onClick,
+              }}
+            >
+              <Link href={"#"} onClick={(e) => e.preventDefault()}>
+                <Space className="border px-4 py-2 rounded-sm">
+                  Status
+                  <DownOutlined />
+                </Space>
+              </Link>
+            </Dropdown>
           </div>
         </div>
 

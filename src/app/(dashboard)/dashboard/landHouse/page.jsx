@@ -52,7 +52,7 @@ const Page = () => {
     }
   };
 
-  const columns = ["SN", "name", "location", "package_type", "Actions"];
+  const columns = ["SN", "name", "location", "package_type","status", "Actions"];
 
   return (
     <>

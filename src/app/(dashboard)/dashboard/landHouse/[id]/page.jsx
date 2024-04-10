@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { MyDropzone } from "../../component/DragDrop";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Space } from "antd";
 // dynamic import of quill editor to avoid running into document not defined error when in build
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -16,6 +18,7 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     id: params.id,
     name: "",
+    status: "",
     zoning: "",
     area: "",
     map: "",
@@ -82,6 +85,25 @@ const Update = ({ params }) => {
   const handleEditorChange = (value) => {
     setEditorValue(value);
   };
+  // onclick for the dropdown
+  const onClick = ({ key }) => {
+    if (key === "1") {
+      formData.status = "For sale";
+    } else if (key === "2") {
+      formData.status = "Sold";
+    }
+  };
+  // status menu items
+  const items = [
+    {
+      label: "For Sale",
+      key: "1",
+    },
+    {
+      label: "Sold",
+      key: "2",
+    },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,6 +150,7 @@ const Update = ({ params }) => {
       updatedData.append("description", editorValue);
       updatedData.append("price_start", formData.price_start);
       updatedData.append("price_end", formData.price_end);
+      updatedData.append("status", formData.status);
 
       await axiosInstance.put(`/api/packages/u/${params.id}`, updatedData);
 
@@ -345,6 +368,22 @@ const Update = ({ params }) => {
               onChange={handleChange}
             />
             {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
+          </div>
+
+          <div className="my-4">
+            <Dropdown
+              menu={{
+                items,
+                onClick,
+              }}
+            >
+              <Link href={"#"} onClick={(e) => e.preventDefault()}>
+                <Space className="border px-4 py-2 rounded-sm">
+                  Status
+                  <DownOutlined />
+                </Space>
+              </Link>
+            </Dropdown>
           </div>
         </div>
         <div className="my-4">

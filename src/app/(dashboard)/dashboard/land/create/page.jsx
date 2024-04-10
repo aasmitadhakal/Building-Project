@@ -6,10 +6,8 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
-
-
-
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown,  Space } from "antd";
 
 // dynamic import of quill editor to avoid running into document not defined error when in build
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -19,6 +17,7 @@ function Create() {
   const [location, setLocation] = useState("");
   const [map, setMap] = useState("");
   const [editorValue, setEditorValue] = useState("");
+  const [status, setStatus] = useState("");
   //   const [imageOne, setImageOne] = useState(null);
   const [frontage, setFrontage] = useState("");
   const [size, setSize] = useState("");
@@ -165,6 +164,7 @@ function Create() {
     formData.append("price_end", price_end);
     // formData.append("floor_plan", floorPlan);
     formData.append("package_type", "LAND");
+    formData.append("status", status);
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -181,6 +181,26 @@ function Create() {
       toast.error(error.response.data.error);
     }
   };
+
+  // onclick for the dropdown
+  const onClick = ({ key }) => {
+    if (key === "1") {
+      setStatus("For sale");
+    } else if (key === "2") {
+      setStatus("Sold");
+    }
+  };
+  // status menu items
+  const items = [
+    {
+      label: "For Sale",
+      key: "1",
+    },
+    {
+      label: "Sold",
+      key: "2",
+    },
+  ];
 
   return (
     <div className="my-12   rounded-md font-[karla] shadow-xl">
@@ -363,6 +383,20 @@ function Create() {
             />
             {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
           </div>
+
+          <Dropdown
+            menu={{
+              items,
+              onClick,
+            }}
+          >
+            <Link href={"#"} onClick={(e) => e.preventDefault()}>
+              <Space className="border px-4 py-2 rounded-sm">
+                Status
+                <DownOutlined />
+              </Space>
+            </Link>
+          </Dropdown>
         </div>
 
         <div className="mb-4 my-4  h-64">
@@ -412,7 +446,6 @@ function Create() {
           </button>
         </div>
       </form>
-     
     </div>
   );
 }
