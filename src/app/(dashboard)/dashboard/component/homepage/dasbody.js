@@ -20,7 +20,7 @@ export default function DashBody() {
   return (
     <>
       <div className="bg-white text-slate-700 py-4 px-6 shadow-sm rounded-sm mt-2">
-        <p className="text-[20px] font-[karla]">Welcome To Admin Dashboard</p>
+        <p className="text-[20px] font-[poppins] font-bold">Welcome To Admin Dashboard</p>
       </div>
       {apiData ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mt-10">

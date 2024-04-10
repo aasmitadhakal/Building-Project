@@ -28,7 +28,8 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/api/packages");
-      setData(response.data.data);
+      const filteredData = response.data.data.filter((item) => item.package_type === "HOME");
+      setData(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error, e.g., display a toast message or retry the request
