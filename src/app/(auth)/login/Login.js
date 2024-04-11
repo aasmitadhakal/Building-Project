@@ -58,7 +58,7 @@ const Login = () => {
       </div>
 
       <div>
-        <h2 className="font-semibold text-xl text-gray-800">Welcome to Giec !</h2>
+        <h2 className="font-semibold text-xl text-gray-800">Welcome to 108Build !</h2>
         <p className="text-sm font-normal my-2 text-gray-500">Please sign-in to your account</p>
       </div>
       <div className="my-5">

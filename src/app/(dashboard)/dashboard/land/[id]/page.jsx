@@ -15,6 +15,7 @@ import { Dropdown, Space } from "antd";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Update = ({ params }) => {
+
   const [formData, setFormData] = useState({
     id: params.id,
     name: "",
@@ -344,19 +345,21 @@ const Update = ({ params }) => {
             />
             {priceError && <p className="text-red-500 text-sm">* Please enter a valid price *</p>}
           </div>
-          <Dropdown
-            menu={{
-              items,
-              onClick,
-            }}
-          >
-            <Link href={"#"} onClick={(e) => e.preventDefault()}>
-              <Space className="border px-4 py-2 rounded-sm">
-                Status
-                <DownOutlined />
-              </Space>
-            </Link>
-          </Dropdown>
+          <div className="my-4">
+            <Dropdown
+              menu={{
+                items,
+                onClick,
+              }}
+            >
+              <Link href={"#"} onClick={(e) => e.preventDefault()}>
+                <Space className="border px-4 py-2 rounded-sm">
+                  Status
+                  <DownOutlined />
+                </Space>
+              </Link>
+            </Dropdown>
+          </div>
         </div>
         <div className="my-4">
           <label className="block text-sm font-medium my-2 text-gray-700" htmlFor="description">
