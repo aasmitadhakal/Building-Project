@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown,  Space } from "antd";
+import { Dropdown, Space } from "antd";
 
 // dynamic import of quill editor to avoid running into document not defined error when in build
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -27,6 +27,7 @@ function Create() {
   const [price_start, setPrice_start] = useState("");
   const [price_end, setPrice_end] = useState("");
   const [floorPlan, setFloorPlan] = useState("");
+  const [area, setArea] = useState("");
   //   const [imagePreview, setImagePreview] = useState(null);
   //   const [storeyType, setStoreyType] = useState("single");
 
@@ -165,6 +166,7 @@ function Create() {
     // formData.append("floor_plan", floorPlan);
     formData.append("package_type", "LAND");
     formData.append("status", status);
+    formData.append("area", area);
 
     try {
       // Send data to the server using axiosInstance with authorization header
@@ -246,6 +248,19 @@ function Create() {
               onChange={(e) => setName(e.target.value)}
             />
             {nameError && <p className="text-red-500 text-sm">* Please enter a valid name *</p>}
+          </div>
+          <div className=" my-4 uppercase">
+            <label className="block text-sm font-medium  text-gray-700" htmlFor="name">
+              Area :
+            </label>
+            <input
+              id="area"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none  "focus:border-blue-500"
+              }`}
+              type="text"
+              name="area"
+              onChange={(e) => setArea(e.target.value)}
+            />
           </div>
           <div className=" my-4 uppercase">
             <label className="block text-sm font-medium  text-gray-700" htmlFor="name">

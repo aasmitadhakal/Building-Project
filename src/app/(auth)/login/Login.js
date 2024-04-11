@@ -53,12 +53,12 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto  shadow-sm bg-white font-[poppins] p-5 rounded-sm container">
       <ToastContainer />
-      <div className="flex justify-center mb-5  ">
+      {/* <div className="flex justify-center mb-5  ">
         <img src={img} className="h-32 bg-white rounded-b-xl shadow-md p-2 pb-5"></img>
-      </div>
+      </div> */}
 
       <div>
-        <h2 className="font-semibold text-xl text-gray-800">Welcome to 108 Builds !</h2>
+        <h2 className="font-semibold text-xl text-gray-800">Welcome to Giec !</h2>
         <p className="text-sm font-normal my-2 text-gray-500">Please sign-in to your account</p>
       </div>
       <div className="my-5">
