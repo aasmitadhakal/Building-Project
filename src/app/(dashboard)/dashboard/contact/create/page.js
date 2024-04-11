@@ -182,9 +182,7 @@ function Create() {
           </label>
           <textarea
             id="short_description"
-            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 ${
-              short_description ? "border-red-500" : ""
-            }`}
+            className={`block w-full border-gray-200 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 `}
             type="text"
             name="short_description"
             value={short_description}

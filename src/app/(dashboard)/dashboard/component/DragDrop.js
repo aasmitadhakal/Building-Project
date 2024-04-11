@@ -2,7 +2,8 @@
 import axiosInstance from "@/app/utils/axiosInstance";
 import React, { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function MyDropzone({ id }) {
   const [files, setFiles] = useState([]);
@@ -46,11 +47,13 @@ export function MyDropzone({ id }) {
       response.status === 200 && toast.success("Successfully uploaded");
     } catch (error) {
       console.error("Error uploading images:", error);
+      toast.error(error.response.data.error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/formdata">
+      <ToastContainer />
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <div className="w-full h-32 border-2 border-blue-500 border-dashed bg-blue-50 flex justify-center items-center rounded">

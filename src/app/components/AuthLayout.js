@@ -2,11 +2,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { isAuthenticated } from "../utils/auth";
-import jwt from "jsonwebtoken";
 
 const AuthLayout = ({ children }) => {
   const router = useRouter();
-  
+
   // const gettoken = localStorage.getItem("authorization");
   // const decodedToken = jwt.decode(gettoken);
 
