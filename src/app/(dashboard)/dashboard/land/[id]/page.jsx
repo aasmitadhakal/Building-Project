@@ -150,6 +150,7 @@ const Update = ({ params }) => {
       updatedData.append("price_end", formData.price_end);
       updatedData.append("status", formData.status);
       updatedData.append("area", formData.area);
+      updatedData.append("map", formData.map);
 
       await axiosInstance.put(`/api/packages/u/${params.id}`, updatedData);
 

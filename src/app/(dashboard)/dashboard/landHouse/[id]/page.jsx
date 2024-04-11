@@ -145,7 +145,8 @@ const Update = ({ params }) => {
       updatedData.append("frontage", formData.frontage);
       updatedData.append("size", formData.size);
       updatedData.append("bedrooms", formData.bedrooms);
-      updatedData.append("cars", formData.cars);
+      updatedData.append("area", formData.area);
+      updatedData.append("map", formData.map);
       updatedData.append("bathrooms", formData.bathrooms);
       updatedData.append("description", editorValue);
       updatedData.append("price_start", formData.price_start);
