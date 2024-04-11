@@ -18,6 +18,7 @@ const Update = ({ params }) => {
   const [formData, setFormData] = useState({
     id: params.id,
     name: "",
+    area: "",
     status: "",
     description: "",
     location: "",
@@ -49,10 +50,8 @@ const Update = ({ params }) => {
     if (key === "1") {
       formData.status = "For sale";
     } else if (key === "2") {
-     
       formData.status = "Sold";
     }
-    
   };
   // status menu items
   const items = [
@@ -150,6 +149,7 @@ const Update = ({ params }) => {
       updatedData.append("price_start", formData.price_start);
       updatedData.append("price_end", formData.price_end);
       updatedData.append("status", formData.status);
+      updatedData.append("area", formData.area);
 
       await axiosInstance.put(`/api/packages/u/${params.id}`, updatedData);
 
@@ -190,6 +190,20 @@ const Update = ({ params }) => {
               onChange={handleChange}
             />
             {nameError && <p className="text-red-500 text-sm">* Please enter a valid name *</p>}
+          </div>
+          <div className="my-4 uppercase">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+              Area :
+            </label>
+            <input
+              id="area"
+              className={`block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none "focus:border-blue-500"
+              }`}
+              type="text"
+              name="area"
+              value={formData.area || ""}
+              onChange={handleChange}
+            />
           </div>
           <div className="my-4 uppercase">
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
