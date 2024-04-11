@@ -270,27 +270,34 @@ const CreateGlobalSettings = ({ params }) => {
           </div>
         </div>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div className="grid grid-cols-3 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-4">
             <div>
               <label htmlFor="imageFooter" className="block text-lg font-medium pb-4">
                 Site Footer Logo
               </label>
-              <input type="file" name="imageFooter" id="imageFooter" className="block" onChange={handleChange} />
-              {imageFooterPreview && <img src={imageFooterPreview} alt="" className="h-52 rounded-md mt-2" />}
+              <input type="file" name="imageFooter" id="imageFooter" className="block mb-2" onChange={handleChange} />
+              <div className="flex justify-center items-center border cursor-pointer">
+                {imageFooterPreview && <img src={imageFooterPreview} alt="" className="h-36  p-2 rounded-md mt-2" />}
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="imageMain" className="block text-lg font-medium pb-4">
+                Site Main Logo
+              </label>
+              <input type="file" name="imageMain" id="imageMain" className="block mb-2" onChange={handleChange} />
+              <div className="flex justify-center items-center border cursor-pointer">
+                {imageMainPreview && <img src={imageMainPreview} alt="" className="h-36 p-2 rounded-md mt-5" />}
+              </div>
             </div>
             <div>
               <label htmlFor="favIcon" className="block text-lg font-medium pb-4">
                 Fav Icon
               </label>
-              <input type="file" name="favIcon" id="favIcon" className="block" onChange={handleChange} />
-              {favIconPreview && <img src={favIconPreview} alt="" className="h-52 rounded-md mt-2" />}
-            </div>
-            <div>
-              <label htmlFor="imageMain" className="block text-lg font-medium pb-4">
-                Site Main Logo
-              </label>
-              <input type="file" name="imageMain" id="imageMain" className="block" onChange={handleChange} />
-              {imageMainPreview && <img src={imageMainPreview} alt="" className="h-52 rounded-md mt-2" />}
+              <input type="file" name="favIcon" id="favIcon" className="block mb-2" onChange={handleChange} />
+              <div className="flex justify-center items-center border cursor-pointer">
+                {favIconPreview && <img src={favIconPreview} alt="" className="h-24 p-2 rounded-md" />}
+              </div>
             </div>
           </div>
           <div className="mt-5">

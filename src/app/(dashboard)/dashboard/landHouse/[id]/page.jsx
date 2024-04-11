@@ -150,13 +150,14 @@ const Update = ({ params }) => {
       updatedData.append("description", editorValue);
       updatedData.append("price_start", formData.price_start);
       updatedData.append("price_end", formData.price_end);
+      updatedData.append("location", formData.location);
       updatedData.append("status", formData.status);
 
       await axiosInstance.put(`/api/packages/u/${params.id}`, updatedData);
 
       toast.success("Data edited successfully");
       // Redirect to the desired page after successful update
-      router.push("/dashboard/land");
+      router.push("/dashboard/landHouse");
     } catch (error) {
       console.error("Error updating data:", error);
       toast.error(error.response.data.error);
