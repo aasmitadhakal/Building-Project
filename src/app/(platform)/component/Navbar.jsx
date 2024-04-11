@@ -5,7 +5,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import axiosInstance from "@/app/utils/axiosInstance";
-const img = "/assets/image/logo.jpg";
+
 
 function Navbar() {
   const [headerdata1, setheaderdata1] = useState([]);
@@ -59,14 +59,14 @@ function Navbar() {
           >
             <div onClick={handleDropdown} className="hover:text-customblue cursor-pointer flex items-center justify-items-center ">Design <IoIosArrowDown  onClick={handleDropdown} className="ml-1"/></div>
             {dropdownOpen && (
-              <div className="absolute top-full w-52 left-0  bg-customblue mt-8 text-white p-4 shadow-2xl  ">
-                <div className="hover:text-blues my-1">
+              <div className="absolute top-full w-52 left-0  bg-white mt-2 text-customblue p-4 border-1 border-gray-100 rounded ">
+                <div className="text-gray-700 hover:text-customblue my-1">
                   <Link href="/design/singlehome">Single Storey</Link>
                 </div>
-                <div className="hover:text-blues  my-1">
+                <div className="text-gray-700 hover:text-customblue  my-1">
                   <Link href="/design/doublehome">Double Storey</Link>
                 </div>
-                <div className="hover:text-blues  my-1">
+                <div className="text-gray-700 hover:text-customblue  my-1">
                   <Link href="/design/doubleoccupance">Dual Occupancy</Link>
                 </div>
               </div>
@@ -75,6 +75,9 @@ function Navbar() {
           <Link href="/gallery">
             <div className="hover:text-customblue">Gallery</div>
           </Link>
+          <Link href="/packages">
+            <div className="hover:text-customblue">Packages</div>
+          </Link>
           <Link href="/contactus">
             <div className="hover:text-customblue">Contact Us</div>
           </Link>
@@ -82,7 +85,7 @@ function Navbar() {
             <div className="hover:text-customblue">  Privacy & Policy</div>
           </Link> */}
         </div>
-        <div></div>
+        <Link href="/maintenance"><button className="md:block hidden ring-1 rounded text-customblue ring-customblue px-8 py-2 hover:bg-customblue hover:text-white">Maintenance</button></Link>
         {/* for mobile view */}
         <div className="md:hidden ">
           {showMenu ? (
@@ -118,7 +121,7 @@ function Navbar() {
               </div>
               <div className="hover:text-customblue">
                 {" "}
-                <Link href="/about">About</Link>
+                <Link href="/about">About </Link>
               </div>
               <div className="hover:text-customblue">
                 {" "}
@@ -148,9 +151,16 @@ function Navbar() {
                   </div>
                 )}
               </div>
+              <Link href="/packages">
+            <div className="hover:text-customblue">Packages</div>
+          </Link>
               <div className="hover:text-customblue">
                 <Link href="/contactus">Contact Us</Link>
               </div>
+              <div className="hover:text-customblue">
+              <Link href="/maintenance"><button className=" ring-1 rounded text-customblue ring-customblue px-8 py-2 hover:bg-customblue hover:text-white">Maintenance</button></Link>
+              </div>
+             
               <div className="hover:text-customblue">
               {/* <Link href="/privacy">
          Privacy & Policy

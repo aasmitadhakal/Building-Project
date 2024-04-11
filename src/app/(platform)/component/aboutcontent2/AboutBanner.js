@@ -26,7 +26,7 @@ function AboutBanner() {
   return (
     <>
       
-        {/* {data.map((card, index) => ( */}
+       
         <div  className="relative w-full h-96 font-[Karla]">
               <div className='w-full h-96' style={{ position: 'absolute', backgroundColor: '#051721', opacity: '0.7', zIndex: '1'}}></div>
           <img

@@ -16,10 +16,12 @@
 
 .img-transition {
   transition: transform 0.3s ease;
+  transform: scale(1.1);
+  width: full;
 }
 
 .image-container:hover .img-transition {
-  transform: scale(1.1); /* Adjust the scale value as needed */
+  transform: scale(1.2); /* Adjust the scale value as needed */
 }
 
 

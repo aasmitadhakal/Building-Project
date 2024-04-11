@@ -94,7 +94,7 @@ fetchData1();
      <div className="grid place-content-center grid-cols-1 md:px-0 px-4 container gap-y-12 mx-auto md:gap-8 md:mb-36 mb-10 mt-16">
         {data.map((property, index) => (
           <Link key={index} href={`/design/doubleoccupance/${property.id}`}>
-            <div className="shadow-xl p-4">
+            <div className="shadow-md p-4">
               <h3 className="text-customblue font-[Monstserrat] font-[600] text-[24px] leading-[35px] mx-2">{property.title}</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <div>

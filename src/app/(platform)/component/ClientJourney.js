@@ -39,7 +39,7 @@ function ClientJourney() {
   return (
     <>
       <section>
-        <div className="grid md:grid-cols-3 font-[Montserrat] md:my-24 my-12 container mx-auto md:px-0 px-4 ">
+        <div className="grid md:grid-cols-3 font-[Montserrat] md:my-24 my-12 gap-x-8 container mx-auto md:px-0 px-4 ">
           {/* for title headding */}
           <div className="grid place-content-center">
             <div className="text-customblue font-[700] text-[36px] leading-[49px] flex justify-center item-center text-center">
@@ -54,9 +54,9 @@ function ClientJourney() {
           </div>
           {/* for dyanmic part */}
           <div className="md:col-span-2 ">
-            <div className="grid md:grid-cols-2 gap-x-16 gap-y-6  ">
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-10  ">
               {data.map((datas, index) => (
-                <div key={index} className="shadow rounded p-4">
+                <div key={index} className="shadow-md rounded p-4">
                   <img
                     src={axiosInstance.defaults.baseURL + datas.image}
                     alt="img"

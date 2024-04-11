@@ -150,7 +150,7 @@ function HomeDesignPart() {
                 <img
                   src={axiosInstance.defaults.baseURL + data3.image}
                   alt="img1"
-                  className="img-transition h-[350px]"
+                  className="img-transition h-[350px] "
                   style={{ transition: "transform 0.3s ease", zIndex: "0" }}
                 />
               </div>

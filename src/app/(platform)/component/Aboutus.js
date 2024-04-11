@@ -34,12 +34,12 @@ function Aboutus() {
               <div className='font-[Montserrat] font-[400] leading-[24px] text-[16px] text-justify' dangerouslySetInnerHTML={{ __html: data.description }} />
             </div>
             {/* for img part */}
-            <div className='relative flex justify-center items-center overflow-hidden mb-4'>
+            <div className='relative flex justify-center items-center  mb-4'>
               {/* Fetch and render the first image */}
 
                 <img
                   src={axiosInstance.defaults.baseURL + data.image_one} // Concatenate base URL with image path
-                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded-md ring-4 ring-white md:mt-36 mt-28 absolute top-0 left-0'
+                  className='md:w-[391px] md:h-[347px] w-[200px] h-[150px] rounded-md ring-4 ring-white md:mt-28 mt-28 absolute top-0 left-0'
     
                 />
   

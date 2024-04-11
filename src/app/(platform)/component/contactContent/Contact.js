@@ -190,13 +190,13 @@ function Contact() {
           <form onSubmit={handleFormSubmit}>
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
-              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
+              <div className="relative font-[400] my-2 text-[16px] leading-[25px] border-b border-gray-400">
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:border-customblue focus:ring-0 focus:border-b w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Name"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -204,13 +204,13 @@ function Contact() {
                 </div>
               </div>
               {/* for email */}
-              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
+              <div className="relative font-[400]  my-2 text-[16px] leading-[25px] border-b border-gray-400">
                 <input
                   type="text"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:shadow-outline focus:border-blue-300 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0 focus:shadow-outline focus:border-blue-300 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Email"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -218,13 +218,13 @@ function Contact() {
                 </div>
               </div>
               {/* for phone */}
-              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
+              <div className="relative  my-2 font-[400] text-[16px] leading-[25px] border-b border-gray-400">
                 <input
                   type="text"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0  focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Phone No"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -232,13 +232,13 @@ function Contact() {
                 </div>
               </div>
               {/* for subject */}
-              <div className="relative font-[400] text-[16px] leading-[25px] border-b">
+              <div className="relative  my-2 font-[400] text-[16px] leading-[25px] border-b border-gray-400">
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0  focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Subject"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -248,14 +248,14 @@ function Contact() {
              
             </div>
              {/* for message */}
-             <div className=" font-[400] text-[16px] leading-[25px] border-b mb-8 mt-4   mx-4">
+             <div className=" font-[400]  my-2 text-[16px] leading-[25px] border-b mb-8 mt-4 border-gray-400  mx-4">
               <div className="flex items-center text-[#656565] "> <IoPencil  className="mx-2"/><label>How can we help you? Feel free to get in touch!</label></div>  
                 <input
                   type="text"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none  focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
           
                 />
                 
@@ -270,7 +270,7 @@ function Contact() {
                     type="radio"
                     className="form-radio text-customblue  border-gray-300"
                   />
-                  <span className="ml-2 my-1">
+                  <span className="ml-2 my-1  text-[#656565]">
                     I agree to your privacy policy
                   </span>
                 </label>

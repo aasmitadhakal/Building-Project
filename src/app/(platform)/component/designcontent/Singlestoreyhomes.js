@@ -37,7 +37,7 @@ function Singlestoreyhomes() {
 <section className="grid md:grid-cols-3 grid-cols-1 md:px-0 my-8 px-4 container mx-auto md:gap-8 md:gap-y-0 gap-y-12 md:mb-36 mt-12  font-[Montserrat]">
         {data.map((property, index) => (
           <Link href={`/design/singlehome/${property.id}`} key={index}>
-            <div className="shadow-xl p-4">
+            <div className="shadow-md p-4">
 
               <h3 className='text-customblue font-[600] text-[24px] leading-[35px] mx-2'>{property.title}</h3>
               <img src={axiosInstance.defaults.baseURL + property.image} alt={property.title} className='h-[241px] w-full mb-4' />
