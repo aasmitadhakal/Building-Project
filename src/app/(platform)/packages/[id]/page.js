@@ -140,15 +140,14 @@ function Page({ params }) {
         </div>
       </div>
       {packageData && (
-        <div>
-          <div>{packageData.map}</div>
-        <iframe
-          src={packageData.map}
-          width="600" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        />
-        </div>
+      <>
+       <p
+                className="w-full "
+                dangerouslySetInnerHTML={{ __html: packageData.map }}
+              />
+      </>
       )}
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56456.59050953572!2d84.0063143!3d27.824022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995b499fe7cb34b%3A0x3113fec15d0318ec!2sWakamalang!5e0!3m2!1sen!2snp!4v1712845425631!5m2!1sen!2snp" width="600" height="450"  allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+    
       </div>
   );
 }
