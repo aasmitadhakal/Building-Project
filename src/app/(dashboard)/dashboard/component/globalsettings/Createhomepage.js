@@ -97,7 +97,8 @@ const CreateHomePage = () => {
     }
 
     try {
-      const response = await axiosInstance.put(`/api/settings/u/${formData.homeTitle}`, formData);
+
+      const response = await axiosInstance.put(`/api/settings/u/fdfd`, formData);
       if (response.status === 200) {
         toast.success("Data saved successfully");
       } else {

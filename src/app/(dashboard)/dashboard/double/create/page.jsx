@@ -157,7 +157,7 @@ function Create() {
       const response = await axiosInstance.post("/api/design", formData);
 
       if (response.status === 200) {
-        toast("Post created successfully");
+        toast.success("Post created successfully");
         router.push("/dashboard/double");
       } else {
         toast("Error creating post");

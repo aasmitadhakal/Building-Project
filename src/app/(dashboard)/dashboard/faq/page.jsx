@@ -13,7 +13,7 @@ const Page = () => {
       const response = await axiosInstance.get("/api/faq");
       setData(response.data.data);
     } catch (error) {
-      toast.error(error.response.data.error );
+      toast.error(error.response.data.error);
     }
   };
 
@@ -42,7 +42,7 @@ const Page = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const columns = ["SN", "order", "question", "answer", "Action"];
+  const columns = ["SN", "order", "question", "Action"];
 
   return (
     <>

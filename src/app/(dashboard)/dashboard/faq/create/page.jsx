@@ -128,8 +128,8 @@ function Create() {
           {answerError && <p className="text-red-500 text-sm ">* Please enter a string *</p>}
         </div>
         <div className=" my-4 ">
-          <label className="block my-2  uppercase  text-sm font-medium text-gray-700" htmlFor="status">
-            Status:
+          <label className=" text-sm uppercase font-medium text-gray-700 flex justify-between" htmlFor="name">
+            <p>status:</p> <span className="text-red-500 text-xs">* Please enter draft or publish only *</span>
           </label>
           <input
             id="status"
