@@ -132,6 +132,15 @@ function Page({ params }) {
           )}
         </div>
       </div>
+      {packageData && (
+      <>
+       <p
+                className="w-full "
+                dangerouslySetInnerHTML={{ __html: packageData.map }}
+              />
+      </>
+      )}
+    
     </div>
   );
 }
