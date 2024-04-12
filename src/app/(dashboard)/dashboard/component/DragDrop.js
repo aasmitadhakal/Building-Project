@@ -136,7 +136,7 @@ export function MyDropzone({ id }) {
                 className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
                 onClick={() => removeFile(file.name)}
               >
-                Delete
+                <i className="ri-close-fill"></i>
               </button>
               <p className="mt-2 text-neutral-500 text-[12px] font-medium">{file.name}</p>
             </li>
@@ -159,7 +159,7 @@ export function MyDropzone({ id }) {
                 className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
                 onClick={() => handleDeletePopup(image.id)}
               >
-                Delete
+                <i className="ri-close-fill"></i>
               </button>
               <p className="mt-2 text-neutral-500 text-[12px] font-medium">{image.name}</p>
             </li>
