@@ -5,7 +5,11 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FiTwitter } from "react-icons/fi";
 import Link from "next/link";
-
+import { RiFacebookCircleFill, RiTwitterLine, RiWhatsappLine } from "react-icons/ri";
+const img = "/assets/image/facebbok.png";
+const img1 = "/assets/image/twiter.png";
+const img3 = "/assets/image/instragram.png";
+const img4 = "/assets/image/whatsapp.png";
 const Footer = () => {
   const [headerdata, setheaderdata] = useState([]);
   const [headerdata1, setheaderdata1] = useState([]);
@@ -52,6 +56,32 @@ const Footer = () => {
     fetchData3();
     
   }, []);
+  // const renderSocialIcon = (item) => {
+  //   switch (item.platform) {
+  //     case 'Facebook':
+  //       return <img src={img} alt="Facebook" />;
+  //     case 'instagram':
+  //       return <img src="/path_to_instagram_icon.png" alt="Instagram" />;
+  //     case 'twitter':
+  //       return <img src="/path_to_twitter_icon.png" alt="Twitter" />;
+  //     default:
+  //       return null;
+  //   }
+  // };
+  const renderSocialIcon = (item) => {
+    switch (item.name.toLowerCase()) {
+      case 'facebook':
+        return <img src={img} alt="Facebook" className="h-6 w-6" />;
+      case 'twitter':
+        return<img src={img1} alt="twitter"  className="h-6 w-6" />;
+        case 'instragram':
+        return<img src={img3} alt="instragram"  className="h-6 w-6" />;
+      case 'whatsapp':
+        return <img src={img4} alt="whatsapp"  className="h-6 w-6" />;
+      default:
+        return null;
+    }
+  };
   return (
     <footer className="w-full  bg-customblue text-white   font-[Montserrat]">
          <div className="container mx-auto md:block hidden w-full h-[150px] relative -translate-y-1/2 bg-customyellow  text-white    items-center">
@@ -75,11 +105,17 @@ const Footer = () => {
       <div className="my-2 flex md:items-center md:justify-center gap-x-2">
   {headerdata2.map((item, index) => (
     <div key={index} className="text-[24px] rounded-full">
-      {item.link && (
-        <Link href={item.link}>
-          <i className={item.icon}></i>
-        </Link>
-      )}
+      
+        {item.link && (
+          <>
+
+              <Link href={item.link}>
+                <div className="bg-white p-1 rounded-full">
+                {renderSocialIcon(item)}
+                </div>
+              </Link>
+              </>
+            )} 
     </div>
   ))}
 </div>

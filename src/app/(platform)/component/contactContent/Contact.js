@@ -224,7 +224,7 @@ function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:ring-0  focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0 focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Phone No"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -238,7 +238,7 @@ function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:ring-0  focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0 focus:border-gray-100 focus:border-none bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
                   placeholder="Enter your Subject"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -255,7 +255,7 @@ function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="focus:outline-none  focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
           
                 />
                 
@@ -270,7 +270,7 @@ function Contact() {
                     type="radio"
                     className="form-radio text-customblue  border-gray-300"
                   />
-                  <span className="ml-2 my-1  text-[#656565]">
+                  <span className="ml-2 my-1 ">
                     I agree to your privacy policy
                   </span>
                 </label>

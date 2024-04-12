@@ -34,8 +34,8 @@ function MissionPart() {
            alt='' className='2xl:w-screen  rounded-lg object-cover  ' />
         </div>
         {/* for text part */}
-        <div  className=' col-span-2 flex items-center justify-center md:mb-0 mb-10 md:mt-0 mt-4  my-2 text-[16px] font-[400] text-[#37454D] ' >
-          <div className='h-[205px] bg-white px-4 py-10 shadow-xl'>
+        <div  className='col-span-2 flex items-center justify-center md:mb-0  md:mt-0 mt-4   text-[16px] font-[400] text-[#37454D]' >
+          <div className='  bg-white px-4 md:mb-0 py-8 mb-6 md:py-10 shadow-xl'>
           <p className=' font-[600] text-[30px]  leading-10 text-blues font-montserrat text-customblue my-2'>{data.title}</p>
           <div className='flex items-center text-justify justify-center mt-2 leading-[24px] text-[16px] font-[400] tracking-wide text-[#37454D]'dangerouslySetInnerHTML={{ __html: data.description }}/>
           </div>

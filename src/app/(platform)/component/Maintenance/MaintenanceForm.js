@@ -102,7 +102,7 @@ function MaintenanceForm() {
                 value={formData.firstnam}
                 onChange={handleInputChange}
                 placeholder="Enter your name"
-                className="  outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className="  outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
               focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
               />
             </div>
@@ -115,7 +115,7 @@ function MaintenanceForm() {
                 value={formData.lastname}
                 onChange={handleInputChange}
                 placeholder="Enter your lastname"
-                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
               />
             </div>
@@ -129,7 +129,7 @@ function MaintenanceForm() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="Enter your phone Number"
-                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
               />
             </div>
@@ -142,7 +142,7 @@ function MaintenanceForm() {
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="Enter your Adress"
-                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
               />
             </div>
@@ -156,7 +156,7 @@ function MaintenanceForm() {
                 value={formData.subject}
                 onChange={handleInputChange}
                 placeholder="Enter your subject"
-                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
               />
             </div>
@@ -169,7 +169,7 @@ function MaintenanceForm() {
                 value={formData.issues}
                 onChange={handleInputChange}
                 placeholder="write us about your issues"
-                className="h-28 outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                className="h-28 outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none "
               />
             </div>
