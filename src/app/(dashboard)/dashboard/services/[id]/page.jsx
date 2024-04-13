@@ -17,7 +17,7 @@ const Update = ({ params }) => {
     slug: "",
     name: "",
     frontage: "",
-    banner: "",
+    
     short_description: "",
     seo_title: "",
     seo_description: "",
@@ -84,7 +84,7 @@ const Update = ({ params }) => {
       updatedData.append("order", formData.order);
       updatedData.append("name", formData.name);
       updatedData.append("slug", formData.slug);
-      updatedData.append("banner", formData.banner);
+     
 
       updatedData.append("short_description", formData.short_description);
       updatedData.append("seo_title", formData.seo_title);
@@ -93,7 +93,7 @@ const Update = ({ params }) => {
       updatedData.append("seo_keywords", formData.seo_keywords);
       updatedData.append("status", formData.status);
       updatedData.append("description", editorValue);
-      // updatedData.append("description", editorValue);
+      
       if (formData.image) {
         updatedData.append("image", formData.image);
       }
@@ -188,26 +188,13 @@ const Update = ({ params }) => {
             onChange={handleChange}
           />
         </div>
-        {/* for size */}
-        <div className=" my-4 uppercase">
-          <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="banner">
-            Banner:
-          </label>
-          <input
-            id="banner"
-            className="block w-full my-2 px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
-            type="text"
-            name="banner"
-            value={formData.banner || ""}
-            onChange={handleChange}
-          />
-        </div>
+        
         {/* for bedroom */}
         <div className=" my-4 uppercase">
           <label className="block my-2 text-sm font-medium text-gray-700" htmlFor="short_description">
             Short Description:
           </label>
-          <input
+          <textarea
             id="short_description"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
