@@ -59,14 +59,14 @@ function Navbar() {
           >
             <div onClick={handleDropdown} className="hover:text-customblue cursor-pointer flex items-center justify-items-center ">Design <IoIosArrowDown  onClick={handleDropdown} className="ml-1"/></div>
             {dropdownOpen && (
-              <div className="absolute top-full w-52 left-0  bg-white mt-2 text-customblue p-4 border-1 border-gray-100 rounded ">
-                <div className="text-gray-700 hover:text-customblue my-1">
+              <div className="absolute top-full w-52 left-0 mt-8 bg-customblue  text-white   py-1">
+                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
                   <Link href="/design/singlehome">Single Storey</Link>
                 </div>
-                <div className="text-gray-700 hover:text-customblue  my-1">
+                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
                   <Link href="/design/doublehome">Double Storey</Link>
                 </div>
-                <div className="text-gray-700 hover:text-customblue  my-1">
+                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
                   <Link href="/design/doubleoccupance">Dual Occupancy</Link>
                 </div>
               </div>

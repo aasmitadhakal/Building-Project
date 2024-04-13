@@ -1,11 +1,12 @@
 "use client"
 import React from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "@/app/utils/axiosInstance";
 function MaintenanceForm() {
   const [errors, setErrors] = useState({});
+  const [headerdata, setheaderdata] = useState([]);
   const [formData, setFormData] = useState({
     firstnam: "",
     lastname: "",
@@ -45,6 +46,22 @@ function MaintenanceForm() {
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
+  const fetchData1 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/settings');
+      if (response.data.success) {
+        setheaderdata(response.data.data.data); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchData1();
+   
+}, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -83,13 +100,10 @@ function MaintenanceForm() {
     <container className="md:px-0 px-4">
       <div className="mt-20 md:mb-36 container mx-auto md:w-9/12  w-10/12 shadow-md rounded p-4 md:p-8">
         <p className="text-customblue font-[600] text-[24px] leading-[34px] flex items-center justify-center mb-2">
-          Maintenance Form
+         {headerdata.maintenance_title}
         </p>
         <p className="text-[16px] font-[400] leading-[24px]">
-          {" "}
-          If you have any issues with maintenance-related matters, please fill
-          out the form below. Our team will promptly address your request. Thank
-          you for helping us keep our facilities in top condition!
+          {headerdata.maintenance_description}
         </p>
         <form onSubmit={handleFormSubmit}>
           <div className="grid md:grid-cols-2 gap-x-6">
@@ -162,18 +176,19 @@ function MaintenanceForm() {
             </div>
             <div className="mt-4 ">
             <label className="">issues</label>
-              <input
+              <textarea
                 type="text"
-                id="issues"
+                id="message"
                 name="issues"
                 value={formData.issues}
                 onChange={handleInputChange}
+                rows="4"
                 placeholder="write us about your issues"
-                className="h-28 outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
+                className=" outline-blue appearance-none mt-2 w-full py-2 px-3 text-gray-700 leading-tight border border-[#575757] rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none "
               />
             </div>
-            <div className="my-6 flex items-center justify-center"><button className="ring-1 ring-customblue px-6 rounded py-1 bg-white text-customblue">Submit</button></div>
+            <div className="my-6 flex items-center justify-center"><button className="ring-1 ring-customblue hover:bg-customblue hover:text-white px-6 rounded py-1 bg-white text-customblue">Submit</button></div>
 
         </form>
       </div>
