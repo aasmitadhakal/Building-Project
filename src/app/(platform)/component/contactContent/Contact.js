@@ -17,6 +17,7 @@ import { BiMessageAltEdit } from "react-icons/bi";
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
   const [headerdata, setheaderdata] = useState([]);
+  const[data,setData]=useState([]);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
@@ -51,10 +52,22 @@ function Contact() {
       console.error("Error fetching data:", error);
     }
   };
-
+  const fetchData3 = async () => {
+    try {
+      const response = await axiosInstance.get('/api/contact');
+      if (response.data.success) {
+        setData(response.data.data[0]); // Update state with fetched data
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   useEffect(() => {
     fetchData();
     fetchData1();
+    fetchData3();
   }, []);
 
   const validateForm = () => {
@@ -279,11 +292,13 @@ function Contact() {
           </form>
         </div>
       </div>
-      <iframe
+      {/* <iframe
         width="100%"
         height="600"
         src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=sydney+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-      ></iframe>
+      ></iframe> */}
+<div>{data.description}</div>
+    <div dangerouslySetInnerHTML={{ __html: data.map }}  className="mb-24"/>
       <ToastContainer />
     </>
   );
