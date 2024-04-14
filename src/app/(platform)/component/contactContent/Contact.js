@@ -199,7 +199,7 @@ function Contact() {
             {headerdata.site_mail}
           </div>
         </div>
-        <div>
+        <div className="shadow-small rounded-lg p-1">
           <form onSubmit={handleFormSubmit}>
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
