@@ -283,7 +283,7 @@ const Update = ({ params }) => {
           <label className="block text-sm my-2 font-medium text-gray-700" htmlFor="map">
             Map:
           </label>
-          <input
+          <textarea
             id="map"
             className="block w-full px-4 py-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
             type="text"
