@@ -46,7 +46,7 @@ const Login = () => {
         toast.error("Invalid username or password");
       }
     } catch (error) {
-      setError(error.message);
+      toast.error(error.response.data.error);
     }
   };
 
