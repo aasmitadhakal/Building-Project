@@ -255,7 +255,7 @@ function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="focus:outline-none focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+                  className="focus:outline-none focus:ring-0 focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
           
                 />
                 

@@ -60,7 +60,7 @@ function Page({ params }) {
 
               <div className="grid md:grid-cols-3 md:my-0 my-2 gap-x-1 mt-2">
                 {packages.slice(1).map((packageItem) => (
-                  <div className="card md:my-0 my-2" key={packageItem.id}>
+                  <div className="card md:my-1 my-2" key={packageItem.id}>
                     <img
                       src={axiosInstance.defaults.baseURL + packageItem.images}
                       alt={packageItem.name}
