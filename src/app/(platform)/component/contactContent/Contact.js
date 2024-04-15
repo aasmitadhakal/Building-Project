@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import axiosInstance from "@/app/utils/axiosInstance";
 import { IoLocationOutline } from "react-icons/io5";
@@ -6,18 +6,18 @@ import { MdOutlinePhone } from "react-icons/md";
 import { IoPeopleOutline } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
-import './index.css'
+import "./index.css";
 import { ToastContainer, toast } from "react-toastify";
 import { IoPencil } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowForward } from "react-icons/io";
-import Link from 'next/link';
+import Link from "next/link";
 import { HiExclamationCircle } from "react-icons/hi";
 import { BiMessageAltEdit } from "react-icons/bi";
 function Contact() {
   const [bannerdara, setbannerData] = useState([]);
   const [headerdata, setheaderdata] = useState([]);
-  const[data,setData]=useState([]);
+  const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
@@ -54,14 +54,14 @@ function Contact() {
   };
   const fetchData3 = async () => {
     try {
-      const response = await axiosInstance.get('/api/contact');
+      const response = await axiosInstance.get("/api/contact");
       if (response.data.success) {
         setData(response.data.data[0]); // Update state with fetched data
       } else {
-        console.error('Failed to fetch data');
+        console.error("Failed to fetch data");
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
   useEffect(() => {
@@ -93,7 +93,7 @@ function Contact() {
     }
     if (Object.keys(errors).length > 0) {
       // If there are errors, show them using Toastify
-      Object.values(errors).forEach(error => {
+      Object.values(errors).forEach((error) => {
         toast.error(error);
       });
     }
@@ -167,9 +167,9 @@ function Contact() {
           </h1>
         </div>
       </div>
-      <div className=' md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]'>
-        <div className='container mx-auto flex items-center gap-x-1'>
-          <Link href='/'>Home</Link>
+      <div className=" md:px-0 px-4 bg-gray-200 py-4 text-customblue text-[17px] font-[Karla] leading-[25px]">
+        <div className="container mx-auto flex items-center gap-x-1">
+          <Link href="/">Home</Link>
           <IoIosArrowForward />
           <p>Contact Us</p>
         </div>
@@ -199,7 +199,7 @@ function Contact() {
             {headerdata.site_mail}
           </div>
         </div>
-        <div>
+        <div className="shadow-small rounded-lg p-1">
           <form onSubmit={handleFormSubmit}>
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 p-4 font-[Montserrat]">
               {/* for name */}
@@ -255,24 +255,25 @@ function Contact() {
                   placeholder="Enter your Subject"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <BiMessageAltEdit />
+                  <BiMessageAltEdit />
                 </div>
               </div>
-             
             </div>
-             {/* for message */}
-             <div className=" font-[400]  my-2 text-[16px] leading-[25px] border-b mb-8 mt-4 border-gray-400  mx-4">
-              <div className="flex items-center text-[#656565] "> <IoPencil  className="mx-2"/><label>How can we help you? Feel free to get in touch!</label></div>  
-                <input
-                  type="text"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="focus:outline-none focus:ring-0 focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
-          
-                />
-                
+            {/* for message */}
+            <div className=" font-[400]  my-2 text-[16px] leading-[25px] border-b mb-8 mt-4 border-gray-400  mx-4">
+              <div className="flex items-center text-[#656565] ">
+                {" "}
+                <IoPencil className="mx-2" />
+                <label>How can we help you? Feel free to get in touch!</label>
               </div>
+              <input
+                type="text"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className="focus:outline-none focus:ring-0 focus:border-gray-100 focus:border-none  bg-transparent w-full mr-8 pr-8 text-[#656565] leading-tight border-none py-2 pl-10"
+              />
+            </div>
             <div className="mb-12 md:pl-6 pl-4 md:flex gap-x-8">
               <button className="border-customblue px-8 py-2 rounded border-2 text-customblue hover:bg-customblue hover:text-white">
                 Submit
@@ -292,13 +293,8 @@ function Contact() {
           </form>
         </div>
       </div>
-      {/* <iframe
-        width="100%"
-        height="600"
-        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=sydney+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-      ></iframe> */}
-<div>{data.description}</div>
-    <div dangerouslySetInnerHTML={{ __html: data.map }}  className="mb-24"/>
+
+      <div dangerouslySetInnerHTML={{ __html: data.map }} className="w-full" />
       <ToastContainer />
     </>
   );

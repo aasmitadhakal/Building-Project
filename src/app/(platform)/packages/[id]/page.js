@@ -75,7 +75,7 @@ function Page({ params }) {
           {/* for card */}
           {packageData && (
             <div className=" my-auto ">
-              <div className=" md:p-4">
+              <div className="shadow-medium rounded-lg md:px-7 md:py-5">
                 <div className="flex justify-between mx-2 py-4 border-b border-customblue text-black font-[400] text-[24px] ">
                   <p className="text-customblue  font-[600] text-[24px]  leading-[35px]">
                     Frontage:

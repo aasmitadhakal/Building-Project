@@ -5,7 +5,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import axiosInstance from "@/app/utils/axiosInstance";
-
+import { IoIosArrowUp } from "react-icons/io";
 
 function Navbar() {
   const [headerdata1, setheaderdata1] = useState([]);
@@ -54,19 +54,31 @@ function Navbar() {
           
           <div
             className="relative"
-            // onMouseEnter={handleDropdown}
-            // onMouseLeave={handleDropdown}
+            onMouseEnter={handleDropdown}
+            onMouseLeave={handleDropdown}
           >
-            <div onClick={handleDropdown} className="hover:text-customblue cursor-pointer flex items-center justify-items-center ">Design <IoIosArrowDown  onClick={handleDropdown} className="ml-1"/></div>
+            <div className="hover:text-customblue cursor-pointer flex items-center justify-items-center pb-1">Design  
+            {/* <IoIosArrowDown  className="ml-1"/> */}
+            {dropdownOpen ? (
+            <IoIosArrowUp
+              className=" cursor-pointer ml-1"
+            ></IoIosArrowUp>
+          ) : (
+            <IoIosArrowDown
+              
+              className=" cursor-pointer ml-1"
+            ></IoIosArrowDown>
+          )}
+            </div>
             {dropdownOpen && (
-              <div className="absolute top-full w-52 left-0 mt-8 bg-customblue  text-white   py-1">
-                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
+              <div className="absolute top-full w-52 left-0  bg-white  border rounded   py-1">
+                <div className="  px-2 my-1 mx-1 rounded hover:text-customblue">
                   <Link href="/design/singlehome">Single Storey</Link>
                 </div>
-                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
+                <div className="  px-2 my-1 mx-1 rounded hover:text-customblue">
                   <Link href="/design/doublehome">Double Storey</Link>
                 </div>
-                <div className="text-white hover:bg-white hover:text-customblue px-2 my-1 mx-1 rounded">
+                <div className="  px-2 my-1 mx-1 rounded hover:text-customblue">
                   <Link href="/design/doubleoccupance">Dual Occupancy</Link>
                 </div>
               </div>
@@ -81,9 +93,7 @@ function Navbar() {
           <Link href="/contactus">
             <div className="hover:text-customblue">Contact Us</div>
           </Link>
-          {/* <Link href="/privacy">
-            <div className="hover:text-customblue">  Privacy & Policy</div>
-          </Link> */}
+       
         </div>
         <Link href="/maintenance"><button className="md:block hidden ring-1 rounded text-customblue ring-customblue px-8 py-2 hover:bg-customblue hover:text-white">Maintenance</button></Link>
         {/* for mobile view */}
@@ -138,14 +148,14 @@ function Navbar() {
               >
                 <div className="hover:text-customblue cursor-pointer flex items-center justify-center">Design <IoIosArrowDown  className="ml-1"/></div>
                 {dropdownOpen && (
-                  <div className="absolute top-full w-52 left-0 bg-customblue text-white p-4 shadow-2xl rounded ">
-                     <div className="hover:text-blues">
+                  <div className="absolute top-full w-52 left-0 bg-white  p-4 shadow-2xl rounded ">
+                     <div className="hover:text-customblue ">
                   <Link href="/design/singlehome">Single Storey</Link>
                 </div>
-                <div className="hover:text-blues">
+                <div className="hover:text-customblue">
                   <Link href="/design/doublehome">Double Storey</Link>
                 </div>
-                <div className="hover:text-blues">
+                <div className="hover:text-customblue">
                   <Link href="/design/doubleoccupance">Dual Occupancy</Link>
                 </div>
                   </div>
